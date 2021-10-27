@@ -12,7 +12,7 @@ class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      //padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: Colors.purple.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),

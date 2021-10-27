@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetodatamob/screens/login.dart';
 
 class MenuBody extends StatefulWidget {
   const MenuBody({Key? key}) : super(key: key);
@@ -10,13 +11,15 @@ class MenuBody extends StatefulWidget {
 class _MenuBodyState extends State<MenuBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            ExpansionTile(
+    var _visible = true;
+    return Container(
+      padding: EdgeInsets.only(top: 50),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 20.0),
+          Visibility(
+            visible: _visible,
+            child: ExpansionTile(
               title: Text(
                 "Entomologia",
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
@@ -24,6 +27,9 @@ class _MenuBodyState extends State<MenuBody> {
               children: <Widget>[
                 ListTile(
                   title: Text('Broca Populacional'),
+                  onTap: () {
+                    Navigator.pushNamed(context, Login.routeName);
+                  },
                 ),
                 ListTile(
                   title: Text('Broca Rev. Lab.'),
@@ -36,7 +42,9 @@ class _MenuBodyState extends State<MenuBody> {
                 ),
               ],
             ),
-            ExpansionTile(
+          ),
+          Visibility(
+            child: ExpansionTile(
               title: Text(
                 "Auditoria",
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
@@ -55,8 +63,8 @@ class _MenuBodyState extends State<MenuBody> {
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

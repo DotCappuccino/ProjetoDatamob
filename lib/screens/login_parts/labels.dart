@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetodatamob/screens/login_parts/functions_login.dart';
 import 'package:projetodatamob/screens/menu.dart';
 import 'package:projetodatamob/size.dart';
 
@@ -17,6 +18,8 @@ class _LabelsLoginState extends State<LabelsLogin> {
       borderRadius: BorderRadius.all(Radius.circular(40)),
     ),
   );
+  final _user = TextEditingController();
+  final _senha = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ class _LabelsLoginState extends State<LabelsLogin> {
             height: getProportionateScreenHeight(80),
             width: getProportionateScreenWidth(150),
             child: TextField(
+              controller: _user,
               decoration: InputDecoration(
                 labelText: 'Usuario',
               ),
@@ -55,6 +59,7 @@ class _LabelsLoginState extends State<LabelsLogin> {
             height: getProportionateScreenHeight(80),
             width: getProportionateScreenWidth(150),
             child: TextField(
+              controller: _senha,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Senha',
@@ -65,7 +70,26 @@ class _LabelsLoginState extends State<LabelsLogin> {
             style: raisedButtonStyle,
             child: Text('Login'),
             onPressed: () {
-              Navigator.pushNamed(context, Menu.routeName);
+              if (!ExistUser(_user.text)) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                        content:
+                            Text('O Usuario ' + _user.text + 'não existe'));
+                  },
+                );
+              } else if (!AccessUser(_user.text, _senha.text)) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                        content: Text('Usuario ou senha incorreto'));
+                  },
+                );
+              } else {
+                Navigator.pushNamed(context, Menu.routeName);
+              }
             },
           ),
         ],
