@@ -14,7 +14,7 @@ class _BackgroundState extends State<Background> {
       decoration: BoxDecoration(
         color: Colors.black,
         image: const DecorationImage(
-          image: AssetImage('assets/images/login_background.jpg'),
+          image: AssetImage('assets/images/login_background2.jpg'),
           fit: BoxFit.fill,
         ),
       ),

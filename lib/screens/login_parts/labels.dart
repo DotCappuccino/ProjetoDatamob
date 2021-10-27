@@ -76,7 +76,7 @@ class _LabelsLoginState extends State<LabelsLogin> {
                   builder: (context) {
                     return AlertDialog(
                         content:
-                            Text('O Usuario ' + _user.text + 'não existe'));
+                            Text('O Usuario ' + _user.text + ' não existe!'));
                   },
                 );
               } else if (!AccessUser(_user.text, _senha.text)) {
