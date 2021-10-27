@@ -10,26 +10,50 @@ class MenuBody extends StatefulWidget {
 class _MenuBodyState extends State<MenuBody> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Container(
-        child: ListView(
-          padding: EdgeInsets.zero,
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Column(
           children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Minha conta"),
-              onTap: () {
-                //Navigator.pop(context);
-                //Navegar para outra página
-              },
+            SizedBox(height: 20.0),
+            ExpansionTile(
+              title: Text(
+                "Entomologia",
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              ),
+              children: <Widget>[
+                ListTile(
+                  title: Text('Broca Populacional'),
+                ),
+                ListTile(
+                  title: Text('Broca Rev. Lab.'),
+                ),
+                ListTile(
+                  title: Text('Broca/Cigarrinha'),
+                ),
+                ListTile(
+                  title: Text('Broquinha Control. Quimico'),
+                ),
+              ],
             ),
-            ListTile(
-              leading: Icon(Icons.shopping_basket),
-              title: Text("Meus pedidos"),
-              onTap: () {
-                //Navigator.pop(context);
-                //Navegar para outra página
-              },
+            ExpansionTile(
+              title: Text(
+                "Auditoria",
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              ),
+              children: <Widget>[
+                ExpansionTile(
+                  title: Text("Plantio Mecanizado"),
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Pré Colheita'),
+                    ),
+                    ListTile(
+                      title: Text('Pós Colheita'),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

@@ -23,8 +23,8 @@ class _MenuState extends State<Menu> {
       ),
       body: Stack(
         children: [
-          if (false) SearchField(),
-          if (true) MenuBody(),
+          if (true) SearchField(),
+          //if (true) MenuBody(),
         ],
       ),
     );
