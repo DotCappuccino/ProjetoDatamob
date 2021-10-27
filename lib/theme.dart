@@ -13,7 +13,7 @@ ThemeData theme() {
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(28),
-    borderSide: BorderSide(color: Colors.white),
+    borderSide: BorderSide(color: Colors.purpleAccent),
     gapPadding: 10,
   );
 
@@ -22,13 +22,13 @@ InputDecorationTheme inputDecorationTheme() {
     //contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
     enabledBorder: outlineInputBorder,
     focusedBorder: outlineInputBorder,
-    border: outlineInputBorder,
+    //border: outlineInputBorder,
   );
 }
 
 TextTheme textTheme() {
   return TextTheme(
-    bodyText1: TextStyle(color: Colors.white),
+    bodyText1: TextStyle(color: Colors.yellow),
     bodyText2: TextStyle(color: Colors.purple),
   );
 }

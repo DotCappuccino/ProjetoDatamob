@@ -42,13 +42,10 @@ class _LabelsLoginState extends State<LabelsLogin> {
           ),
           Container(
             padding: EdgeInsets.only(top: 10, bottom: 5),
-            //width: 250,
-            //height: 60,
             height: getProportionateScreenHeight(80),
             width: getProportionateScreenWidth(150),
             child: TextField(
               decoration: InputDecoration(
-                //border: OutlineInputBorder(),
                 labelText: 'Usuario',
               ),
             ),
@@ -60,15 +57,13 @@ class _LabelsLoginState extends State<LabelsLogin> {
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
-                //border: OutlineInputBorder(),
-                focusColor: Colors.yellow,
                 labelText: 'Senha',
               ),
             ),
           ),
           ElevatedButton(
             style: raisedButtonStyle,
-            child: Text('Login !'),
+            child: Text('Login'),
             onPressed: () {
               Navigator.pushNamed(context, Menu.routeName);
             },
