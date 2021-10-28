@@ -14,13 +14,14 @@ class _ApontamentosState extends State<Apontamentos> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
-        appBar: AppBar(
-          title: Container(
-            child: const Icon(Icons.arrow_back),
-          ),
-          //Text('Apontamentos'),
-        ),
+        //appBar: AppBar(
+        //title: Container(
+        //  child: const Icon(Icons.arrow_back),
+        //),
+        //Text('Apontamentos'),
+        //),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.check),
@@ -28,7 +29,7 @@ class _ApontamentosState extends State<Apontamentos> {
         ),
         body: Stack(
           children: [
-            if (true) ApontamentosBody(),
+            ApontamentosBody(),
           ],
         ));
   }

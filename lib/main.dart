@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:projetodatamob/routes.dart';
+import 'package:projetodatamob/screens/apontamentos.dart';
 import 'package:projetodatamob/screens/login.dart';
 import 'package:projetodatamob/screens/menu.dart';
 import 'package:projetodatamob/theme.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Projeto Datamob',
       //theme: theme(),
-      initialRoute: Menu.routeName,
+      initialRoute: Apontamentos.routeName,
       routes: routes,
     );
   }

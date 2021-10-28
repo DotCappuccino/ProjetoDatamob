@@ -15,7 +15,7 @@ class _ApontamentosBodyState extends State<ApontamentosBody> {
     bool isChecked2 = false;
     return Center(
       child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             children: [
