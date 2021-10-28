@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetodatamob/screens/apontamentos.dart';
 import 'package:projetodatamob/screens/navbar_parts/menu_body.dart';
 
 class Navbar extends StatefulWidget {
@@ -16,13 +17,15 @@ class _NavbarState extends State<Navbar> {
         // Remove padding
         padding: EdgeInsets.zero,
         children: [
-          //Divider(),
+          Divider(),
           MenuBody(),
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.pushNamed(context, Apontamentos.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.description),
