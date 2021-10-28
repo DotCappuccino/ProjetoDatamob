@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projetodatamob/screens/login.dart';
+import 'package:projetodatamob/screens/menu_parts/functions_menu.dart';
 
 class MenuBody extends StatefulWidget {
   const MenuBody({Key? key}) : super(key: key);
@@ -11,14 +12,17 @@ class MenuBody extends StatefulWidget {
 class _MenuBodyState extends State<MenuBody> {
   @override
   Widget build(BuildContext context) {
-    var _visible = true;
+    String user = 'Teste';
+    bool entomologiaVisible = CheckMenus(user, 'Entomologia');
+    bool auditoriaVisible = CheckMenus(user, 'Auditoria');
+
     return Container(
       padding: EdgeInsets.only(top: 50),
       child: Column(
         children: <Widget>[
           SizedBox(height: 20.0),
           Visibility(
-            visible: _visible,
+            visible: entomologiaVisible,
             child: ExpansionTile(
               title: Text(
                 "Entomologia",
@@ -44,6 +48,7 @@ class _MenuBodyState extends State<MenuBody> {
             ),
           ),
           Visibility(
+            visible: auditoriaVisible,
             child: ExpansionTile(
               title: Text(
                 "Auditoria",

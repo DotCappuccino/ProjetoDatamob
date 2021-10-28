@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projetodatamob/screens/menu_parts/menu_body.dart';
+import 'package:projetodatamob/screens/Navbar.dart';
 import 'package:projetodatamob/size.dart';
 import 'menu_parts/searchfield.dart';
 
@@ -16,6 +16,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(title: Text("Teste")),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
@@ -23,8 +24,9 @@ class _MenuState extends State<Menu> {
       ),
       body: Stack(
         children: [
-          if (true) SearchField(),
-          if (true) MenuBody(),
+          Navbar(),
+          //SearchField(),
+          //MenuBody(),
         ],
       ),
     );
