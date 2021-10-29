@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projetodatamob/screens/Navbar.dart';
 import 'package:projetodatamob/size.dart';
 import 'menu_parts/searchfield.dart';
@@ -16,7 +17,21 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(title: Text("Teste")),
+      drawer: Drawer(
+        child: Stack(
+          children: [
+            Navbar(),
+          ],
+        ),
+      ),
+      appBar: new AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: new Icon(Icons.align_horizontal_left_rounded),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
@@ -24,9 +39,7 @@ class _MenuState extends State<Menu> {
       ),
       body: Stack(
         children: [
-          Navbar(),
-          //SearchField(),
-          //MenuBody(),
+          //Navbar(),
         ],
       ),
     );
