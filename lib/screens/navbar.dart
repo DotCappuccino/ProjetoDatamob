@@ -12,12 +12,10 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return Container(
       child: ListView(
-        // Remove padding
-        padding: EdgeInsets.zero,
+        //padding: EdgeInsets.zero,
         children: [
-          Divider(),
           MenuBody(),
           Divider(),
           ListTile(
