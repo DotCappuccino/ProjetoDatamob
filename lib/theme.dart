@@ -28,7 +28,7 @@ InputDecorationTheme inputDecorationTheme() {
 
 TextTheme textTheme() {
   return TextTheme(
-    bodyText1: TextStyle(color: Colors.black),
+    bodyText1: TextStyle(color: Colors.purple),
     bodyText2: TextStyle(color: Colors.purple),
   );
 }

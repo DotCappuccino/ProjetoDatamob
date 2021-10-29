@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Projeto Datamob',
       theme: theme(),
-      initialRoute: Apontamentos.routeName,
+      initialRoute: Menu.routeName,
       routes: routes,
     );
   }
