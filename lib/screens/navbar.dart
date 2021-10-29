@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projetodatamob/screens/apontamentos.dart';
+import 'package:projetodatamob/screens/login.dart';
 import 'package:projetodatamob/screens/navbar_parts/menu_body.dart';
 
 class Navbar extends StatefulWidget {
@@ -14,16 +14,13 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView(
-        //padding: EdgeInsets.zero,
         children: [
           MenuBody(),
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () {
-              Navigator.pushNamed(context, Apontamentos.routeName);
-            },
+            onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.description),
