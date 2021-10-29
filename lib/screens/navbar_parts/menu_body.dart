@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetodatamob/screens/apontamentos.dart';
 import 'package:projetodatamob/screens/login.dart';
 import 'package:projetodatamob/screens/menu_parts/functions_menu.dart';
 
@@ -21,6 +22,12 @@ class _MenuBodyState extends State<MenuBody> {
       child: Column(
         children: <Widget>[
           SizedBox(height: 20.0),
+          ListTile(
+            title: Text('Apontamento'),
+            onTap: () {
+              Navigator.pushNamed(context, Apontamentos.routeName);
+            },
+          ),
           Visibility(
             visible: entomologiaVisible,
             child: ExpansionTile(

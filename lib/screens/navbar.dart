@@ -20,18 +20,13 @@ class _NavbarState extends State<Navbar> {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Policies'),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, Login.routeName),
           ),
           Divider(),
           ListTile(
             title: Text('Exit'),
             leading: Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, Login.routeName),
           ),
         ],
       ),

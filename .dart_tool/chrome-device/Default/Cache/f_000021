@@ -1,983 +1,721 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__material__expansion_tile_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__animation__curves$46dart) {
+define(['dart_sdk', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/semantics/binding.dart', 'packages/flutter/src/scheduler/ticker.dart', 'packages/flutter/src/physics/spring_simulation.dart', 'packages/flutter/src/physics/simulation.dart', 'packages/flutter/src/physics/tolerance.dart'], (function load__packages__flutter__src__animation__animation_controller_dart(dart_sdk, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__semantics__binding$46dart, packages__flutter__src__scheduler__ticker$46dart, packages__flutter__src__physics__spring_simulation$46dart, packages__flutter__src__physics__simulation$46dart, packages__flutter__src__physics__tolerance$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
   const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const page_storage = packages__flutter__src__widgets__widget_span$46dart.src__widgets__page_storage;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
   const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const list_tile = packages__flutter__src__material__icon_button$46dart.src__material__list_tile;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
+  const listener_helpers = packages__flutter__src__animation__listener_helpers$46dart.src__animation__listener_helpers;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
   const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  var expansion_tile = Object.create(dart.library);
+  const binding = packages__flutter__src__semantics__binding$46dart.src__semantics__binding;
+  const ticker = packages__flutter__src__scheduler__ticker$46dart.src__scheduler__ticker;
+  const spring_simulation = packages__flutter__src__physics__spring_simulation$46dart.src__physics__spring_simulation;
+  const simulation = packages__flutter__src__physics__simulation$46dart.src__physics__simulation;
+  const tolerance = packages__flutter__src__physics__tolerance$46dart.src__physics__tolerance;
+  var animation_controller = Object.create(dart.library);
+  var $toDouble = dartx.toDouble;
+  var $clamp = dartx.clamp;
+  var $isFinite = dartx.isFinite;
+  var $abs = dartx.abs;
+  var $runtimeType = dartx.runtimeType;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $modulo = dartx['%'];
+  var $isOdd = dartx.isOdd;
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    ColorN: () => (T.ColorN = dart.constFn(dart.nullable(ui.Color)))(),
-    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    voidToNull: () => (T.voidToNull = dart.constFn(dart.fnType(core.Null, [dart.void])))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    TweenOfdouble: () => (T.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))()
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    DiagnosticsPropertyOfAnimationController: () => (T.DiagnosticsPropertyOfAnimationController = dart.constFn(diagnostics.DiagnosticsProperty$(animation_controller.AnimationController)))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.constList([], framework.Widget);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 41,
-        [_Location_line]: 273,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4], widget_inspector._Location);
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 273,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: icon_data.IconData.prototype,
-        [IconData_matchTextDirection]: false,
-        [IconData_fontPackage]: null,
-        [IconData_fontFamily]: "MaterialIcons",
-        [IconData_codePoint]: 57926
+      return C[0] = dart.const({
+        __proto__: animation_controller._AnimationDirection.prototype,
+        [_name$]: "_AnimationDirection.forward",
+        index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: icon.Icon.prototype,
-        [Widget__location]: C[2] || CT.C2,
-        [Widget_key]: null,
-        [Icon_textDirection]: null,
-        [Icon_semanticLabel]: null,
-        [Icon_color]: null,
-        [Icon_size]: null,
-        [Icon_icon]: C[5] || CT.C5
+        __proto__: animation_controller._AnimationDirection.prototype,
+        [_name$]: "_AnimationDirection.reverse",
+        index: 1
       });
     },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "turns",
-        [_Location_column]: 17,
-        [_Location_line]: 272,
-        [_Location_file]: null
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], animation_controller._AnimationDirection);
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: animation_controller.AnimationBehavior.prototype,
+        [_name$]: "AnimationBehavior.normal",
+        index: 0
       });
     },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 273,
-        [_Location_file]: null
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: animation_controller.AnimationBehavior.prototype,
+        [_name$]: "AnimationBehavior.preserve",
+        index: 1
       });
     },
-    get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], widget_inspector._Location);
+    get C5() {
+      return C[5] = dart.constList([C[3] || CT.C3, C[4] || CT.C4], animation_controller.AnimationBehavior);
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 44,
-        [_Location_line]: 271,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
+        __proto__: curves._Linear.prototype
       });
     },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onTap",
-        [_Location_column]: 15,
-        [_Location_line]: 266,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "contentPadding",
-        [_Location_column]: 15,
-        [_Location_line]: 267,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "leading",
-        [_Location_column]: 15,
-        [_Location_line]: 268,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 15,
-        [_Location_line]: 269,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "subtitle",
-        [_Location_column]: 15,
-        [_Location_line]: 270,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "trailing",
-        [_Location_column]: 15,
-        [_Location_line]: 271,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], widget_inspector._Location);
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[11] || CT.C11,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 265,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 15,
-        [_Location_line]: 279,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "heightFactor",
-        [_Location_column]: 15,
-        [_Location_line]: 280,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 281,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], widget_inspector._Location);
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[19] || CT.C19,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 278,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 278,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.constList([C[25] || CT.C25], widget_inspector._Location);
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[24] || CT.C24,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 277,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 9,
-        [_Location_line]: 260,
-        [_Location_file]: null
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 9,
-        [_Location_line]: 261,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], widget_inspector._Location);
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[27] || CT.C27,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 259,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 7,
-        [_Location_line]: 252,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 259,
-        [_Location_file]: null
-      });
-    },
-    get C31() {
-      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33], widget_inspector._Location);
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[31] || CT.C31,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 251,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "crossAxisAlignment",
-        [_Location_column]: 13,
-        [_Location_line]: 316,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 317,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37], widget_inspector._Location);
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[35] || CT.C35,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 315,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 11,
-        [_Location_line]: 314,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 315,
-        [_Location_file]: null
-      });
-    },
-    get C39() {
-      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[39] || CT.C39,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 313,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 313,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabled",
-        [_Location_column]: 9,
-        [_Location_line]: 320,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 312,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 312,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "offstage",
-        [_Location_column]: 7,
-        [_Location_line]: 322,
-        [_Location_file]: null
-      });
-    },
-    get C47() {
-      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49], widget_inspector._Location);
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[47] || CT.C47,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 311,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "animation",
-        [_Location_column]: 7,
-        [_Location_line]: 326,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 7,
-        [_Location_line]: 327,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 328,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54], widget_inspector._Location);
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[51] || CT.C51,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 325,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 200000
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: tolerance.Tolerance.prototype,
+        [Tolerance_velocity]: 1 / 0,
+        [Tolerance_time]: 0.001,
+        [Tolerance_distance]: 0.01
       });
     }
   }, false);
-  var C = Array(56).fill(void 0);
+  var C = Array(8).fill(void 0);
   var I = [
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart",
-    "package:flutter/src/material/expansion_tile.dart"
+    "package:flutter/src/animation/animation_controller.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/animation/animation_controller.dart"
   ];
-  var leading$ = dart.privateName(expansion_tile, "ExpansionTile.leading");
-  var title$ = dart.privateName(expansion_tile, "ExpansionTile.title");
-  var subtitle$ = dart.privateName(expansion_tile, "ExpansionTile.subtitle");
-  var onExpansionChanged$ = dart.privateName(expansion_tile, "ExpansionTile.onExpansionChanged");
-  var children$ = dart.privateName(expansion_tile, "ExpansionTile.children");
-  var backgroundColor$ = dart.privateName(expansion_tile, "ExpansionTile.backgroundColor");
-  var collapsedBackgroundColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedBackgroundColor");
-  var trailing$ = dart.privateName(expansion_tile, "ExpansionTile.trailing");
-  var initiallyExpanded$ = dart.privateName(expansion_tile, "ExpansionTile.initiallyExpanded");
-  var maintainState$ = dart.privateName(expansion_tile, "ExpansionTile.maintainState");
-  var tilePadding$ = dart.privateName(expansion_tile, "ExpansionTile.tilePadding");
-  var expandedAlignment$ = dart.privateName(expansion_tile, "ExpansionTile.expandedAlignment");
-  var expandedCrossAxisAlignment$ = dart.privateName(expansion_tile, "ExpansionTile.expandedCrossAxisAlignment");
-  var childrenPadding$ = dart.privateName(expansion_tile, "ExpansionTile.childrenPadding");
-  var iconColor$ = dart.privateName(expansion_tile, "ExpansionTile.iconColor");
-  var collapsedIconColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedIconColor");
-  var textColor$ = dart.privateName(expansion_tile, "ExpansionTile.textColor");
-  var collapsedTextColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedTextColor");
-  expansion_tile.ExpansionTile = class ExpansionTile extends framework.StatefulWidget {
-    get leading() {
-      return this[leading$];
-    }
-    set leading(value) {
-      super.leading = value;
-    }
-    get title() {
-      return this[title$];
-    }
-    set title(value) {
-      super.title = value;
-    }
-    get subtitle() {
-      return this[subtitle$];
-    }
-    set subtitle(value) {
-      super.subtitle = value;
-    }
-    get onExpansionChanged() {
-      return this[onExpansionChanged$];
-    }
-    set onExpansionChanged(value) {
-      super.onExpansionChanged = value;
-    }
-    get children() {
-      return this[children$];
-    }
-    set children(value) {
-      super.children = value;
-    }
-    get backgroundColor() {
-      return this[backgroundColor$];
-    }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get collapsedBackgroundColor() {
-      return this[collapsedBackgroundColor$];
-    }
-    set collapsedBackgroundColor(value) {
-      super.collapsedBackgroundColor = value;
-    }
-    get trailing() {
-      return this[trailing$];
-    }
-    set trailing(value) {
-      super.trailing = value;
-    }
-    get initiallyExpanded() {
-      return this[initiallyExpanded$];
-    }
-    set initiallyExpanded(value) {
-      super.initiallyExpanded = value;
-    }
-    get maintainState() {
-      return this[maintainState$];
-    }
-    set maintainState(value) {
-      super.maintainState = value;
-    }
-    get tilePadding() {
-      return this[tilePadding$];
-    }
-    set tilePadding(value) {
-      super.tilePadding = value;
-    }
-    get expandedAlignment() {
-      return this[expandedAlignment$];
-    }
-    set expandedAlignment(value) {
-      super.expandedAlignment = value;
-    }
-    get expandedCrossAxisAlignment() {
-      return this[expandedCrossAxisAlignment$];
-    }
-    set expandedCrossAxisAlignment(value) {
-      super.expandedCrossAxisAlignment = value;
-    }
-    get childrenPadding() {
-      return this[childrenPadding$];
-    }
-    set childrenPadding(value) {
-      super.childrenPadding = value;
-    }
-    get iconColor() {
-      return this[iconColor$];
-    }
-    set iconColor(value) {
-      super.iconColor = value;
-    }
-    get collapsedIconColor() {
-      return this[collapsedIconColor$];
-    }
-    set collapsedIconColor(value) {
-      super.collapsedIconColor = value;
-    }
-    get textColor() {
-      return this[textColor$];
-    }
-    set textColor(value) {
-      super.textColor = value;
-    }
-    get collapsedTextColor() {
-      return this[collapsedTextColor$];
-    }
-    set collapsedTextColor(value) {
-      super.collapsedTextColor = value;
-    }
-    createState() {
-      return new expansion_tile._ExpansionTileState.new();
+  var _name$ = dart.privateName(animation_controller, "_name");
+  animation_controller._AnimationDirection = class _AnimationDirection extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (expansion_tile.ExpansionTile.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let leading = opts && 'leading' in opts ? opts.leading : null;
-    let title = opts && 'title' in opts ? opts.title : null;
-    let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
-    let onExpansionChanged = opts && 'onExpansionChanged' in opts ? opts.onExpansionChanged : null;
-    let children = opts && 'children' in opts ? opts.children : C[0] || CT.C0;
-    let trailing = opts && 'trailing' in opts ? opts.trailing : null;
-    let initiallyExpanded = opts && 'initiallyExpanded' in opts ? opts.initiallyExpanded : false;
-    let maintainState = opts && 'maintainState' in opts ? opts.maintainState : false;
-    let tilePadding = opts && 'tilePadding' in opts ? opts.tilePadding : null;
-    let expandedCrossAxisAlignment = opts && 'expandedCrossAxisAlignment' in opts ? opts.expandedCrossAxisAlignment : null;
-    let expandedAlignment = opts && 'expandedAlignment' in opts ? opts.expandedAlignment : null;
-    let childrenPadding = opts && 'childrenPadding' in opts ? opts.childrenPadding : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let collapsedBackgroundColor = opts && 'collapsedBackgroundColor' in opts ? opts.collapsedBackgroundColor : null;
-    let textColor = opts && 'textColor' in opts ? opts.textColor : null;
-    let collapsedTextColor = opts && 'collapsedTextColor' in opts ? opts.collapsedTextColor : null;
-    let iconColor = opts && 'iconColor' in opts ? opts.iconColor : null;
-    let collapsedIconColor = opts && 'collapsedIconColor' in opts ? opts.collapsedIconColor : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[leading$] = leading;
-    this[title$] = title;
-    this[subtitle$] = subtitle;
-    this[onExpansionChanged$] = onExpansionChanged;
-    this[children$] = children;
-    this[trailing$] = trailing;
-    this[initiallyExpanded$] = initiallyExpanded;
-    this[maintainState$] = maintainState;
-    this[tilePadding$] = tilePadding;
-    this[expandedCrossAxisAlignment$] = expandedCrossAxisAlignment;
-    this[expandedAlignment$] = expandedAlignment;
-    this[childrenPadding$] = childrenPadding;
-    this[backgroundColor$] = backgroundColor;
-    this[collapsedBackgroundColor$] = collapsedBackgroundColor;
-    this[textColor$] = textColor;
-    this[collapsedTextColor$] = collapsedTextColor;
-    this[iconColor$] = iconColor;
-    this[collapsedIconColor$] = collapsedIconColor;
-    if (!(initiallyExpanded !== null)) dart.assertFailed(null, I[0], 59, 15, "initiallyExpanded != null");
-    if (!(maintainState !== null)) dart.assertFailed(null, I[0], 60, 15, "maintainState != null");
-    if (!(expandedCrossAxisAlignment !== flex.CrossAxisAlignment.baseline)) dart.assertFailed("CrossAxisAlignment.baseline is not supported since the expanded children " + "are aligned in a column, not a row. Try to use another constant.", I[0], 62, 8, "expandedCrossAxisAlignment != CrossAxisAlignment.baseline");
-    expansion_tile.ExpansionTile.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (animation_controller._AnimationDirection.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = expansion_tile.ExpansionTile.prototype;
-  dart.addTypeTests(expansion_tile.ExpansionTile);
-  dart.addTypeCaches(expansion_tile.ExpansionTile);
-  dart.setMethodSignature(expansion_tile.ExpansionTile, () => ({
-    __proto__: dart.getMethods(expansion_tile.ExpansionTile.__proto__),
-    createState: dart.fnType(expansion_tile._ExpansionTileState, [])
+  }).prototype = animation_controller._AnimationDirection.prototype;
+  dart.addTypeTests(animation_controller._AnimationDirection);
+  dart.addTypeCaches(animation_controller._AnimationDirection);
+  dart.setLibraryUri(animation_controller._AnimationDirection, I[0]);
+  dart.setFieldSignature(animation_controller._AnimationDirection, () => ({
+    __proto__: dart.getFields(animation_controller._AnimationDirection.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(expansion_tile.ExpansionTile, I[1]);
-  dart.setFieldSignature(expansion_tile.ExpansionTile, () => ({
-    __proto__: dart.getFields(expansion_tile.ExpansionTile.__proto__),
-    leading: dart.finalFieldType(dart.nullable(framework.Widget)),
-    title: dart.finalFieldType(framework.Widget),
-    subtitle: dart.finalFieldType(dart.nullable(framework.Widget)),
-    onExpansionChanged: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.bool]))),
-    children: dart.finalFieldType(core.List$(framework.Widget)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedBackgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    trailing: dart.finalFieldType(dart.nullable(framework.Widget)),
-    initiallyExpanded: dart.finalFieldType(core.bool),
-    maintainState: dart.finalFieldType(core.bool),
-    tilePadding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    expandedAlignment: dart.finalFieldType(dart.nullable(alignment.Alignment)),
-    expandedCrossAxisAlignment: dart.finalFieldType(dart.nullable(flex.CrossAxisAlignment)),
-    childrenPadding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    iconColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedIconColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    textColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedTextColor: dart.finalFieldType(dart.nullable(ui.Color))
+  dart.defineExtensionMethods(animation_controller._AnimationDirection, ['toString']);
+  animation_controller._AnimationDirection.forward = C[0] || CT.C0;
+  animation_controller._AnimationDirection.reverse = C[1] || CT.C1;
+  animation_controller._AnimationDirection.values = C[2] || CT.C2;
+  animation_controller.AnimationBehavior = class AnimationBehavior extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (animation_controller.AnimationBehavior.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = animation_controller.AnimationBehavior.prototype;
+  dart.addTypeTests(animation_controller.AnimationBehavior);
+  dart.addTypeCaches(animation_controller.AnimationBehavior);
+  dart.setLibraryUri(animation_controller.AnimationBehavior, I[0]);
+  dart.setFieldSignature(animation_controller.AnimationBehavior, () => ({
+    __proto__: dart.getFields(animation_controller.AnimationBehavior.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  var _borderColorTween = dart.privateName(expansion_tile, "_borderColorTween");
-  var _headerColorTween = dart.privateName(expansion_tile, "_headerColorTween");
-  var _iconColorTween = dart.privateName(expansion_tile, "_iconColorTween");
-  var _backgroundColorTween = dart.privateName(expansion_tile, "_backgroundColorTween");
-  var ___ExpansionTileState__controller = dart.privateName(expansion_tile, "_#_ExpansionTileState#_controller");
-  var ___ExpansionTileState__iconTurns = dart.privateName(expansion_tile, "_#_ExpansionTileState#_iconTurns");
-  var ___ExpansionTileState__heightFactor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_heightFactor");
-  var ___ExpansionTileState__borderColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_borderColor");
-  var ___ExpansionTileState__headerColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_headerColor");
-  var ___ExpansionTileState__iconColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_iconColor");
-  var ___ExpansionTileState__backgroundColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_backgroundColor");
-  var _isExpanded = dart.privateName(expansion_tile, "_isExpanded");
-  var _controller = dart.privateName(expansion_tile, "_controller");
-  var _iconTurns = dart.privateName(expansion_tile, "_iconTurns");
-  var _heightFactor = dart.privateName(expansion_tile, "_heightFactor");
-  var _borderColor = dart.privateName(expansion_tile, "_borderColor");
-  var _headerColor = dart.privateName(expansion_tile, "_headerColor");
-  var _iconColor = dart.privateName(expansion_tile, "_iconColor");
-  var _backgroundColor = dart.privateName(expansion_tile, "_backgroundColor");
-  var _handleTap = dart.privateName(expansion_tile, "_handleTap");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var Widget__location = dart.privateName(framework, "Widget._location");
-  var Widget_key = dart.privateName(framework, "Widget.key");
-  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
-  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
-  var Icon_color = dart.privateName(icon, "Icon.color");
-  var Icon_size = dart.privateName(icon, "Icon.size");
-  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
-  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
-  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
-  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
-  var Icon_icon = dart.privateName(icon, "Icon.icon");
-  var _buildChildren = dart.privateName(expansion_tile, "_buildChildren");
-  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(expansion_tile.ExpansionTile) {};
-  (State_SingleTickerProviderStateMixin$36.new = function() {
-    ticker_provider.SingleTickerProviderStateMixin$(expansion_tile.ExpansionTile)[dart.mixinNew].call(this);
-    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(expansion_tile.ExpansionTile));
-  expansion_tile._ExpansionTileState = class _ExpansionTileState extends State_SingleTickerProviderStateMixin$36 {
-    get [_controller]() {
+  dart.defineExtensionMethods(animation_controller.AnimationBehavior, ['toString']);
+  animation_controller.AnimationBehavior.normal = C[3] || CT.C3;
+  animation_controller.AnimationBehavior.preserve = C[4] || CT.C4;
+  animation_controller.AnimationBehavior.values = C[5] || CT.C5;
+  var lowerBound$ = dart.privateName(animation_controller, "AnimationController.lowerBound");
+  var upperBound$ = dart.privateName(animation_controller, "AnimationController.upperBound");
+  var debugLabel$ = dart.privateName(animation_controller, "AnimationController.debugLabel");
+  var animationBehavior$ = dart.privateName(animation_controller, "AnimationController.animationBehavior");
+  var duration$ = dart.privateName(animation_controller, "AnimationController.duration");
+  var reverseDuration$ = dart.privateName(animation_controller, "AnimationController.reverseDuration");
+  var _ticker = dart.privateName(animation_controller, "_ticker");
+  var _simulation = dart.privateName(animation_controller, "_simulation");
+  var __AnimationController__value = dart.privateName(animation_controller, "_#AnimationController#_value");
+  var _lastElapsedDuration = dart.privateName(animation_controller, "_lastElapsedDuration");
+  var __AnimationController__status = dart.privateName(animation_controller, "_#AnimationController#_status");
+  var _lastReportedStatus = dart.privateName(animation_controller, "_lastReportedStatus");
+  var _direction = dart.privateName(animation_controller, "_direction");
+  var _tick = dart.privateName(animation_controller, "_tick");
+  var _internalSetValue = dart.privateName(animation_controller, "_internalSetValue");
+  var _value = dart.privateName(animation_controller, "_value");
+  var _checkStatusChanged = dart.privateName(animation_controller, "_checkStatusChanged");
+  var _status = dart.privateName(animation_controller, "_status");
+  var _animateToInternal = dart.privateName(animation_controller, "_animateToInternal");
+  var _startSimulation = dart.privateName(animation_controller, "_startSimulation");
+  var _directionSetter = dart.privateName(animation_controller, "_directionSetter");
+  const Animation_AnimationEagerListenerMixin$36 = class Animation_AnimationEagerListenerMixin extends animation.Animation$(core.double) {};
+  (Animation_AnimationEagerListenerMixin$36.new = function() {
+    Animation_AnimationEagerListenerMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationEagerListenerMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationEagerListenerMixin$36, listener_helpers.AnimationEagerListenerMixin);
+  const Animation_AnimationLocalListenersMixin$36 = class Animation_AnimationLocalListenersMixin extends Animation_AnimationEagerListenerMixin$36 {};
+  (Animation_AnimationLocalListenersMixin$36.new = function() {
+    listener_helpers.AnimationLocalListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalListenersMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalListenersMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationLocalListenersMixin$36, listener_helpers.AnimationLocalListenersMixin);
+  const Animation_AnimationLocalStatusListenersMixin$36 = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLocalListenersMixin$36 {};
+  (Animation_AnimationLocalStatusListenersMixin$36.new = function() {
+    listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalStatusListenersMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalStatusListenersMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36, listener_helpers.AnimationLocalStatusListenersMixin);
+  animation_controller.AnimationController = class AnimationController extends Animation_AnimationLocalStatusListenersMixin$36 {
+    get lowerBound() {
+      return this[lowerBound$];
+    }
+    set lowerBound(value) {
+      super.lowerBound = value;
+    }
+    get upperBound() {
+      return this[upperBound$];
+    }
+    set upperBound(value) {
+      super.upperBound = value;
+    }
+    get debugLabel() {
+      return this[debugLabel$];
+    }
+    set debugLabel(value) {
+      super.debugLabel = value;
+    }
+    get animationBehavior() {
+      return this[animationBehavior$];
+    }
+    set animationBehavior(value) {
+      super.animationBehavior = value;
+    }
+    get duration() {
+      return this[duration$];
+    }
+    set duration(value) {
+      this[duration$] = value;
+    }
+    get reverseDuration() {
+      return this[reverseDuration$];
+    }
+    set reverseDuration(value) {
+      this[reverseDuration$] = value;
+    }
+    get view() {
+      return this;
+    }
+    resync(vsync) {
+      let oldTicker = dart.nullCheck(this[_ticker]);
+      this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
+      dart.nullCheck(this[_ticker]).absorbTicker(oldTicker);
+    }
+    get value() {
+      return this[_value];
+    }
+    get [_value]() {
       let t0;
-      t0 = this[___ExpansionTileState__controller];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_controller")) : t0;
+      t0 = this[__AnimationController__value];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_value")) : t0;
     }
-    set [_controller](t0) {
-      this[___ExpansionTileState__controller] = t0;
+    set [_value](t0) {
+      this[__AnimationController__value] = t0;
     }
-    get [_iconTurns]() {
+    set value(newValue) {
+      if (!(newValue !== null)) dart.assertFailed(null, I[1], 363, 12, "newValue != null");
+      this.stop();
+      this[_internalSetValue](newValue);
+      this.notifyListeners();
+      this[_checkStatusChanged]();
+    }
+    reset() {
+      this.value = this.lowerBound;
+    }
+    get velocity() {
+      if (!this.isAnimating) return 0.0;
+      return dart.nullCheck(this[_simulation]).dx(dart.nullCheck(this.lastElapsedDuration).inMicroseconds[$toDouble]() / 1000000);
+    }
+    [_internalSetValue](newValue) {
+      this[_value] = newValue[$clamp](this.lowerBound, this.upperBound);
+      if (this[_value] === this.lowerBound) {
+        this[_status] = animation.AnimationStatus.dismissed;
+      } else if (this[_value] === this.upperBound) {
+        this[_status] = animation.AnimationStatus.completed;
+      } else {
+        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
+      }
+    }
+    get lastElapsedDuration() {
+      return this[_lastElapsedDuration];
+    }
+    get isAnimating() {
+      return this[_ticker] != null && dart.nullCheck(this[_ticker]).isActive;
+    }
+    get status() {
+      return this[_status];
+    }
+    get [_status]() {
       let t1;
-      t1 = this[___ExpansionTileState__iconTurns];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_iconTurns")) : t1;
+      t1 = this[__AnimationController__status];
+      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_status")) : t1;
     }
-    set [_iconTurns](t1) {
-      this[___ExpansionTileState__iconTurns] = t1;
+    set [_status](t1) {
+      this[__AnimationController__status] = t1;
     }
-    get [_heightFactor]() {
-      let t2;
-      t2 = this[___ExpansionTileState__heightFactor];
-      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_heightFactor")) : t2;
+    forward(opts) {
+      let from = opts && 'from' in opts ? opts.from : null;
+      if (!dart.fn(() => {
+        if (this.duration == null) {
+          dart.throw(assertions.FlutterError.new("AnimationController.forward() called with no default duration.\n" + "The \"duration\" property should be set, either in the constructor or later, before " + "calling the forward() function."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 444, 12, "() {\r\n      if (duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.forward() called with no default duration.\\n'\r\n          'The \"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the forward() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.forward() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 455, 7, "_ticker != null");
+      this[_direction] = animation_controller._AnimationDirection.forward;
+      if (from != null) this.value = from;
+      return this[_animateToInternal](this.upperBound);
     }
-    set [_heightFactor](t2) {
-      this[___ExpansionTileState__heightFactor] = t2;
+    reverse(opts) {
+      let from = opts && 'from' in opts ? opts.from : null;
+      if (!dart.fn(() => {
+        if (this.duration == null && this.reverseDuration == null) {
+          dart.throw(assertions.FlutterError.new("AnimationController.reverse() called with no default duration or reverseDuration.\n" + "The \"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before " + "calling the reverse() function."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 477, 12, "() {\r\n      if (duration == null && reverseDuration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.reverse() called with no default duration or reverseDuration.\\n'\r\n          'The \"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before '\r\n          'calling the reverse() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.reverse() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 488, 7, "_ticker != null");
+      this[_direction] = animation_controller._AnimationDirection.reverse;
+      if (from != null) this.value = from;
+      return this[_animateToInternal](this.lowerBound);
     }
-    get [_borderColor]() {
-      let t3;
-      t3 = this[___ExpansionTileState__borderColor];
-      return t3 == null ? dart.throw(new _internal.LateError.fieldNI("_borderColor")) : t3;
+    animateTo(target, opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
+      if (!dart.fn(() => {
+        if (this.duration == null && duration == null) {
+          dart.throw(assertions.FlutterError.new("AnimationController.animateTo() called with no explicit duration and no default duration.\n" + "Either the \"duration\" argument to the animateTo() method should be provided, or the " + "\"duration\" property should be set, either in the constructor or later, before " + "calling the animateTo() function."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 515, 12, "() {\r\n      if (this.duration == null && duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.animateTo() called with no explicit duration and no default duration.\\n'\r\n          'Either the \"duration\" argument to the animateTo() method should be provided, or the '\r\n          '\"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the animateTo() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateTo() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 527, 7, "_ticker != null");
+      this[_direction] = animation_controller._AnimationDirection.forward;
+      return this[_animateToInternal](target, {duration: duration, curve: curve});
     }
-    set [_borderColor](t3) {
-      this[___ExpansionTileState__borderColor] = t3;
+    animateBack(target, opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
+      if (!dart.fn(() => {
+        if (this.duration == null && this.reverseDuration == null && duration == null) {
+          dart.throw(assertions.FlutterError.new("AnimationController.animateBack() called with no explicit duration and no default duration or reverseDuration.\n" + "Either the \"duration\" argument to the animateBack() method should be provided, or the " + "\"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before " + "calling the animateBack() function."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 548, 12, "() {\r\n      if (this.duration == null && reverseDuration == null && duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.animateBack() called with no explicit duration and no default duration or reverseDuration.\\n'\r\n          'Either the \"duration\" argument to the animateBack() method should be provided, or the '\r\n          '\"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before '\r\n          'calling the animateBack() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateBack() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 560, 7, "_ticker != null");
+      this[_direction] = animation_controller._AnimationDirection.reverse;
+      return this[_animateToInternal](target, {duration: duration, curve: curve});
     }
-    get [_headerColor]() {
-      let t4;
-      t4 = this[___ExpansionTileState__headerColor];
-      return t4 == null ? dart.throw(new _internal.LateError.fieldNI("_headerColor")) : t4;
+    [_animateToInternal](target, opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
+      let scale = 1.0;
+      if (dart.nullCheck(binding.SemanticsBinding.instance).disableAnimations) {
+        switch (this.animationBehavior) {
+          case C[3] || CT.C3:
+          {
+            scale = 0.05;
+            break;
+          }
+          case C[4] || CT.C4:
+          {
+            break;
+          }
+        }
+      }
+      let simulationDuration = duration;
+      if (simulationDuration == null) {
+        if (!!(this.duration == null && this[_direction] === animation_controller._AnimationDirection.forward)) dart.assertFailed(null, I[1], 584, 14, "!(this.duration == null && _direction == _AnimationDirection.forward)");
+        if (!!(this.duration == null && this[_direction] === animation_controller._AnimationDirection.reverse && this.reverseDuration == null)) dart.assertFailed(null, I[1], 585, 14, "!(this.duration == null && _direction == _AnimationDirection.reverse && reverseDuration == null)");
+        let range = this.upperBound - this.lowerBound;
+        let remainingFraction = range[$isFinite] ? (target - this[_value])[$abs]() / range : 1.0;
+        let directionDuration = this[_direction] === animation_controller._AnimationDirection.reverse && this.reverseDuration != null ? dart.nullCheck(this.reverseDuration) : dart.nullCheck(this.duration);
+        simulationDuration = directionDuration['*'](remainingFraction);
+      } else if (target === this.value) {
+        simulationDuration = core.Duration.zero;
+      }
+      this.stop();
+      if (dart.equals(simulationDuration, core.Duration.zero)) {
+        if (this.value !== target) {
+          this[_value] = target[$clamp](this.lowerBound, this.upperBound);
+          this.notifyListeners();
+        }
+        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.completed : animation.AnimationStatus.dismissed;
+        this[_checkStatusChanged]();
+        return new ticker.TickerFuture.complete();
+      }
+      if (!simulationDuration['>'](core.Duration.zero)) dart.assertFailed(null, I[1], 609, 12, "simulationDuration > Duration.zero");
+      if (!!this.isAnimating) dart.assertFailed(null, I[1], 610, 12, "!isAnimating");
+      return this[_startSimulation](new animation_controller._InterpolationSimulation.new(this[_value], target, simulationDuration, curve, scale));
     }
-    set [_headerColor](t4) {
-      this[___ExpansionTileState__headerColor] = t4;
+    repeat(opts) {
+      let min = opts && 'min' in opts ? opts.min : null;
+      let max = opts && 'max' in opts ? opts.max : null;
+      let reverse = opts && 'reverse' in opts ? opts.reverse : false;
+      let period = opts && 'period' in opts ? opts.period : null;
+      min == null ? min = this.lowerBound : null;
+      max == null ? max = this.upperBound : null;
+      period == null ? period = this.duration : null;
+      if (!dart.fn(() => {
+        if (period == null) {
+          dart.throw(assertions.FlutterError.new("AnimationController.repeat() called without an explicit period and with no default Duration.\n" + "Either the \"period\" argument to the repeat() method should be provided, or the " + "\"duration\" property should be set, either in the constructor or later, before " + "calling the repeat() function."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 639, 12, "() {\r\n      if (period == null) {\r\n        throw FlutterError(\r\n          'AnimationController.repeat() called without an explicit period and with no default Duration.\\n'\r\n          'Either the \"period\" argument to the repeat() method should be provided, or the '\r\n          '\"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the repeat() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      if (!(dart.notNull(max) >= dart.notNull(min))) dart.assertFailed(null, I[1], 650, 12, "max >= min");
+      if (!(dart.notNull(max) <= this.upperBound && dart.notNull(min) >= this.lowerBound)) dart.assertFailed(null, I[1], 651, 12, "max <= upperBound && min >= lowerBound");
+      if (!(reverse !== null)) dart.assertFailed(null, I[1], 652, 12, "reverse != null");
+      this.stop();
+      return this[_startSimulation](new animation_controller._RepeatingSimulation.new(this[_value], min, max, reverse, dart.nullCheck(period), dart.bind(this, _directionSetter)));
     }
-    get [_iconColor]() {
-      let t5;
-      t5 = this[___ExpansionTileState__iconColor];
-      return t5 == null ? dart.throw(new _internal.LateError.fieldNI("_iconColor")) : t5;
+    [_directionSetter](direction) {
+      this[_direction] = direction;
+      this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
+      this[_checkStatusChanged]();
     }
-    set [_iconColor](t5) {
-      this[___ExpansionTileState__iconColor] = t5;
+    fling(opts) {
+      let t2, t2$;
+      let velocity = opts && 'velocity' in opts ? opts.velocity : 1;
+      let springDescription = opts && 'springDescription' in opts ? opts.springDescription : null;
+      let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : null;
+      springDescription == null ? springDescription = animation_controller._kFlingSpringDescription : null;
+      this[_direction] = velocity < 0.0 ? animation_controller._AnimationDirection.reverse : animation_controller._AnimationDirection.forward;
+      let target = velocity < 0.0 ? this.lowerBound - animation_controller._kFlingTolerance.distance : this.upperBound + animation_controller._kFlingTolerance.distance;
+      let scale = 1.0;
+      let behavior = (t2 = animationBehavior, t2 == null ? this.animationBehavior : t2);
+      if (dart.nullCheck(binding.SemanticsBinding.instance).disableAnimations) {
+        switch (behavior) {
+          case C[3] || CT.C3:
+          {
+            scale = 200.0;
+            break;
+          }
+          case C[4] || CT.C4:
+          {
+            break;
+          }
+        }
+      }
+      let simulation = (t2$ = new spring_simulation.SpringSimulation.new(springDescription, this.value, target, velocity * scale), (() => {
+        t2$.tolerance = animation_controller._kFlingTolerance;
+        return t2$;
+      })());
+      if (!(simulation.type !== spring_simulation.SpringType.underDamped)) dart.assertFailed("The resulting spring simulation is of type SpringType.underDamped.\n" + "This can lead to unexpected look of the animation, please adjust the springDescription parameter", I[1], 705, 7, "simulation.type != SpringType.underDamped");
+      this.stop();
+      return this[_startSimulation](simulation);
     }
-    get [_backgroundColor]() {
-      let t6;
-      t6 = this[___ExpansionTileState__backgroundColor];
-      return t6 == null ? dart.throw(new _internal.LateError.fieldNI("_backgroundColor")) : t6;
+    animateWith(simulation) {
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateWith() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 729, 7, "_ticker != null");
+      this.stop();
+      this[_direction] = animation_controller._AnimationDirection.forward;
+      return this[_startSimulation](simulation);
     }
-    set [_backgroundColor](t6) {
-      this[___ExpansionTileState__backgroundColor] = t6;
+    [_startSimulation](simulation) {
+      if (!(simulation !== null)) dart.assertFailed(null, I[1], 739, 12, "simulation != null");
+      if (!!this.isAnimating) dart.assertFailed(null, I[1], 740, 12, "!isAnimating");
+      this[_simulation] = simulation;
+      this[_lastElapsedDuration] = core.Duration.zero;
+      this[_value] = simulation.x(0.0)[$clamp](this.lowerBound, this.upperBound);
+      let result = dart.nullCheck(this[_ticker]).start();
+      this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
+      this[_checkStatusChanged]();
+      return result;
     }
-    initState() {
-      let t7, t7$;
-      super.initState();
-      this[_controller] = new animation_controller.AnimationController.new({duration: expansion_tile._kExpand, vsync: this});
-      this[_heightFactor] = this[_controller].drive(core.double, expansion_tile._ExpansionTileState._easeInTween);
-      this[_iconTurns] = this[_controller].drive(core.double, expansion_tile._ExpansionTileState._halfTween.chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_borderColor] = this[_controller].drive(T.ColorN(), this[_borderColorTween].chain(expansion_tile._ExpansionTileState._easeOutTween));
-      this[_headerColor] = this[_controller].drive(T.ColorN(), this[_headerColorTween].chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_iconColor] = this[_controller].drive(T.ColorN(), this[_iconColorTween].chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_backgroundColor] = this[_controller].drive(T.ColorN(), this[_backgroundColorTween].chain(expansion_tile._ExpansionTileState._easeOutTween));
-      this[_isExpanded] = (t7$ = T.boolN().as((t7 = page_storage.PageStorage.of(this.context), t7 == null ? null : t7.readState(this.context))), t7$ == null ? this.widget.initiallyExpanded : t7$);
-      if (this[_isExpanded]) this[_controller].value = 1.0;
+    stop(opts) {
+      let canceled = opts && 'canceled' in opts ? opts.canceled : true;
+      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.stop() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 771, 7, "_ticker != null");
+      this[_simulation] = null;
+      this[_lastElapsedDuration] = null;
+      dart.nullCheck(this[_ticker]).stop({canceled: canceled});
     }
     dispose() {
-      this[_controller].dispose();
+      if (!dart.fn(() => {
+        if (this[_ticker] == null) {
+          dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("AnimationController.dispose() called more than once."), new assertions.ErrorDescription.new("A given " + dart.str(this[$runtimeType]) + " cannot be disposed more than once.\n"), new (T.DiagnosticsPropertyOfAnimationController()).new("The following " + dart.str(this[$runtimeType]) + " object was disposed multiple times", this, {style: diagnostics.DiagnosticsTreeStyle.errorProperty})])));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 788, 12, "() {\r\n      if (_ticker == null) {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('AnimationController.dispose() called more than once.'),\r\n          ErrorDescription('A given $runtimeType cannot be disposed more than once.\\n'),\r\n          DiagnosticsProperty<AnimationController>(\r\n            'The following $runtimeType object was disposed multiple times',\r\n            this,\r\n            style: DiagnosticsTreeStyle.errorProperty,\r\n          ),\r\n        ]);\r\n      }\r\n      return true;\r\n    }()");
+      dart.nullCheck(this[_ticker]).dispose();
+      this[_ticker] = null;
       super.dispose();
     }
-    [_handleTap]() {
-      let t7;
-      this.setState(dart.fn(() => {
-        let t7;
-        this[_isExpanded] = !this[_isExpanded];
-        if (this[_isExpanded]) {
-          this[_controller].forward();
-        } else {
-          this[_controller].reverse().then(dart.void, dart.fn(value => {
-            if (!this.mounted) return;
-            this.setState(dart.fn(() => {
-            }, T.VoidTovoid()));
-          }, T.voidToNull()));
-        }
-        t7 = page_storage.PageStorage.of(this.context);
-        t7 == null ? null : t7.writeState(this.context, this[_isExpanded]);
-      }, T.VoidTovoid()));
-      t7 = this.widget.onExpansionChanged;
-      t7 == null ? null : t7(this[_isExpanded]);
+    [_checkStatusChanged]() {
+      let newStatus = this.status;
+      if (this[_lastReportedStatus] !== newStatus) {
+        this[_lastReportedStatus] = newStatus;
+        this.notifyStatusListeners(newStatus);
+      }
     }
-    [_buildChildren](context, child) {
-      let t7, t7$, t7$0, t7$1;
-      let borderSideColor = (t7 = this[_borderColor].value, t7 == null ? colors.Colors.transparent : t7);
-      return new container.Container.new({decoration: new box_decoration.BoxDecoration.new({color: (t7$ = this[_backgroundColor].value, t7$ == null ? colors.Colors.transparent : t7$), border: new box_border.Border.new({top: new borders.BorderSide.new({color: borderSideColor}), bottom: new borders.BorderSide.new({color: borderSideColor})})}), child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidget().of([list_tile.ListTileTheme.merge({iconColor: this[_iconColor].value, textColor: this[_headerColor].value, child: new list_tile.ListTile.new({onTap: dart.bind(this, _handleTap), contentPadding: this.widget.tilePadding, leading: this.widget.leading, title: this.widget.title, subtitle: this.widget.subtitle, trailing: (t7$0 = this.widget.trailing, t7$0 == null ? new transitions.RotationTransition.new({turns: this[_iconTurns], child: C[1] || CT.C1, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}) : t7$0), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10})}), new basic.ClipRect.new({child: new basic.Align.new({alignment: (t7$1 = this.widget.expandedAlignment, t7$1 == null ? alignment.Alignment.center : t7$1), heightFactor: this[_heightFactor].value, child: child, $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23})]), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[30] || CT.C30});
+    [_tick](elapsed) {
+      this[_lastElapsedDuration] = elapsed;
+      let elapsedInSeconds = elapsed.inMicroseconds[$toDouble]() / 1000000;
+      if (!(elapsedInSeconds >= 0.0)) dart.assertFailed(null, I[1], 819, 12, "elapsedInSeconds >= 0.0");
+      this[_value] = dart.nullCheck(this[_simulation]).x(elapsedInSeconds)[$clamp](this.lowerBound, this.upperBound);
+      if (dart.nullCheck(this[_simulation]).isDone(elapsedInSeconds)) {
+        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.completed : animation.AnimationStatus.dismissed;
+        this.stop({canceled: false});
+      }
+      this.notifyListeners();
+      this[_checkStatusChanged]();
     }
-    didChangeDependencies() {
-      let t8, t8$, t7, t8$0, t8$1, t7$, t7$0;
-      let theme = theme$.Theme.of(this.context);
-      let colorScheme = theme.colorScheme;
-      this[_borderColorTween].end = theme.dividerColor;
-      t7 = this[_headerColorTween];
-      (() => {
-        t7.begin = (t8 = this.widget.collapsedTextColor, t8 == null ? dart.nullCheck(theme.textTheme.subtitle1).color : t8);
-        t7.end = (t8$ = this.widget.textColor, t8$ == null ? colorScheme.secondary : t8$);
-        return t7;
-      })();
-      t7$ = this[_iconColorTween];
-      (() => {
-        t7$.begin = (t8$0 = this.widget.collapsedIconColor, t8$0 == null ? theme.unselectedWidgetColor : t8$0);
-        t7$.end = (t8$1 = this.widget.iconColor, t8$1 == null ? colorScheme.secondary : t8$1);
-        return t7$;
-      })();
-      t7$0 = this[_backgroundColorTween];
-      (() => {
-        t7$0.begin = this.widget.collapsedBackgroundColor;
-        t7$0.end = this.widget.backgroundColor;
-        return t7$0;
-      })();
-      super.didChangeDependencies();
-    }
-    build(context) {
-      let t7, t7$;
-      let closed = !this[_isExpanded] && this[_controller].isDismissed;
-      let shouldRemoveChildren = closed && !this.widget.maintainState;
-      let result = new basic.Offstage.new({child: new ticker_provider.TickerMode.new({child: new basic.Padding.new({padding: (t7 = this.widget.childrenPadding, t7 == null ? edge_insets.EdgeInsets.zero : t7), child: new basic.Column.new({crossAxisAlignment: (t7$ = this.widget.expandedCrossAxisAlignment, t7$ == null ? flex.CrossAxisAlignment.center : t7$), children: this.widget.children, $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), enabled: !closed, $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), offstage: closed, $creationLocationd_0dea112b090073317d4: C[46] || CT.C46});
-      return new transitions.AnimatedBuilder.new({animation: this[_controller].view, builder: dart.bind(this, _buildChildren), child: shouldRemoveChildren ? null : result, $creationLocationd_0dea112b090073317d4: C[50] || CT.C50});
+    toStringDetails() {
+      let paused = this.isAnimating ? "" : "; paused";
+      let ticker = this[_ticker] == null ? "; DISPOSED" : dart.nullCheck(this[_ticker]).muted ? "; silenced" : "";
+      let label = this.debugLabel == null ? "" : "; for " + dart.str(this.debugLabel);
+      let more = super.toStringDetails() + " " + this.value[$toStringAsFixed](3);
+      return more + paused + ticker + label;
     }
   };
-  (expansion_tile._ExpansionTileState.new = function() {
-    this[_borderColorTween] = new tween.ColorTween.new();
-    this[_headerColorTween] = new tween.ColorTween.new();
-    this[_iconColorTween] = new tween.ColorTween.new();
-    this[_backgroundColorTween] = new tween.ColorTween.new();
-    this[___ExpansionTileState__controller] = null;
-    this[___ExpansionTileState__iconTurns] = null;
-    this[___ExpansionTileState__heightFactor] = null;
-    this[___ExpansionTileState__borderColor] = null;
-    this[___ExpansionTileState__headerColor] = null;
-    this[___ExpansionTileState__iconColor] = null;
-    this[___ExpansionTileState__backgroundColor] = null;
-    this[_isExpanded] = false;
-    expansion_tile._ExpansionTileState.__proto__.new.call(this);
+  (animation_controller.AnimationController.new = function(opts) {
+    let t0;
+    let value = opts && 'value' in opts ? opts.value : null;
+    let duration = opts && 'duration' in opts ? opts.duration : null;
+    let reverseDuration = opts && 'reverseDuration' in opts ? opts.reverseDuration : null;
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    let lowerBound = opts && 'lowerBound' in opts ? opts.lowerBound : 0;
+    let upperBound = opts && 'upperBound' in opts ? opts.upperBound : 1;
+    let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : C[3] || CT.C3;
+    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
+    this[_ticker] = null;
+    this[_simulation] = null;
+    this[__AnimationController__value] = null;
+    this[_lastElapsedDuration] = null;
+    this[__AnimationController__status] = null;
+    this[_lastReportedStatus] = animation.AnimationStatus.dismissed;
+    this[duration$] = duration;
+    this[reverseDuration$] = reverseDuration;
+    this[debugLabel$] = debugLabel;
+    this[lowerBound$] = lowerBound;
+    this[upperBound$] = upperBound;
+    this[animationBehavior$] = animationBehavior;
+    if (!(lowerBound !== null)) dart.assertFailed(null, I[1], 242, 15, "lowerBound != null");
+    if (!(upperBound !== null)) dart.assertFailed(null, I[1], 243, 15, "upperBound != null");
+    if (!(upperBound >= lowerBound)) dart.assertFailed(null, I[1], 244, 15, "upperBound >= lowerBound");
+    if (!(vsync !== null)) dart.assertFailed(null, I[1], 245, 15, "vsync != null");
+    this[_direction] = animation_controller._AnimationDirection.forward;
+    animation_controller.AnimationController.__proto__.new.call(this);
+    this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
+    this[_internalSetValue]((t0 = value, t0 == null ? this.lowerBound : t0));
+  }).prototype = animation_controller.AnimationController.prototype;
+  (animation_controller.AnimationController.unbounded = function(opts) {
+    let value = opts && 'value' in opts ? opts.value : 0;
+    let duration = opts && 'duration' in opts ? opts.duration : null;
+    let reverseDuration = opts && 'reverseDuration' in opts ? opts.reverseDuration : null;
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
+    let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : C[4] || CT.C4;
+    this[_ticker] = null;
+    this[_simulation] = null;
+    this[__AnimationController__value] = null;
+    this[_lastElapsedDuration] = null;
+    this[__AnimationController__status] = null;
+    this[_lastReportedStatus] = animation.AnimationStatus.dismissed;
+    this[duration$] = duration;
+    this[reverseDuration$] = reverseDuration;
+    this[debugLabel$] = debugLabel;
+    this[animationBehavior$] = animationBehavior;
+    if (!(value !== null)) dart.assertFailed(null, I[1], 275, 15, "value != null");
+    if (!(vsync !== null)) dart.assertFailed(null, I[1], 276, 15, "vsync != null");
+    this[lowerBound$] = -1 / 0;
+    this[upperBound$] = 1 / 0;
+    this[_direction] = animation_controller._AnimationDirection.forward;
+    animation_controller.AnimationController.__proto__.new.call(this);
+    this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
+    this[_internalSetValue](value);
+  }).prototype = animation_controller.AnimationController.prototype;
+  dart.addTypeTests(animation_controller.AnimationController);
+  dart.addTypeCaches(animation_controller.AnimationController);
+  dart.setMethodSignature(animation_controller.AnimationController, () => ({
+    __proto__: dart.getMethods(animation_controller.AnimationController.__proto__),
+    resync: dart.fnType(dart.void, [ticker.TickerProvider]),
+    reset: dart.fnType(dart.void, []),
+    [_internalSetValue]: dart.fnType(dart.void, [core.double]),
+    forward: dart.fnType(ticker.TickerFuture, [], {from: dart.nullable(core.double)}, {}),
+    reverse: dart.fnType(ticker.TickerFuture, [], {from: dart.nullable(core.double)}, {}),
+    animateTo: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
+    animateBack: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
+    [_animateToInternal]: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
+    repeat: dart.fnType(ticker.TickerFuture, [], {max: dart.nullable(core.double), min: dart.nullable(core.double), period: dart.nullable(core.Duration), reverse: core.bool}, {}),
+    [_directionSetter]: dart.fnType(dart.void, [animation_controller._AnimationDirection]),
+    fling: dart.fnType(ticker.TickerFuture, [], {animationBehavior: dart.nullable(animation_controller.AnimationBehavior), springDescription: dart.nullable(spring_simulation.SpringDescription), velocity: core.double}, {}),
+    animateWith: dart.fnType(ticker.TickerFuture, [simulation.Simulation]),
+    [_startSimulation]: dart.fnType(ticker.TickerFuture, [simulation.Simulation]),
+    stop: dart.fnType(dart.void, [], {canceled: core.bool}, {}),
+    [_checkStatusChanged]: dart.fnType(dart.void, []),
+    [_tick]: dart.fnType(dart.void, [core.Duration])
+  }));
+  dart.setGetterSignature(animation_controller.AnimationController, () => ({
+    __proto__: dart.getGetters(animation_controller.AnimationController.__proto__),
+    view: animation.Animation$(core.double),
+    value: core.double,
+    [_value]: core.double,
+    velocity: core.double,
+    lastElapsedDuration: dart.nullable(core.Duration),
+    isAnimating: core.bool,
+    status: animation.AnimationStatus,
+    [_status]: animation.AnimationStatus
+  }));
+  dart.setSetterSignature(animation_controller.AnimationController, () => ({
+    __proto__: dart.getSetters(animation_controller.AnimationController.__proto__),
+    [_value]: core.double,
+    value: core.double,
+    [_status]: animation.AnimationStatus
+  }));
+  dart.setLibraryUri(animation_controller.AnimationController, I[0]);
+  dart.setFieldSignature(animation_controller.AnimationController, () => ({
+    __proto__: dart.getFields(animation_controller.AnimationController.__proto__),
+    lowerBound: dart.finalFieldType(core.double),
+    upperBound: dart.finalFieldType(core.double),
+    debugLabel: dart.finalFieldType(dart.nullable(core.String)),
+    animationBehavior: dart.finalFieldType(animation_controller.AnimationBehavior),
+    duration: dart.fieldType(dart.nullable(core.Duration)),
+    reverseDuration: dart.fieldType(dart.nullable(core.Duration)),
+    [_ticker]: dart.fieldType(dart.nullable(ticker.Ticker)),
+    [_simulation]: dart.fieldType(dart.nullable(simulation.Simulation)),
+    [__AnimationController__value]: dart.fieldType(dart.nullable(core.double)),
+    [_lastElapsedDuration]: dart.fieldType(dart.nullable(core.Duration)),
+    [_direction]: dart.fieldType(animation_controller._AnimationDirection),
+    [__AnimationController__status]: dart.fieldType(dart.nullable(animation.AnimationStatus)),
+    [_lastReportedStatus]: dart.fieldType(animation.AnimationStatus)
+  }));
+  var _begin$ = dart.privateName(animation_controller, "_begin");
+  var _end$ = dart.privateName(animation_controller, "_end");
+  var _curve$ = dart.privateName(animation_controller, "_curve");
+  var _durationInSeconds = dart.privateName(animation_controller, "_durationInSeconds");
+  animation_controller._InterpolationSimulation = class _InterpolationSimulation extends simulation.Simulation {
+    x(timeInSeconds) {
+      let t = (timeInSeconds / this[_durationInSeconds])[$clamp](0.0, 1.0);
+      if (t === 0.0)
+        return this[_begin$];
+      else if (t === 1.0)
+        return this[_end$];
+      else
+        return this[_begin$] + (this[_end$] - this[_begin$]) * this[_curve$].transform(t);
+    }
+    dx(timeInSeconds) {
+      let epsilon = this.tolerance.time;
+      return (this.x(timeInSeconds + epsilon) - this.x(timeInSeconds - epsilon)) / (2 * epsilon);
+    }
+    isDone(timeInSeconds) {
+      return timeInSeconds > this[_durationInSeconds];
+    }
+  };
+  (animation_controller._InterpolationSimulation.new = function(_begin, _end, duration, _curve, scale) {
+    this[_begin$] = _begin;
+    this[_end$] = _end;
+    this[_curve$] = _curve;
+    if (!(_begin !== null)) dart.assertFailed(null, I[1], 843, 14, "_begin != null");
+    if (!(_end !== null)) dart.assertFailed(null, I[1], 844, 14, "_end != null");
+    if (!(duration !== null && duration.inMicroseconds > 0)) dart.assertFailed(null, I[1], 845, 14, "duration != null && duration.inMicroseconds > 0");
+    this[_durationInSeconds] = duration.inMicroseconds * scale / 1000000;
+    animation_controller._InterpolationSimulation.__proto__.new.call(this);
     ;
-  }).prototype = expansion_tile._ExpansionTileState.prototype;
-  dart.addTypeTests(expansion_tile._ExpansionTileState);
-  dart.addTypeCaches(expansion_tile._ExpansionTileState);
-  dart.setMethodSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getMethods(expansion_tile._ExpansionTileState.__proto__),
-    [_handleTap]: dart.fnType(dart.void, []),
-    [_buildChildren]: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = animation_controller._InterpolationSimulation.prototype;
+  dart.addTypeTests(animation_controller._InterpolationSimulation);
+  dart.addTypeCaches(animation_controller._InterpolationSimulation);
+  dart.setMethodSignature(animation_controller._InterpolationSimulation, () => ({
+    __proto__: dart.getMethods(animation_controller._InterpolationSimulation.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double]),
+    isDone: dart.fnType(core.bool, [core.double])
   }));
-  dart.setGetterSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getGetters(expansion_tile._ExpansionTileState.__proto__),
-    [_controller]: animation_controller.AnimationController,
-    [_iconTurns]: animation.Animation$(core.double),
-    [_heightFactor]: animation.Animation$(core.double),
-    [_borderColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_headerColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_iconColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_backgroundColor]: animation.Animation$(dart.nullable(ui.Color))
+  dart.setLibraryUri(animation_controller._InterpolationSimulation, I[0]);
+  dart.setFieldSignature(animation_controller._InterpolationSimulation, () => ({
+    __proto__: dart.getFields(animation_controller._InterpolationSimulation.__proto__),
+    [_durationInSeconds]: dart.finalFieldType(core.double),
+    [_begin$]: dart.finalFieldType(core.double),
+    [_end$]: dart.finalFieldType(core.double),
+    [_curve$]: dart.finalFieldType(curves.Curve)
   }));
-  dart.setSetterSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getSetters(expansion_tile._ExpansionTileState.__proto__),
-    [_controller]: animation_controller.AnimationController,
-    [_iconTurns]: animation.Animation$(core.double),
-    [_heightFactor]: animation.Animation$(core.double),
-    [_borderColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_headerColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_iconColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_backgroundColor]: animation.Animation$(dart.nullable(ui.Color))
+  var _periodInSeconds = dart.privateName(animation_controller, "_periodInSeconds");
+  var _initialT = dart.privateName(animation_controller, "_initialT");
+  animation_controller._RepeatingSimulation = class _RepeatingSimulation extends simulation.Simulation {
+    x(timeInSeconds) {
+      let t2, t2$;
+      if (!(timeInSeconds >= 0.0)) dart.assertFailed(null, I[1], 894, 12, "timeInSeconds >= 0.0");
+      let totalTimeInSeconds = timeInSeconds + this[_initialT];
+      let t = (totalTimeInSeconds / this[_periodInSeconds])[$modulo](1.0);
+      let _isPlayingReverse = (totalTimeInSeconds / this[_periodInSeconds])[$truncate]()[$isOdd];
+      if (this.reverse && _isPlayingReverse) {
+        t2 = animation_controller._AnimationDirection.reverse;
+        this.directionSetter(t2);
+        return dart.nullCheck(ui.lerpDouble(this.max, this.min, t));
+      } else {
+        t2$ = animation_controller._AnimationDirection.forward;
+        this.directionSetter(t2$);
+        return dart.nullCheck(ui.lerpDouble(this.min, this.max, t));
+      }
+    }
+    dx(timeInSeconds) {
+      return (this.max - this.min) / this[_periodInSeconds];
+    }
+    isDone(timeInSeconds) {
+      return false;
+    }
+  };
+  (animation_controller._RepeatingSimulation.new = function(initialValue, min, max, reverse, period, directionSetter) {
+    this.min = min;
+    this.max = max;
+    this.reverse = reverse;
+    this.directionSetter = directionSetter;
+    this[_periodInSeconds] = period.inMicroseconds / 1000000;
+    this[_initialT] = max === min ? 0.0 : initialValue / (max - min) * (period.inMicroseconds / 1000000);
+    animation_controller._RepeatingSimulation.__proto__.new.call(this);
+    if (!(this[_periodInSeconds] > 0.0)) dart.assertFailed(null, I[1], 880, 12, "_periodInSeconds > 0.0");
+    if (!(this[_initialT] >= 0.0)) dart.assertFailed(null, I[1], 881, 12, "_initialT >= 0.0");
+  }).prototype = animation_controller._RepeatingSimulation.prototype;
+  dart.addTypeTests(animation_controller._RepeatingSimulation);
+  dart.addTypeCaches(animation_controller._RepeatingSimulation);
+  dart.setMethodSignature(animation_controller._RepeatingSimulation, () => ({
+    __proto__: dart.getMethods(animation_controller._RepeatingSimulation.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double]),
+    isDone: dart.fnType(core.bool, [core.double])
   }));
-  dart.setLibraryUri(expansion_tile._ExpansionTileState, I[1]);
-  dart.setFieldSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getFields(expansion_tile._ExpansionTileState.__proto__),
-    [_borderColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_headerColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_iconColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_backgroundColorTween]: dart.finalFieldType(tween.ColorTween),
-    [___ExpansionTileState__controller]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [___ExpansionTileState__iconTurns]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
-    [___ExpansionTileState__heightFactor]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
-    [___ExpansionTileState__borderColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__headerColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__iconColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__backgroundColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [_isExpanded]: dart.fieldType(core.bool)
+  dart.setLibraryUri(animation_controller._RepeatingSimulation, I[0]);
+  dart.setFieldSignature(animation_controller._RepeatingSimulation, () => ({
+    __proto__: dart.getFields(animation_controller._RepeatingSimulation.__proto__),
+    min: dart.finalFieldType(core.double),
+    max: dart.finalFieldType(core.double),
+    reverse: dart.finalFieldType(core.bool),
+    directionSetter: dart.finalFieldType(dart.fnType(dart.void, [animation_controller._AnimationDirection])),
+    [_periodInSeconds]: dart.finalFieldType(core.double),
+    [_initialT]: dart.finalFieldType(core.double)
   }));
-  dart.defineLazy(expansion_tile._ExpansionTileState, {
-    /*expansion_tile._ExpansionTileState._easeOutTween*/get _easeOutTween() {
-      return new tween.CurveTween.new({curve: curves.Curves.easeOut});
+  var Tolerance_velocity = dart.privateName(tolerance, "Tolerance.velocity");
+  var Tolerance_time = dart.privateName(tolerance, "Tolerance.time");
+  var Tolerance_distance = dart.privateName(tolerance, "Tolerance.distance");
+  dart.defineLazy(animation_controller, {
+    /*animation_controller._kFlingSpringDescription*/get _kFlingSpringDescription() {
+      return new spring_simulation.SpringDescription.withDampingRatio({mass: 1.0, stiffness: 500.0, ratio: 1.0});
     },
-    /*expansion_tile._ExpansionTileState._easeInTween*/get _easeInTween() {
-      return new tween.CurveTween.new({curve: curves.Curves.easeIn});
-    },
-    /*expansion_tile._ExpansionTileState._halfTween*/get _halfTween() {
-      return new (T.TweenOfdouble()).new({begin: 0.0, end: 0.5});
+    /*animation_controller._kFlingTolerance*/get _kFlingTolerance() {
+      return C[7] || CT.C7;
     }
   }, false);
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  dart.defineLazy(expansion_tile, {
-    /*expansion_tile._kExpand*/get _kExpand() {
-      return C[55] || CT.C55;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/expansion_tile.dart", {
-    "package:flutter/src/material/expansion_tile.dart": expansion_tile
+  dart.trackLibraries("packages/flutter/src/animation/animation_controller.dart", {
+    "package:flutter/src/animation/animation_controller.dart": animation_controller
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["expansion_tile.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/expansion_tile.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["animation_controller.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/animation/animation_controller.dart.lib.js"}');
   // Exports:
   return {
-    src__material__expansion_tile: expansion_tile
+    src__animation__animation_controller: animation_controller
   };
 }));
 
-//# sourceMappingURL=expansion_tile.dart.lib.js.map
+//# sourceMappingURL=animation_controller.dart.lib.js.map

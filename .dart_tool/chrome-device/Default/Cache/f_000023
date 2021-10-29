@@ -1,48 +1,44 @@
-define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/painting/colors.dart'], (function load__packages__flutter__src__painting__strut_style_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__painting__colors$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/observer_list.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__animation__listener_helpers_dart(dart_sdk, packages__flutter__src__foundation__observer_list$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__animation__curves$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
+  const _js_helper = dart_sdk._js_helper;
+  const math = dart_sdk.math;
   const _interceptors = dart_sdk._interceptors;
-  const _engine = dart_sdk._engine;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  const observer_list = packages__flutter__src__foundation__observer_list$46dart.src__foundation__observer_list;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
-  var strut_style = Object.create(dart.library);
-  var text_style = Object.create(dart.library);
-  var $map = dartx.map;
-  var $toList = dartx.toList;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  var listener_helpers = Object.create(dart.library);
+  var animations = Object.create(dart.library);
+  var tween = Object.create(dart.library);
+  var animation$ = Object.create(dart.library);
   var $runtimeType = dartx.runtimeType;
-  var $add = dartx.add;
-  var $any = dartx.any;
-  var $forEach = dartx.forEach;
-  var $length = dartx.length;
-  var $clamp = dartx.clamp;
-  var $_get = dartx._get;
   var $toStringAsFixed = dartx.toStringAsFixed;
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $join = dartx.join;
+  var $round = dartx.round;
+  var $toDouble = dartx.toDouble;
+  var $add = dartx.add;
+  var $floor = dartx.floor;
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))(),
-    IterablePropertyOfString: () => (T.IterablePropertyOfString = dart.constFn(diagnostics.IterableProperty$(core.String)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
-    DiagnosticsPropertyOfFontWeight: () => (T.DiagnosticsPropertyOfFontWeight = dart.constFn(diagnostics.DiagnosticsProperty$(ui.FontWeight)))(),
-    EnumPropertyOfFontStyle: () => (T.EnumPropertyOfFontStyle = dart.constFn(diagnostics.EnumProperty$(ui.FontStyle)))(),
-    DiagnosticsNodeTobool: () => (T.DiagnosticsNodeTobool = dart.constFn(dart.fnType(core.bool, [diagnostics.DiagnosticsNode])))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    JSArrayOfObjectN: () => (T.JSArrayOfObjectN = dart.constFn(_interceptors.JSArray$(T.ObjectN())))(),
-    EnumPropertyOfTextBaseline: () => (T.EnumPropertyOfTextBaseline = dart.constFn(diagnostics.EnumProperty$(ui.TextBaseline)))(),
-    EnumPropertyOfTextLeadingDistribution: () => (T.EnumPropertyOfTextLeadingDistribution = dart.constFn(diagnostics.EnumProperty$(ui.TextLeadingDistribution)))(),
-    DiagnosticsPropertyOfLocale: () => (T.DiagnosticsPropertyOfLocale = dart.constFn(diagnostics.DiagnosticsProperty$(ui.Locale)))(),
-    DiagnosticsPropertyOfPaint: () => (T.DiagnosticsPropertyOfPaint = dart.constFn(diagnostics.DiagnosticsProperty$(ui.Paint)))(),
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    DiagnosticsPropertyOfTextDecoration: () => (T.DiagnosticsPropertyOfTextDecoration = dart.constFn(diagnostics.DiagnosticsProperty$(ui.TextDecoration)))(),
-    DiagnosticsPropertyOfbool: () => (T.DiagnosticsPropertyOfbool = dart.constFn(diagnostics.DiagnosticsProperty$(core.bool)))()
+  var T$ = {
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ObserverListOfVoidTovoid: () => (T$.ObserverListOfVoidTovoid = dart.constFn(observer_list.ObserverList$(T$.VoidTovoid())))(),
+    ListOfVoidTovoid: () => (T$.ListOfVoidTovoid = dart.constFn(core.List$(T$.VoidTovoid())))(),
+    DiagnosticsPropertyOfAnimationLocalListenersMixin: () => (T$.DiagnosticsPropertyOfAnimationLocalListenersMixin = dart.constFn(diagnostics.DiagnosticsProperty$(listener_helpers.AnimationLocalListenersMixin)))(),
+    SyncIterableOfDiagnosticsNode: () => (T$.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T$.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T$.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T$.IterableOfDiagnosticsNode(), [])))(),
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    AnimationStatusTovoid: () => (T$.AnimationStatusTovoid = dart.constFn(dart.fnType(dart.void, [animation$.AnimationStatus])))(),
+    ObserverListOfAnimationStatusTovoid: () => (T$.ObserverListOfAnimationStatusTovoid = dart.constFn(observer_list.ObserverList$(T$.AnimationStatusTovoid())))(),
+    ListOfAnimationStatusTovoid: () => (T$.ListOfAnimationStatusTovoid = dart.constFn(core.List$(T$.AnimationStatusTovoid())))(),
+    DiagnosticsPropertyOfAnimationLocalStatusListenersMixin: () => (T$.DiagnosticsPropertyOfAnimationLocalStatusListenersMixin = dart.constFn(diagnostics.DiagnosticsProperty$(listener_helpers.AnimationLocalStatusListenersMixin)))(),
+    AnimationOfdouble: () => (T$.AnimationOfdouble = dart.constFn(animation$.Animation$(core.double)))(),
+    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -50,761 +46,1550 @@ define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: strut_style.StrutStyle.prototype,
-        [debugLabel$]: null,
-        [forceStrutHeight$]: null,
-        [leading$]: 0,
-        [fontStyle$]: null,
-        [fontWeight$]: null,
-        [leadingDistribution$]: null,
-        [height$]: 0,
-        [fontSize$]: null,
-        [_package]: null,
-        [_fontFamilyFallback]: null,
-        [fontFamily$]: null
+        __proto__: animation$.AnimationStatus.prototype,
+        [_name$]: "AnimationStatus.forward",
+        index: 1
       });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: animation$.AnimationStatus.prototype,
+        [_name$]: "AnimationStatus.reverse",
+        index: 2
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: animation$.AnimationStatus.prototype,
+        [_name$]: "AnimationStatus.completed",
+        index: 3
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: animation$.AnimationStatus.prototype,
+        [_name$]: "AnimationStatus.dismissed",
+        index: 0
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: animations._TrainHoppingMode.prototype,
+        [_name$0]: "_TrainHoppingMode.minimize",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: animations._TrainHoppingMode.prototype,
+        [_name$0]: "_TrainHoppingMode.maximize",
+        index: 1
+      });
+    },
+    get C6() {
+      return C[6] = dart.constList([C[4] || CT.C4, C[5] || CT.C5], animations._TrainHoppingMode);
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: animations._AlwaysCompleteAnimation.prototype
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: animations._AlwaysDismissedAnimation.prototype
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[3] || CT.C3, C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], animation$.AnimationStatus);
     }
   }, false);
-  var C = [void 0];
+  var C = Array(10).fill(void 0);
   var I = [
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/painting/strut_style.dart",
-    "package:flutter/src/painting/strut_style.dart",
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/painting/text_style.dart",
-    "package:flutter/src/painting/text_style.dart"
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/animation/listener_helpers.dart",
+    "package:flutter/src/animation/listener_helpers.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/animation/animation.dart",
+    "package:flutter/src/animation/animation.dart",
+    "package:flutter/src/animation/animations.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/animation/animations.dart",
+    "package:flutter/src/animation/tween.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/animation/tween.dart"
   ];
-  var fontFamily$ = dart.privateName(strut_style, "StrutStyle.fontFamily");
-  var _fontFamilyFallback = dart.privateName(strut_style, "StrutStyle._fontFamilyFallback");
-  var _package = dart.privateName(strut_style, "StrutStyle._package");
-  var fontSize$ = dart.privateName(strut_style, "StrutStyle.fontSize");
-  var height$ = dart.privateName(strut_style, "StrutStyle.height");
-  var leadingDistribution$ = dart.privateName(strut_style, "StrutStyle.leadingDistribution");
-  var fontWeight$ = dart.privateName(strut_style, "StrutStyle.fontWeight");
-  var fontStyle$ = dart.privateName(strut_style, "StrutStyle.fontStyle");
-  var leading$ = dart.privateName(strut_style, "StrutStyle.leading");
-  var forceStrutHeight$ = dart.privateName(strut_style, "StrutStyle.forceStrutHeight");
-  var debugLabel$ = dart.privateName(strut_style, "StrutStyle.debugLabel");
-  var _fontFamilyFallback$ = dart.privateName(strut_style, "_fontFamilyFallback");
-  var _package$ = dart.privateName(strut_style, "_package");
-  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
-  (Object_Diagnosticable$36.new = function() {
-  }).prototype = Object_Diagnosticable$36.prototype;
-  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
-  strut_style.StrutStyle = class StrutStyle extends Object_Diagnosticable$36 {
-    get fontFamily() {
-      return this[fontFamily$];
+  var _listenerCounter = dart.privateName(listener_helpers, "_listenerCounter");
+  listener_helpers.AnimationLazyListenerMixin = class AnimationLazyListenerMixin extends core.Object {};
+  listener_helpers.AnimationLazyListenerMixin[dart.mixinOn] = Object => class AnimationLazyListenerMixin extends Object {
+    didRegisterListener() {
+      if (!(this[_listenerCounter] >= 0)) dart.assertFailed(null, I[0], 27, 12, "_listenerCounter >= 0");
+      if (this[_listenerCounter] === 0) this.didStartListening();
+      this[_listenerCounter] = this[_listenerCounter] + 1;
     }
-    set fontFamily(value) {
-      super.fontFamily = value;
+    didUnregisterListener() {
+      if (!(this[_listenerCounter] >= 1)) dart.assertFailed(null, I[0], 40, 12, "_listenerCounter >= 1");
+      this[_listenerCounter] = this[_listenerCounter] - 1;
+      if (this[_listenerCounter] === 0) this.didStopListening();
     }
-    get [_fontFamilyFallback$]() {
-      return this[_fontFamilyFallback];
-    }
-    set [_fontFamilyFallback$](value) {
-      super[_fontFamilyFallback$] = value;
-    }
-    get [_package$]() {
-      return this[_package];
-    }
-    set [_package$](value) {
-      super[_package$] = value;
-    }
-    get fontSize() {
-      return this[fontSize$];
-    }
-    set fontSize(value) {
-      super.fontSize = value;
-    }
-    get height() {
-      return this[height$];
-    }
-    set height(value) {
-      super.height = value;
-    }
-    get leadingDistribution() {
-      return this[leadingDistribution$];
-    }
-    set leadingDistribution(value) {
-      super.leadingDistribution = value;
-    }
-    get fontWeight() {
-      return this[fontWeight$];
-    }
-    set fontWeight(value) {
-      super.fontWeight = value;
-    }
-    get fontStyle() {
-      return this[fontStyle$];
-    }
-    set fontStyle(value) {
-      super.fontStyle = value;
-    }
-    get leading() {
-      return this[leading$];
-    }
-    set leading(value) {
-      super.leading = value;
-    }
-    get forceStrutHeight() {
-      return this[forceStrutHeight$];
-    }
-    set forceStrutHeight(value) {
-      super.forceStrutHeight = value;
-    }
-    get debugLabel() {
-      return this[debugLabel$];
-    }
-    set debugLabel(value) {
-      super.debugLabel = value;
-    }
-    get fontFamilyFallback() {
-      if (this[_package$] != null && this[_fontFamilyFallback$] != null) return dart.nullCheck(this[_fontFamilyFallback$])[$map](core.String, dart.fn(family => "packages/" + dart.str(this[_package$]) + "/" + family, T.StringToString()))[$toList]();
-      return this[_fontFamilyFallback$];
-    }
-    compareTo(other) {
-      if (this === other) return basic_types.RenderComparison.identical;
-      if (this.fontFamily != other.fontFamily || this.fontSize != other.fontSize || !dart.equals(this.fontWeight, other.fontWeight) || this.fontStyle != other.fontStyle || this.height != other.height || this.leading != other.leading || this.forceStrutHeight != other.forceStrutHeight || !collections.listEquals(core.String, this.fontFamilyFallback, other.fontFamilyFallback)) return basic_types.RenderComparison.layout;
-      return basic_types.RenderComparison.identical;
-    }
-    inheritFromTextStyle(other) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4;
-      if (other == null) return this;
-      return new strut_style.StrutStyle.new({fontFamily: (t0 = this.fontFamily, t0 == null ? other.fontFamily : t0), fontFamilyFallback: (t0$ = this.fontFamilyFallback, t0$ == null ? other.fontFamilyFallback : t0$), fontSize: (t0$0 = this.fontSize, t0$0 == null ? other.fontSize : t0$0), height: (t0$1 = this.height, t0$1 == null ? other.height : t0$1), leading: this.leading, fontWeight: (t0$2 = this.fontWeight, t0$2 == null ? other.fontWeight : t0$2), fontStyle: (t0$3 = this.fontStyle, t0$3 == null ? other.fontStyle : t0$3), forceStrutHeight: this.forceStrutHeight, debugLabel: (t0$4 = this.debugLabel, t0$4 == null ? other.debugLabel : t0$4)});
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return strut_style.StrutStyle.is(other) && other.fontFamily == this.fontFamily && other.fontSize == this.fontSize && dart.equals(other.fontWeight, this.fontWeight) && other.fontStyle == this.fontStyle && other.height == this.height && other.leading == this.leading && other.forceStrutHeight == this.forceStrutHeight;
-    }
-    get hashCode() {
-      return ui.hashValues(this.fontFamily, this.fontSize, this.fontWeight, this.fontStyle, this.height, this.leading, this.forceStrutHeight);
-    }
-    toStringShort() {
-      return object.objectRuntimeType(this, "StrutStyle");
-    }
-    debugFillProperties(properties, opts) {
-      let prefix = opts && 'prefix' in opts ? opts.prefix : "";
-      super.debugFillProperties(properties);
-      if (this.debugLabel != null) properties.add(new diagnostics.MessageProperty.new(prefix + "debugLabel", dart.nullCheck(this.debugLabel)));
-      let styles = T.JSArrayOfDiagnosticsNode().of([new diagnostics.StringProperty.new(prefix + "family", this.fontFamily, {defaultValue: null, quoted: false}), new (T.IterablePropertyOfString()).new(prefix + "familyFallback", this.fontFamilyFallback, {defaultValue: null}), new diagnostics.DoubleProperty.new(prefix + "size", this.fontSize, {defaultValue: null})]);
-      let weightDescription = null;
-      if (this.fontWeight != null) {
-        weightDescription = "w" + dart.str(dart.nullCheck(this.fontWeight).index + 1) + "00";
-      }
-      styles[$add](new (T.DiagnosticsPropertyOfFontWeight()).new(prefix + "weight", this.fontWeight, {description: weightDescription, defaultValue: null}));
-      styles[$add](new (T.EnumPropertyOfFontStyle()).new(prefix + "style", this.fontStyle, {defaultValue: null}));
-      styles[$add](new diagnostics.DoubleProperty.new(prefix + "height", this.height, {unit: "x", defaultValue: null}));
-      styles[$add](new diagnostics.FlagProperty.new(prefix + "forceStrutHeight", {value: this.forceStrutHeight, defaultValue: null, ifTrue: prefix + "<strut height forced>", ifFalse: prefix + "<strut height normal>"}));
-      let styleSpecified = styles[$any](dart.fn(n => !n.isFiltered(diagnostics.DiagnosticLevel.info), T.DiagnosticsNodeTobool()));
-      styles[$forEach](dart.bind(properties, 'add'));
-      if (!styleSpecified) properties.add(new diagnostics.FlagProperty.new("forceStrutHeight", {value: this.forceStrutHeight, ifTrue: prefix + "<strut height forced>", ifFalse: prefix + "<strut height normal>"}));
+    get isListening() {
+      return this[_listenerCounter] > 0;
     }
   };
-  (strut_style.StrutStyle.new = function(opts) {
-    let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-    let fontFamilyFallback = opts && 'fontFamilyFallback' in opts ? opts.fontFamilyFallback : null;
-    let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
-    let height = opts && 'height' in opts ? opts.height : null;
-    let leadingDistribution = opts && 'leadingDistribution' in opts ? opts.leadingDistribution : null;
-    let leading = opts && 'leading' in opts ? opts.leading : null;
-    let fontWeight = opts && 'fontWeight' in opts ? opts.fontWeight : null;
-    let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-    let forceStrutHeight = opts && 'forceStrutHeight' in opts ? opts.forceStrutHeight : null;
-    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-    let $package = opts && 'package' in opts ? opts.package : null;
-    this[fontSize$] = fontSize;
-    this[height$] = height;
-    this[leadingDistribution$] = leadingDistribution;
-    this[leading$] = leading;
-    this[fontWeight$] = fontWeight;
-    this[fontStyle$] = fontStyle;
-    this[forceStrutHeight$] = forceStrutHeight;
-    this[debugLabel$] = debugLabel;
-    this[fontFamily$] = $package == null ? fontFamily : "packages/" + dart.str($package) + "/" + dart.str(fontFamily);
-    this[_fontFamilyFallback] = fontFamilyFallback;
-    this[_package] = $package;
-    if (!(fontSize == null || dart.notNull(fontSize) > 0)) dart.assertFailed(null, I[0], 314, 15, "fontSize == null || fontSize > 0");
-    if (!(leading == null || dart.notNull(leading) >= 0)) dart.assertFailed(null, I[0], 315, 15, "leading == null || leading >= 0");
-    if (!($package == null || fontFamily != null || fontFamilyFallback != null)) dart.assertFailed(null, I[0], 316, 15, "package == null || (fontFamily != null || fontFamilyFallback != null)");
-    ;
-  }).prototype = strut_style.StrutStyle.prototype;
-  (strut_style.StrutStyle.fromTextStyle = function(textStyle, opts) {
-    let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4;
-    let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-    let fontFamilyFallback = opts && 'fontFamilyFallback' in opts ? opts.fontFamilyFallback : null;
-    let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
-    let height = opts && 'height' in opts ? opts.height : null;
-    let leadingDistribution = opts && 'leadingDistribution' in opts ? opts.leadingDistribution : null;
-    let leading = opts && 'leading' in opts ? opts.leading : null;
-    let fontWeight = opts && 'fontWeight' in opts ? opts.fontWeight : null;
-    let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-    let forceStrutHeight = opts && 'forceStrutHeight' in opts ? opts.forceStrutHeight : null;
-    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-    let $package = opts && 'package' in opts ? opts.package : null;
-    this[leading$] = leading;
-    this[forceStrutHeight$] = forceStrutHeight;
-    if (!(textStyle !== null)) dart.assertFailed(null, I[0], 350, 15, "textStyle != null");
-    if (!(fontSize == null || dart.notNull(fontSize) > 0)) dart.assertFailed(null, I[0], 351, 15, "fontSize == null || fontSize > 0");
-    if (!(leading == null || dart.notNull(leading) >= 0)) dart.assertFailed(null, I[0], 352, 15, "leading == null || leading >= 0");
-    if (!($package == null || fontFamily != null || fontFamilyFallback != null)) dart.assertFailed(null, I[0], 353, 15, "package == null || fontFamily != null || fontFamilyFallback != null");
-    this[fontFamily$] = fontFamily != null ? $package == null ? fontFamily : "packages/" + dart.str($package) + "/" + dart.str(fontFamily) : textStyle.fontFamily;
-    this[_fontFamilyFallback] = (t0 = fontFamilyFallback, t0 == null ? textStyle.fontFamilyFallback : t0);
-    this[height$] = (t0$ = height, t0$ == null ? textStyle.height : t0$);
-    this[leadingDistribution$] = (t0$0 = leadingDistribution, t0$0 == null ? textStyle.leadingDistribution : t0$0);
-    this[fontSize$] = (t0$1 = fontSize, t0$1 == null ? textStyle.fontSize : t0$1);
-    this[fontWeight$] = (t0$2 = fontWeight, t0$2 == null ? textStyle.fontWeight : t0$2);
-    this[fontStyle$] = (t0$3 = fontStyle, t0$3 == null ? textStyle.fontStyle : t0$3);
-    this[debugLabel$] = (t0$4 = debugLabel, t0$4 == null ? textStyle.debugLabel : t0$4);
-    this[_package] = $package;
-    ;
-  }).prototype = strut_style.StrutStyle.prototype;
-  dart.addTypeTests(strut_style.StrutStyle);
-  dart.addTypeCaches(strut_style.StrutStyle);
-  dart.setMethodSignature(strut_style.StrutStyle, () => ({
-    __proto__: dart.getMethods(strut_style.StrutStyle.__proto__),
-    compareTo: dart.fnType(basic_types.RenderComparison, [strut_style.StrutStyle]),
-    inheritFromTextStyle: dart.fnType(strut_style.StrutStyle, [dart.nullable(text_style.TextStyle)]),
-    debugFillProperties: dart.fnType(dart.void, [diagnostics.DiagnosticPropertiesBuilder], {prefix: core.String}, {})
+  (listener_helpers.AnimationLazyListenerMixin[dart.mixinNew] = function() {
+    this[_listenerCounter] = 0;
+  }).prototype = listener_helpers.AnimationLazyListenerMixin.prototype;
+  dart.addTypeTests(listener_helpers.AnimationLazyListenerMixin);
+  dart.addTypeCaches(listener_helpers.AnimationLazyListenerMixin);
+  listener_helpers.AnimationLazyListenerMixin[dart.implements] = () => [core.Object];
+  dart.setMethodSignature(listener_helpers.AnimationLazyListenerMixin, () => ({
+    __proto__: dart.getMethods(listener_helpers.AnimationLazyListenerMixin.__proto__),
+    didRegisterListener: dart.fnType(dart.void, []),
+    didUnregisterListener: dart.fnType(dart.void, [])
   }));
-  dart.setGetterSignature(strut_style.StrutStyle, () => ({
-    __proto__: dart.getGetters(strut_style.StrutStyle.__proto__),
-    fontFamilyFallback: dart.nullable(core.List$(core.String))
+  dart.setGetterSignature(listener_helpers.AnimationLazyListenerMixin, () => ({
+    __proto__: dart.getGetters(listener_helpers.AnimationLazyListenerMixin.__proto__),
+    isListening: core.bool
   }));
-  dart.setLibraryUri(strut_style.StrutStyle, I[1]);
-  dart.setFieldSignature(strut_style.StrutStyle, () => ({
-    __proto__: dart.getFields(strut_style.StrutStyle.__proto__),
-    fontFamily: dart.finalFieldType(dart.nullable(core.String)),
-    [_fontFamilyFallback$]: dart.finalFieldType(dart.nullable(core.List$(core.String))),
-    [_package$]: dart.finalFieldType(dart.nullable(core.String)),
-    fontSize: dart.finalFieldType(dart.nullable(core.double)),
-    height: dart.finalFieldType(dart.nullable(core.double)),
-    leadingDistribution: dart.finalFieldType(dart.nullable(ui.TextLeadingDistribution)),
-    fontWeight: dart.finalFieldType(dart.nullable(ui.FontWeight)),
-    fontStyle: dart.finalFieldType(dart.nullable(ui.FontStyle)),
-    leading: dart.finalFieldType(dart.nullable(core.double)),
-    forceStrutHeight: dart.finalFieldType(dart.nullable(core.bool)),
-    debugLabel: dart.finalFieldType(dart.nullable(core.String))
+  dart.setLibraryUri(listener_helpers.AnimationLazyListenerMixin, I[1]);
+  dart.setFieldSignature(listener_helpers.AnimationLazyListenerMixin, () => ({
+    __proto__: dart.getFields(listener_helpers.AnimationLazyListenerMixin.__proto__),
+    [_listenerCounter]: dart.fieldType(core.int)
   }));
-  dart.defineExtensionMethods(strut_style.StrutStyle, ['_equals']);
-  dart.defineExtensionAccessors(strut_style.StrutStyle, ['hashCode']);
-  dart.defineLazy(strut_style.StrutStyle, {
-    /*strut_style.StrutStyle.disabled*/get disabled() {
-      return C[0] || CT.C0;
+  listener_helpers.AnimationEagerListenerMixin = class AnimationEagerListenerMixin extends core.Object {};
+  listener_helpers.AnimationEagerListenerMixin[dart.mixinOn] = Object => class AnimationEagerListenerMixin extends Object {
+    didRegisterListener() {
     }
-  }, false);
-  var inherit$ = dart.privateName(text_style, "TextStyle.inherit");
-  var color$ = dart.privateName(text_style, "TextStyle.color");
-  var backgroundColor$ = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var fontFamily$0 = dart.privateName(text_style, "TextStyle.fontFamily");
-  var _fontFamilyFallback$0 = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var _package$0 = dart.privateName(text_style, "TextStyle._package");
-  var fontSize$0 = dart.privateName(text_style, "TextStyle.fontSize");
-  var fontWeight$0 = dart.privateName(text_style, "TextStyle.fontWeight");
-  var fontStyle$0 = dart.privateName(text_style, "TextStyle.fontStyle");
-  var letterSpacing$ = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var wordSpacing$ = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var textBaseline$ = dart.privateName(text_style, "TextStyle.textBaseline");
-  var height$0 = dart.privateName(text_style, "TextStyle.height");
-  var leadingDistribution$0 = dart.privateName(text_style, "TextStyle.leadingDistribution");
-  var locale$ = dart.privateName(text_style, "TextStyle.locale");
-  var foreground$ = dart.privateName(text_style, "TextStyle.foreground");
-  var background$ = dart.privateName(text_style, "TextStyle.background");
-  var decoration$ = dart.privateName(text_style, "TextStyle.decoration");
-  var decorationColor$ = dart.privateName(text_style, "TextStyle.decorationColor");
-  var decorationStyle$ = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var decorationThickness$ = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var debugLabel$0 = dart.privateName(text_style, "TextStyle.debugLabel");
-  var shadows$ = dart.privateName(text_style, "TextStyle.shadows");
-  var fontFeatures$ = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var _fontFamilyFallback$1 = dart.privateName(text_style, "_fontFamilyFallback");
-  var _package$1 = dart.privateName(text_style, "_package");
-  const Object_Diagnosticable$36$ = class Object_Diagnosticable extends core.Object {};
-  (Object_Diagnosticable$36$.new = function() {
-  }).prototype = Object_Diagnosticable$36$.prototype;
-  dart.applyMixin(Object_Diagnosticable$36$, diagnostics.Diagnosticable);
-  text_style.TextStyle = class TextStyle extends Object_Diagnosticable$36$ {
-    get inherit() {
-      return this[inherit$];
+    didUnregisterListener() {
     }
-    set inherit(value) {
-      super.inherit = value;
-    }
-    get color() {
-      return this[color$];
-    }
-    set color(value) {
-      super.color = value;
-    }
-    get backgroundColor() {
-      return this[backgroundColor$];
-    }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get fontFamily() {
-      return this[fontFamily$0];
-    }
-    set fontFamily(value) {
-      super.fontFamily = value;
-    }
-    get [_fontFamilyFallback$1]() {
-      return this[_fontFamilyFallback$0];
-    }
-    set [_fontFamilyFallback$1](value) {
-      super[_fontFamilyFallback$1] = value;
-    }
-    get [_package$1]() {
-      return this[_package$0];
-    }
-    set [_package$1](value) {
-      super[_package$1] = value;
-    }
-    get fontSize() {
-      return this[fontSize$0];
-    }
-    set fontSize(value) {
-      super.fontSize = value;
-    }
-    get fontWeight() {
-      return this[fontWeight$0];
-    }
-    set fontWeight(value) {
-      super.fontWeight = value;
-    }
-    get fontStyle() {
-      return this[fontStyle$0];
-    }
-    set fontStyle(value) {
-      super.fontStyle = value;
-    }
-    get letterSpacing() {
-      return this[letterSpacing$];
-    }
-    set letterSpacing(value) {
-      super.letterSpacing = value;
-    }
-    get wordSpacing() {
-      return this[wordSpacing$];
-    }
-    set wordSpacing(value) {
-      super.wordSpacing = value;
-    }
-    get textBaseline() {
-      return this[textBaseline$];
-    }
-    set textBaseline(value) {
-      super.textBaseline = value;
-    }
-    get height() {
-      return this[height$0];
-    }
-    set height(value) {
-      super.height = value;
-    }
-    get leadingDistribution() {
-      return this[leadingDistribution$0];
-    }
-    set leadingDistribution(value) {
-      super.leadingDistribution = value;
-    }
-    get locale() {
-      return this[locale$];
-    }
-    set locale(value) {
-      super.locale = value;
-    }
-    get foreground() {
-      return this[foreground$];
-    }
-    set foreground(value) {
-      super.foreground = value;
-    }
-    get background() {
-      return this[background$];
-    }
-    set background(value) {
-      super.background = value;
-    }
-    get decoration() {
-      return this[decoration$];
-    }
-    set decoration(value) {
-      super.decoration = value;
-    }
-    get decorationColor() {
-      return this[decorationColor$];
-    }
-    set decorationColor(value) {
-      super.decorationColor = value;
-    }
-    get decorationStyle() {
-      return this[decorationStyle$];
-    }
-    set decorationStyle(value) {
-      super.decorationStyle = value;
-    }
-    get decorationThickness() {
-      return this[decorationThickness$];
-    }
-    set decorationThickness(value) {
-      super.decorationThickness = value;
-    }
-    get debugLabel() {
-      return this[debugLabel$0];
-    }
-    set debugLabel(value) {
-      super.debugLabel = value;
-    }
-    get shadows() {
-      return this[shadows$];
-    }
-    set shadows(value) {
-      super.shadows = value;
-    }
-    get fontFeatures() {
-      return this[fontFeatures$];
-    }
-    set fontFeatures(value) {
-      super.fontFeatures = value;
-    }
-    get fontFamilyFallback() {
-      return this[_package$1] != null && this[_fontFamilyFallback$1] != null ? dart.nullCheck(this[_fontFamilyFallback$1])[$map](core.String, dart.fn(str => "packages/" + dart.str(this[_package$1]) + "/" + str, T.StringToString()))[$toList]() : this[_fontFamilyFallback$1];
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11, t0$12, t0$13, t0$14, t0$15, t0$16, t0$17, t0$18, t0$19;
-      let inherit = opts && 'inherit' in opts ? opts.inherit : null;
-      let color = opts && 'color' in opts ? opts.color : null;
-      let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-      let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-      let fontFamilyFallback = opts && 'fontFamilyFallback' in opts ? opts.fontFamilyFallback : null;
-      let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
-      let fontWeight = opts && 'fontWeight' in opts ? opts.fontWeight : null;
-      let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-      let letterSpacing = opts && 'letterSpacing' in opts ? opts.letterSpacing : null;
-      let wordSpacing = opts && 'wordSpacing' in opts ? opts.wordSpacing : null;
-      let textBaseline = opts && 'textBaseline' in opts ? opts.textBaseline : null;
-      let height = opts && 'height' in opts ? opts.height : null;
-      let leadingDistribution = opts && 'leadingDistribution' in opts ? opts.leadingDistribution : null;
-      let locale = opts && 'locale' in opts ? opts.locale : null;
-      let foreground = opts && 'foreground' in opts ? opts.foreground : null;
-      let background = opts && 'background' in opts ? opts.background : null;
-      let shadows = opts && 'shadows' in opts ? opts.shadows : null;
-      let fontFeatures = opts && 'fontFeatures' in opts ? opts.fontFeatures : null;
-      let decoration = opts && 'decoration' in opts ? opts.decoration : null;
-      let decorationColor = opts && 'decorationColor' in opts ? opts.decorationColor : null;
-      let decorationStyle = opts && 'decorationStyle' in opts ? opts.decorationStyle : null;
-      let decorationThickness = opts && 'decorationThickness' in opts ? opts.decorationThickness : null;
-      let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-      if (!(color == null || foreground == null)) dart.assertFailed(text_style._kColorForegroundWarning, I[2], 795, 12, "color == null || foreground == null");
-      if (!(backgroundColor == null || background == null)) dart.assertFailed(text_style._kColorBackgroundWarning, I[2], 796, 12, "backgroundColor == null || background == null");
-      let newDebugLabel = null;
-      if (!dart.fn(() => {
-        let t0;
-        if (this.debugLabel != null) newDebugLabel = (t0 = debugLabel, t0 == null ? "(" + dart.str(this.debugLabel) + ").copyWith" : t0);
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[2], 798, 12, "() {\r\n      if (this.debugLabel != null)\r\n        newDebugLabel = debugLabel ?? '(${this.debugLabel}).copyWith';\r\n      return true;\r\n    }()");
-      return new text_style.TextStyle.new({inherit: (t0 = inherit, t0 == null ? this.inherit : t0), color: this.foreground == null && foreground == null ? (t0$ = color, t0$ == null ? this.color : t0$) : null, backgroundColor: this.background == null && background == null ? (t0$0 = backgroundColor, t0$0 == null ? this.backgroundColor : t0$0) : null, fontFamily: (t0$1 = fontFamily, t0$1 == null ? this.fontFamily : t0$1), fontFamilyFallback: (t0$2 = fontFamilyFallback, t0$2 == null ? this.fontFamilyFallback : t0$2), fontSize: (t0$3 = fontSize, t0$3 == null ? this.fontSize : t0$3), fontWeight: (t0$4 = fontWeight, t0$4 == null ? this.fontWeight : t0$4), fontStyle: (t0$5 = fontStyle, t0$5 == null ? this.fontStyle : t0$5), letterSpacing: (t0$6 = letterSpacing, t0$6 == null ? this.letterSpacing : t0$6), wordSpacing: (t0$7 = wordSpacing, t0$7 == null ? this.wordSpacing : t0$7), textBaseline: (t0$8 = textBaseline, t0$8 == null ? this.textBaseline : t0$8), height: (t0$9 = height, t0$9 == null ? this.height : t0$9), leadingDistribution: (t0$10 = leadingDistribution, t0$10 == null ? this.leadingDistribution : t0$10), locale: (t0$11 = locale, t0$11 == null ? this.locale : t0$11), foreground: (t0$12 = foreground, t0$12 == null ? this.foreground : t0$12), background: (t0$13 = background, t0$13 == null ? this.background : t0$13), shadows: (t0$14 = shadows, t0$14 == null ? this.shadows : t0$14), fontFeatures: (t0$15 = fontFeatures, t0$15 == null ? this.fontFeatures : t0$15), decoration: (t0$16 = decoration, t0$16 == null ? this.decoration : t0$16), decorationColor: (t0$17 = decorationColor, t0$17 == null ? this.decorationColor : t0$17), decorationStyle: (t0$18 = decorationStyle, t0$18 == null ? this.decorationStyle : t0$18), decorationThickness: (t0$19 = decorationThickness, t0$19 == null ? this.decorationThickness : t0$19), debugLabel: newDebugLabel});
-    }
-    apply(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10;
-      let color = opts && 'color' in opts ? opts.color : null;
-      let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-      let decoration = opts && 'decoration' in opts ? opts.decoration : null;
-      let decorationColor = opts && 'decorationColor' in opts ? opts.decorationColor : null;
-      let decorationStyle = opts && 'decorationStyle' in opts ? opts.decorationStyle : null;
-      let decorationThicknessFactor = opts && 'decorationThicknessFactor' in opts ? opts.decorationThicknessFactor : 1;
-      let decorationThicknessDelta = opts && 'decorationThicknessDelta' in opts ? opts.decorationThicknessDelta : 0;
-      let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-      let fontFamilyFallback = opts && 'fontFamilyFallback' in opts ? opts.fontFamilyFallback : null;
-      let fontSizeFactor = opts && 'fontSizeFactor' in opts ? opts.fontSizeFactor : 1;
-      let fontSizeDelta = opts && 'fontSizeDelta' in opts ? opts.fontSizeDelta : 0;
-      let fontWeightDelta = opts && 'fontWeightDelta' in opts ? opts.fontWeightDelta : 0;
-      let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-      let letterSpacingFactor = opts && 'letterSpacingFactor' in opts ? opts.letterSpacingFactor : 1;
-      let letterSpacingDelta = opts && 'letterSpacingDelta' in opts ? opts.letterSpacingDelta : 0;
-      let wordSpacingFactor = opts && 'wordSpacingFactor' in opts ? opts.wordSpacingFactor : 1;
-      let wordSpacingDelta = opts && 'wordSpacingDelta' in opts ? opts.wordSpacingDelta : 0;
-      let heightFactor = opts && 'heightFactor' in opts ? opts.heightFactor : 1;
-      let heightDelta = opts && 'heightDelta' in opts ? opts.heightDelta : 0;
-      let textBaseline = opts && 'textBaseline' in opts ? opts.textBaseline : null;
-      let leadingDistribution = opts && 'leadingDistribution' in opts ? opts.leadingDistribution : null;
-      let locale = opts && 'locale' in opts ? opts.locale : null;
-      let shadows = opts && 'shadows' in opts ? opts.shadows : null;
-      let fontFeatures = opts && 'fontFeatures' in opts ? opts.fontFeatures : null;
-      if (!(fontSizeFactor !== null)) dart.assertFailed(null, I[2], 885, 12, "fontSizeFactor != null");
-      if (!(fontSizeDelta !== null)) dart.assertFailed(null, I[2], 886, 12, "fontSizeDelta != null");
-      if (!(this.fontSize != null || fontSizeFactor === 1.0 && fontSizeDelta === 0.0)) dart.assertFailed(null, I[2], 887, 12, "fontSize != null || (fontSizeFactor == 1.0 && fontSizeDelta == 0.0)");
-      if (!(fontWeightDelta !== null)) dart.assertFailed(null, I[2], 888, 12, "fontWeightDelta != null");
-      if (!(this.fontWeight != null || fontWeightDelta === 0.0)) dart.assertFailed(null, I[2], 889, 12, "fontWeight != null || fontWeightDelta == 0.0");
-      if (!(letterSpacingFactor !== null)) dart.assertFailed(null, I[2], 890, 12, "letterSpacingFactor != null");
-      if (!(letterSpacingDelta !== null)) dart.assertFailed(null, I[2], 891, 12, "letterSpacingDelta != null");
-      if (!(this.letterSpacing != null || letterSpacingFactor === 1.0 && letterSpacingDelta === 0.0)) dart.assertFailed(null, I[2], 892, 12, "letterSpacing != null || (letterSpacingFactor == 1.0 && letterSpacingDelta == 0.0)");
-      if (!(wordSpacingFactor !== null)) dart.assertFailed(null, I[2], 893, 12, "wordSpacingFactor != null");
-      if (!(wordSpacingDelta !== null)) dart.assertFailed(null, I[2], 894, 12, "wordSpacingDelta != null");
-      if (!(this.wordSpacing != null || wordSpacingFactor === 1.0 && wordSpacingDelta === 0.0)) dart.assertFailed(null, I[2], 895, 12, "wordSpacing != null || (wordSpacingFactor == 1.0 && wordSpacingDelta == 0.0)");
-      if (!(heightFactor !== null)) dart.assertFailed(null, I[2], 896, 12, "heightFactor != null");
-      if (!(heightDelta !== null)) dart.assertFailed(null, I[2], 897, 12, "heightDelta != null");
-      if (!(decorationThicknessFactor !== null)) dart.assertFailed(null, I[2], 898, 12, "decorationThicknessFactor != null");
-      if (!(decorationThicknessDelta !== null)) dart.assertFailed(null, I[2], 899, 12, "decorationThicknessDelta != null");
-      if (!(this.decorationThickness != null || decorationThicknessFactor === 1.0 && decorationThicknessDelta === 0.0)) dart.assertFailed(null, I[2], 900, 12, "decorationThickness != null || (decorationThicknessFactor == 1.0 && decorationThicknessDelta == 0.0)");
-      let modifiedDebugLabel = null;
-      if (!dart.fn(() => {
-        if (this.debugLabel != null) modifiedDebugLabel = "(" + dart.str(this.debugLabel) + ").apply";
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[2], 903, 12, "() {\r\n      if (debugLabel != null)\r\n        modifiedDebugLabel = '($debugLabel).apply';\r\n      return true;\r\n    }()");
-      return new text_style.TextStyle.new({inherit: this.inherit, color: this.foreground == null ? (t0 = color, t0 == null ? this.color : t0) : null, backgroundColor: this.background == null ? (t0$ = backgroundColor, t0$ == null ? this.backgroundColor : t0$) : null, fontFamily: (t0$0 = fontFamily, t0$0 == null ? this.fontFamily : t0$0), fontFamilyFallback: (t0$1 = fontFamilyFallback, t0$1 == null ? this.fontFamilyFallback : t0$1), fontSize: this.fontSize == null ? null : dart.nullCheck(this.fontSize) * fontSizeFactor + fontSizeDelta, fontWeight: this.fontWeight == null ? null : ui.FontWeight.values[$_get]((dart.nullCheck(this.fontWeight).index + fontWeightDelta)[$clamp](0, ui.FontWeight.values[$length] - 1)), fontStyle: (t0$2 = fontStyle, t0$2 == null ? this.fontStyle : t0$2), letterSpacing: this.letterSpacing == null ? null : dart.nullCheck(this.letterSpacing) * letterSpacingFactor + letterSpacingDelta, wordSpacing: this.wordSpacing == null ? null : dart.nullCheck(this.wordSpacing) * wordSpacingFactor + wordSpacingDelta, textBaseline: (t0$3 = textBaseline, t0$3 == null ? this.textBaseline : t0$3), height: this.height == null ? null : dart.nullCheck(this.height) * heightFactor + heightDelta, leadingDistribution: (t0$4 = leadingDistribution, t0$4 == null ? this.leadingDistribution : t0$4), locale: (t0$5 = locale, t0$5 == null ? this.locale : t0$5), foreground: this.foreground, background: this.background, shadows: (t0$6 = shadows, t0$6 == null ? this.shadows : t0$6), fontFeatures: (t0$7 = fontFeatures, t0$7 == null ? this.fontFeatures : t0$7), decoration: (t0$8 = decoration, t0$8 == null ? this.decoration : t0$8), decorationColor: (t0$9 = decorationColor, t0$9 == null ? this.decorationColor : t0$9), decorationStyle: (t0$10 = decorationStyle, t0$10 == null ? this.decorationStyle : t0$10), decorationThickness: this.decorationThickness == null ? null : dart.nullCheck(this.decorationThickness) * decorationThicknessFactor + decorationThicknessDelta, debugLabel: modifiedDebugLabel});
-    }
-    merge(other) {
-      if (other == null) return this;
-      if (!other.inherit) return other;
-      let mergedDebugLabel = null;
-      if (!dart.fn(() => {
-        let t0, t0$;
-        if (other.debugLabel != null || this.debugLabel != null) mergedDebugLabel = "(" + dart.str((t0 = this.debugLabel, t0 == null ? "unknown" : t0)) + ").merge(" + dart.str((t0$ = other.debugLabel, t0$ == null ? "unknown" : t0$)) + ")";
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[2], 964, 12, "() {\r\n      if (other.debugLabel != null || debugLabel != null)\r\n        mergedDebugLabel = '(${debugLabel ?? _kDefaultDebugLabel}).merge(${other.debugLabel ?? _kDefaultDebugLabel})';\r\n      return true;\r\n    }()");
-      return this.copyWith({color: other.color, backgroundColor: other.backgroundColor, fontFamily: other.fontFamily, fontFamilyFallback: other.fontFamilyFallback, fontSize: other.fontSize, fontWeight: other.fontWeight, fontStyle: other.fontStyle, letterSpacing: other.letterSpacing, wordSpacing: other.wordSpacing, textBaseline: other.textBaseline, height: other.height, leadingDistribution: other.leadingDistribution, locale: other.locale, foreground: other.foreground, background: other.background, shadows: other.shadows, fontFeatures: other.fontFeatures, decoration: other.decoration, decorationColor: other.decorationColor, decorationStyle: other.decorationStyle, decorationThickness: other.decorationThickness, debugLabel: mergedDebugLabel});
-    }
-    static lerp(a, b, t) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t1, t0$6, t1$, t0$7, t1$0, t0$8, t1$1, t0$9, t0$10, t0$11;
-      if (!(t !== null)) dart.assertFailed(null, I[2], 1010, 12, "t != null");
-      if (!(a == null || b == null || a.inherit === b.inherit)) dart.assertFailed(null, I[2], 1011, 12, "a == null || b == null || a.inherit == b.inherit");
-      if (a == null && b == null) {
-        return null;
-      }
-      let lerpDebugLabel = null;
-      if (!dart.fn(() => {
-        let t0, t0$, t0$0, t0$1;
-        lerpDebugLabel = "lerp(" + dart.str((t0$ = (t0 = a, t0 == null ? null : t0.debugLabel), t0$ == null ? "unknown" : t0$)) + " ⎯" + t[$toStringAsFixed](1) + "→ " + dart.str((t0$1 = (t0$0 = b, t0$0 == null ? null : t0$0.debugLabel), t0$1 == null ? "unknown" : t0$1)) + ")";
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[2], 1017, 12, "() {\r\n      lerpDebugLabel = 'lerp(${a?.debugLabel ?? _kDefaultDebugLabel} ⎯${t.toStringAsFixed(1)}→ ${b?.debugLabel ?? _kDefaultDebugLabel})';\r\n      return true;\r\n    }()");
-      if (a == null) {
-        return new text_style.TextStyle.new({inherit: dart.nullCheck(b).inherit, color: ui.Color.lerp(null, b.color, t), backgroundColor: ui.Color.lerp(null, b.backgroundColor, t), fontFamily: t < 0.5 ? null : b.fontFamily, fontFamilyFallback: t < 0.5 ? null : b.fontFamilyFallback, fontSize: t < 0.5 ? null : b.fontSize, fontWeight: ui.FontWeight.lerp(null, b.fontWeight, t), fontStyle: t < 0.5 ? null : b.fontStyle, letterSpacing: t < 0.5 ? null : b.letterSpacing, wordSpacing: t < 0.5 ? null : b.wordSpacing, textBaseline: t < 0.5 ? null : b.textBaseline, height: t < 0.5 ? null : b.height, leadingDistribution: t < 0.5 ? null : b.leadingDistribution, locale: t < 0.5 ? null : b.locale, foreground: t < 0.5 ? null : b.foreground, background: t < 0.5 ? null : b.background, decoration: t < 0.5 ? null : b.decoration, shadows: t < 0.5 ? null : b.shadows, fontFeatures: t < 0.5 ? null : b.fontFeatures, decorationColor: ui.Color.lerp(null, b.decorationColor, t), decorationStyle: t < 0.5 ? null : b.decorationStyle, decorationThickness: t < 0.5 ? null : b.decorationThickness, debugLabel: lerpDebugLabel});
-      }
-      if (b == null) {
-        return new text_style.TextStyle.new({inherit: a.inherit, color: ui.Color.lerp(a.color, null, t), backgroundColor: ui.Color.lerp(null, a.backgroundColor, t), fontFamily: t < 0.5 ? a.fontFamily : null, fontFamilyFallback: t < 0.5 ? a.fontFamilyFallback : null, fontSize: t < 0.5 ? a.fontSize : null, fontWeight: ui.FontWeight.lerp(a.fontWeight, null, t), fontStyle: t < 0.5 ? a.fontStyle : null, letterSpacing: t < 0.5 ? a.letterSpacing : null, wordSpacing: t < 0.5 ? a.wordSpacing : null, textBaseline: t < 0.5 ? a.textBaseline : null, height: t < 0.5 ? a.height : null, leadingDistribution: t < 0.5 ? a.leadingDistribution : null, locale: t < 0.5 ? a.locale : null, foreground: t < 0.5 ? a.foreground : null, background: t < 0.5 ? a.background : null, shadows: t < 0.5 ? a.shadows : null, fontFeatures: t < 0.5 ? a.fontFeatures : null, decoration: t < 0.5 ? a.decoration : null, decorationColor: ui.Color.lerp(a.decorationColor, null, t), decorationStyle: t < 0.5 ? a.decorationStyle : null, decorationThickness: t < 0.5 ? a.decorationThickness : null, debugLabel: lerpDebugLabel});
-      }
-      return new text_style.TextStyle.new({inherit: b.inherit, color: a.foreground == null && b.foreground == null ? ui.Color.lerp(a.color, b.color, t) : null, backgroundColor: a.background == null && b.background == null ? ui.Color.lerp(a.backgroundColor, b.backgroundColor, t) : null, fontFamily: t < 0.5 ? a.fontFamily : b.fontFamily, fontFamilyFallback: t < 0.5 ? a.fontFamilyFallback : b.fontFamilyFallback, fontSize: ui.lerpDouble((t0 = a.fontSize, t0 == null ? b.fontSize : t0), (t0$ = b.fontSize, t0$ == null ? a.fontSize : t0$), t), fontWeight: ui.FontWeight.lerp(a.fontWeight, b.fontWeight, t), fontStyle: t < 0.5 ? a.fontStyle : b.fontStyle, letterSpacing: ui.lerpDouble((t0$0 = a.letterSpacing, t0$0 == null ? b.letterSpacing : t0$0), (t0$1 = b.letterSpacing, t0$1 == null ? a.letterSpacing : t0$1), t), wordSpacing: ui.lerpDouble((t0$2 = a.wordSpacing, t0$2 == null ? b.wordSpacing : t0$2), (t0$3 = b.wordSpacing, t0$3 == null ? a.wordSpacing : t0$3), t), textBaseline: t < 0.5 ? a.textBaseline : b.textBaseline, height: ui.lerpDouble((t0$4 = a.height, t0$4 == null ? b.height : t0$4), (t0$5 = b.height, t0$5 == null ? a.height : t0$5), t), leadingDistribution: t < 0.5 ? a.leadingDistribution : b.leadingDistribution, locale: t < 0.5 ? a.locale : b.locale, foreground: a.foreground != null || b.foreground != null ? t < 0.5 ? (t0$6 = a.foreground, t0$6 == null ? (t1 = ui.Paint.new(), (() => {
-          t1.color = dart.nullCheck(a.color);
-          return t1;
-        })()) : t0$6) : (t0$7 = b.foreground, t0$7 == null ? (t1$ = ui.Paint.new(), (() => {
-          t1$.color = dart.nullCheck(b.color);
-          return t1$;
-        })()) : t0$7) : null, background: a.background != null || b.background != null ? t < 0.5 ? (t0$8 = a.background, t0$8 == null ? (t1$0 = ui.Paint.new(), (() => {
-          t1$0.color = dart.nullCheck(a.backgroundColor);
-          return t1$0;
-        })()) : t0$8) : (t0$9 = b.background, t0$9 == null ? (t1$1 = ui.Paint.new(), (() => {
-          t1$1.color = dart.nullCheck(b.backgroundColor);
-          return t1$1;
-        })()) : t0$9) : null, shadows: t < 0.5 ? a.shadows : b.shadows, fontFeatures: t < 0.5 ? a.fontFeatures : b.fontFeatures, decoration: t < 0.5 ? a.decoration : b.decoration, decorationColor: ui.Color.lerp(a.decorationColor, b.decorationColor, t), decorationStyle: t < 0.5 ? a.decorationStyle : b.decorationStyle, decorationThickness: ui.lerpDouble((t0$10 = a.decorationThickness, t0$10 == null ? b.decorationThickness : t0$10), (t0$11 = b.decorationThickness, t0$11 == null ? a.decorationThickness : t0$11), t), debugLabel: lerpDebugLabel});
-    }
-    getTextStyle(opts) {
-      let t1, t0;
-      let textScaleFactor = opts && 'textScaleFactor' in opts ? opts.textScaleFactor : 1;
-      return ui.TextStyle.new({color: this.color, decoration: this.decoration, decorationColor: this.decorationColor, decorationStyle: this.decorationStyle, decorationThickness: this.decorationThickness, fontWeight: this.fontWeight, fontStyle: this.fontStyle, textBaseline: this.textBaseline, leadingDistribution: this.leadingDistribution, fontFamily: this.fontFamily, fontFamilyFallback: this.fontFamilyFallback, fontSize: this.fontSize == null ? null : dart.nullCheck(this.fontSize) * textScaleFactor, letterSpacing: this.letterSpacing, wordSpacing: this.wordSpacing, height: this.height, locale: this.locale, foreground: this.foreground, background: (t0 = this.background, t0 == null ? this.backgroundColor != null ? (t1 = ui.Paint.new(), (() => {
-          t1.color = dart.nullCheck(this.backgroundColor);
-          return t1;
-        })()) : null : t0), shadows: this.shadows, fontFeatures: this.fontFeatures});
-    }
-    getParagraphStyle(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4;
-      let textAlign = opts && 'textAlign' in opts ? opts.textAlign : null;
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      let textScaleFactor = opts && 'textScaleFactor' in opts ? opts.textScaleFactor : 1;
-      let ellipsis = opts && 'ellipsis' in opts ? opts.ellipsis : null;
-      let maxLines = opts && 'maxLines' in opts ? opts.maxLines : null;
-      let textHeightBehavior = opts && 'textHeightBehavior' in opts ? opts.textHeightBehavior : null;
-      let locale = opts && 'locale' in opts ? opts.locale : null;
-      let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-      let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
-      let fontWeight = opts && 'fontWeight' in opts ? opts.fontWeight : null;
-      let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-      let height = opts && 'height' in opts ? opts.height : null;
-      let strutStyle = opts && 'strutStyle' in opts ? opts.strutStyle : null;
-      if (!(textScaleFactor !== null)) dart.assertFailed(null, I[2], 1165, 12, "textScaleFactor != null");
-      if (!(maxLines == null || dart.notNull(maxLines) > 0)) dart.assertFailed(null, I[2], 1166, 12, "maxLines == null || maxLines > 0");
-      let leadingDistribution = this.leadingDistribution;
-      let effectiveTextHeightBehavior = (t0 = textHeightBehavior, t0 == null ? leadingDistribution == null ? null : new ui.TextHeightBehavior.new({leadingDistribution: leadingDistribution}) : t0);
-      return ui.ParagraphStyle.new({textAlign: textAlign, textDirection: textDirection, fontWeight: (t0$ = fontWeight, t0$ == null ? this.fontWeight : t0$), fontStyle: (t0$0 = fontStyle, t0$0 == null ? this.fontStyle : t0$0), fontFamily: (t0$1 = fontFamily, t0$1 == null ? this.fontFamily : t0$1), fontSize: dart.notNull((t0$3 = (t0$2 = fontSize, t0$2 == null ? this.fontSize : t0$2), t0$3 == null ? 14 : t0$3)) * textScaleFactor, height: (t0$4 = height, t0$4 == null ? this.height : t0$4), textHeightBehavior: effectiveTextHeightBehavior, strutStyle: strutStyle == null ? null : new _engine.EngineStrutStyle.new({fontFamily: strutStyle.fontFamily, fontFamilyFallback: strutStyle.fontFamilyFallback, fontSize: strutStyle.fontSize == null ? null : dart.nullCheck(strutStyle.fontSize) * textScaleFactor, height: strutStyle.height, leading: strutStyle.leading, fontWeight: strutStyle.fontWeight, fontStyle: strutStyle.fontStyle, forceStrutHeight: strutStyle.forceStrutHeight}), maxLines: maxLines, ellipsis: ellipsis, locale: locale});
-    }
-    compareTo(other) {
-      if (this === other) return basic_types.RenderComparison.identical;
-      if (this.inherit !== other.inherit || this.fontFamily != other.fontFamily || this.fontSize != other.fontSize || !dart.equals(this.fontWeight, other.fontWeight) || this.fontStyle != other.fontStyle || this.letterSpacing != other.letterSpacing || this.wordSpacing != other.wordSpacing || this.textBaseline != other.textBaseline || this.height != other.height || this.leadingDistribution != other.leadingDistribution || !dart.equals(this.locale, other.locale) || !dart.equals(this.foreground, other.foreground) || !dart.equals(this.background, other.background) || !collections.listEquals(ui.Shadow, this.shadows, other.shadows) || !collections.listEquals(ui.FontFeature, this.fontFeatures, other.fontFeatures) || !collections.listEquals(core.String, this.fontFamilyFallback, other.fontFamilyFallback)) return basic_types.RenderComparison.layout;
-      if (!dart.equals(this.color, other.color) || !dart.equals(this.backgroundColor, other.backgroundColor) || !dart.equals(this.decoration, other.decoration) || !dart.equals(this.decorationColor, other.decorationColor) || this.decorationStyle != other.decorationStyle || this.decorationThickness != other.decorationThickness) return basic_types.RenderComparison.paint;
-      return basic_types.RenderComparison.identical;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return text_style.TextStyle.is(other) && other.inherit === this.inherit && dart.equals(other.color, this.color) && dart.equals(other.backgroundColor, this.backgroundColor) && other.fontFamily == this.fontFamily && other.fontSize == this.fontSize && dart.equals(other.fontWeight, this.fontWeight) && other.fontStyle == this.fontStyle && other.letterSpacing == this.letterSpacing && other.wordSpacing == this.wordSpacing && other.textBaseline == this.textBaseline && other.height == this.height && other.leadingDistribution == this.leadingDistribution && dart.equals(other.locale, this.locale) && dart.equals(other.foreground, this.foreground) && dart.equals(other.background, this.background) && dart.equals(other.decoration, this.decoration) && dart.equals(other.decorationColor, this.decorationColor) && other.decorationStyle == this.decorationStyle && other.decorationThickness == this.decorationThickness && collections.listEquals(ui.Shadow, other.shadows, this.shadows) && collections.listEquals(ui.FontFeature, other.fontFeatures, this.fontFeatures) && collections.listEquals(core.String, other.fontFamilyFallback, this.fontFamilyFallback);
-    }
-    get hashCode() {
-      return ui.hashList(T.JSArrayOfObjectN().of([this.inherit, this.color, this.backgroundColor, this.fontFamily, this.fontSize, this.fontWeight, this.fontStyle, this.letterSpacing, this.wordSpacing, this.textBaseline, this.height, this.leadingDistribution, this.locale, this.foreground, this.background, this.decoration, this.decorationColor, this.decorationStyle, ui.hashList(this.shadows), ui.hashList(this.fontFeatures), ui.hashList(this.fontFamilyFallback)]));
-    }
-    toStringShort() {
-      return object.objectRuntimeType(this, "TextStyle");
-    }
-    debugFillProperties(properties, opts) {
-      let prefix = opts && 'prefix' in opts ? opts.prefix : "";
-      super.debugFillProperties(properties);
-      if (this.debugLabel != null) properties.add(new diagnostics.MessageProperty.new(prefix + "debugLabel", dart.nullCheck(this.debugLabel)));
-      let styles = T.JSArrayOfDiagnosticsNode().of([new colors.ColorProperty.new(prefix + "color", this.color, {defaultValue: null}), new colors.ColorProperty.new(prefix + "backgroundColor", this.backgroundColor, {defaultValue: null}), new diagnostics.StringProperty.new(prefix + "family", this.fontFamily, {defaultValue: null, quoted: false}), new (T.IterablePropertyOfString()).new(prefix + "familyFallback", this.fontFamilyFallback, {defaultValue: null}), new diagnostics.DoubleProperty.new(prefix + "size", this.fontSize, {defaultValue: null})]);
-      let weightDescription = null;
-      if (this.fontWeight != null) {
-        weightDescription = dart.str(dart.nullCheck(this.fontWeight).index + 1) + "00";
-      }
-      styles[$add](new (T.DiagnosticsPropertyOfFontWeight()).new(prefix + "weight", this.fontWeight, {description: weightDescription, defaultValue: null}));
-      styles[$add](new (T.EnumPropertyOfFontStyle()).new(prefix + "style", this.fontStyle, {defaultValue: null}));
-      styles[$add](new diagnostics.DoubleProperty.new(prefix + "letterSpacing", this.letterSpacing, {defaultValue: null}));
-      styles[$add](new diagnostics.DoubleProperty.new(prefix + "wordSpacing", this.wordSpacing, {defaultValue: null}));
-      styles[$add](new (T.EnumPropertyOfTextBaseline()).new(prefix + "baseline", this.textBaseline, {defaultValue: null}));
-      styles[$add](new diagnostics.DoubleProperty.new(prefix + "height", this.height, {unit: "x", defaultValue: null}));
-      styles[$add](new (T.EnumPropertyOfTextLeadingDistribution()).new(prefix + "leadingDistribution", this.leadingDistribution, {defaultValue: null}));
-      styles[$add](new (T.DiagnosticsPropertyOfLocale()).new(prefix + "locale", this.locale, {defaultValue: null}));
-      styles[$add](new (T.DiagnosticsPropertyOfPaint()).new(prefix + "foreground", this.foreground, {defaultValue: null}));
-      styles[$add](new (T.DiagnosticsPropertyOfPaint()).new(prefix + "background", this.background, {defaultValue: null}));
-      if (this.decoration != null || this.decorationColor != null || this.decorationStyle != null || this.decorationThickness != null) {
-        let decorationDescription = T.JSArrayOfString().of([]);
-        if (this.decorationStyle != null) decorationDescription[$add](diagnostics.describeEnum(dart.nullCheck(this.decorationStyle)));
-        styles[$add](new colors.ColorProperty.new(prefix + "decorationColor", this.decorationColor, {defaultValue: null, level: diagnostics.DiagnosticLevel.fine}));
-        if (this.decorationColor != null) decorationDescription[$add](dart.str(this.decorationColor));
-        styles[$add](new (T.DiagnosticsPropertyOfTextDecoration()).new(prefix + "decoration", this.decoration, {defaultValue: null, level: diagnostics.DiagnosticLevel.hidden}));
-        if (this.decoration != null) decorationDescription[$add](dart.str(this.decoration));
-        if (!decorationDescription[$isNotEmpty]) dart.assertFailed(null, I[2], 1347, 14, "decorationDescription.isNotEmpty");
-        styles[$add](new diagnostics.MessageProperty.new(prefix + "decoration", decorationDescription[$join](" ")));
-        styles[$add](new diagnostics.DoubleProperty.new(prefix + "decorationThickness", this.decorationThickness, {unit: "x", defaultValue: null}));
-      }
-      let styleSpecified = styles[$any](dart.fn(n => !n.isFiltered(diagnostics.DiagnosticLevel.info), T.DiagnosticsNodeTobool()));
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new(prefix + "inherit", this.inherit, {level: !styleSpecified && this.inherit ? diagnostics.DiagnosticLevel.fine : diagnostics.DiagnosticLevel.info}));
-      styles[$forEach](dart.bind(properties, 'add'));
-      if (!styleSpecified) properties.add(new diagnostics.FlagProperty.new("inherit", {value: this.inherit, ifTrue: prefix + "<all styles inherited>", ifFalse: prefix + "<no style specified>"}));
+    dispose() {
     }
   };
-  (text_style.TextStyle.new = function(opts) {
-    let inherit = opts && 'inherit' in opts ? opts.inherit : true;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
-    let fontWeight = opts && 'fontWeight' in opts ? opts.fontWeight : null;
-    let fontStyle = opts && 'fontStyle' in opts ? opts.fontStyle : null;
-    let letterSpacing = opts && 'letterSpacing' in opts ? opts.letterSpacing : null;
-    let wordSpacing = opts && 'wordSpacing' in opts ? opts.wordSpacing : null;
-    let textBaseline = opts && 'textBaseline' in opts ? opts.textBaseline : null;
-    let height = opts && 'height' in opts ? opts.height : null;
-    let leadingDistribution = opts && 'leadingDistribution' in opts ? opts.leadingDistribution : null;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let foreground = opts && 'foreground' in opts ? opts.foreground : null;
-    let background = opts && 'background' in opts ? opts.background : null;
-    let shadows = opts && 'shadows' in opts ? opts.shadows : null;
-    let fontFeatures = opts && 'fontFeatures' in opts ? opts.fontFeatures : null;
-    let decoration = opts && 'decoration' in opts ? opts.decoration : null;
-    let decorationColor = opts && 'decorationColor' in opts ? opts.decorationColor : null;
-    let decorationStyle = opts && 'decorationStyle' in opts ? opts.decorationStyle : null;
-    let decorationThickness = opts && 'decorationThickness' in opts ? opts.decorationThickness : null;
-    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-    let fontFamily = opts && 'fontFamily' in opts ? opts.fontFamily : null;
-    let fontFamilyFallback = opts && 'fontFamilyFallback' in opts ? opts.fontFamilyFallback : null;
-    let $package = opts && 'package' in opts ? opts.package : null;
-    this[inherit$] = inherit;
-    this[color$] = color;
-    this[backgroundColor$] = backgroundColor;
-    this[fontSize$0] = fontSize;
-    this[fontWeight$0] = fontWeight;
-    this[fontStyle$0] = fontStyle;
-    this[letterSpacing$] = letterSpacing;
-    this[wordSpacing$] = wordSpacing;
-    this[textBaseline$] = textBaseline;
-    this[height$0] = height;
-    this[leadingDistribution$0] = leadingDistribution;
-    this[locale$] = locale;
-    this[foreground$] = foreground;
-    this[background$] = background;
-    this[shadows$] = shadows;
-    this[fontFeatures$] = fontFeatures;
-    this[decoration$] = decoration;
-    this[decorationColor$] = decorationColor;
-    this[decorationStyle$] = decorationStyle;
-    this[decorationThickness$] = decorationThickness;
-    this[debugLabel$0] = debugLabel;
-    this[fontFamily$0] = $package == null ? fontFamily : "packages/" + dart.str($package) + "/" + dart.str(fontFamily);
-    this[_fontFamilyFallback$0] = fontFamilyFallback;
-    this[_package$0] = $package;
-    if (!(inherit !== null)) dart.assertFailed(null, I[2], 486, 15, "inherit != null");
-    if (!(color == null || foreground == null)) dart.assertFailed(text_style._kColorForegroundWarning, I[2], 487, 15, "color == null || foreground == null");
-    if (!(backgroundColor == null || background == null)) dart.assertFailed(text_style._kColorBackgroundWarning, I[2], 488, 15, "backgroundColor == null || background == null");
+  (listener_helpers.AnimationEagerListenerMixin[dart.mixinNew] = function() {
+  }).prototype = listener_helpers.AnimationEagerListenerMixin.prototype;
+  dart.addTypeTests(listener_helpers.AnimationEagerListenerMixin);
+  dart.addTypeCaches(listener_helpers.AnimationEagerListenerMixin);
+  listener_helpers.AnimationEagerListenerMixin[dart.implements] = () => [core.Object];
+  dart.setMethodSignature(listener_helpers.AnimationEagerListenerMixin, () => ({
+    __proto__: dart.getMethods(listener_helpers.AnimationEagerListenerMixin.__proto__),
+    didRegisterListener: dart.fnType(dart.void, []),
+    didUnregisterListener: dart.fnType(dart.void, []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(listener_helpers.AnimationEagerListenerMixin, I[1]);
+  var _listeners = dart.privateName(listener_helpers, "_listeners");
+  listener_helpers.AnimationLocalListenersMixin = class AnimationLocalListenersMixin extends core.Object {};
+  listener_helpers.AnimationLocalListenersMixin[dart.mixinOn] = Object => class AnimationLocalListenersMixin extends Object {
+    addListener(listener) {
+      this.didRegisterListener();
+      this[_listeners].add(listener);
+    }
+    removeListener(listener) {
+      let removed = this[_listeners].remove(listener);
+      if (removed) {
+        this.didUnregisterListener();
+      }
+    }
+    notifyListeners() {
+      let localListeners = T$.ListOfVoidTovoid().from(this[_listeners]);
+      for (let listener of localListeners) {
+        let collector = null;
+        if (!dart.fn(() => {
+          collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
+            yield new (T$.DiagnosticsPropertyOfAnimationLocalListenersMixin()).new("The " + dart.str(this[$runtimeType]) + " notifying listeners was", this, {style: diagnostics.DiagnosticsTreeStyle.errorProperty});
+          }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
+          return true;
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 124, 14, "() {\r\n        collector = () sync* {\r\n          yield DiagnosticsProperty<AnimationLocalListenersMixin>(\r\n            'The $runtimeType notifying listeners was',\r\n            this,\r\n            style: DiagnosticsTreeStyle.errorProperty,\r\n          );\r\n        };\r\n        return true;\r\n      }()");
+        try {
+          if (this[_listeners].contains(listener)) listener();
+        } catch (e) {
+          let exception = dart.getThrown(e);
+          let stack = dart.stackTrace(e);
+          if (core.Object.is(exception)) {
+            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, library: "animation library", context: new assertions.ErrorDescription.new("while notifying listeners for " + dart.str(this[$runtimeType])), informationCollector: collector}));
+          } else
+            throw e;
+        }
+      }
+    }
+  };
+  (listener_helpers.AnimationLocalListenersMixin[dart.mixinNew] = function() {
+    this[_listeners] = new (T$.ObserverListOfVoidTovoid()).new();
+  }).prototype = listener_helpers.AnimationLocalListenersMixin.prototype;
+  dart.addTypeTests(listener_helpers.AnimationLocalListenersMixin);
+  dart.addTypeCaches(listener_helpers.AnimationLocalListenersMixin);
+  listener_helpers.AnimationLocalListenersMixin[dart.implements] = () => [core.Object];
+  dart.setMethodSignature(listener_helpers.AnimationLocalListenersMixin, () => ({
+    __proto__: dart.getMethods(listener_helpers.AnimationLocalListenersMixin.__proto__),
+    addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    notifyListeners: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(listener_helpers.AnimationLocalListenersMixin, I[1]);
+  dart.setFieldSignature(listener_helpers.AnimationLocalListenersMixin, () => ({
+    __proto__: dart.getFields(listener_helpers.AnimationLocalListenersMixin.__proto__),
+    [_listeners]: dart.finalFieldType(observer_list.ObserverList$(dart.fnType(dart.void, [])))
+  }));
+  var _statusListeners = dart.privateName(listener_helpers, "_statusListeners");
+  listener_helpers.AnimationLocalStatusListenersMixin = class AnimationLocalStatusListenersMixin extends core.Object {};
+  listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinOn] = Object => class AnimationLocalStatusListenersMixin extends Object {
+    addStatusListener(listener) {
+      this.didRegisterListener();
+      this[_statusListeners].add(listener);
+    }
+    removeStatusListener(listener) {
+      let removed = this[_statusListeners].remove(listener);
+      if (removed) {
+        this.didUnregisterListener();
+      }
+    }
+    notifyStatusListeners(status) {
+      let localListeners = T$.ListOfAnimationStatusTovoid().from(this[_statusListeners]);
+      for (let listener of localListeners) {
+        try {
+          if (this[_statusListeners].contains(listener)) listener(status);
+        } catch (e) {
+          let exception = dart.getThrown(e);
+          let stack = dart.stackTrace(e);
+          if (core.Object.is(exception)) {
+            let collector = null;
+            if (!dart.fn(() => {
+              collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
+                yield new (T$.DiagnosticsPropertyOfAnimationLocalStatusListenersMixin()).new("The " + dart.str(this[$runtimeType]) + " notifying status listeners was", this, {style: diagnostics.DiagnosticsTreeStyle.errorProperty});
+              }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
+              return true;
+            }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 202, 16, "() {\r\n          collector = () sync* {\r\n            yield DiagnosticsProperty<AnimationLocalStatusListenersMixin>(\r\n              'The $runtimeType notifying status listeners was',\r\n              this,\r\n              style: DiagnosticsTreeStyle.errorProperty,\r\n            );\r\n          };\r\n          return true;\r\n        }()");
+            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, library: "animation library", context: new assertions.ErrorDescription.new("while notifying status listeners for " + dart.str(this[$runtimeType])), informationCollector: collector}));
+          } else
+            throw e;
+        }
+      }
+    }
+  };
+  (listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew] = function() {
+    this[_statusListeners] = new (T$.ObserverListOfAnimationStatusTovoid()).new();
+  }).prototype = listener_helpers.AnimationLocalStatusListenersMixin.prototype;
+  dart.addTypeTests(listener_helpers.AnimationLocalStatusListenersMixin);
+  dart.addTypeCaches(listener_helpers.AnimationLocalStatusListenersMixin);
+  listener_helpers.AnimationLocalStatusListenersMixin[dart.implements] = () => [core.Object];
+  dart.setMethodSignature(listener_helpers.AnimationLocalStatusListenersMixin, () => ({
+    __proto__: dart.getMethods(listener_helpers.AnimationLocalStatusListenersMixin.__proto__),
+    addStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+    removeStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+    notifyStatusListeners: dart.fnType(dart.void, [animation$.AnimationStatus])
+  }));
+  dart.setLibraryUri(listener_helpers.AnimationLocalStatusListenersMixin, I[1]);
+  dart.setFieldSignature(listener_helpers.AnimationLocalStatusListenersMixin, () => ({
+    __proto__: dart.getFields(listener_helpers.AnimationLocalStatusListenersMixin.__proto__),
+    [_statusListeners]: dart.finalFieldType(observer_list.ObserverList$(dart.fnType(dart.void, [animation$.AnimationStatus])))
+  }));
+  var _name$ = dart.privateName(animation$, "_name");
+  const _is_Animation_default = Symbol('_is_Animation_default');
+  animation$.Animation$ = dart.generic(T => {
+    class Animation extends change_notifier.Listenable {
+      get isDismissed() {
+        return this.status === animation$.AnimationStatus.dismissed;
+      }
+      get isCompleted() {
+        return this.status === animation$.AnimationStatus.completed;
+      }
+      drive(U, child) {
+        if (!T$.AnimationOfdouble().is(this)) dart.assertFailed(null, I[2], 169, 12, "this is Animation<double>");
+        return child.animate(T$.AnimationOfdouble().as(this));
+      }
+      toString() {
+        return diagnostics.describeIdentity(this) + "(" + this.toStringDetails() + ")";
+      }
+      toStringDetails() {
+        if (!(this.status !== null)) dart.assertFailed(null, I[2], 193, 12, "status != null");
+        switch (this.status) {
+          case C[0] || CT.C0:
+          {
+            return "▶";
+          }
+          case C[1] || CT.C1:
+          {
+            return "◀";
+          }
+          case C[2] || CT.C2:
+          {
+            return "⏭";
+          }
+          case C[3] || CT.C3:
+          {
+            return "⏮";
+          }
+        }
+      }
+    }
+    (Animation.new = function() {
+      Animation.__proto__.new.call(this);
+      ;
+    }).prototype = Animation.prototype;
+    dart.addTypeTests(Animation);
+    Animation.prototype[_is_Animation_default] = true;
+    dart.addTypeCaches(Animation);
+    Animation[dart.implements] = () => [change_notifier.ValueListenable$(T)];
+    dart.setMethodSignature(Animation, () => ({
+      __proto__: dart.getMethods(Animation.__proto__),
+      drive: dart.gFnType(U => [animation$.Animation$(U), [tween.Animatable$(U)]], U => [dart.nullable(core.Object)]),
+      toStringDetails: dart.fnType(core.String, [])
+    }));
+    dart.setGetterSignature(Animation, () => ({
+      __proto__: dart.getGetters(Animation.__proto__),
+      isDismissed: core.bool,
+      isCompleted: core.bool
+    }));
+    dart.setLibraryUri(Animation, I[3]);
+    dart.defineExtensionMethods(Animation, ['toString']);
+    return Animation;
+  });
+  animation$.Animation = animation$.Animation$();
+  dart.addTypeTests(animation$.Animation, _is_Animation_default);
+  animations._AlwaysCompleteAnimation = class _AlwaysCompleteAnimation extends animation$.Animation$(core.double) {
+    addListener(listener) {
+    }
+    removeListener(listener) {
+    }
+    addStatusListener(listener) {
+    }
+    removeStatusListener(listener) {
+    }
+    get status() {
+      return animation$.AnimationStatus.completed;
+    }
+    get value() {
+      return 1.0;
+    }
+    toString() {
+      return "kAlwaysCompleteAnimation";
+    }
+  };
+  (animations._AlwaysCompleteAnimation.new = function() {
+    animations._AlwaysCompleteAnimation.__proto__.new.call(this);
     ;
-  }).prototype = text_style.TextStyle.prototype;
-  dart.addTypeTests(text_style.TextStyle);
-  dart.addTypeCaches(text_style.TextStyle);
-  dart.setMethodSignature(text_style.TextStyle, () => ({
-    __proto__: dart.getMethods(text_style.TextStyle.__proto__),
-    copyWith: dart.fnType(text_style.TextStyle, [], {background: dart.nullable(ui.Paint), backgroundColor: dart.nullable(ui.Color), color: dart.nullable(ui.Color), debugLabel: dart.nullable(core.String), decoration: dart.nullable(ui.TextDecoration), decorationColor: dart.nullable(ui.Color), decorationStyle: dart.nullable(ui.TextDecorationStyle), decorationThickness: dart.nullable(core.double), fontFamily: dart.nullable(core.String), fontFamilyFallback: dart.nullable(core.List$(core.String)), fontFeatures: dart.nullable(core.List$(ui.FontFeature)), fontSize: dart.nullable(core.double), fontStyle: dart.nullable(ui.FontStyle), fontWeight: dart.nullable(ui.FontWeight), foreground: dart.nullable(ui.Paint), height: dart.nullable(core.double), inherit: dart.nullable(core.bool), leadingDistribution: dart.nullable(ui.TextLeadingDistribution), letterSpacing: dart.nullable(core.double), locale: dart.nullable(ui.Locale), shadows: dart.nullable(core.List$(ui.Shadow)), textBaseline: dart.nullable(ui.TextBaseline), wordSpacing: dart.nullable(core.double)}, {}),
-    apply: dart.fnType(text_style.TextStyle, [], {backgroundColor: dart.nullable(ui.Color), color: dart.nullable(ui.Color), decoration: dart.nullable(ui.TextDecoration), decorationColor: dart.nullable(ui.Color), decorationStyle: dart.nullable(ui.TextDecorationStyle), decorationThicknessDelta: core.double, decorationThicknessFactor: core.double, fontFamily: dart.nullable(core.String), fontFamilyFallback: dart.nullable(core.List$(core.String)), fontFeatures: dart.nullable(core.List$(ui.FontFeature)), fontSizeDelta: core.double, fontSizeFactor: core.double, fontStyle: dart.nullable(ui.FontStyle), fontWeightDelta: core.int, heightDelta: core.double, heightFactor: core.double, leadingDistribution: dart.nullable(ui.TextLeadingDistribution), letterSpacingDelta: core.double, letterSpacingFactor: core.double, locale: dart.nullable(ui.Locale), shadows: dart.nullable(core.List$(ui.Shadow)), textBaseline: dart.nullable(ui.TextBaseline), wordSpacingDelta: core.double, wordSpacingFactor: core.double}, {}),
-    merge: dart.fnType(text_style.TextStyle, [dart.nullable(text_style.TextStyle)]),
-    getTextStyle: dart.fnType(ui.TextStyle, [], {textScaleFactor: core.double}, {}),
-    getParagraphStyle: dart.fnType(ui.ParagraphStyle, [], {ellipsis: dart.nullable(core.String), fontFamily: dart.nullable(core.String), fontSize: dart.nullable(core.double), fontStyle: dart.nullable(ui.FontStyle), fontWeight: dart.nullable(ui.FontWeight), height: dart.nullable(core.double), locale: dart.nullable(ui.Locale), maxLines: dart.nullable(core.int), strutStyle: dart.nullable(strut_style.StrutStyle), textAlign: dart.nullable(ui.TextAlign), textDirection: dart.nullable(ui.TextDirection), textHeightBehavior: dart.nullable(ui.TextHeightBehavior), textScaleFactor: core.double}, {}),
-    compareTo: dart.fnType(basic_types.RenderComparison, [text_style.TextStyle]),
-    debugFillProperties: dart.fnType(dart.void, [diagnostics.DiagnosticPropertiesBuilder], {prefix: core.String}, {})
+  }).prototype = animations._AlwaysCompleteAnimation.prototype;
+  dart.addTypeTests(animations._AlwaysCompleteAnimation);
+  dart.addTypeCaches(animations._AlwaysCompleteAnimation);
+  dart.setMethodSignature(animations._AlwaysCompleteAnimation, () => ({
+    __proto__: dart.getMethods(animations._AlwaysCompleteAnimation.__proto__),
+    addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    addStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+    removeStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])])
   }));
-  dart.setGetterSignature(text_style.TextStyle, () => ({
-    __proto__: dart.getGetters(text_style.TextStyle.__proto__),
-    fontFamilyFallback: dart.nullable(core.List$(core.String))
+  dart.setGetterSignature(animations._AlwaysCompleteAnimation, () => ({
+    __proto__: dart.getGetters(animations._AlwaysCompleteAnimation.__proto__),
+    status: animation$.AnimationStatus,
+    value: core.double
   }));
-  dart.setLibraryUri(text_style.TextStyle, I[3]);
-  dart.setFieldSignature(text_style.TextStyle, () => ({
-    __proto__: dart.getFields(text_style.TextStyle.__proto__),
-    inherit: dart.finalFieldType(core.bool),
-    color: dart.finalFieldType(dart.nullable(ui.Color)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    fontFamily: dart.finalFieldType(dart.nullable(core.String)),
-    [_fontFamilyFallback$1]: dart.finalFieldType(dart.nullable(core.List$(core.String))),
-    [_package$1]: dart.finalFieldType(dart.nullable(core.String)),
-    fontSize: dart.finalFieldType(dart.nullable(core.double)),
-    fontWeight: dart.finalFieldType(dart.nullable(ui.FontWeight)),
-    fontStyle: dart.finalFieldType(dart.nullable(ui.FontStyle)),
-    letterSpacing: dart.finalFieldType(dart.nullable(core.double)),
-    wordSpacing: dart.finalFieldType(dart.nullable(core.double)),
-    textBaseline: dart.finalFieldType(dart.nullable(ui.TextBaseline)),
-    height: dart.finalFieldType(dart.nullable(core.double)),
-    leadingDistribution: dart.finalFieldType(dart.nullable(ui.TextLeadingDistribution)),
-    locale: dart.finalFieldType(dart.nullable(ui.Locale)),
-    foreground: dart.finalFieldType(dart.nullable(ui.Paint)),
-    background: dart.finalFieldType(dart.nullable(ui.Paint)),
-    decoration: dart.finalFieldType(dart.nullable(ui.TextDecoration)),
-    decorationColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    decorationStyle: dart.finalFieldType(dart.nullable(ui.TextDecorationStyle)),
-    decorationThickness: dart.finalFieldType(dart.nullable(core.double)),
-    debugLabel: dart.finalFieldType(dart.nullable(core.String)),
-    shadows: dart.finalFieldType(dart.nullable(core.List$(ui.Shadow))),
-    fontFeatures: dart.finalFieldType(dart.nullable(core.List$(ui.FontFeature)))
+  dart.setLibraryUri(animations._AlwaysCompleteAnimation, I[4]);
+  dart.defineExtensionMethods(animations._AlwaysCompleteAnimation, ['toString']);
+  animations._AlwaysDismissedAnimation = class _AlwaysDismissedAnimation extends animation$.Animation$(core.double) {
+    addListener(listener) {
+    }
+    removeListener(listener) {
+    }
+    addStatusListener(listener) {
+    }
+    removeStatusListener(listener) {
+    }
+    get status() {
+      return animation$.AnimationStatus.dismissed;
+    }
+    get value() {
+      return 0.0;
+    }
+    toString() {
+      return "kAlwaysDismissedAnimation";
+    }
+  };
+  (animations._AlwaysDismissedAnimation.new = function() {
+    animations._AlwaysDismissedAnimation.__proto__.new.call(this);
+    ;
+  }).prototype = animations._AlwaysDismissedAnimation.prototype;
+  dart.addTypeTests(animations._AlwaysDismissedAnimation);
+  dart.addTypeCaches(animations._AlwaysDismissedAnimation);
+  dart.setMethodSignature(animations._AlwaysDismissedAnimation, () => ({
+    __proto__: dart.getMethods(animations._AlwaysDismissedAnimation.__proto__),
+    addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    addStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+    removeStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])])
   }));
-  dart.defineExtensionMethods(text_style.TextStyle, ['_equals']);
-  dart.defineExtensionAccessors(text_style.TextStyle, ['hashCode']);
-  dart.defineLazy(text_style, {
-    /*text_style._kDefaultDebugLabel*/get _kDefaultDebugLabel() {
-      return "unknown";
+  dart.setGetterSignature(animations._AlwaysDismissedAnimation, () => ({
+    __proto__: dart.getGetters(animations._AlwaysDismissedAnimation.__proto__),
+    status: animation$.AnimationStatus,
+    value: core.double
+  }));
+  dart.setLibraryUri(animations._AlwaysDismissedAnimation, I[4]);
+  dart.defineExtensionMethods(animations._AlwaysDismissedAnimation, ['toString']);
+  var value$ = dart.privateName(animations, "AlwaysStoppedAnimation.value");
+  const _is_AlwaysStoppedAnimation_default = Symbol('_is_AlwaysStoppedAnimation_default');
+  animations.AlwaysStoppedAnimation$ = dart.generic(T => {
+    class AlwaysStoppedAnimation extends animation$.Animation$(T) {
+      get value() {
+        return this[value$];
+      }
+      set value(value) {
+        super.value = value;
+      }
+      addListener(listener) {
+      }
+      removeListener(listener) {
+      }
+      addStatusListener(listener) {
+      }
+      removeStatusListener(listener) {
+      }
+      get status() {
+        return animation$.AnimationStatus.forward;
+      }
+      toStringDetails() {
+        return super.toStringDetails() + " " + dart.str(this.value) + "; paused";
+      }
+    }
+    (AlwaysStoppedAnimation.new = function(value) {
+      this[value$] = value;
+      AlwaysStoppedAnimation.__proto__.new.call(this);
+      ;
+    }).prototype = AlwaysStoppedAnimation.prototype;
+    dart.addTypeTests(AlwaysStoppedAnimation);
+    AlwaysStoppedAnimation.prototype[_is_AlwaysStoppedAnimation_default] = true;
+    dart.addTypeCaches(AlwaysStoppedAnimation);
+    dart.setMethodSignature(AlwaysStoppedAnimation, () => ({
+      __proto__: dart.getMethods(AlwaysStoppedAnimation.__proto__),
+      addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+      removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+      addStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+      removeStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])])
+    }));
+    dart.setGetterSignature(AlwaysStoppedAnimation, () => ({
+      __proto__: dart.getGetters(AlwaysStoppedAnimation.__proto__),
+      status: animation$.AnimationStatus
+    }));
+    dart.setLibraryUri(AlwaysStoppedAnimation, I[4]);
+    dart.setFieldSignature(AlwaysStoppedAnimation, () => ({
+      __proto__: dart.getFields(AlwaysStoppedAnimation.__proto__),
+      value: dart.finalFieldType(T)
+    }));
+    return AlwaysStoppedAnimation;
+  });
+  animations.AlwaysStoppedAnimation = animations.AlwaysStoppedAnimation$();
+  dart.addTypeTests(animations.AlwaysStoppedAnimation, _is_AlwaysStoppedAnimation_default);
+  const _is_AnimationWithParentMixin_default = Symbol('_is_AnimationWithParentMixin_default');
+  animations.AnimationWithParentMixin$ = dart.generic(T => {
+    class AnimationWithParentMixin extends core.Object {}
+    AnimationWithParentMixin[dart.mixinOn] = Object => class AnimationWithParentMixin extends Object {
+      addListener(listener) {
+        return this.parent.addListener(listener);
+      }
+      removeListener(listener) {
+        return this.parent.removeListener(listener);
+      }
+      addStatusListener(listener) {
+        return this.parent.addStatusListener(listener);
+      }
+      removeStatusListener(listener) {
+        return this.parent.removeStatusListener(listener);
+      }
+      get status() {
+        return this.parent.status;
+      }
+    };
+    (AnimationWithParentMixin[dart.mixinNew] = function() {
+    }).prototype = AnimationWithParentMixin.prototype;
+    dart.addTypeTests(AnimationWithParentMixin);
+    AnimationWithParentMixin.prototype[_is_AnimationWithParentMixin_default] = true;
+    dart.addTypeCaches(AnimationWithParentMixin);
+    AnimationWithParentMixin[dart.implements] = () => [core.Object];
+    dart.setMethodSignature(AnimationWithParentMixin, () => ({
+      __proto__: dart.getMethods(AnimationWithParentMixin.__proto__),
+      addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+      removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+      addStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])]),
+      removeStatusListener: dart.fnType(dart.void, [dart.fnType(dart.void, [animation$.AnimationStatus])])
+    }));
+    dart.setGetterSignature(AnimationWithParentMixin, () => ({
+      __proto__: dart.getGetters(AnimationWithParentMixin.__proto__),
+      status: animation$.AnimationStatus
+    }));
+    dart.setLibraryUri(AnimationWithParentMixin, I[4]);
+    return AnimationWithParentMixin;
+  });
+  animations.AnimationWithParentMixin = animations.AnimationWithParentMixin$();
+  dart.addTypeTests(animations.AnimationWithParentMixin, _is_AnimationWithParentMixin_default);
+  var _status = dart.privateName(animations, "_status");
+  var _value = dart.privateName(animations, "_value");
+  var _parent = dart.privateName(animations, "_parent");
+  const Animation_AnimationLazyListenerMixin$36 = class Animation_AnimationLazyListenerMixin extends animation$.Animation$(core.double) {};
+  (Animation_AnimationLazyListenerMixin$36.new = function() {
+    listener_helpers.AnimationLazyListenerMixin[dart.mixinNew].call(this);
+    Animation_AnimationLazyListenerMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLazyListenerMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationLazyListenerMixin$36, listener_helpers.AnimationLazyListenerMixin);
+  const Animation_AnimationLocalListenersMixin$36 = class Animation_AnimationLocalListenersMixin extends Animation_AnimationLazyListenerMixin$36 {};
+  (Animation_AnimationLocalListenersMixin$36.new = function() {
+    listener_helpers.AnimationLocalListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalListenersMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalListenersMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationLocalListenersMixin$36, listener_helpers.AnimationLocalListenersMixin);
+  const Animation_AnimationLocalStatusListenersMixin$36 = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLocalListenersMixin$36 {};
+  (Animation_AnimationLocalStatusListenersMixin$36.new = function() {
+    listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalStatusListenersMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalStatusListenersMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36, listener_helpers.AnimationLocalStatusListenersMixin);
+  animations.ProxyAnimation = class ProxyAnimation extends Animation_AnimationLocalStatusListenersMixin$36 {
+    get parent() {
+      return this[_parent];
+    }
+    set parent(value) {
+      if (dart.equals(value, this[_parent])) return;
+      if (this[_parent] != null) {
+        this[_status] = dart.nullCheck(this[_parent]).status;
+        this[_value] = dart.nullCheck(this[_parent]).value;
+        if (this.isListening) this.didStopListening();
+      }
+      this[_parent] = value;
+      if (this[_parent] != null) {
+        if (this.isListening) this.didStartListening();
+        if (this[_value] !== dart.nullCheck(this[_parent]).value) this.notifyListeners();
+        if (this[_status] !== dart.nullCheck(this[_parent]).status) this.notifyStatusListeners(dart.nullCheck(this[_parent]).status);
+        this[_status] = null;
+        this[_value] = null;
+      }
+    }
+    didStartListening() {
+      if (this[_parent] != null) {
+        dart.nullCheck(this[_parent]).addListener(dart.bind(this, 'notifyListeners'));
+        dart.nullCheck(this[_parent]).addStatusListener(dart.bind(this, 'notifyStatusListeners'));
+      }
+    }
+    didStopListening() {
+      if (this[_parent] != null) {
+        dart.nullCheck(this[_parent]).removeListener(dart.bind(this, 'notifyListeners'));
+        dart.nullCheck(this[_parent]).removeStatusListener(dart.bind(this, 'notifyStatusListeners'));
+      }
+    }
+    get status() {
+      return this[_parent] != null ? dart.nullCheck(this[_parent]).status : dart.nullCheck(this[_status]);
+    }
+    get value() {
+      return this[_parent] != null ? dart.nullCheck(this[_parent]).value : dart.nullCheck(this[_value]);
+    }
+    toString() {
+      if (this.parent == null) return object.objectRuntimeType(this, "ProxyAnimation") + "(null; " + super.toStringDetails() + " " + this.value[$toStringAsFixed](3) + ")";
+      return dart.str(this.parent) + "➩" + object.objectRuntimeType(this, "ProxyAnimation");
+    }
+  };
+  (animations.ProxyAnimation.new = function(animation = null) {
+    this[_status] = null;
+    this[_value] = null;
+    this[_parent] = null;
+    animations.ProxyAnimation.__proto__.new.call(this);
+    this[_parent] = animation;
+    if (this[_parent] == null) {
+      this[_status] = animation$.AnimationStatus.dismissed;
+      this[_value] = 0.0;
+    }
+  }).prototype = animations.ProxyAnimation.prototype;
+  dart.addTypeTests(animations.ProxyAnimation);
+  dart.addTypeCaches(animations.ProxyAnimation);
+  dart.setMethodSignature(animations.ProxyAnimation, () => ({
+    __proto__: dart.getMethods(animations.ProxyAnimation.__proto__),
+    didStartListening: dart.fnType(dart.void, []),
+    didStopListening: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(animations.ProxyAnimation, () => ({
+    __proto__: dart.getGetters(animations.ProxyAnimation.__proto__),
+    parent: dart.nullable(animation$.Animation$(core.double)),
+    status: animation$.AnimationStatus,
+    value: core.double
+  }));
+  dart.setSetterSignature(animations.ProxyAnimation, () => ({
+    __proto__: dart.getSetters(animations.ProxyAnimation.__proto__),
+    parent: dart.nullable(animation$.Animation$(core.double))
+  }));
+  dart.setLibraryUri(animations.ProxyAnimation, I[4]);
+  dart.setFieldSignature(animations.ProxyAnimation, () => ({
+    __proto__: dart.getFields(animations.ProxyAnimation.__proto__),
+    [_status]: dart.fieldType(dart.nullable(animation$.AnimationStatus)),
+    [_value]: dart.fieldType(dart.nullable(core.double)),
+    [_parent]: dart.fieldType(dart.nullable(animation$.Animation$(core.double)))
+  }));
+  dart.defineExtensionMethods(animations.ProxyAnimation, ['toString']);
+  var parent$ = dart.privateName(animations, "ReverseAnimation.parent");
+  var _statusChangeHandler = dart.privateName(animations, "_statusChangeHandler");
+  var _reverseStatus = dart.privateName(animations, "_reverseStatus");
+  const Animation_AnimationLazyListenerMixin$36$ = class Animation_AnimationLazyListenerMixin extends animation$.Animation$(core.double) {};
+  (Animation_AnimationLazyListenerMixin$36$.new = function() {
+    listener_helpers.AnimationLazyListenerMixin[dart.mixinNew].call(this);
+    Animation_AnimationLazyListenerMixin$36$.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLazyListenerMixin$36$.prototype;
+  dart.applyMixin(Animation_AnimationLazyListenerMixin$36$, listener_helpers.AnimationLazyListenerMixin);
+  const Animation_AnimationLocalStatusListenersMixin$36$ = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLazyListenerMixin$36$ {};
+  (Animation_AnimationLocalStatusListenersMixin$36$.new = function() {
+    listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalStatusListenersMixin$36$.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalStatusListenersMixin$36$.prototype;
+  dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36$, listener_helpers.AnimationLocalStatusListenersMixin);
+  animations.ReverseAnimation = class ReverseAnimation extends Animation_AnimationLocalStatusListenersMixin$36$ {
+    get parent() {
+      return this[parent$];
+    }
+    set parent(value) {
+      super.parent = value;
+    }
+    addListener(listener) {
+      this.didRegisterListener();
+      this.parent.addListener(listener);
+    }
+    removeListener(listener) {
+      this.parent.removeListener(listener);
+      this.didUnregisterListener();
+    }
+    didStartListening() {
+      this.parent.addStatusListener(dart.bind(this, _statusChangeHandler));
+    }
+    didStopListening() {
+      this.parent.removeStatusListener(dart.bind(this, _statusChangeHandler));
+    }
+    [_statusChangeHandler](status) {
+      this.notifyStatusListeners(this[_reverseStatus](status));
+    }
+    get status() {
+      return this[_reverseStatus](this.parent.status);
+    }
+    get value() {
+      return 1.0 - this.parent.value;
+    }
+    [_reverseStatus](status) {
+      if (!(status !== null)) dart.assertFailed(null, I[5], 302, 12, "status != null");
+      switch (status) {
+        case C[0] || CT.C0:
+        {
+          return animation$.AnimationStatus.reverse;
+        }
+        case C[1] || CT.C1:
+        {
+          return animation$.AnimationStatus.forward;
+        }
+        case C[2] || CT.C2:
+        {
+          return animation$.AnimationStatus.dismissed;
+        }
+        case C[3] || CT.C3:
+        {
+          return animation$.AnimationStatus.completed;
+        }
+      }
+    }
+    toString() {
+      return dart.str(this.parent) + "➪" + object.objectRuntimeType(this, "ReverseAnimation");
+    }
+  };
+  (animations.ReverseAnimation.new = function(parent) {
+    this[parent$] = parent;
+    if (!(parent !== null)) dart.assertFailed(null, I[5], 264, 14, "parent != null");
+    animations.ReverseAnimation.__proto__.new.call(this);
+    ;
+  }).prototype = animations.ReverseAnimation.prototype;
+  dart.addTypeTests(animations.ReverseAnimation);
+  dart.addTypeCaches(animations.ReverseAnimation);
+  dart.setMethodSignature(animations.ReverseAnimation, () => ({
+    __proto__: dart.getMethods(animations.ReverseAnimation.__proto__),
+    addListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    removeListener: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    didStartListening: dart.fnType(dart.void, []),
+    didStopListening: dart.fnType(dart.void, []),
+    [_statusChangeHandler]: dart.fnType(dart.void, [animation$.AnimationStatus]),
+    [_reverseStatus]: dart.fnType(animation$.AnimationStatus, [animation$.AnimationStatus])
+  }));
+  dart.setGetterSignature(animations.ReverseAnimation, () => ({
+    __proto__: dart.getGetters(animations.ReverseAnimation.__proto__),
+    status: animation$.AnimationStatus,
+    value: core.double
+  }));
+  dart.setLibraryUri(animations.ReverseAnimation, I[4]);
+  dart.setFieldSignature(animations.ReverseAnimation, () => ({
+    __proto__: dart.getFields(animations.ReverseAnimation.__proto__),
+    parent: dart.finalFieldType(animation$.Animation$(core.double))
+  }));
+  dart.defineExtensionMethods(animations.ReverseAnimation, ['toString']);
+  var parent$0 = dart.privateName(animations, "CurvedAnimation.parent");
+  var curve$ = dart.privateName(animations, "CurvedAnimation.curve");
+  var reverseCurve$ = dart.privateName(animations, "CurvedAnimation.reverseCurve");
+  var _curveDirection = dart.privateName(animations, "_curveDirection");
+  var _updateCurveDirection = dart.privateName(animations, "_updateCurveDirection");
+  var _useForwardCurve = dart.privateName(animations, "_useForwardCurve");
+  const Animation_AnimationWithParentMixin$36 = class Animation_AnimationWithParentMixin extends animation$.Animation$(core.double) {};
+  (Animation_AnimationWithParentMixin$36.new = function() {
+    Animation_AnimationWithParentMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationWithParentMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationWithParentMixin$36, animations.AnimationWithParentMixin$(core.double));
+  animations.CurvedAnimation = class CurvedAnimation extends Animation_AnimationWithParentMixin$36 {
+    get parent() {
+      return this[parent$0];
+    }
+    set parent(value) {
+      super.parent = value;
+    }
+    get curve() {
+      return this[curve$];
+    }
+    set curve(value) {
+      this[curve$] = value;
+    }
+    get reverseCurve() {
+      return this[reverseCurve$];
+    }
+    set reverseCurve(value) {
+      this[reverseCurve$] = value;
+    }
+    [_updateCurveDirection](status) {
+      switch (status) {
+        case C[3] || CT.C3:
+        case C[2] || CT.C2:
+        {
+          this[_curveDirection] = null;
+          break;
+        }
+        case C[0] || CT.C0:
+        {
+          this[_curveDirection] == null ? this[_curveDirection] = animation$.AnimationStatus.forward : null;
+          break;
+        }
+        case C[1] || CT.C1:
+        {
+          this[_curveDirection] == null ? this[_curveDirection] = animation$.AnimationStatus.reverse : null;
+          break;
+        }
+      }
+    }
+    get [_useForwardCurve]() {
+      let t2;
+      return this.reverseCurve == null || (t2 = this[_curveDirection], t2 == null ? this.parent.status : t2) !== animation$.AnimationStatus.reverse;
+    }
+    get value() {
+      let activeCurve = this[_useForwardCurve] ? this.curve : this.reverseCurve;
+      let t = this.parent.value;
+      if (activeCurve == null) return t;
+      if (t === 0.0 || t === 1.0) {
+        if (!dart.fn(() => {
+          let transformedValue = activeCurve.transform(t);
+          let roundedTransformedValue = transformedValue[$round]()[$toDouble]();
+          if (roundedTransformedValue !== t) {
+            dart.throw(assertions.FlutterError.new("Invalid curve endpoint at " + dart.str(t) + ".\n" + "Curves must map 0.0 to near zero and 1.0 to near one but " + dart.str(dart.runtimeType(activeCurve)) + " mapped " + dart.str(t) + " to " + dart.str(transformedValue) + ", which " + "is near " + dart.str(roundedTransformedValue) + "."));
+          }
+          return true;
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[5], 438, 14, "() {\r\n        final double transformedValue = activeCurve.transform(t);\r\n        final double roundedTransformedValue = transformedValue.round().toDouble();\r\n        if (roundedTransformedValue != t) {\r\n          throw FlutterError(\r\n            'Invalid curve endpoint at $t.\\n'\r\n            'Curves must map 0.0 to near zero and 1.0 to near one but '\r\n            '${activeCurve.runtimeType} mapped $t to $transformedValue, which '\r\n            'is near $roundedTransformedValue.',\r\n          );\r\n        }\r\n        return true;\r\n      }()");
+        return t;
+      }
+      return activeCurve.transform(t);
+    }
+    toString() {
+      if (this.reverseCurve == null) return dart.str(this.parent) + "➩" + dart.str(this.curve);
+      if (this[_useForwardCurve]) return dart.str(this.parent) + "➩" + dart.str(this.curve) + "ₒₙ/" + dart.str(this.reverseCurve);
+      return dart.str(this.parent) + "➩" + dart.str(this.curve) + "/" + dart.str(this.reverseCurve) + "ₒₙ";
+    }
+  };
+  (animations.CurvedAnimation.new = function(opts) {
+    let parent = opts && 'parent' in opts ? opts.parent : null;
+    let curve = opts && 'curve' in opts ? opts.curve : null;
+    let reverseCurve = opts && 'reverseCurve' in opts ? opts.reverseCurve : null;
+    this[_curveDirection] = null;
+    this[parent$0] = parent;
+    this[curve$] = curve;
+    this[reverseCurve$] = reverseCurve;
+    if (!(parent !== null)) dart.assertFailed(null, I[5], 376, 15, "parent != null");
+    if (!(curve !== null)) dart.assertFailed(null, I[5], 377, 15, "curve != null");
+    animations.CurvedAnimation.__proto__.new.call(this);
+    this[_updateCurveDirection](this.parent.status);
+    this.parent.addStatusListener(dart.bind(this, _updateCurveDirection));
+  }).prototype = animations.CurvedAnimation.prototype;
+  dart.addTypeTests(animations.CurvedAnimation);
+  dart.addTypeCaches(animations.CurvedAnimation);
+  dart.setMethodSignature(animations.CurvedAnimation, () => ({
+    __proto__: dart.getMethods(animations.CurvedAnimation.__proto__),
+    [_updateCurveDirection]: dart.fnType(dart.void, [animation$.AnimationStatus])
+  }));
+  dart.setGetterSignature(animations.CurvedAnimation, () => ({
+    __proto__: dart.getGetters(animations.CurvedAnimation.__proto__),
+    [_useForwardCurve]: core.bool,
+    value: core.double
+  }));
+  dart.setLibraryUri(animations.CurvedAnimation, I[4]);
+  dart.setFieldSignature(animations.CurvedAnimation, () => ({
+    __proto__: dart.getFields(animations.CurvedAnimation.__proto__),
+    parent: dart.finalFieldType(animation$.Animation$(core.double)),
+    curve: dart.fieldType(curves.Curve),
+    reverseCurve: dart.fieldType(dart.nullable(curves.Curve)),
+    [_curveDirection]: dart.fieldType(dart.nullable(animation$.AnimationStatus))
+  }));
+  dart.defineExtensionMethods(animations.CurvedAnimation, ['toString']);
+  var _name$0 = dart.privateName(animations, "_name");
+  animations._TrainHoppingMode = class _TrainHoppingMode extends core.Object {
+    toString() {
+      return this[_name$0];
+    }
+  };
+  (animations._TrainHoppingMode.new = function(index, _name) {
+    this.index = index;
+    this[_name$0] = _name;
+    ;
+  }).prototype = animations._TrainHoppingMode.prototype;
+  dart.addTypeTests(animations._TrainHoppingMode);
+  dart.addTypeCaches(animations._TrainHoppingMode);
+  dart.setLibraryUri(animations._TrainHoppingMode, I[4]);
+  dart.setFieldSignature(animations._TrainHoppingMode, () => ({
+    __proto__: dart.getFields(animations._TrainHoppingMode.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$0]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(animations._TrainHoppingMode, ['toString']);
+  animations._TrainHoppingMode.minimize = C[4] || CT.C4;
+  animations._TrainHoppingMode.maximize = C[5] || CT.C5;
+  animations._TrainHoppingMode.values = C[6] || CT.C6;
+  var onSwitchedTrain$ = dart.privateName(animations, "TrainHoppingAnimation.onSwitchedTrain");
+  var _mode = dart.privateName(animations, "_mode");
+  var _lastStatus = dart.privateName(animations, "_lastStatus");
+  var _lastValue = dart.privateName(animations, "_lastValue");
+  var _currentTrain$ = dart.privateName(animations, "_currentTrain");
+  var _nextTrain$ = dart.privateName(animations, "_nextTrain");
+  var _valueChangeHandler = dart.privateName(animations, "_valueChangeHandler");
+  const Animation_AnimationEagerListenerMixin$36 = class Animation_AnimationEagerListenerMixin extends animation$.Animation$(core.double) {};
+  (Animation_AnimationEagerListenerMixin$36.new = function() {
+    Animation_AnimationEagerListenerMixin$36.__proto__.new.call(this);
+  }).prototype = Animation_AnimationEagerListenerMixin$36.prototype;
+  dart.applyMixin(Animation_AnimationEagerListenerMixin$36, listener_helpers.AnimationEagerListenerMixin);
+  const Animation_AnimationLocalListenersMixin$36$ = class Animation_AnimationLocalListenersMixin extends Animation_AnimationEagerListenerMixin$36 {};
+  (Animation_AnimationLocalListenersMixin$36$.new = function() {
+    listener_helpers.AnimationLocalListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalListenersMixin$36$.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalListenersMixin$36$.prototype;
+  dart.applyMixin(Animation_AnimationLocalListenersMixin$36$, listener_helpers.AnimationLocalListenersMixin);
+  const Animation_AnimationLocalStatusListenersMixin$36$0 = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLocalListenersMixin$36$ {};
+  (Animation_AnimationLocalStatusListenersMixin$36$0.new = function() {
+    listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
+    Animation_AnimationLocalStatusListenersMixin$36$0.__proto__.new.call(this);
+  }).prototype = Animation_AnimationLocalStatusListenersMixin$36$0.prototype;
+  dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36$0, listener_helpers.AnimationLocalStatusListenersMixin);
+  animations.TrainHoppingAnimation = class TrainHoppingAnimation extends Animation_AnimationLocalStatusListenersMixin$36$0 {
+    get onSwitchedTrain() {
+      return this[onSwitchedTrain$];
+    }
+    set onSwitchedTrain(value) {
+      this[onSwitchedTrain$] = value;
+    }
+    get currentTrain() {
+      return this[_currentTrain$];
+    }
+    [_statusChangeHandler](status) {
+      if (!(this[_currentTrain$] != null)) dart.assertFailed(null, I[5], 534, 12, "_currentTrain != null");
+      if (status !== this[_lastStatus]) {
+        this.notifyListeners();
+        this[_lastStatus] = status;
+      }
+      if (!(this[_lastStatus] != null)) dart.assertFailed(null, I[5], 539, 12, "_lastStatus != null");
+    }
+    get status() {
+      return dart.nullCheck(this[_currentTrain$]).status;
+    }
+    [_valueChangeHandler]() {
+      let t2;
+      if (!(this[_currentTrain$] != null)) dart.assertFailed(null, I[5], 547, 12, "_currentTrain != null");
+      let hop = false;
+      if (this[_nextTrain$] != null) {
+        if (!(this[_mode] != null)) dart.assertFailed(null, I[5], 550, 14, "_mode != null");
+        switch (dart.nullCheck(this[_mode])) {
+          case C[4] || CT.C4:
+          {
+            hop = dart.nullCheck(this[_nextTrain$]).value <= dart.nullCheck(this[_currentTrain$]).value;
+            break;
+          }
+          case C[5] || CT.C5:
+          {
+            hop = dart.nullCheck(this[_nextTrain$]).value >= dart.nullCheck(this[_currentTrain$]).value;
+            break;
+          }
+        }
+        if (hop) {
+          t2 = dart.nullCheck(this[_currentTrain$]);
+          (() => {
+            t2.removeStatusListener(dart.bind(this, _statusChangeHandler));
+            t2.removeListener(dart.bind(this, _valueChangeHandler));
+            return t2;
+          })();
+          this[_currentTrain$] = this[_nextTrain$];
+          this[_nextTrain$] = null;
+          dart.nullCheck(this[_currentTrain$]).addStatusListener(dart.bind(this, _statusChangeHandler));
+          this[_statusChangeHandler](dart.nullCheck(this[_currentTrain$]).status);
+        }
+      }
+      let newValue = this.value;
+      if (newValue !== this[_lastValue]) {
+        this.notifyListeners();
+        this[_lastValue] = newValue;
+      }
+      if (!(this[_lastValue] != null)) dart.assertFailed(null, I[5], 574, 12, "_lastValue != null");
+      if (hop && this.onSwitchedTrain != null) dart.nullCheck(this.onSwitchedTrain)();
+    }
+    get value() {
+      return dart.nullCheck(this[_currentTrain$]).value;
+    }
+    dispose() {
+      let t2;
+      if (!(this[_currentTrain$] != null)) dart.assertFailed(null, I[5], 586, 12, "_currentTrain != null");
+      dart.nullCheck(this[_currentTrain$]).removeStatusListener(dart.bind(this, _statusChangeHandler));
+      dart.nullCheck(this[_currentTrain$]).removeListener(dart.bind(this, _valueChangeHandler));
+      this[_currentTrain$] = null;
+      t2 = this[_nextTrain$];
+      t2 == null ? null : t2.removeListener(dart.bind(this, _valueChangeHandler));
+      this[_nextTrain$] = null;
+      super.dispose();
+    }
+    toString() {
+      if (this[_nextTrain$] != null) return dart.str(this.currentTrain) + "➩" + object.objectRuntimeType(this, "TrainHoppingAnimation") + "(next: " + dart.str(this[_nextTrain$]) + ")";
+      return dart.str(this.currentTrain) + "➩" + object.objectRuntimeType(this, "TrainHoppingAnimation") + "(no next)";
+    }
+  };
+  (animations.TrainHoppingAnimation.new = function(_currentTrain, _nextTrain, opts) {
+    let t2;
+    let onSwitchedTrain = opts && 'onSwitchedTrain' in opts ? opts.onSwitchedTrain : null;
+    this[_mode] = null;
+    this[_lastStatus] = null;
+    this[_lastValue] = null;
+    this[_currentTrain$] = _currentTrain;
+    this[_nextTrain$] = _nextTrain;
+    this[onSwitchedTrain$] = onSwitchedTrain;
+    if (!(_currentTrain !== null)) dart.assertFailed(null, I[5], 498, 15, "_currentTrain != null");
+    animations.TrainHoppingAnimation.__proto__.new.call(this);
+    if (this[_nextTrain$] != null) {
+      if (dart.nullCheck(this[_currentTrain$]).value === dart.nullCheck(this[_nextTrain$]).value) {
+        this[_currentTrain$] = this[_nextTrain$];
+        this[_nextTrain$] = null;
+      } else if (dart.nullCheck(this[_currentTrain$]).value > dart.nullCheck(this[_nextTrain$]).value) {
+        this[_mode] = animations._TrainHoppingMode.maximize;
+      } else {
+        if (!(dart.nullCheck(this[_currentTrain$]).value < dart.nullCheck(this[_nextTrain$]).value)) dart.assertFailed(null, I[5], 506, 16, "_currentTrain!.value < _nextTrain!.value");
+        this[_mode] = animations._TrainHoppingMode.minimize;
+      }
+    }
+    dart.nullCheck(this[_currentTrain$]).addStatusListener(dart.bind(this, _statusChangeHandler));
+    dart.nullCheck(this[_currentTrain$]).addListener(dart.bind(this, _valueChangeHandler));
+    t2 = this[_nextTrain$];
+    t2 == null ? null : t2.addListener(dart.bind(this, _valueChangeHandler));
+    if (!(this[_mode] != null || this[_nextTrain$] == null)) dart.assertFailed(null, I[5], 513, 12, "_mode != null || _nextTrain == null");
+  }).prototype = animations.TrainHoppingAnimation.prototype;
+  dart.addTypeTests(animations.TrainHoppingAnimation);
+  dart.addTypeCaches(animations.TrainHoppingAnimation);
+  dart.setMethodSignature(animations.TrainHoppingAnimation, () => ({
+    __proto__: dart.getMethods(animations.TrainHoppingAnimation.__proto__),
+    [_statusChangeHandler]: dart.fnType(dart.void, [animation$.AnimationStatus]),
+    [_valueChangeHandler]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(animations.TrainHoppingAnimation, () => ({
+    __proto__: dart.getGetters(animations.TrainHoppingAnimation.__proto__),
+    currentTrain: dart.nullable(animation$.Animation$(core.double)),
+    status: animation$.AnimationStatus,
+    value: core.double
+  }));
+  dart.setLibraryUri(animations.TrainHoppingAnimation, I[4]);
+  dart.setFieldSignature(animations.TrainHoppingAnimation, () => ({
+    __proto__: dart.getFields(animations.TrainHoppingAnimation.__proto__),
+    [_currentTrain$]: dart.fieldType(dart.nullable(animation$.Animation$(core.double))),
+    [_nextTrain$]: dart.fieldType(dart.nullable(animation$.Animation$(core.double))),
+    [_mode]: dart.fieldType(dart.nullable(animations._TrainHoppingMode)),
+    onSwitchedTrain: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    [_lastStatus]: dart.fieldType(dart.nullable(animation$.AnimationStatus)),
+    [_lastValue]: dart.fieldType(dart.nullable(core.double))
+  }));
+  dart.defineExtensionMethods(animations.TrainHoppingAnimation, ['toString']);
+  var first$ = dart.privateName(animations, "CompoundAnimation.first");
+  var next$ = dart.privateName(animations, "CompoundAnimation.next");
+  var _maybeNotifyListeners = dart.privateName(animations, "_maybeNotifyListeners");
+  var _maybeNotifyStatusListeners = dart.privateName(animations, "_maybeNotifyStatusListeners");
+  const _is_CompoundAnimation_default = Symbol('_is_CompoundAnimation_default');
+  animations.CompoundAnimation$ = dart.generic(T => {
+    const Animation_AnimationLazyListenerMixin$36 = class Animation_AnimationLazyListenerMixin extends animation$.Animation$(T) {};
+    (Animation_AnimationLazyListenerMixin$36.new = function() {
+      listener_helpers.AnimationLazyListenerMixin[dart.mixinNew].call(this);
+      Animation_AnimationLazyListenerMixin$36.__proto__.new.call(this);
+    }).prototype = Animation_AnimationLazyListenerMixin$36.prototype;
+    dart.applyMixin(Animation_AnimationLazyListenerMixin$36, listener_helpers.AnimationLazyListenerMixin);
+    const Animation_AnimationLocalListenersMixin$36 = class Animation_AnimationLocalListenersMixin extends Animation_AnimationLazyListenerMixin$36 {};
+    (Animation_AnimationLocalListenersMixin$36.new = function() {
+      listener_helpers.AnimationLocalListenersMixin[dart.mixinNew].call(this);
+      Animation_AnimationLocalListenersMixin$36.__proto__.new.call(this);
+    }).prototype = Animation_AnimationLocalListenersMixin$36.prototype;
+    dart.applyMixin(Animation_AnimationLocalListenersMixin$36, listener_helpers.AnimationLocalListenersMixin);
+    const Animation_AnimationLocalStatusListenersMixin$36 = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLocalListenersMixin$36 {};
+    (Animation_AnimationLocalStatusListenersMixin$36.new = function() {
+      listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
+      Animation_AnimationLocalStatusListenersMixin$36.__proto__.new.call(this);
+    }).prototype = Animation_AnimationLocalStatusListenersMixin$36.prototype;
+    dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36, listener_helpers.AnimationLocalStatusListenersMixin);
+    class CompoundAnimation extends Animation_AnimationLocalStatusListenersMixin$36 {
+      get first() {
+        return this[first$];
+      }
+      set first(value) {
+        super.first = value;
+      }
+      get next() {
+        return this[next$];
+      }
+      set next(value) {
+        super.next = value;
+      }
+      didStartListening() {
+        this.first.addListener(dart.bind(this, _maybeNotifyListeners));
+        this.first.addStatusListener(dart.bind(this, _maybeNotifyStatusListeners));
+        this.next.addListener(dart.bind(this, _maybeNotifyListeners));
+        this.next.addStatusListener(dart.bind(this, _maybeNotifyStatusListeners));
+      }
+      didStopListening() {
+        this.first.removeListener(dart.bind(this, _maybeNotifyListeners));
+        this.first.removeStatusListener(dart.bind(this, _maybeNotifyStatusListeners));
+        this.next.removeListener(dart.bind(this, _maybeNotifyListeners));
+        this.next.removeStatusListener(dart.bind(this, _maybeNotifyStatusListeners));
+      }
+      get status() {
+        if (this.next.status === animation$.AnimationStatus.forward || this.next.status === animation$.AnimationStatus.reverse) return this.next.status;
+        return this.first.status;
+      }
+      toString() {
+        return object.objectRuntimeType(this, "CompoundAnimation") + "(" + dart.str(this.first) + ", " + dart.str(this.next) + ")";
+      }
+      [_maybeNotifyStatusListeners](_) {
+        if (this.status !== this[_lastStatus]) {
+          this[_lastStatus] = this.status;
+          this.notifyStatusListeners(this.status);
+        }
+      }
+      [_maybeNotifyListeners]() {
+        if (!dart.equals(this.value, this[_lastValue])) {
+          this[_lastValue] = this.value;
+          this.notifyListeners();
+        }
+      }
+    }
+    (CompoundAnimation.new = function(opts) {
+      let first = opts && 'first' in opts ? opts.first : null;
+      let next = opts && 'next' in opts ? opts.next : null;
+      this[_lastStatus] = null;
+      this[_lastValue] = null;
+      this[first$] = first;
+      this[next$] = next;
+      if (!(first !== null)) dart.assertFailed(null, I[5], 620, 15, "first != null");
+      if (!(next !== null)) dart.assertFailed(null, I[5], 621, 15, "next != null");
+      CompoundAnimation.__proto__.new.call(this);
+      ;
+    }).prototype = CompoundAnimation.prototype;
+    dart.addTypeTests(CompoundAnimation);
+    CompoundAnimation.prototype[_is_CompoundAnimation_default] = true;
+    dart.addTypeCaches(CompoundAnimation);
+    dart.setMethodSignature(CompoundAnimation, () => ({
+      __proto__: dart.getMethods(CompoundAnimation.__proto__),
+      didStartListening: dart.fnType(dart.void, []),
+      didStopListening: dart.fnType(dart.void, []),
+      [_maybeNotifyStatusListeners]: dart.fnType(dart.void, [animation$.AnimationStatus]),
+      [_maybeNotifyListeners]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(CompoundAnimation, () => ({
+      __proto__: dart.getGetters(CompoundAnimation.__proto__),
+      status: animation$.AnimationStatus
+    }));
+    dart.setLibraryUri(CompoundAnimation, I[4]);
+    dart.setFieldSignature(CompoundAnimation, () => ({
+      __proto__: dart.getFields(CompoundAnimation.__proto__),
+      first: dart.finalFieldType(animation$.Animation$(T)),
+      next: dart.finalFieldType(animation$.Animation$(T)),
+      [_lastStatus]: dart.fieldType(dart.nullable(animation$.AnimationStatus)),
+      [_lastValue]: dart.fieldType(dart.nullable(T))
+    }));
+    dart.defineExtensionMethods(CompoundAnimation, ['toString']);
+    return CompoundAnimation;
+  });
+  animations.CompoundAnimation = animations.CompoundAnimation$();
+  dart.addTypeTests(animations.CompoundAnimation, _is_CompoundAnimation_default);
+  animations.AnimationMean = class AnimationMean extends animations.CompoundAnimation$(core.double) {
+    get value() {
+      return (this.first.value + this.next.value) / 2.0;
+    }
+  };
+  (animations.AnimationMean.new = function(opts) {
+    let left = opts && 'left' in opts ? opts.left : null;
+    let right = opts && 'right' in opts ? opts.right : null;
+    animations.AnimationMean.__proto__.new.call(this, {first: left, next: right});
+    ;
+  }).prototype = animations.AnimationMean.prototype;
+  dart.addTypeTests(animations.AnimationMean);
+  dart.addTypeCaches(animations.AnimationMean);
+  dart.setGetterSignature(animations.AnimationMean, () => ({
+    __proto__: dart.getGetters(animations.AnimationMean.__proto__),
+    value: core.double
+  }));
+  dart.setLibraryUri(animations.AnimationMean, I[4]);
+  const _is_AnimationMax_default = Symbol('_is_AnimationMax_default');
+  animations.AnimationMax$ = dart.generic(T => {
+    class AnimationMax extends animations.CompoundAnimation$(T) {
+      get value() {
+        return math.max(T, this.first.value, this.next.value);
+      }
+    }
+    (AnimationMax.new = function(first, next) {
+      AnimationMax.__proto__.new.call(this, {first: first, next: next});
+      ;
+    }).prototype = AnimationMax.prototype;
+    dart.addTypeTests(AnimationMax);
+    AnimationMax.prototype[_is_AnimationMax_default] = true;
+    dart.addTypeCaches(AnimationMax);
+    dart.setGetterSignature(AnimationMax, () => ({
+      __proto__: dart.getGetters(AnimationMax.__proto__),
+      value: T
+    }));
+    dart.setLibraryUri(AnimationMax, I[4]);
+    return AnimationMax;
+  });
+  animations.AnimationMax = animations.AnimationMax$();
+  dart.addTypeTests(animations.AnimationMax, _is_AnimationMax_default);
+  const _is_AnimationMin_default = Symbol('_is_AnimationMin_default');
+  animations.AnimationMin$ = dart.generic(T => {
+    class AnimationMin extends animations.CompoundAnimation$(T) {
+      get value() {
+        return math.min(T, this.first.value, this.next.value);
+      }
+    }
+    (AnimationMin.new = function(first, next) {
+      AnimationMin.__proto__.new.call(this, {first: first, next: next});
+      ;
+    }).prototype = AnimationMin.prototype;
+    dart.addTypeTests(AnimationMin);
+    AnimationMin.prototype[_is_AnimationMin_default] = true;
+    dart.addTypeCaches(AnimationMin);
+    dart.setGetterSignature(AnimationMin, () => ({
+      __proto__: dart.getGetters(AnimationMin.__proto__),
+      value: T
+    }));
+    dart.setLibraryUri(AnimationMin, I[4]);
+    return AnimationMin;
+  });
+  animations.AnimationMin = animations.AnimationMin$();
+  dart.addTypeTests(animations.AnimationMin, _is_AnimationMin_default);
+  dart.defineLazy(animations, {
+    /*animations.kAlwaysCompleteAnimation*/get kAlwaysCompleteAnimation() {
+      return C[7] || CT.C7;
     },
-    /*text_style._kColorForegroundWarning*/get _kColorForegroundWarning() {
-      return "Cannot provide both a color and a foreground\nThe color argument is just a shorthand for \"foreground: new Paint()..color = color\".";
-    },
-    /*text_style._kColorBackgroundWarning*/get _kColorBackgroundWarning() {
-      return "Cannot provide both a backgroundColor and a background\nThe backgroundColor argument is just a shorthand for \"background: new Paint()..color = color\".";
-    },
-    /*text_style._kDefaultFontSize*/get _kDefaultFontSize() {
-      return 14;
+    /*animations.kAlwaysDismissedAnimation*/get kAlwaysDismissedAnimation() {
+      return C[8] || CT.C8;
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/painting/strut_style.dart", {
-    "package:flutter/src/painting/strut_style.dart": strut_style,
-    "package:flutter/src/painting/text_style.dart": text_style
+  const _is_Animatable_default = Symbol('_is_Animatable_default');
+  tween.Animatable$ = dart.generic(T => {
+    var _AnimatedEvaluationOfT = () => (_AnimatedEvaluationOfT = dart.constFn(tween._AnimatedEvaluation$(T)))();
+    var _ChainedEvaluationOfT = () => (_ChainedEvaluationOfT = dart.constFn(tween._ChainedEvaluation$(T)))();
+    class Animatable extends core.Object {
+      evaluate(animation) {
+        return this.transform(animation.value);
+      }
+      animate(parent) {
+        return new (_AnimatedEvaluationOfT()).new(parent, this);
+      }
+      chain(parent) {
+        return new (_ChainedEvaluationOfT()).new(parent, this);
+      }
+    }
+    (Animatable.new = function() {
+      ;
+    }).prototype = Animatable.prototype;
+    dart.addTypeTests(Animatable);
+    Animatable.prototype[_is_Animatable_default] = true;
+    dart.addTypeCaches(Animatable);
+    dart.setMethodSignature(Animatable, () => ({
+      __proto__: dart.getMethods(Animatable.__proto__),
+      evaluate: dart.fnType(T, [animation$.Animation$(core.double)]),
+      animate: dart.fnType(animation$.Animation$(T), [animation$.Animation$(core.double)]),
+      chain: dart.fnType(tween.Animatable$(T), [tween.Animatable$(core.double)])
+    }));
+    dart.setLibraryUri(Animatable, I[6]);
+    return Animatable;
+  });
+  tween.Animatable = tween.Animatable$();
+  dart.addTypeTests(tween.Animatable, _is_Animatable_default);
+  var parent$1 = dart.privateName(tween, "_AnimatedEvaluation.parent");
+  var _evaluatable$ = dart.privateName(tween, "_evaluatable");
+  const _is__AnimatedEvaluation_default = Symbol('_is__AnimatedEvaluation_default');
+  tween._AnimatedEvaluation$ = dart.generic(T => {
+    const Animation_AnimationWithParentMixin$36 = class Animation_AnimationWithParentMixin extends animation$.Animation$(T) {};
+    (Animation_AnimationWithParentMixin$36.new = function() {
+      Animation_AnimationWithParentMixin$36.__proto__.new.call(this);
+    }).prototype = Animation_AnimationWithParentMixin$36.prototype;
+    dart.applyMixin(Animation_AnimationWithParentMixin$36, animations.AnimationWithParentMixin$(core.double));
+    class _AnimatedEvaluation extends Animation_AnimationWithParentMixin$36 {
+      get parent() {
+        return this[parent$1];
+      }
+      set parent(value) {
+        super.parent = value;
+      }
+      get value() {
+        return this[_evaluatable$].evaluate(this.parent);
+      }
+      toString() {
+        return dart.str(this.parent) + "➩" + dart.str(this[_evaluatable$]) + "➩" + dart.str(this.value);
+      }
+      toStringDetails() {
+        return super.toStringDetails() + " " + dart.str(this[_evaluatable$]);
+      }
+    }
+    (_AnimatedEvaluation.new = function(parent, _evaluatable) {
+      this[parent$1] = parent;
+      this[_evaluatable$] = _evaluatable;
+      _AnimatedEvaluation.__proto__.new.call(this);
+      ;
+    }).prototype = _AnimatedEvaluation.prototype;
+    dart.addTypeTests(_AnimatedEvaluation);
+    _AnimatedEvaluation.prototype[_is__AnimatedEvaluation_default] = true;
+    dart.addTypeCaches(_AnimatedEvaluation);
+    dart.setGetterSignature(_AnimatedEvaluation, () => ({
+      __proto__: dart.getGetters(_AnimatedEvaluation.__proto__),
+      value: T
+    }));
+    dart.setLibraryUri(_AnimatedEvaluation, I[6]);
+    dart.setFieldSignature(_AnimatedEvaluation, () => ({
+      __proto__: dart.getFields(_AnimatedEvaluation.__proto__),
+      parent: dart.finalFieldType(animation$.Animation$(core.double)),
+      [_evaluatable$]: dart.finalFieldType(tween.Animatable$(T))
+    }));
+    dart.defineExtensionMethods(_AnimatedEvaluation, ['toString']);
+    return _AnimatedEvaluation;
+  });
+  tween._AnimatedEvaluation = tween._AnimatedEvaluation$();
+  dart.addTypeTests(tween._AnimatedEvaluation, _is__AnimatedEvaluation_default);
+  var _parent$ = dart.privateName(tween, "_parent");
+  const _is__ChainedEvaluation_default = Symbol('_is__ChainedEvaluation_default');
+  tween._ChainedEvaluation$ = dart.generic(T => {
+    class _ChainedEvaluation extends tween.Animatable$(T) {
+      transform(t) {
+        return this[_evaluatable$].transform(this[_parent$].transform(t));
+      }
+      toString() {
+        return dart.str(this[_parent$]) + "➩" + dart.str(this[_evaluatable$]);
+      }
+    }
+    (_ChainedEvaluation.new = function(_parent, _evaluatable) {
+      this[_parent$] = _parent;
+      this[_evaluatable$] = _evaluatable;
+      _ChainedEvaluation.__proto__.new.call(this);
+      ;
+    }).prototype = _ChainedEvaluation.prototype;
+    dart.addTypeTests(_ChainedEvaluation);
+    _ChainedEvaluation.prototype[_is__ChainedEvaluation_default] = true;
+    dart.addTypeCaches(_ChainedEvaluation);
+    dart.setMethodSignature(_ChainedEvaluation, () => ({
+      __proto__: dart.getMethods(_ChainedEvaluation.__proto__),
+      transform: dart.fnType(T, [core.double])
+    }));
+    dart.setLibraryUri(_ChainedEvaluation, I[6]);
+    dart.setFieldSignature(_ChainedEvaluation, () => ({
+      __proto__: dart.getFields(_ChainedEvaluation.__proto__),
+      [_parent$]: dart.finalFieldType(tween.Animatable$(core.double)),
+      [_evaluatable$]: dart.finalFieldType(tween.Animatable$(T))
+    }));
+    dart.defineExtensionMethods(_ChainedEvaluation, ['toString']);
+    return _ChainedEvaluation;
+  });
+  tween._ChainedEvaluation = tween._ChainedEvaluation$();
+  dart.addTypeTests(tween._ChainedEvaluation, _is__ChainedEvaluation_default);
+  var begin$ = dart.privateName(tween, "Tween.begin");
+  var end$ = dart.privateName(tween, "Tween.end");
+  const _is_Tween_default = Symbol('_is_Tween_default');
+  tween.Tween$ = dart.generic(T => {
+    var TN = () => (TN = dart.constFn(dart.nullable(T)))();
+    class Tween extends tween.Animatable$(T) {
+      get begin() {
+        return this[begin$];
+      }
+      set begin(value) {
+        this[begin$] = TN().as(value);
+      }
+      get end() {
+        return this[end$];
+      }
+      set end(value) {
+        this[end$] = TN().as(value);
+      }
+      lerp(t) {
+        if (!(this.begin != null)) dart.assertFailed(null, I[7], 257, 12, "begin != null");
+        if (!(this.end != null)) dart.assertFailed(null, I[7], 258, 12, "end != null");
+        if (!dart.fn(() => {
+          let result = null;
+          try {
+            result = dart.dsend(this.begin, '+', [dart.dsend(dart.dsend(this.end, '-', [this.begin]), '*', [t])]);
+            T.as(result);
+            return true;
+          } catch (e) {
+            let ex = dart.getThrown(e);
+            if (core.NoSuchMethodError.is(ex)) {
+              dart.throw(new assertions.FlutterError.fromParts((() => {
+                let t5 = T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("Cannot lerp between \"" + dart.str(this.begin) + "\" and \"" + dart.str(this.end) + "\"."), new assertions.ErrorDescription.new("The type " + dart.str(dart.runtimeType(this.begin)) + " might not fully implement `+`, `-`, and/or `*`. " + "See \"Types with special considerations\" at https://api.flutter.dev/flutter/animation/Tween-class.html " + "for more information.")]);
+                if (ui.Color.is(this.begin) || ui.Color.is(this.end))
+                  t5[$add](new assertions.ErrorHint.new("To lerp colors, consider ColorTween instead."));
+                else if (ui.Rect.is(this.begin) || ui.Rect.is(this.end))
+                  t5[$add](new assertions.ErrorHint.new("To lerp rects, consider RectTween instead."));
+                else
+                  t5[$add](new assertions.ErrorHint.new("There may be a dedicated \"" + dart.str(dart.runtimeType(this.begin)) + "Tween\" for this type, " + "or you may need to create one."));
+                return t5;
+              })()));
+            } else if (core.TypeError.is(ex)) {
+              dart.throw(new assertions.FlutterError.fromParts((() => {
+                let t3 = T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("Cannot lerp between \"" + dart.str(this.begin) + "\" and \"" + dart.str(this.end) + "\"."), new assertions.ErrorDescription.new("The type " + dart.str(dart.runtimeType(this.begin)) + " returned a " + dart.str(dart.runtimeType(result)) + " after " + "multiplication with a double value. " + "See \"Types with special considerations\" at https://api.flutter.dev/flutter/animation/Tween-class.html " + "for more information.")]);
+                if (core.int.is(this.begin) || core.int.is(this.end))
+                  t3[$add](new assertions.ErrorHint.new("To lerp int values, consider IntTween or StepTween instead."));
+                else
+                  t3[$add](new assertions.ErrorHint.new("There may be a dedicated \"" + dart.str(dart.runtimeType(this.begin)) + "Tween\" for this type, " + "or you may need to create one."));
+                return t3;
+              })()));
+            } else
+              throw e;
+          }
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[7], 259, 12, "() {\r\n      // Assertions that attempt to catch common cases of tweening types\r\n      // that do not conform to the Tween requirements.\r\n      dynamic result;\r\n      try {\r\n        result = begin + (end - begin) * t;\r\n        result as T;\r\n        return true;\r\n      } on NoSuchMethodError {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('Cannot lerp between \"$begin\" and \"$end\".'),\r\n          ErrorDescription(\r\n            'The type ${begin.runtimeType} might not fully implement `+`, `-`, and/or `*`. '\r\n            'See \"Types with special considerations\" at https://api.flutter.dev/flutter/animation/Tween-class.html '\r\n            'for more information.',\r\n          ),\r\n          if (begin is Color || end is Color)\r\n            ErrorHint('To lerp colors, consider ColorTween instead.')\r\n          else if (begin is Rect || end is Rect)\r\n            ErrorHint('To lerp rects, consider RectTween instead.')\r\n          else\r\n            ErrorHint(\r\n              'There may be a dedicated \"${begin.runtimeType}Tween\" for this type, '\r\n              'or you may need to create one.',\r\n            ),\r\n        ]);\r\n      } on TypeError {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('Cannot lerp between \"$begin\" and \"$end\".'),\r\n          ErrorDescription(\r\n            'The type ${begin.runtimeType} returned a ${result.runtimeType} after '\r\n            'multiplication with a double value. '\r\n            'See \"Types with special considerations\" at https://api.flutter.dev/flutter/animation/Tween-class.html '\r\n            'for more information.',\r\n          ),\r\n          if (begin is int || end is int)\r\n            ErrorHint('To lerp int values, consider IntTween or StepTween instead.')\r\n          else\r\n            ErrorHint(\r\n              'There may be a dedicated \"${begin.runtimeType}Tween\" for this type, '\r\n              'or you may need to create one.',\r\n            ),\r\n        ]);\r\n      }\r\n    }()");
+        return T.as(dart.dsend(this.begin, '+', [dart.dsend(dart.dsend(this.end, '-', [this.begin]), '*', [t])]));
+      }
+      transform(t) {
+        if (t === 0.0) return T.as(this.begin);
+        if (t === 1.0) return T.as(this.end);
+        return this.lerp(t);
+      }
+      toString() {
+        return object.objectRuntimeType(this, "Animatable") + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + ")";
+      }
+    }
+    (Tween.new = function(opts) {
+      let begin = opts && 'begin' in opts ? opts.begin : null;
+      let end = opts && 'end' in opts ? opts.end : null;
+      this[begin$] = begin;
+      this[end$] = end;
+      Tween.__proto__.new.call(this);
+      ;
+    }).prototype = Tween.prototype;
+    dart.addTypeTests(Tween);
+    Tween.prototype[_is_Tween_default] = true;
+    dart.addTypeCaches(Tween);
+    dart.setMethodSignature(Tween, () => ({
+      __proto__: dart.getMethods(Tween.__proto__),
+      lerp: dart.fnType(T, [core.double]),
+      transform: dart.fnType(T, [core.double])
+    }));
+    dart.setLibraryUri(Tween, I[6]);
+    dart.setFieldSignature(Tween, () => ({
+      __proto__: dart.getFields(Tween.__proto__),
+      begin: dart.fieldType(dart.nullable(T)),
+      end: dart.fieldType(dart.nullable(T))
+    }));
+    dart.defineExtensionMethods(Tween, ['toString']);
+    return Tween;
+  });
+  tween.Tween = tween.Tween$();
+  dart.addTypeTests(tween.Tween, _is_Tween_default);
+  var parent$2 = dart.privateName(tween, "ReverseTween.parent");
+  const _is_ReverseTween_default = Symbol('_is_ReverseTween_default');
+  tween.ReverseTween$ = dart.generic(T => {
+    class ReverseTween extends tween.Tween$(T) {
+      get parent() {
+        return this[parent$2];
+      }
+      set parent(value) {
+        super.parent = value;
+      }
+      lerp(t) {
+        return this.parent.lerp(1.0 - t);
+      }
+    }
+    (ReverseTween.new = function(parent) {
+      this[parent$2] = parent;
+      if (!(parent !== null)) dart.assertFailed(null, I[7], 336, 14, "parent != null");
+      ReverseTween.__proto__.new.call(this, {begin: parent.end, end: parent.begin});
+      ;
+    }).prototype = ReverseTween.prototype;
+    dart.addTypeTests(ReverseTween);
+    ReverseTween.prototype[_is_ReverseTween_default] = true;
+    dart.addTypeCaches(ReverseTween);
+    dart.setLibraryUri(ReverseTween, I[6]);
+    dart.setFieldSignature(ReverseTween, () => ({
+      __proto__: dart.getFields(ReverseTween.__proto__),
+      parent: dart.finalFieldType(tween.Tween$(T))
+    }));
+    return ReverseTween;
+  });
+  tween.ReverseTween = tween.ReverseTween$();
+  dart.addTypeTests(tween.ReverseTween, _is_ReverseTween_default);
+  tween.ColorTween = class ColorTween extends tween.Tween$(dart.nullable(ui.Color)) {
+    lerp(t) {
+      return ui.Color.lerp(this.begin, this.end, t);
+    }
+  };
+  (tween.ColorTween.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : null;
+    let end = opts && 'end' in opts ? opts.end : null;
+    tween.ColorTween.__proto__.new.call(this, {begin: begin, end: end});
+    ;
+  }).prototype = tween.ColorTween.prototype;
+  dart.addTypeTests(tween.ColorTween);
+  dart.addTypeCaches(tween.ColorTween);
+  dart.setLibraryUri(tween.ColorTween, I[6]);
+  tween.SizeTween = class SizeTween extends tween.Tween$(dart.nullable(ui.Size)) {
+    lerp(t) {
+      return ui.Size.lerp(this.begin, this.end, t);
+    }
+  };
+  (tween.SizeTween.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : null;
+    let end = opts && 'end' in opts ? opts.end : null;
+    tween.SizeTween.__proto__.new.call(this, {begin: begin, end: end});
+    ;
+  }).prototype = tween.SizeTween.prototype;
+  dart.addTypeTests(tween.SizeTween);
+  dart.addTypeCaches(tween.SizeTween);
+  dart.setLibraryUri(tween.SizeTween, I[6]);
+  tween.RectTween = class RectTween extends tween.Tween$(dart.nullable(ui.Rect)) {
+    lerp(t) {
+      return ui.Rect.lerp(this.begin, this.end, t);
+    }
+  };
+  (tween.RectTween.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : null;
+    let end = opts && 'end' in opts ? opts.end : null;
+    tween.RectTween.__proto__.new.call(this, {begin: begin, end: end});
+    ;
+  }).prototype = tween.RectTween.prototype;
+  dart.addTypeTests(tween.RectTween);
+  dart.addTypeCaches(tween.RectTween);
+  dart.setLibraryUri(tween.RectTween, I[6]);
+  tween.IntTween = class IntTween extends tween.Tween$(core.int) {
+    lerp(t) {
+      return (dart.nullCheck(this.begin) + (dart.nullCheck(this.end) - dart.nullCheck(this.begin)) * t)[$round]();
+    }
+  };
+  (tween.IntTween.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : null;
+    let end = opts && 'end' in opts ? opts.end : null;
+    tween.IntTween.__proto__.new.call(this, {begin: begin, end: end});
+    ;
+  }).prototype = tween.IntTween.prototype;
+  dart.addTypeTests(tween.IntTween);
+  dart.addTypeCaches(tween.IntTween);
+  dart.setLibraryUri(tween.IntTween, I[6]);
+  tween.StepTween = class StepTween extends tween.Tween$(core.int) {
+    lerp(t) {
+      return (dart.nullCheck(this.begin) + (dart.nullCheck(this.end) - dart.nullCheck(this.begin)) * t)[$floor]();
+    }
+  };
+  (tween.StepTween.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : null;
+    let end = opts && 'end' in opts ? opts.end : null;
+    tween.StepTween.__proto__.new.call(this, {begin: begin, end: end});
+    ;
+  }).prototype = tween.StepTween.prototype;
+  dart.addTypeTests(tween.StepTween);
+  dart.addTypeCaches(tween.StepTween);
+  dart.setLibraryUri(tween.StepTween, I[6]);
+  const _is_ConstantTween_default = Symbol('_is_ConstantTween_default');
+  tween.ConstantTween$ = dart.generic(T => {
+    class ConstantTween extends tween.Tween$(T) {
+      lerp(t) {
+        return T.as(this.begin);
+      }
+      toString() {
+        return object.objectRuntimeType(this, "ConstantTween") + "(value: " + dart.str(this.begin) + ")";
+      }
+    }
+    (ConstantTween.new = function(value) {
+      ConstantTween.__proto__.new.call(this, {begin: value, end: value});
+      ;
+    }).prototype = ConstantTween.prototype;
+    dart.addTypeTests(ConstantTween);
+    ConstantTween.prototype[_is_ConstantTween_default] = true;
+    dart.addTypeCaches(ConstantTween);
+    dart.setLibraryUri(ConstantTween, I[6]);
+    dart.defineExtensionMethods(ConstantTween, ['toString']);
+    return ConstantTween;
+  });
+  tween.ConstantTween = tween.ConstantTween$();
+  dart.addTypeTests(tween.ConstantTween, _is_ConstantTween_default);
+  var curve$0 = dart.privateName(tween, "CurveTween.curve");
+  tween.CurveTween = class CurveTween extends tween.Animatable$(core.double) {
+    get curve() {
+      return this[curve$0];
+    }
+    set curve(value) {
+      this[curve$0] = value;
+    }
+    transform(t) {
+      if (t === 0.0 || t === 1.0) {
+        if (!(this.curve.transform(t)[$round]() === t)) dart.assertFailed(null, I[7], 525, 14, "curve.transform(t).round() == t");
+        return t;
+      }
+      return this.curve.transform(t);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "CurveTween") + "(curve: " + dart.str(this.curve) + ")";
+    }
+  };
+  (tween.CurveTween.new = function(opts) {
+    let curve = opts && 'curve' in opts ? opts.curve : null;
+    this[curve$0] = curve;
+    if (!(curve !== null)) dart.assertFailed(null, I[7], 517, 14, "curve != null");
+    tween.CurveTween.__proto__.new.call(this);
+    ;
+  }).prototype = tween.CurveTween.prototype;
+  dart.addTypeTests(tween.CurveTween);
+  dart.addTypeCaches(tween.CurveTween);
+  dart.setMethodSignature(tween.CurveTween, () => ({
+    __proto__: dart.getMethods(tween.CurveTween.__proto__),
+    transform: dart.fnType(core.double, [core.double])
+  }));
+  dart.setLibraryUri(tween.CurveTween, I[6]);
+  dart.setFieldSignature(tween.CurveTween, () => ({
+    __proto__: dart.getFields(tween.CurveTween.__proto__),
+    curve: dart.fieldType(curves.Curve)
+  }));
+  dart.defineExtensionMethods(tween.CurveTween, ['toString']);
+  animation$.AnimationStatus = class AnimationStatus extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (animation$.AnimationStatus.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = animation$.AnimationStatus.prototype;
+  dart.addTypeTests(animation$.AnimationStatus);
+  dart.addTypeCaches(animation$.AnimationStatus);
+  dart.setLibraryUri(animation$.AnimationStatus, I[3]);
+  dart.setFieldSignature(animation$.AnimationStatus, () => ({
+    __proto__: dart.getFields(animation$.AnimationStatus.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(animation$.AnimationStatus, ['toString']);
+  animation$.AnimationStatus.dismissed = C[3] || CT.C3;
+  animation$.AnimationStatus.forward = C[0] || CT.C0;
+  animation$.AnimationStatus.reverse = C[1] || CT.C1;
+  animation$.AnimationStatus.completed = C[2] || CT.C2;
+  animation$.AnimationStatus.values = C[9] || CT.C9;
+  dart.trackLibraries("packages/flutter/src/animation/listener_helpers.dart", {
+    "package:flutter/src/animation/listener_helpers.dart": listener_helpers,
+    "package:flutter/src/animation/animations.dart": animations,
+    "package:flutter/src/animation/tween.dart": tween,
+    "package:flutter/src/animation/animation.dart": animation$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["strut_style.dart","text_style.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/strut_style.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["listener_helpers.dart","animation.dart","animations.dart","tween.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/animation/listener_helpers.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__strut_style: strut_style,
-    src__painting__text_style: text_style
+    src__animation__listener_helpers: listener_helpers,
+    src__animation__animations: animations,
+    src__animation__tween: tween,
+    src__animation__animation: animation$
   };
 }));
 
-//# sourceMappingURL=strut_style.dart.lib.js.map
+//# sourceMappingURL=listener_helpers.dart.lib.js.map

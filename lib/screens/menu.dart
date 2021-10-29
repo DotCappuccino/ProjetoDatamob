@@ -38,9 +38,7 @@ class _MenuState extends State<Menu> {
         backgroundColor: Colors.green,
       ),
       body: Stack(
-        children: [
-          //Navbar(),
-        ],
+        children: [],
       ),
     );
   }

@@ -10,24 +10,22 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  String teste = _determinePosition();
+  //String teste = _determinePosition();
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-            child: Text('Teste'),
-            onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                        content: Text());
-                  },
-                );
-             }
-         // _determinePosition();
-      
-      ),
-    );
+        child: Text('Teste'),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(content: Text('h'));
+            },
+          );
+        }
+        // _determinePosition();
+
+        );
   }
 }
 

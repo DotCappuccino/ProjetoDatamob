@@ -13,7 +13,7 @@ ThemeData theme() {
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(28),
-    borderSide: BorderSide(color: Colors.purpleAccent),
+    borderSide: BorderSide(color: Colors.black),
     gapPadding: 10,
   );
 
@@ -28,14 +28,14 @@ InputDecorationTheme inputDecorationTheme() {
 
 TextTheme textTheme() {
   return TextTheme(
-    bodyText1: TextStyle(color: Colors.yellow),
+    bodyText1: TextStyle(color: Colors.black),
     bodyText2: TextStyle(color: Colors.purple),
   );
 }
 
 AppBarTheme appBarTheme() {
   return AppBarTheme(
-    color: Colors.white,
+    color: Colors.blue,
     elevation: 0,
     brightness: Brightness.light,
     iconTheme: IconThemeData(color: Colors.black),
