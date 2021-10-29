@@ -21,12 +21,9 @@ class _MenuBodyState extends State<MenuBody> {
       padding: EdgeInsets.only(top: 50),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 20.0),
           ListTile(
-            title: Text('Apontamento'),
-            onTap: () {
-              Navigator.pushNamed(context, Apontamentos.routeName);
-            },
+            leading: Icon(Icons.api_sharp),
+            title: Text('Apontamentos'),
           ),
           Visibility(
             visible: entomologiaVisible,
@@ -39,17 +36,20 @@ class _MenuBodyState extends State<MenuBody> {
                 ListTile(
                   title: Text('Broca Populacional'),
                   onTap: () {
-                    Navigator.pushNamed(context, Login.routeName);
+                    Navigator.pushNamed(context, Apontamentos.routeName);
                   },
                 ),
                 ListTile(
                   title: Text('Broca Rev. Lab.'),
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text('Broca/Cigarrinha'),
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text('Broquinha Control. Quimico'),
+                  onTap: () {},
                 ),
               ],
             ),
@@ -67,9 +67,11 @@ class _MenuBodyState extends State<MenuBody> {
                   children: <Widget>[
                     ListTile(
                       title: Text('Pré Colheita'),
+                      onTap: () {},
                     ),
                     ListTile(
                       title: Text('Pós Colheita'),
+                      onTap: () {},
                     ),
                   ],
                 ),

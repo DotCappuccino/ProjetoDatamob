@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projetodatamob/screens/apontamentos_parts/maps.dart';
 import 'package:projetodatamob/screens/Navbar.dart';
 import 'package:projetodatamob/size.dart';
-import 'menu_parts/searchfield.dart';
 
 class Menu extends StatefulWidget {
   static String routeName = "/Menu";
@@ -33,7 +33,9 @@ class _MenuState extends State<Menu> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, Maps.routeName);
+        },
         child: const Icon(Icons.add),
         backgroundColor: Colors.green,
       ),
