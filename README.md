@@ -1,16 +1,12 @@
-# projetodatamob
+# Atividade avaliativa Unaerp RP  
+# Curso: Engenharia de Software 
 
-A new Flutter project.
+# Projeto Datamob
 
-## Getting Started
+O projeto consiste em uma solução(aplicação) em flutter onde o publico alvo possa 
+realizar apontamentos em propriedades rurais, estes apontamentos tem o intuito
+de alertar e evidenciar ocorridos no meio do plantio. 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Desenvolvedores: 
+## Ricardo Alexandre Maria Junior Cod. 831.912
+## Samuel Viana de Souza Cod. 832.088
