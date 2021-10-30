@@ -1,4 +1,6 @@
-# Atividade avaliativa Unaerp RP > Engenharia de Software 
+# Atividade avaliativa Unaerp RP  
+# Curso: Engenharia de Software 
+
 # Projeto Datamob
 
 O projeto consiste em uma solução(aplicação) em flutter onde o publico alvo possa 
