@@ -1,983 +1,581 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__material__expansion_tile_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__animation__curves$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/foundation/collections.dart'], (function load__packages__flutter__src__painting__borders_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__foundation__collections$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
   const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const page_storage = packages__flutter__src__widgets__widget_span$46dart.src__widgets__page_storage;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
   const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const list_tile = packages__flutter__src__material__icon_button$46dart.src__material__list_tile;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  var expansion_tile = Object.create(dart.library);
+  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
+  var borders$ = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $length = dartx.length;
+  var $any = dartx.any;
+  var $fold = dartx.fold;
+  var $last = dartx.last;
+  var $first = dartx.first;
+  var $_set = dartx._set;
+  var $addAll = dartx.addAll;
+  var $add = dartx.add;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $_get = dartx._get;
+  var $reversed = dartx.reversed;
+  var $join = dartx.join;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    ColorN: () => (T.ColorN = dart.constFn(dart.nullable(ui.Color)))(),
-    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    voidToNull: () => (T.voidToNull = dart.constFn(dart.fnType(core.Null, [dart.void])))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    TweenOfdouble: () => (T.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))()
+    JSArrayOfShapeBorder: () => (T.JSArrayOfShapeBorder = dart.constFn(_interceptors.JSArray$(borders$.ShapeBorder)))(),
+    ShapeBorderTobool: () => (T.ShapeBorderTobool = dart.constFn(dart.fnType(core.bool, [borders$.ShapeBorder])))(),
+    EdgeInsetsGeometryAndShapeBorderToEdgeInsetsGeometry: () => (T.EdgeInsetsGeometryAndShapeBorderToEdgeInsetsGeometry = dart.constFn(dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry, borders$.ShapeBorder])))(),
+    ListOfShapeBorder: () => (T.ListOfShapeBorder = dart.constFn(core.List$(borders$.ShapeBorder)))(),
+    ShapeBorderToShapeBorder: () => (T.ShapeBorderToShapeBorder = dart.constFn(dart.fnType(borders$.ShapeBorder, [borders$.ShapeBorder])))(),
+    ShapeBorderN: () => (T.ShapeBorderN = dart.constFn(dart.nullable(borders$.ShapeBorder)))(),
+    JSArrayOfShapeBorderN: () => (T.JSArrayOfShapeBorderN = dart.constFn(_interceptors.JSArray$(T.ShapeBorderN())))(),
+    ShapeBorderToString: () => (T.ShapeBorderToString = dart.constFn(dart.fnType(core.String, [borders$.ShapeBorder])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.constList([], framework.Widget);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 41,
-        [_Location_line]: 273,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4], widget_inspector._Location);
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 273,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: icon_data.IconData.prototype,
-        [IconData_matchTextDirection]: false,
-        [IconData_fontPackage]: null,
-        [IconData_fontFamily]: "MaterialIcons",
-        [IconData_codePoint]: 57926
+      return C[0] = dart.const({
+        __proto__: borders$.BorderStyle.prototype,
+        [_name$]: "BorderStyle.none",
+        index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: icon.Icon.prototype,
-        [Widget__location]: C[2] || CT.C2,
-        [Widget_key]: null,
-        [Icon_textDirection]: null,
-        [Icon_semanticLabel]: null,
-        [Icon_color]: null,
-        [Icon_size]: null,
-        [Icon_icon]: C[5] || CT.C5
+        __proto__: borders$.BorderStyle.prototype,
+        [_name$]: "BorderStyle.solid",
+        index: 1
       });
     },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "turns",
-        [_Location_column]: 17,
-        [_Location_line]: 272,
-        [_Location_file]: null
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], borders$.BorderStyle);
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
       });
     },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 273,
-        [_Location_file]: null
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 0
       });
     },
-    get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], widget_inspector._Location);
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 44,
-        [_Location_line]: 271,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onTap",
-        [_Location_column]: 15,
-        [_Location_line]: 266,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "contentPadding",
-        [_Location_column]: 15,
-        [_Location_line]: 267,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "leading",
-        [_Location_column]: 15,
-        [_Location_line]: 268,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 15,
-        [_Location_line]: 269,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "subtitle",
-        [_Location_column]: 15,
-        [_Location_line]: 270,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "trailing",
-        [_Location_column]: 15,
-        [_Location_line]: 271,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], widget_inspector._Location);
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[11] || CT.C11,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 265,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 15,
-        [_Location_line]: 279,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "heightFactor",
-        [_Location_column]: 15,
-        [_Location_line]: 280,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 281,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], widget_inspector._Location);
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[19] || CT.C19,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 278,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 278,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.constList([C[25] || CT.C25], widget_inspector._Location);
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[24] || CT.C24,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 277,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 9,
-        [_Location_line]: 260,
-        [_Location_file]: null
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 9,
-        [_Location_line]: 261,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], widget_inspector._Location);
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[27] || CT.C27,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 259,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 7,
-        [_Location_line]: 252,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 259,
-        [_Location_file]: null
-      });
-    },
-    get C31() {
-      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33], widget_inspector._Location);
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[31] || CT.C31,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 251,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "crossAxisAlignment",
-        [_Location_column]: 13,
-        [_Location_line]: 316,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 317,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37], widget_inspector._Location);
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[35] || CT.C35,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 315,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 11,
-        [_Location_line]: 314,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 315,
-        [_Location_file]: null
-      });
-    },
-    get C39() {
-      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[39] || CT.C39,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 313,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 313,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabled",
-        [_Location_column]: 9,
-        [_Location_line]: 320,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 312,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 312,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "offstage",
-        [_Location_column]: 7,
-        [_Location_line]: 322,
-        [_Location_file]: null
-      });
-    },
-    get C47() {
-      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49], widget_inspector._Location);
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[47] || CT.C47,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 311,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "animation",
-        [_Location_column]: 7,
-        [_Location_line]: 326,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 7,
-        [_Location_line]: 327,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 328,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54], widget_inspector._Location);
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[51] || CT.C51,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 325,
-        [_Location_file]: "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart"
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 200000
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: borders$.BorderSide.prototype,
+        [style$]: C[0] || CT.C0,
+        [width$]: 0,
+        [color$]: C[3] || CT.C3
       });
     }
   }, false);
-  var C = Array(56).fill(void 0);
+  var C = Array(6).fill(void 0);
   var I = [
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/material/expansion_tile.dart",
-    "package:flutter/src/material/expansion_tile.dart"
+    "package:flutter/src/painting/borders.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/painting/borders.dart"
   ];
-  var leading$ = dart.privateName(expansion_tile, "ExpansionTile.leading");
-  var title$ = dart.privateName(expansion_tile, "ExpansionTile.title");
-  var subtitle$ = dart.privateName(expansion_tile, "ExpansionTile.subtitle");
-  var onExpansionChanged$ = dart.privateName(expansion_tile, "ExpansionTile.onExpansionChanged");
-  var children$ = dart.privateName(expansion_tile, "ExpansionTile.children");
-  var backgroundColor$ = dart.privateName(expansion_tile, "ExpansionTile.backgroundColor");
-  var collapsedBackgroundColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedBackgroundColor");
-  var trailing$ = dart.privateName(expansion_tile, "ExpansionTile.trailing");
-  var initiallyExpanded$ = dart.privateName(expansion_tile, "ExpansionTile.initiallyExpanded");
-  var maintainState$ = dart.privateName(expansion_tile, "ExpansionTile.maintainState");
-  var tilePadding$ = dart.privateName(expansion_tile, "ExpansionTile.tilePadding");
-  var expandedAlignment$ = dart.privateName(expansion_tile, "ExpansionTile.expandedAlignment");
-  var expandedCrossAxisAlignment$ = dart.privateName(expansion_tile, "ExpansionTile.expandedCrossAxisAlignment");
-  var childrenPadding$ = dart.privateName(expansion_tile, "ExpansionTile.childrenPadding");
-  var iconColor$ = dart.privateName(expansion_tile, "ExpansionTile.iconColor");
-  var collapsedIconColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedIconColor");
-  var textColor$ = dart.privateName(expansion_tile, "ExpansionTile.textColor");
-  var collapsedTextColor$ = dart.privateName(expansion_tile, "ExpansionTile.collapsedTextColor");
-  expansion_tile.ExpansionTile = class ExpansionTile extends framework.StatefulWidget {
-    get leading() {
-      return this[leading$];
-    }
-    set leading(value) {
-      super.leading = value;
-    }
-    get title() {
-      return this[title$];
-    }
-    set title(value) {
-      super.title = value;
-    }
-    get subtitle() {
-      return this[subtitle$];
-    }
-    set subtitle(value) {
-      super.subtitle = value;
-    }
-    get onExpansionChanged() {
-      return this[onExpansionChanged$];
-    }
-    set onExpansionChanged(value) {
-      super.onExpansionChanged = value;
-    }
-    get children() {
-      return this[children$];
-    }
-    set children(value) {
-      super.children = value;
-    }
-    get backgroundColor() {
-      return this[backgroundColor$];
-    }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get collapsedBackgroundColor() {
-      return this[collapsedBackgroundColor$];
-    }
-    set collapsedBackgroundColor(value) {
-      super.collapsedBackgroundColor = value;
-    }
-    get trailing() {
-      return this[trailing$];
-    }
-    set trailing(value) {
-      super.trailing = value;
-    }
-    get initiallyExpanded() {
-      return this[initiallyExpanded$];
-    }
-    set initiallyExpanded(value) {
-      super.initiallyExpanded = value;
-    }
-    get maintainState() {
-      return this[maintainState$];
-    }
-    set maintainState(value) {
-      super.maintainState = value;
-    }
-    get tilePadding() {
-      return this[tilePadding$];
-    }
-    set tilePadding(value) {
-      super.tilePadding = value;
-    }
-    get expandedAlignment() {
-      return this[expandedAlignment$];
-    }
-    set expandedAlignment(value) {
-      super.expandedAlignment = value;
-    }
-    get expandedCrossAxisAlignment() {
-      return this[expandedCrossAxisAlignment$];
-    }
-    set expandedCrossAxisAlignment(value) {
-      super.expandedCrossAxisAlignment = value;
-    }
-    get childrenPadding() {
-      return this[childrenPadding$];
-    }
-    set childrenPadding(value) {
-      super.childrenPadding = value;
-    }
-    get iconColor() {
-      return this[iconColor$];
-    }
-    set iconColor(value) {
-      super.iconColor = value;
-    }
-    get collapsedIconColor() {
-      return this[collapsedIconColor$];
-    }
-    set collapsedIconColor(value) {
-      super.collapsedIconColor = value;
-    }
-    get textColor() {
-      return this[textColor$];
-    }
-    set textColor(value) {
-      super.textColor = value;
-    }
-    get collapsedTextColor() {
-      return this[collapsedTextColor$];
-    }
-    set collapsedTextColor(value) {
-      super.collapsedTextColor = value;
-    }
-    createState() {
-      return new expansion_tile._ExpansionTileState.new();
+  var _name$ = dart.privateName(borders$, "_name");
+  borders$.BorderStyle = class BorderStyle extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (expansion_tile.ExpansionTile.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let leading = opts && 'leading' in opts ? opts.leading : null;
-    let title = opts && 'title' in opts ? opts.title : null;
-    let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
-    let onExpansionChanged = opts && 'onExpansionChanged' in opts ? opts.onExpansionChanged : null;
-    let children = opts && 'children' in opts ? opts.children : C[0] || CT.C0;
-    let trailing = opts && 'trailing' in opts ? opts.trailing : null;
-    let initiallyExpanded = opts && 'initiallyExpanded' in opts ? opts.initiallyExpanded : false;
-    let maintainState = opts && 'maintainState' in opts ? opts.maintainState : false;
-    let tilePadding = opts && 'tilePadding' in opts ? opts.tilePadding : null;
-    let expandedCrossAxisAlignment = opts && 'expandedCrossAxisAlignment' in opts ? opts.expandedCrossAxisAlignment : null;
-    let expandedAlignment = opts && 'expandedAlignment' in opts ? opts.expandedAlignment : null;
-    let childrenPadding = opts && 'childrenPadding' in opts ? opts.childrenPadding : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let collapsedBackgroundColor = opts && 'collapsedBackgroundColor' in opts ? opts.collapsedBackgroundColor : null;
-    let textColor = opts && 'textColor' in opts ? opts.textColor : null;
-    let collapsedTextColor = opts && 'collapsedTextColor' in opts ? opts.collapsedTextColor : null;
-    let iconColor = opts && 'iconColor' in opts ? opts.iconColor : null;
-    let collapsedIconColor = opts && 'collapsedIconColor' in opts ? opts.collapsedIconColor : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[leading$] = leading;
-    this[title$] = title;
-    this[subtitle$] = subtitle;
-    this[onExpansionChanged$] = onExpansionChanged;
-    this[children$] = children;
-    this[trailing$] = trailing;
-    this[initiallyExpanded$] = initiallyExpanded;
-    this[maintainState$] = maintainState;
-    this[tilePadding$] = tilePadding;
-    this[expandedCrossAxisAlignment$] = expandedCrossAxisAlignment;
-    this[expandedAlignment$] = expandedAlignment;
-    this[childrenPadding$] = childrenPadding;
-    this[backgroundColor$] = backgroundColor;
-    this[collapsedBackgroundColor$] = collapsedBackgroundColor;
-    this[textColor$] = textColor;
-    this[collapsedTextColor$] = collapsedTextColor;
-    this[iconColor$] = iconColor;
-    this[collapsedIconColor$] = collapsedIconColor;
-    if (!(initiallyExpanded !== null)) dart.assertFailed(null, I[0], 59, 15, "initiallyExpanded != null");
-    if (!(maintainState !== null)) dart.assertFailed(null, I[0], 60, 15, "maintainState != null");
-    if (!(expandedCrossAxisAlignment !== flex.CrossAxisAlignment.baseline)) dart.assertFailed("CrossAxisAlignment.baseline is not supported since the expanded children " + "are aligned in a column, not a row. Try to use another constant.", I[0], 62, 8, "expandedCrossAxisAlignment != CrossAxisAlignment.baseline");
-    expansion_tile.ExpansionTile.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (borders$.BorderStyle.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = expansion_tile.ExpansionTile.prototype;
-  dart.addTypeTests(expansion_tile.ExpansionTile);
-  dart.addTypeCaches(expansion_tile.ExpansionTile);
-  dart.setMethodSignature(expansion_tile.ExpansionTile, () => ({
-    __proto__: dart.getMethods(expansion_tile.ExpansionTile.__proto__),
-    createState: dart.fnType(expansion_tile._ExpansionTileState, [])
+  }).prototype = borders$.BorderStyle.prototype;
+  dart.addTypeTests(borders$.BorderStyle);
+  dart.addTypeCaches(borders$.BorderStyle);
+  dart.setLibraryUri(borders$.BorderStyle, I[0]);
+  dart.setFieldSignature(borders$.BorderStyle, () => ({
+    __proto__: dart.getFields(borders$.BorderStyle.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(expansion_tile.ExpansionTile, I[1]);
-  dart.setFieldSignature(expansion_tile.ExpansionTile, () => ({
-    __proto__: dart.getFields(expansion_tile.ExpansionTile.__proto__),
-    leading: dart.finalFieldType(dart.nullable(framework.Widget)),
-    title: dart.finalFieldType(framework.Widget),
-    subtitle: dart.finalFieldType(dart.nullable(framework.Widget)),
-    onExpansionChanged: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.bool]))),
-    children: dart.finalFieldType(core.List$(framework.Widget)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedBackgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    trailing: dart.finalFieldType(dart.nullable(framework.Widget)),
-    initiallyExpanded: dart.finalFieldType(core.bool),
-    maintainState: dart.finalFieldType(core.bool),
-    tilePadding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    expandedAlignment: dart.finalFieldType(dart.nullable(alignment.Alignment)),
-    expandedCrossAxisAlignment: dart.finalFieldType(dart.nullable(flex.CrossAxisAlignment)),
-    childrenPadding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    iconColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedIconColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    textColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    collapsedTextColor: dart.finalFieldType(dart.nullable(ui.Color))
-  }));
-  var _borderColorTween = dart.privateName(expansion_tile, "_borderColorTween");
-  var _headerColorTween = dart.privateName(expansion_tile, "_headerColorTween");
-  var _iconColorTween = dart.privateName(expansion_tile, "_iconColorTween");
-  var _backgroundColorTween = dart.privateName(expansion_tile, "_backgroundColorTween");
-  var ___ExpansionTileState__controller = dart.privateName(expansion_tile, "_#_ExpansionTileState#_controller");
-  var ___ExpansionTileState__iconTurns = dart.privateName(expansion_tile, "_#_ExpansionTileState#_iconTurns");
-  var ___ExpansionTileState__heightFactor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_heightFactor");
-  var ___ExpansionTileState__borderColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_borderColor");
-  var ___ExpansionTileState__headerColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_headerColor");
-  var ___ExpansionTileState__iconColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_iconColor");
-  var ___ExpansionTileState__backgroundColor = dart.privateName(expansion_tile, "_#_ExpansionTileState#_backgroundColor");
-  var _isExpanded = dart.privateName(expansion_tile, "_isExpanded");
-  var _controller = dart.privateName(expansion_tile, "_controller");
-  var _iconTurns = dart.privateName(expansion_tile, "_iconTurns");
-  var _heightFactor = dart.privateName(expansion_tile, "_heightFactor");
-  var _borderColor = dart.privateName(expansion_tile, "_borderColor");
-  var _headerColor = dart.privateName(expansion_tile, "_headerColor");
-  var _iconColor = dart.privateName(expansion_tile, "_iconColor");
-  var _backgroundColor = dart.privateName(expansion_tile, "_backgroundColor");
-  var _handleTap = dart.privateName(expansion_tile, "_handleTap");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var Widget__location = dart.privateName(framework, "Widget._location");
-  var Widget_key = dart.privateName(framework, "Widget.key");
-  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
-  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
-  var Icon_color = dart.privateName(icon, "Icon.color");
-  var Icon_size = dart.privateName(icon, "Icon.size");
-  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
-  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
-  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
-  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
-  var Icon_icon = dart.privateName(icon, "Icon.icon");
-  var _buildChildren = dart.privateName(expansion_tile, "_buildChildren");
-  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(expansion_tile.ExpansionTile) {};
-  (State_SingleTickerProviderStateMixin$36.new = function() {
-    ticker_provider.SingleTickerProviderStateMixin$(expansion_tile.ExpansionTile)[dart.mixinNew].call(this);
-    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(expansion_tile.ExpansionTile));
-  expansion_tile._ExpansionTileState = class _ExpansionTileState extends State_SingleTickerProviderStateMixin$36 {
-    get [_controller]() {
-      let t0;
-      t0 = this[___ExpansionTileState__controller];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_controller")) : t0;
+  dart.defineExtensionMethods(borders$.BorderStyle, ['toString']);
+  borders$.BorderStyle.none = C[0] || CT.C0;
+  borders$.BorderStyle.solid = C[1] || CT.C1;
+  borders$.BorderStyle.values = C[2] || CT.C2;
+  var color$ = dart.privateName(borders$, "BorderSide.color");
+  var width$ = dart.privateName(borders$, "BorderSide.width");
+  var style$ = dart.privateName(borders$, "BorderSide.style");
+  var Color_value = dart.privateName(ui, "Color.value");
+  borders$.BorderSide = class BorderSide extends core.Object {
+    get color() {
+      return this[color$];
     }
-    set [_controller](t0) {
-      this[___ExpansionTileState__controller] = t0;
+    set color(value) {
+      super.color = value;
     }
-    get [_iconTurns]() {
-      let t1;
-      t1 = this[___ExpansionTileState__iconTurns];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_iconTurns")) : t1;
+    get width() {
+      return this[width$];
     }
-    set [_iconTurns](t1) {
-      this[___ExpansionTileState__iconTurns] = t1;
+    set width(value) {
+      super.width = value;
     }
-    get [_heightFactor]() {
-      let t2;
-      t2 = this[___ExpansionTileState__heightFactor];
-      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_heightFactor")) : t2;
+    get style() {
+      return this[style$];
     }
-    set [_heightFactor](t2) {
-      this[___ExpansionTileState__heightFactor] = t2;
+    set style(value) {
+      super.style = value;
     }
-    get [_borderColor]() {
-      let t3;
-      t3 = this[___ExpansionTileState__borderColor];
-      return t3 == null ? dart.throw(new _internal.LateError.fieldNI("_borderColor")) : t3;
+    static merge(a, b) {
+      if (!(a !== null)) dart.assertFailed(null, I[1], 86, 12, "a != null");
+      if (!(b !== null)) dart.assertFailed(null, I[1], 87, 12, "b != null");
+      if (!borders$.BorderSide.canMerge(a, b)) dart.assertFailed(null, I[1], 88, 12, "canMerge(a, b)");
+      let aIsNone = a.style === borders$.BorderStyle.none && a.width === 0.0;
+      let bIsNone = b.style === borders$.BorderStyle.none && b.width === 0.0;
+      if (aIsNone && bIsNone) return borders$.BorderSide.none;
+      if (aIsNone) return b;
+      if (bIsNone) return a;
+      if (!a.color._equals(b.color)) dart.assertFailed(null, I[1], 97, 12, "a.color == b.color");
+      if (!(a.style === b.style)) dart.assertFailed(null, I[1], 98, 12, "a.style == b.style");
+      return new borders$.BorderSide.new({color: a.color, width: a.width + b.width, style: a.style});
     }
-    set [_borderColor](t3) {
-      this[___ExpansionTileState__borderColor] = t3;
+    copyWith(opts) {
+      let t0, t0$, t0$0;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let width = opts && 'width' in opts ? opts.width : null;
+      let style = opts && 'style' in opts ? opts.style : null;
+      if (!(width == null || dart.notNull(width) >= 0.0)) dart.assertFailed(null, I[1], 135, 12, "width == null || width >= 0.0");
+      return new borders$.BorderSide.new({color: (t0 = color, t0 == null ? this.color : t0), width: (t0$ = width, t0$ == null ? this.width : t0$), style: (t0$0 = style, t0$0 == null ? this.style : t0$0)});
     }
-    get [_headerColor]() {
-      let t4;
-      t4 = this[___ExpansionTileState__headerColor];
-      return t4 == null ? dart.throw(new _internal.LateError.fieldNI("_headerColor")) : t4;
+    scale(t) {
+      if (!(t !== null)) dart.assertFailed(null, I[1], 160, 12, "t != null");
+      return new borders$.BorderSide.new({color: this.color, width: math.max(core.double, 0.0, this.width * t), style: t <= 0.0 ? borders$.BorderStyle.none : this.style});
     }
-    set [_headerColor](t4) {
-      this[___ExpansionTileState__headerColor] = t4;
-    }
-    get [_iconColor]() {
-      let t5;
-      t5 = this[___ExpansionTileState__iconColor];
-      return t5 == null ? dart.throw(new _internal.LateError.fieldNI("_iconColor")) : t5;
-    }
-    set [_iconColor](t5) {
-      this[___ExpansionTileState__iconColor] = t5;
-    }
-    get [_backgroundColor]() {
-      let t6;
-      t6 = this[___ExpansionTileState__backgroundColor];
-      return t6 == null ? dart.throw(new _internal.LateError.fieldNI("_backgroundColor")) : t6;
-    }
-    set [_backgroundColor](t6) {
-      this[___ExpansionTileState__backgroundColor] = t6;
-    }
-    initState() {
-      let t7, t7$;
-      super.initState();
-      this[_controller] = new animation_controller.AnimationController.new({duration: expansion_tile._kExpand, vsync: this});
-      this[_heightFactor] = this[_controller].drive(core.double, expansion_tile._ExpansionTileState._easeInTween);
-      this[_iconTurns] = this[_controller].drive(core.double, expansion_tile._ExpansionTileState._halfTween.chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_borderColor] = this[_controller].drive(T.ColorN(), this[_borderColorTween].chain(expansion_tile._ExpansionTileState._easeOutTween));
-      this[_headerColor] = this[_controller].drive(T.ColorN(), this[_headerColorTween].chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_iconColor] = this[_controller].drive(T.ColorN(), this[_iconColorTween].chain(expansion_tile._ExpansionTileState._easeInTween));
-      this[_backgroundColor] = this[_controller].drive(T.ColorN(), this[_backgroundColorTween].chain(expansion_tile._ExpansionTileState._easeOutTween));
-      this[_isExpanded] = (t7$ = T.boolN().as((t7 = page_storage.PageStorage.of(this.context), t7 == null ? null : t7.readState(this.context))), t7$ == null ? this.widget.initiallyExpanded : t7$);
-      if (this[_isExpanded]) this[_controller].value = 1.0;
-    }
-    dispose() {
-      this[_controller].dispose();
-      super.dispose();
-    }
-    [_handleTap]() {
-      let t7;
-      this.setState(dart.fn(() => {
-        let t7;
-        this[_isExpanded] = !this[_isExpanded];
-        if (this[_isExpanded]) {
-          this[_controller].forward();
-        } else {
-          this[_controller].reverse().then(dart.void, dart.fn(value => {
-            if (!this.mounted) return;
-            this.setState(dart.fn(() => {
-            }, T.VoidTovoid()));
-          }, T.voidToNull()));
+    toPaint() {
+      let t0, t0$;
+      switch (this.style) {
+        case C[1] || CT.C1:
+        {
+          t0 = ui.Paint.new();
+          return (() => {
+            t0.color = this.color;
+            t0.strokeWidth = this.width;
+            t0.style = ui.PaintingStyle.stroke;
+            return t0;
+          })();
         }
-        t7 = page_storage.PageStorage.of(this.context);
-        t7 == null ? null : t7.writeState(this.context, this[_isExpanded]);
-      }, T.VoidTovoid()));
-      t7 = this.widget.onExpansionChanged;
-      t7 == null ? null : t7(this[_isExpanded]);
+        case C[0] || CT.C0:
+        {
+          t0$ = ui.Paint.new();
+          return (() => {
+            t0$.color = C[4] || CT.C4;
+            t0$.strokeWidth = 0.0;
+            t0$.style = ui.PaintingStyle.stroke;
+            return t0$;
+          })();
+        }
+      }
     }
-    [_buildChildren](context, child) {
-      let t7, t7$, t7$0, t7$1;
-      let borderSideColor = (t7 = this[_borderColor].value, t7 == null ? colors.Colors.transparent : t7);
-      return new container.Container.new({decoration: new box_decoration.BoxDecoration.new({color: (t7$ = this[_backgroundColor].value, t7$ == null ? colors.Colors.transparent : t7$), border: new box_border.Border.new({top: new borders.BorderSide.new({color: borderSideColor}), bottom: new borders.BorderSide.new({color: borderSideColor})})}), child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidget().of([list_tile.ListTileTheme.merge({iconColor: this[_iconColor].value, textColor: this[_headerColor].value, child: new list_tile.ListTile.new({onTap: dart.bind(this, _handleTap), contentPadding: this.widget.tilePadding, leading: this.widget.leading, title: this.widget.title, subtitle: this.widget.subtitle, trailing: (t7$0 = this.widget.trailing, t7$0 == null ? new transitions.RotationTransition.new({turns: this[_iconTurns], child: C[1] || CT.C1, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}) : t7$0), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10})}), new basic.ClipRect.new({child: new basic.Align.new({alignment: (t7$1 = this.widget.expandedAlignment, t7$1 == null ? alignment.Alignment.center : t7$1), heightFactor: this[_heightFactor].value, child: child, $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23})]), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[30] || CT.C30});
+    static canMerge(a, b) {
+      if (!(a !== null)) dart.assertFailed(null, I[1], 197, 12, "a != null");
+      if (!(b !== null)) dart.assertFailed(null, I[1], 198, 12, "b != null");
+      if (a.style === borders$.BorderStyle.none && a.width === 0.0 || b.style === borders$.BorderStyle.none && b.width === 0.0) return true;
+      return a.style === b.style && a.color._equals(b.color);
     }
-    didChangeDependencies() {
-      let t8, t8$, t7, t8$0, t8$1, t7$, t7$0;
-      let theme = theme$.Theme.of(this.context);
-      let colorScheme = theme.colorScheme;
-      this[_borderColorTween].end = theme.dividerColor;
-      t7 = this[_headerColorTween];
-      (() => {
-        t7.begin = (t8 = this.widget.collapsedTextColor, t8 == null ? dart.nullCheck(theme.textTheme.subtitle1).color : t8);
-        t7.end = (t8$ = this.widget.textColor, t8$ == null ? colorScheme.secondary : t8$);
-        return t7;
-      })();
-      t7$ = this[_iconColorTween];
-      (() => {
-        t7$.begin = (t8$0 = this.widget.collapsedIconColor, t8$0 == null ? theme.unselectedWidgetColor : t8$0);
-        t7$.end = (t8$1 = this.widget.iconColor, t8$1 == null ? colorScheme.secondary : t8$1);
-        return t7$;
-      })();
-      t7$0 = this[_backgroundColorTween];
-      (() => {
-        t7$0.begin = this.widget.collapsedBackgroundColor;
-        t7$0.end = this.widget.backgroundColor;
-        return t7$0;
-      })();
-      super.didChangeDependencies();
+    static lerp(a, b, t) {
+      if (!(a !== null)) dart.assertFailed(null, I[1], 212, 12, "a != null");
+      if (!(b !== null)) dart.assertFailed(null, I[1], 213, 12, "b != null");
+      if (!(t !== null)) dart.assertFailed(null, I[1], 214, 12, "t != null");
+      if (t === 0.0) return a;
+      if (t === 1.0) return b;
+      let width = dart.nullCheck(ui.lerpDouble(a.width, b.width, t));
+      if (width < 0.0) return borders$.BorderSide.none;
+      if (a.style === b.style) {
+        return new borders$.BorderSide.new({color: dart.nullCheck(ui.Color.lerp(a.color, b.color, t)), width: width, style: a.style});
+      }
+      let colorA = null;
+      let colorB = null;
+      switch (a.style) {
+        case C[1] || CT.C1:
+        {
+          colorA = a.color;
+          break;
+        }
+        case C[0] || CT.C0:
+        {
+          colorA = a.color.withAlpha(0);
+          break;
+        }
+      }
+      switch (b.style) {
+        case C[1] || CT.C1:
+        {
+          colorB = b.color;
+          break;
+        }
+        case C[0] || CT.C0:
+        {
+          colorB = b.color.withAlpha(0);
+          break;
+        }
+      }
+      return new borders$.BorderSide.new({color: dart.nullCheck(ui.Color.lerp(colorA, colorB, t)), width: width, style: borders$.BorderStyle.solid});
     }
-    build(context) {
-      let t7, t7$;
-      let closed = !this[_isExpanded] && this[_controller].isDismissed;
-      let shouldRemoveChildren = closed && !this.widget.maintainState;
-      let result = new basic.Offstage.new({child: new ticker_provider.TickerMode.new({child: new basic.Padding.new({padding: (t7 = this.widget.childrenPadding, t7 == null ? edge_insets.EdgeInsets.zero : t7), child: new basic.Column.new({crossAxisAlignment: (t7$ = this.widget.expandedCrossAxisAlignment, t7$ == null ? flex.CrossAxisAlignment.center : t7$), children: this.widget.children, $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), enabled: !closed, $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), offstage: closed, $creationLocationd_0dea112b090073317d4: C[46] || CT.C46});
-      return new transitions.AnimatedBuilder.new({animation: this[_controller].view, builder: dart.bind(this, _buildChildren), child: shouldRemoveChildren ? null : result, $creationLocationd_0dea112b090073317d4: C[50] || CT.C50});
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return borders$.BorderSide.is(other) && other.color._equals(this.color) && other.width === this.width && other.style === this.style;
+    }
+    get hashCode() {
+      return ui.hashValues(this.color, this.width, this.style);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "BorderSide") + "(" + dart.str(this.color) + ", " + this.width[$toStringAsFixed](1) + ", " + dart.str(this.style) + ")";
     }
   };
-  (expansion_tile._ExpansionTileState.new = function() {
-    this[_borderColorTween] = new tween.ColorTween.new();
-    this[_headerColorTween] = new tween.ColorTween.new();
-    this[_iconColorTween] = new tween.ColorTween.new();
-    this[_backgroundColorTween] = new tween.ColorTween.new();
-    this[___ExpansionTileState__controller] = null;
-    this[___ExpansionTileState__iconTurns] = null;
-    this[___ExpansionTileState__heightFactor] = null;
-    this[___ExpansionTileState__borderColor] = null;
-    this[___ExpansionTileState__headerColor] = null;
-    this[___ExpansionTileState__iconColor] = null;
-    this[___ExpansionTileState__backgroundColor] = null;
-    this[_isExpanded] = false;
-    expansion_tile._ExpansionTileState.__proto__.new.call(this);
+  (borders$.BorderSide.new = function(opts) {
+    let color = opts && 'color' in opts ? opts.color : C[3] || CT.C3;
+    let width = opts && 'width' in opts ? opts.width : 1;
+    let style = opts && 'style' in opts ? opts.style : C[1] || CT.C1;
+    this[color$] = color;
+    this[width$] = width;
+    this[style$] = style;
+    if (!(color !== null)) dart.assertFailed(null, I[1], 69, 15, "color != null");
+    if (!(width !== null)) dart.assertFailed(null, I[1], 70, 15, "width != null");
+    if (!(width >= 0.0)) dart.assertFailed(null, I[1], 71, 15, "width >= 0.0");
+    if (!(style !== null)) dart.assertFailed(null, I[1], 72, 15, "style != null");
     ;
-  }).prototype = expansion_tile._ExpansionTileState.prototype;
-  dart.addTypeTests(expansion_tile._ExpansionTileState);
-  dart.addTypeCaches(expansion_tile._ExpansionTileState);
-  dart.setMethodSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getMethods(expansion_tile._ExpansionTileState.__proto__),
-    [_handleTap]: dart.fnType(dart.void, []),
-    [_buildChildren]: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = borders$.BorderSide.prototype;
+  dart.addTypeTests(borders$.BorderSide);
+  dart.addTypeCaches(borders$.BorderSide);
+  dart.setMethodSignature(borders$.BorderSide, () => ({
+    __proto__: dart.getMethods(borders$.BorderSide.__proto__),
+    copyWith: dart.fnType(borders$.BorderSide, [], {color: dart.nullable(ui.Color), style: dart.nullable(borders$.BorderStyle), width: dart.nullable(core.double)}, {}),
+    scale: dart.fnType(borders$.BorderSide, [core.double]),
+    toPaint: dart.fnType(ui.Paint, [])
   }));
-  dart.setGetterSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getGetters(expansion_tile._ExpansionTileState.__proto__),
-    [_controller]: animation_controller.AnimationController,
-    [_iconTurns]: animation.Animation$(core.double),
-    [_heightFactor]: animation.Animation$(core.double),
-    [_borderColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_headerColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_iconColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_backgroundColor]: animation.Animation$(dart.nullable(ui.Color))
+  dart.setLibraryUri(borders$.BorderSide, I[0]);
+  dart.setFieldSignature(borders$.BorderSide, () => ({
+    __proto__: dart.getFields(borders$.BorderSide.__proto__),
+    color: dart.finalFieldType(ui.Color),
+    width: dart.finalFieldType(core.double),
+    style: dart.finalFieldType(borders$.BorderStyle)
   }));
-  dart.setSetterSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getSetters(expansion_tile._ExpansionTileState.__proto__),
-    [_controller]: animation_controller.AnimationController,
-    [_iconTurns]: animation.Animation$(core.double),
-    [_heightFactor]: animation.Animation$(core.double),
-    [_borderColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_headerColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_iconColor]: animation.Animation$(dart.nullable(ui.Color)),
-    [_backgroundColor]: animation.Animation$(dart.nullable(ui.Color))
-  }));
-  dart.setLibraryUri(expansion_tile._ExpansionTileState, I[1]);
-  dart.setFieldSignature(expansion_tile._ExpansionTileState, () => ({
-    __proto__: dart.getFields(expansion_tile._ExpansionTileState.__proto__),
-    [_borderColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_headerColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_iconColorTween]: dart.finalFieldType(tween.ColorTween),
-    [_backgroundColorTween]: dart.finalFieldType(tween.ColorTween),
-    [___ExpansionTileState__controller]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [___ExpansionTileState__iconTurns]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
-    [___ExpansionTileState__heightFactor]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
-    [___ExpansionTileState__borderColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__headerColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__iconColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [___ExpansionTileState__backgroundColor]: dart.fieldType(dart.nullable(animation.Animation$(dart.nullable(ui.Color)))),
-    [_isExpanded]: dart.fieldType(core.bool)
-  }));
-  dart.defineLazy(expansion_tile._ExpansionTileState, {
-    /*expansion_tile._ExpansionTileState._easeOutTween*/get _easeOutTween() {
-      return new tween.CurveTween.new({curve: curves.Curves.easeOut});
-    },
-    /*expansion_tile._ExpansionTileState._easeInTween*/get _easeInTween() {
-      return new tween.CurveTween.new({curve: curves.Curves.easeIn});
-    },
-    /*expansion_tile._ExpansionTileState._halfTween*/get _halfTween() {
-      return new (T.TweenOfdouble()).new({begin: 0.0, end: 0.5});
+  dart.defineExtensionMethods(borders$.BorderSide, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(borders$.BorderSide, ['hashCode']);
+  dart.defineLazy(borders$.BorderSide, {
+    /*borders$.BorderSide.none*/get none() {
+      return C[5] || CT.C5;
     }
   }, false);
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  dart.defineLazy(expansion_tile, {
-    /*expansion_tile._kExpand*/get _kExpand() {
-      return C[55] || CT.C55;
+  borders$.ShapeBorder = class ShapeBorder extends core.Object {
+    add(other, opts) {
+      let reversed = opts && 'reversed' in opts ? opts.reversed : false;
+      return null;
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/expansion_tile.dart", {
-    "package:flutter/src/material/expansion_tile.dart": expansion_tile
+    ['+'](other) {
+      let t0, t0$;
+      t0$ = (t0 = this.add(other), t0 == null ? other.add(this, {reversed: true}) : t0);
+      return t0$ == null ? new borders$._CompoundBorder.new(T.JSArrayOfShapeBorder().of([other, this])) : t0$;
+    }
+    lerpFrom(a, t) {
+      if (a == null) return this.scale(t);
+      return null;
+    }
+    lerpTo(b, t) {
+      if (b == null) return this.scale(1.0 - t);
+      return null;
+    }
+    static lerp(a, b, t) {
+      let t0;
+      if (!(t !== null)) dart.assertFailed(null, I[1], 429, 12, "t != null");
+      let result = null;
+      if (b != null) result = b.lerpFrom(a, t);
+      if (result == null && a != null) result = a.lerpTo(b, t);
+      t0 = result;
+      return t0 == null ? t < 0.5 ? a : b : t0;
+    }
+    toString() {
+      return object.objectRuntimeType(this, "ShapeBorder") + "()";
+    }
+  };
+  (borders$.ShapeBorder.new = function() {
+    ;
+  }).prototype = borders$.ShapeBorder.prototype;
+  dart.addTypeTests(borders$.ShapeBorder);
+  dart.addTypeCaches(borders$.ShapeBorder);
+  dart.setMethodSignature(borders$.ShapeBorder, () => ({
+    __proto__: dart.getMethods(borders$.ShapeBorder.__proto__),
+    add: dart.fnType(dart.nullable(borders$.ShapeBorder), [borders$.ShapeBorder], {reversed: core.bool}, {}),
+    '+': dart.fnType(borders$.ShapeBorder, [borders$.ShapeBorder]),
+    lerpFrom: dart.fnType(dart.nullable(borders$.ShapeBorder), [dart.nullable(borders$.ShapeBorder), core.double]),
+    lerpTo: dart.fnType(dart.nullable(borders$.ShapeBorder), [dart.nullable(borders$.ShapeBorder), core.double])
+  }));
+  dart.setLibraryUri(borders$.ShapeBorder, I[0]);
+  dart.defineExtensionMethods(borders$.ShapeBorder, ['toString']);
+  var side$ = dart.privateName(borders$, "OutlinedBorder.side");
+  borders$.OutlinedBorder = class OutlinedBorder extends borders$.ShapeBorder {
+    get side() {
+      return this[side$];
+    }
+    set side(value) {
+      super.side = value;
+    }
+  };
+  (borders$.OutlinedBorder.new = function(opts) {
+    let side = opts && 'side' in opts ? opts.side : C[5] || CT.C5;
+    this[side$] = side;
+    if (!(side !== null)) dart.assertFailed(null, I[1], 502, 66, "side != null");
+    borders$.OutlinedBorder.__proto__.new.call(this);
+    ;
+  }).prototype = borders$.OutlinedBorder.prototype;
+  dart.addTypeTests(borders$.OutlinedBorder);
+  dart.addTypeCaches(borders$.OutlinedBorder);
+  dart.setLibraryUri(borders$.OutlinedBorder, I[0]);
+  dart.setFieldSignature(borders$.OutlinedBorder, () => ({
+    __proto__: dart.getFields(borders$.OutlinedBorder.__proto__),
+    side: dart.finalFieldType(borders$.BorderSide)
+  }));
+  borders$._CompoundBorder = class _CompoundBorder extends borders$.ShapeBorder {
+    get dimensions() {
+      return this.borders[$fold](edge_insets.EdgeInsetsGeometry, edge_insets.EdgeInsets.zero, dart.fn((previousValue, border) => previousValue.add(border.dimensions), T.EdgeInsetsGeometryAndShapeBorderToEdgeInsetsGeometry()));
+    }
+    add(other, opts) {
+      let t0;
+      let reversed = opts && 'reversed' in opts ? opts.reversed : false;
+      if (!borders$._CompoundBorder.is(other)) {
+        let ours = reversed ? this.borders[$last] : this.borders[$first];
+        let merged = (t0 = ours.add(other, {reversed: reversed}), t0 == null ? other.add(ours, {reversed: !reversed}) : t0);
+        if (merged != null) {
+          let result = (() => {
+            let t0 = T.ListOfShapeBorder().of(this.borders);
+            return t0;
+          })();
+          result[$_set](reversed ? result[$length] - 1 : 0, merged);
+          return new borders$._CompoundBorder.new(result);
+        }
+      }
+      let mergedBorders = (() => {
+        let t1 = T.JSArrayOfShapeBorder().of([]);
+        if (reversed) t1[$addAll](this.borders);
+        if (borders$._CompoundBorder.is(other))
+          t1[$addAll](other.borders);
+        else
+          t1[$add](other);
+        if (!reversed) t1[$addAll](this.borders);
+        return t1;
+      })();
+      return new borders$._CompoundBorder.new(mergedBorders);
+    }
+    scale(t) {
+      return new borders$._CompoundBorder.new(this.borders[$map](borders$.ShapeBorder, dart.fn(border => border.scale(t), T.ShapeBorderToShapeBorder()))[$toList]());
+    }
+    lerpFrom(a, t) {
+      return borders$._CompoundBorder.lerp(a, this, t);
+    }
+    lerpTo(b, t) {
+      return borders$._CompoundBorder.lerp(this, b, t);
+    }
+    static lerp(a, b, t) {
+      let t2;
+      if (!(t !== null)) dart.assertFailed(null, I[1], 584, 12, "t != null");
+      if (!(borders$._CompoundBorder.is(a) || borders$._CompoundBorder.is(b))) dart.assertFailed(null, I[1], 585, 12, "a is _CompoundBorder || b is _CompoundBorder");
+      let aList = borders$._CompoundBorder.is(a) ? a.borders : T.JSArrayOfShapeBorderN().of([a]);
+      let bList = borders$._CompoundBorder.is(b) ? b.borders : T.JSArrayOfShapeBorderN().of([b]);
+      let results = T.JSArrayOfShapeBorder().of([]);
+      let length = math.max(core.int, aList[$length], bList[$length]);
+      for (let index = 0; index < length; index = index + 1) {
+        let localA = index < aList[$length] ? aList[$_get](index) : null;
+        let localB = index < bList[$length] ? bList[$_get](index) : null;
+        if (localA != null && localB != null) {
+          let localResult = (t2 = localA.lerpTo(localB, t), t2 == null ? localB.lerpFrom(localA, t) : t2);
+          if (localResult != null) {
+            results[$add](localResult);
+            continue;
+          }
+        }
+        if (localB != null) results[$add](localB.scale(t));
+        if (localA != null) results[$add](localA.scale(1.0 - t));
+      }
+      return new borders$._CompoundBorder.new(results);
+    }
+    getInnerPath(rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      for (let index = 0; index < this.borders[$length] - 1; index = index + 1)
+        rect = this.borders[$_get](index).dimensions.resolve(textDirection).deflateRect(rect);
+      return this.borders[$last].getInnerPath(rect, {textDirection: textDirection});
+    }
+    getOuterPath(rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      return this.borders[$first].getOuterPath(rect, {textDirection: textDirection});
+    }
+    paint(canvas, rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      for (let border of this.borders) {
+        border.paint(canvas, rect, {textDirection: textDirection});
+        rect = border.dimensions.resolve(textDirection).deflateRect(rect);
+      }
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return borders$._CompoundBorder.is(other) && collections.listEquals(borders$.ShapeBorder, other.borders, this.borders);
+    }
+    get hashCode() {
+      return ui.hashList(this.borders);
+    }
+    toString() {
+      return this.borders[$reversed][$map](core.String, dart.fn(border => border.toString(), T.ShapeBorderToString()))[$join](" + ");
+    }
+  };
+  (borders$._CompoundBorder.new = function(borders) {
+    this.borders = borders;
+    if (!(borders !== null)) dart.assertFailed(null, I[1], 520, 14, "borders != null");
+    if (!(borders[$length] >= 2)) dart.assertFailed(null, I[1], 521, 14, "borders.length >= 2");
+    if (!!borders[$any](dart.fn(border => borders$._CompoundBorder.is(border), T.ShapeBorderTobool()))) dart.assertFailed(null, I[1], 522, 14, "!borders.any((ShapeBorder border) => border is _CompoundBorder)");
+    borders$._CompoundBorder.__proto__.new.call(this);
+    ;
+  }).prototype = borders$._CompoundBorder.prototype;
+  dart.addTypeTests(borders$._CompoundBorder);
+  dart.addTypeCaches(borders$._CompoundBorder);
+  dart.setMethodSignature(borders$._CompoundBorder, () => ({
+    __proto__: dart.getMethods(borders$._CompoundBorder.__proto__),
+    add: dart.fnType(borders$.ShapeBorder, [borders$.ShapeBorder], {reversed: core.bool}, {}),
+    scale: dart.fnType(borders$.ShapeBorder, [core.double]),
+    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {})
+  }));
+  dart.setGetterSignature(borders$._CompoundBorder, () => ({
+    __proto__: dart.getGetters(borders$._CompoundBorder.__proto__),
+    dimensions: edge_insets.EdgeInsetsGeometry
+  }));
+  dart.setLibraryUri(borders$._CompoundBorder, I[0]);
+  dart.setFieldSignature(borders$._CompoundBorder, () => ({
+    __proto__: dart.getFields(borders$._CompoundBorder.__proto__),
+    borders: dart.finalFieldType(core.List$(borders$.ShapeBorder))
+  }));
+  dart.defineExtensionMethods(borders$._CompoundBorder, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(borders$._CompoundBorder, ['hashCode']);
+  borders$.paintBorder = function paintBorder(canvas, rect, opts) {
+    let t2;
+    let top = opts && 'top' in opts ? opts.top : C[5] || CT.C5;
+    let right = opts && 'right' in opts ? opts.right : C[5] || CT.C5;
+    let bottom = opts && 'bottom' in opts ? opts.bottom : C[5] || CT.C5;
+    let left = opts && 'left' in opts ? opts.left : C[5] || CT.C5;
+    if (!(canvas !== null)) dart.assertFailed(null, I[1], 680, 10, "canvas != null");
+    if (!(rect !== null)) dart.assertFailed(null, I[1], 681, 10, "rect != null");
+    if (!(top !== null)) dart.assertFailed(null, I[1], 682, 10, "top != null");
+    if (!(right !== null)) dart.assertFailed(null, I[1], 683, 10, "right != null");
+    if (!(bottom !== null)) dart.assertFailed(null, I[1], 684, 10, "bottom != null");
+    if (!(left !== null)) dart.assertFailed(null, I[1], 685, 10, "left != null");
+    let paint = (t2 = ui.Paint.new(), (() => {
+      t2.strokeWidth = 0.0;
+      return t2;
+    })());
+    let path = ui.Path.new();
+    switch (top.style) {
+      case C[1] || CT.C1:
+      {
+        paint.color = top.color;
+        path.reset();
+        path.moveTo(rect.left, rect.top);
+        path.lineTo(rect.right, rect.top);
+        if (top.width === 0.0) {
+          paint.style = ui.PaintingStyle.stroke;
+        } else {
+          paint.style = ui.PaintingStyle.fill;
+          path.lineTo(rect.right - right.width, rect.top + top.width);
+          path.lineTo(rect.left + left.width, rect.top + top.width);
+        }
+        canvas.drawPath(path, paint);
+        break;
+      }
+      case C[0] || CT.C0:
+      {
+        break;
+      }
+    }
+    switch (right.style) {
+      case C[1] || CT.C1:
+      {
+        paint.color = right.color;
+        path.reset();
+        path.moveTo(rect.right, rect.top);
+        path.lineTo(rect.right, rect.bottom);
+        if (right.width === 0.0) {
+          paint.style = ui.PaintingStyle.stroke;
+        } else {
+          paint.style = ui.PaintingStyle.fill;
+          path.lineTo(rect.right - right.width, rect.bottom - bottom.width);
+          path.lineTo(rect.right - right.width, rect.top + top.width);
+        }
+        canvas.drawPath(path, paint);
+        break;
+      }
+      case C[0] || CT.C0:
+      {
+        break;
+      }
+    }
+    switch (bottom.style) {
+      case C[1] || CT.C1:
+      {
+        paint.color = bottom.color;
+        path.reset();
+        path.moveTo(rect.right, rect.bottom);
+        path.lineTo(rect.left, rect.bottom);
+        if (bottom.width === 0.0) {
+          paint.style = ui.PaintingStyle.stroke;
+        } else {
+          paint.style = ui.PaintingStyle.fill;
+          path.lineTo(rect.left + left.width, rect.bottom - bottom.width);
+          path.lineTo(rect.right - right.width, rect.bottom - bottom.width);
+        }
+        canvas.drawPath(path, paint);
+        break;
+      }
+      case C[0] || CT.C0:
+      {
+        break;
+      }
+    }
+    switch (left.style) {
+      case C[1] || CT.C1:
+      {
+        paint.color = left.color;
+        path.reset();
+        path.moveTo(rect.left, rect.bottom);
+        path.lineTo(rect.left, rect.top);
+        if (left.width === 0.0) {
+          paint.style = ui.PaintingStyle.stroke;
+        } else {
+          paint.style = ui.PaintingStyle.fill;
+          path.lineTo(rect.left + left.width, rect.top + top.width);
+          path.lineTo(rect.left + left.width, rect.bottom - bottom.width);
+        }
+        canvas.drawPath(path, paint);
+        break;
+      }
+      case C[0] || CT.C0:
+      {
+        break;
+      }
+    }
+  };
+  dart.trackLibraries("packages/flutter/src/painting/borders.dart", {
+    "package:flutter/src/painting/borders.dart": borders$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["expansion_tile.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/expansion_tile.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["borders.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/borders.dart.lib.js"}');
   // Exports:
   return {
-    src__material__expansion_tile: expansion_tile
+    src__painting__borders: borders$
   };
 }));
 
-//# sourceMappingURL=expansion_tile.dart.lib.js.map
+//# sourceMappingURL=borders.dart.lib.js.map

@@ -32,15 +32,8 @@ class _MenuState extends State<Menu> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, Maps.routeName);
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
       body: Stack(
-        children: [],
+        children: [Text('Clice no canto superior esquerdo')],
       ),
     );
   }

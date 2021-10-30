@@ -41,15 +41,21 @@ class _MenuBodyState extends State<MenuBody> {
                 ),
                 ListTile(
                   title: Text('Broca Rev. Lab.'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, Apontamentos.routeName);
+                  },
                 ),
                 ListTile(
                   title: Text('Broca/Cigarrinha'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, Apontamentos.routeName);
+                  },
                 ),
                 ListTile(
                   title: Text('Broquinha Control. Quimico'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, Apontamentos.routeName);
+                  },
                 ),
               ],
             ),
@@ -67,11 +73,15 @@ class _MenuBodyState extends State<MenuBody> {
                   children: <Widget>[
                     ListTile(
                       title: Text('Pré Colheita'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, Apontamentos.routeName);
+                      },
                     ),
                     ListTile(
                       title: Text('Pós Colheita'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, Apontamentos.routeName);
+                      },
                     ),
                   ],
                 ),

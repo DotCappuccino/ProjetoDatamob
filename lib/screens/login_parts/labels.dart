@@ -33,12 +33,12 @@ class _LabelsLoginState extends State<LabelsLogin> {
             decoration: BoxDecoration(
               color: Colors.black,
               image: const DecorationImage(
-                image: AssetImage('assets/images/usuario.png'),
+                image: AssetImage('assets/images/logo_datamob.png'),
                 fit: BoxFit.fill,
               ),
               border: Border.all(
                 color: Colors.black,
-                width: 5,
+                width: 2,
               ),
               borderRadius: BorderRadius.circular(50),
             ),

@@ -26,7 +26,7 @@ class _ApontamentosState extends State<Apontamentos> {
             },
             icon: Icon(Icons.add_circle_outline_sharp),
           ),
-          Text('Adicionar Novo'),
+          //Text('Adicionar Novo'),
         ],
       ),
       floatingActionButton: Column(
@@ -62,13 +62,6 @@ class _ApontamentosState extends State<Apontamentos> {
       body: Stack(
         children: [
           ApontamentosBody(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.only(top: 230)),
-              Text('Teste')
-            ],
-          ),
           ApontamentoBP(),
         ],
       ),

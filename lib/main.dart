@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Projeto Datamob',
       theme: theme(),
-      initialRoute: Apontamentos.routeName,
+      initialRoute: Login.routeName,
       routes: routes,
     );
   }
