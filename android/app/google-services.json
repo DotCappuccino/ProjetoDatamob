@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "357181536444",
+    "project_id": "projetodatamob-f3a76",
+    "storage_bucket": "projetodatamob-f3a76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357181536444:android:638cb17ff26fbe258878b9",
+        "android_client_info": {
+          "package_name": "com.example.projetodatamob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357181536444-aptdgv6o7lsjebm49f7ntel7e3u4o2fk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTNoppX2sTt6RFCIM3MUc5iTmDk_Kmd8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357181536444-aptdgv6o7lsjebm49f7ntel7e3u4o2fk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
