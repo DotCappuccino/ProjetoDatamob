@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:projetodatamob/screens/login_parts/functions_login.dart';
+import 'package:projetodatamob/firestore.dart';
+import 'package:projetodatamob/generalfunctions.dart';
 import 'package:projetodatamob/screens/menu.dart';
 import 'package:projetodatamob/size.dart';
 
@@ -68,27 +71,30 @@ class _LabelsLoginState extends State<LabelsLogin> {
           ),
           ElevatedButton(
             style: raisedButtonStyle,
-            child: Text('Login'),
-            onPressed: () {
-              if (!ExistUser(_user.text)) {
+            child: Text('Acessar !'),
+            onPressed: () async {
+              if (isEmpty(_user.text) || isEmpty(_senha.text)) {
                 showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                        content:
-                            Text('O Usuario ' + _user.text + ' não existe!'));
-                  },
-                );
-              } else if (!AccessUser(_user.text, _senha.text)) {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                        content: Text('Usuario ou senha incorreto'));
+                        content: Text('Usuario ou Senha está vazio!'));
                   },
                 );
               } else {
-                Navigator.pushNamed(context, Menu.routeName);
+                await Firebase.initializeApp();
+                FirebaseFirestore dataBase = FirebaseFirestore.instance;
+                if (await validaLogin(dataBase, _user.text, _senha.text)) {
+                  Navigator.pushNamed(context, Menu.routeName);
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                          content: Text('Usuario ou Senha não localizado!'));
+                    },
+                  );
+                }
               }
             },
           ),
