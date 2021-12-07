@@ -8,7 +8,7 @@ import 'package:projetodatamob/screens/menu.dart';
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
   Login.routeName: (context) => Login(),
-  Menu.routeName: (context) => Menu(),
+  Menu.routeName: (context) => Menu(nameuser: "InvalidName"),
   Apontamentos.routeName: (context) => Apontamentos(),
   //Maps.routeName: (context) => Maps(),
 };

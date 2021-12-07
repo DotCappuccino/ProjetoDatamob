@@ -24,6 +24,11 @@ class _LabelsLoginState extends State<LabelsLogin> {
   final _user = TextEditingController();
   final _senha = TextEditingController();
 
+  abrirMenu(String variable) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => Menu(nameuser: variable)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -85,7 +90,7 @@ class _LabelsLoginState extends State<LabelsLogin> {
                 await Firebase.initializeApp();
                 FirebaseFirestore dataBase = FirebaseFirestore.instance;
                 if (await validaLogin(dataBase, _user.text, _senha.text)) {
-                  Navigator.pushNamed(context, Menu.routeName);
+                  abrirMenu(_user.text.toLowerCase());
                 } else {
                   showDialog(
                     context: context,

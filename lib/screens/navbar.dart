@@ -10,26 +10,19 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
+  final menu = [
+    {"nome": "Teste1", "nome": "Teste2"}
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView(
+        child: Column(children: [
+      ListView(
         children: [
-          MenuBody(),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () => Navigator.pushNamed(context, Login.routeName),
-          ),
-          Divider(),
-          ListTile(
-            title: Text('Exit'),
-            leading: Icon(Icons.exit_to_app),
-            onTap: () => Navigator.pushNamed(context, Login.routeName),
-          ),
+          //MenuBody(),
         ],
       ),
-    );
+    ]));
   }
 }

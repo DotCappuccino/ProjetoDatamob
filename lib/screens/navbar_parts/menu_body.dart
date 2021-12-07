@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projetodatamob/screens/apontamentos.dart';
-import 'package:projetodatamob/screens/login.dart';
 import 'package:projetodatamob/screens/menu_parts/functions_menu.dart';
 
 class MenuBody extends StatefulWidget {
@@ -13,55 +12,25 @@ class MenuBody extends StatefulWidget {
 class _MenuBodyState extends State<MenuBody> {
   @override
   Widget build(BuildContext context) {
-    String user = 'Teste';
-    bool entomologiaVisible = CheckMenus(user, 'Entomologia');
-    bool auditoriaVisible = CheckMenus(user, 'Auditoria');
+    //String user = 'Teste';
+    //CheckMenus(user, 'Entomologia');
+    //bool auditoriaVisible = CheckMenus(user, 'Auditoria');
 
+    final menu = [
+      {'nome': 'Teste1'},
+      {"nome": "Teste2"}
+    ];
+    int menus = menu.length;
     return Container(
       padding: EdgeInsets.only(top: 50),
       child: Column(
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.api_sharp),
-            title: Text('Apontamentos'),
+            title: Text('Apontamentos $menus'),
           ),
           Visibility(
-            visible: entomologiaVisible,
-            child: ExpansionTile(
-              title: Text(
-                "Entomologia",
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Broca Populacional'),
-                  onTap: () {
-                    Navigator.pushNamed(context, Apontamentos.routeName);
-                  },
-                ),
-                ListTile(
-                  title: Text('Broca Rev. Lab.'),
-                  onTap: () {
-                    Navigator.pushNamed(context, Apontamentos.routeName);
-                  },
-                ),
-                ListTile(
-                  title: Text('Broca/Cigarrinha'),
-                  onTap: () {
-                    Navigator.pushNamed(context, Apontamentos.routeName);
-                  },
-                ),
-                ListTile(
-                  title: Text('Broquinha Control. Quimico'),
-                  onTap: () {
-                    Navigator.pushNamed(context, Apontamentos.routeName);
-                  },
-                ),
-              ],
-            ),
-          ),
-          Visibility(
-            visible: auditoriaVisible,
+            visible: true,
             child: ExpansionTile(
               title: Text(
                 "Auditoria",

@@ -1,262 +1,651 @@
-define(['dart_sdk', 'packages/firebase_auth_platform_interface/src/firebase_auth_exception.dart', 'packages/firebase_auth_platform_interface/src/action_code_info.dart', 'packages/firebase_auth_platform_interface/src/additional_user_info.dart', 'packages/firebase_auth_platform_interface/src/id_token_result.dart', 'packages/firebase_auth_platform_interface/src/types.dart', 'packages/firebase_auth_web/src/interop/auth.dart', 'packages/firebase_auth_platform_interface/src/auth_credential.dart'], (function load__packages__firebase_auth_web__src__utils__web_utils_dart(dart_sdk, packages__firebase_auth_platform_interface__src__firebase_auth_exception$46dart, packages__firebase_auth_platform_interface__src__action_code_info$46dart, packages__firebase_auth_platform_interface__src__additional_user_info$46dart, packages__firebase_auth_platform_interface__src__id_token_result$46dart, packages__firebase_auth_platform_interface__src__types$46dart, packages__firebase_auth_web__src__interop__auth$46dart, packages__firebase_auth_platform_interface__src__auth_credential$46dart) {
+define(['dart_sdk', 'packages/plugin_platform_interface/plugin_platform_interface.dart', 'packages/flutter/src/services/system_channels.dart'], (function load__packages__location_platform_interface__location_platform_interface_dart(dart_sdk, packages__plugin_platform_interface__plugin_platform_interface$46dart, packages__flutter__src__services__system_channels$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
   const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
+  const io = dart_sdk.io;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const firebase_auth_exception = packages__firebase_auth_platform_interface__src__firebase_auth_exception$46dart.src__firebase_auth_exception;
-  const action_code_info = packages__firebase_auth_platform_interface__src__action_code_info$46dart.src__action_code_info;
-  const additional_user_info = packages__firebase_auth_platform_interface__src__additional_user_info$46dart.src__additional_user_info;
-  const id_token_result = packages__firebase_auth_platform_interface__src__id_token_result$46dart.src__id_token_result;
-  const types = packages__firebase_auth_platform_interface__src__types$46dart.src__types;
-  const email_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__email_auth;
-  const facebook_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__facebook_auth;
-  const github_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__github_auth;
-  const google_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__google_auth;
-  const twitter_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__twitter_auth;
-  const phone_auth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__phone_auth;
-  const oauth = packages__firebase_auth_platform_interface__src__types$46dart.src__providers__oauth;
-  const platform_interface_recaptcha_verifier_factory = packages__firebase_auth_platform_interface__src__types$46dart.src__platform_interface__platform_interface_recaptcha_verifier_factory;
-  const auth = packages__firebase_auth_web__src__interop__auth$46dart.src__interop__auth;
-  const auth_credential = packages__firebase_auth_platform_interface__src__auth_credential$46dart.src__auth_credential;
-  var web_utils = Object.create(dart.library);
-  var $replaceFirst = dartx.replaceFirst;
+  const plugin_platform_interface = packages__plugin_platform_interface__plugin_platform_interface$46dart.plugin_platform_interface;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  var location_platform_interface = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $toRadixString = dartx.toRadixString;
   var $_get = dartx._get;
-  var $forEach = dartx.forEach;
+  var $runtimeType = dartx.runtimeType;
+  var $hashCode = dartx.hashCode;
   dart._checkModuleNullSafetyMode(true);
   var T = {
     IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
-    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
-    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))()
+    LinkedHashMapOfString$dynamic: () => (T.LinkedHashMapOfString$dynamic = dart.constFn(collection.LinkedHashMap$(core.String, dart.dynamic)))(),
+    MapOfString$dynamic: () => (T.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    dynamicToLocationData: () => (T.dynamicToLocationData = dart.constFn(dart.fnType(location_platform_interface.LocationData, [dart.dynamic])))(),
+    AndroidNotificationDataN: () => (T.AndroidNotificationDataN = dart.constFn(dart.nullable(location_platform_interface.AndroidNotificationData)))(),
+    doubleN: () => (T.doubleN = dart.constFn(dart.nullable(core.double)))(),
+    intN: () => (T.intN = dart.constFn(dart.nullable(core.int)))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: types.Persistence.prototype,
-        [_name]: "Persistence.SESSION",
-        index: 2
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: message_codecs.StandardMessageCodec.prototype
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: types.Persistence.prototype,
-        [_name]: "Persistence.NONE",
-        index: 1
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[2] || CT.C2
       });
     },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: types.Persistence.prototype,
-        [_name]: "Persistence.LOCAL",
-        index: 0
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: platform_channel.MethodChannel.prototype,
+        [MethodChannel__binaryMessenger]: null,
+        [MethodChannel_codec]: C[1] || CT.C1,
+        [MethodChannel_name]: "lyokone/location"
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: platform_interface_recaptcha_verifier_factory.RecaptchaVerifierSize.prototype,
-        [_name$]: "RecaptchaVerifierSize.compact",
-        index: 1
+        __proto__: platform_channel.EventChannel.prototype,
+        [EventChannel__binaryMessenger]: null,
+        [EventChannel_codec]: C[1] || CT.C1,
+        [EventChannel_name]: "lyokone/locationstream"
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: platform_interface_recaptcha_verifier_factory.RecaptchaVerifierSize.prototype,
-        [_name$]: "RecaptchaVerifierSize.normal",
-        index: 0
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.high",
+        index: 3
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: platform_interface_recaptcha_verifier_factory.RecaptchaVerifierTheme.prototype,
-        [_name$]: "RecaptchaVerifierTheme.dark",
-        index: 1
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.powerSave",
+        index: 0
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: platform_interface_recaptcha_verifier_factory.RecaptchaVerifierTheme.prototype,
-        [_name$]: "RecaptchaVerifierTheme.light",
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.low",
+        index: 1
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.balanced",
+        index: 2
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.navigation",
+        index: 4
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.reduced",
+        index: 5
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[4] || CT.C4, C[8] || CT.C8, C[9] || CT.C9], location_platform_interface.LocationAccuracy);
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.granted",
         index: 0
       });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.grantedLimited",
+        index: 1
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.denied",
+        index: 2
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.deniedForever",
+        index: 3
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], location_platform_interface.PermissionStatus);
     }
   }, false);
-  var C = Array(7).fill(void 0);
-  var _name = dart.privateName(types, "_name");
-  var _name$ = dart.privateName(platform_interface_recaptcha_verifier_factory, "_name");
-  web_utils.getFirebaseAuthException = function getFirebaseAuthException(exception) {
-    if (!dart.anonymousJSType("FirebaseError").is(exception)) {
-      return new firebase_auth_exception.FirebaseAuthException.new({code: "unknown", message: "An unknown error occurred: " + dart.str(exception)});
+  var C = Array(16).fill(void 0);
+  var I = ["package:location_platform_interface/location_platform_interface.dart"];
+  location_platform_interface.LocationPlatform = class LocationPlatform extends plugin_platform_interface.PlatformInterface {
+    static get instance() {
+      return location_platform_interface.LocationPlatform._instance;
     }
-    let firebaseError = dart.lazyJSType(() => dart.global.firebase.auth.Error, "firebase.auth.Error").as(exception);
-    let code = firebaseError.code[$replaceFirst]("auth/", "");
-    let message = firebaseError.message[$replaceFirst]("(" + firebaseError.code + ")", "");
-    let firebaseAuthCredential = firebaseError.credential;
-    let credential = dart.anonymousJSType("OAuthCredential").is(firebaseAuthCredential) ? web_utils.convertWebOAuthCredential(firebaseAuthCredential) : web_utils.convertWebAuthCredential(firebaseAuthCredential);
-    return new firebase_auth_exception.FirebaseAuthException.new({code: code, message: message, email: firebaseError.email, credential: credential, phoneNumber: firebaseError.phoneNumber, tenantId: firebaseError.tenantId});
+    static set instance(instance) {
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, location_platform_interface.LocationPlatform._token);
+      location_platform_interface.LocationPlatform._instance = instance;
+    }
+    changeSettings(opts) {
+      let accuracy = opts && 'accuracy' in opts ? opts.accuracy : null;
+      let interval = opts && 'interval' in opts ? opts.interval : null;
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : null;
+      dart.throw(new core.UnimplementedError.new());
+    }
+    isBackgroundModeEnabled() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    enableBackgroundMode(opts) {
+      let enable = opts && 'enable' in opts ? opts.enable : null;
+      dart.throw(new core.UnimplementedError.new());
+    }
+    getLocation() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    hasPermission() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    requestPermission() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    serviceEnabled() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    requestService() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    get onLocationChanged() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    changeNotificationOptions(opts) {
+      let channelName = opts && 'channelName' in opts ? opts.channelName : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let iconName = opts && 'iconName' in opts ? opts.iconName : null;
+      let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
+      let description = opts && 'description' in opts ? opts.description : null;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let onTapBringToFront = opts && 'onTapBringToFront' in opts ? opts.onTapBringToFront : null;
+      dart.throw(new core.UnimplementedError.new());
+    }
   };
-  web_utils.convertWebActionCodeInfo = function convertWebActionCodeInfo(webActionCodeInfo) {
-    if (webActionCodeInfo == null) {
+  (location_platform_interface.LocationPlatform.new = function() {
+    location_platform_interface.LocationPlatform.__proto__.new.call(this, {token: location_platform_interface.LocationPlatform._token});
+    ;
+  }).prototype = location_platform_interface.LocationPlatform.prototype;
+  dart.addTypeTests(location_platform_interface.LocationPlatform);
+  dart.addTypeCaches(location_platform_interface.LocationPlatform);
+  dart.setMethodSignature(location_platform_interface.LocationPlatform, () => ({
+    __proto__: dart.getMethods(location_platform_interface.LocationPlatform.__proto__),
+    changeSettings: dart.fnType(async.Future$(core.bool), [], {accuracy: dart.nullable(location_platform_interface.LocationAccuracy), distanceFilter: dart.nullable(core.double), interval: dart.nullable(core.int)}, {}),
+    isBackgroundModeEnabled: dart.fnType(async.Future$(core.bool), []),
+    enableBackgroundMode: dart.fnType(async.Future$(core.bool), [], {enable: dart.nullable(core.bool)}, {}),
+    getLocation: dart.fnType(async.Future$(location_platform_interface.LocationData), []),
+    hasPermission: dart.fnType(async.Future$(location_platform_interface.PermissionStatus), []),
+    requestPermission: dart.fnType(async.Future$(location_platform_interface.PermissionStatus), []),
+    serviceEnabled: dart.fnType(async.Future$(core.bool), []),
+    requestService: dart.fnType(async.Future$(core.bool), []),
+    changeNotificationOptions: dart.fnType(async.Future$(dart.nullable(location_platform_interface.AndroidNotificationData)), [], {channelName: dart.nullable(core.String), color: dart.nullable(ui.Color), description: dart.nullable(core.String), iconName: dart.nullable(core.String), onTapBringToFront: dart.nullable(core.bool), subtitle: dart.nullable(core.String), title: dart.nullable(core.String)}, {})
+  }));
+  dart.setGetterSignature(location_platform_interface.LocationPlatform, () => ({
+    __proto__: dart.getGetters(location_platform_interface.LocationPlatform.__proto__),
+    onLocationChanged: async.Stream$(location_platform_interface.LocationData)
+  }));
+  dart.setLibraryUri(location_platform_interface.LocationPlatform, I[0]);
+  dart.defineLazy(location_platform_interface.LocationPlatform, {
+    /*location_platform_interface.LocationPlatform._token*/get _token() {
+      return new core.Object.new();
+    },
+    /*location_platform_interface.LocationPlatform._instance*/get _instance() {
+      return location_platform_interface.MethodChannelLocation.new();
+    },
+    set _instance(_) {}
+  }, false);
+  var _onLocationChanged = dart.privateName(location_platform_interface, "_onLocationChanged");
+  var _methodChannel$ = dart.privateName(location_platform_interface, "_methodChannel");
+  var _eventChannel$ = dart.privateName(location_platform_interface, "_eventChannel");
+  var MethodChannel__binaryMessenger = dart.privateName(platform_channel, "MethodChannel._binaryMessenger");
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  var MethodChannel_codec = dart.privateName(platform_channel, "MethodChannel.codec");
+  var MethodChannel_name = dart.privateName(platform_channel, "MethodChannel.name");
+  var EventChannel__binaryMessenger = dart.privateName(platform_channel, "EventChannel._binaryMessenger");
+  var EventChannel_codec = dart.privateName(platform_channel, "EventChannel.codec");
+  var EventChannel_name = dart.privateName(platform_channel, "EventChannel.name");
+  var _name$ = dart.privateName(location_platform_interface, "_name");
+  var _parsePermissionStatus = dart.privateName(location_platform_interface, "_parsePermissionStatus");
+  location_platform_interface.MethodChannelLocation = class MethodChannelLocation extends location_platform_interface.LocationPlatform {
+    static new() {
+      if (location_platform_interface.MethodChannelLocation._instance == null) {
+        let methodChannel = C[0] || CT.C0;
+        let eventChannel = C[3] || CT.C3;
+        location_platform_interface.MethodChannelLocation._instance = new location_platform_interface.MethodChannelLocation.private(methodChannel, eventChannel);
+      }
+      return dart.nullCheck(location_platform_interface.MethodChannelLocation._instance);
+    }
+    changeSettings(opts) {
+      let accuracy = opts && 'accuracy' in opts ? opts.accuracy : C[4] || CT.C4;
+      let interval = opts && 'interval' in opts ? opts.interval : 1000;
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : 0;
+      return async.async(core.bool, (function* changeSettings() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "changeSettings", new (T.IdentityMapOfString$dynamic()).from(["accuracy", dart.nullCheck(accuracy).index, "interval", interval, "distanceFilter", distanceFilter])));
+        return result === 1;
+      }).bind(this));
+    }
+    isBackgroundModeEnabled() {
+      return async.async(core.bool, (function* isBackgroundModeEnabled() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "isBackgroundModeEnabled"));
+        return result === 1;
+      }).bind(this));
+    }
+    enableBackgroundMode(opts) {
+      let enable = opts && 'enable' in opts ? opts.enable : null;
+      return async.async(core.bool, (function* enableBackgroundMode() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "enableBackgroundMode", new (T.IdentityMapOfString$dynamic()).from(["enable", enable])));
+        return result === 1;
+      }).bind(this));
+    }
+    getLocation() {
+      return async.async(location_platform_interface.LocationData, (function* getLocation() {
+        let resultMap = (yield dart.nullCheck(this[_methodChannel$]).invokeMapMethod(core.String, dart.dynamic, "getLocation"));
+        if (resultMap == null) {
+          dart.throw(new message_codec.PlatformException.new({code: "NULL_RESULT", message: "The results from getLocation is null"}));
+        }
+        return location_platform_interface.LocationData.fromMap(resultMap);
+      }).bind(this));
+    }
+    hasPermission() {
+      return async.async(location_platform_interface.PermissionStatus, (function* hasPermission() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "hasPermission"));
+        return this[_parsePermissionStatus](result);
+      }).bind(this));
+    }
+    requestPermission() {
+      return async.async(location_platform_interface.PermissionStatus, (function* requestPermission() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "requestPermission"));
+        return this[_parsePermissionStatus](result);
+      }).bind(this));
+    }
+    [_parsePermissionStatus](result) {
+      switch (result) {
+        case 0:
+        {
+          return location_platform_interface.PermissionStatus.denied;
+        }
+        case 1:
+        {
+          return location_platform_interface.PermissionStatus.granted;
+        }
+        case 2:
+        {
+          return location_platform_interface.PermissionStatus.deniedForever;
+        }
+        case 3:
+        {
+          return location_platform_interface.PermissionStatus.grantedLimited;
+        }
+        default:
+        {
+          dart.throw(new message_codec.PlatformException.new({code: "UNKNOWN_NATIVE_MESSAGE", message: "Could not decode parsePermissionStatus with " + dart.str(result)}));
+        }
+      }
+    }
+    serviceEnabled() {
+      return async.async(core.bool, (function* serviceEnabled() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "serviceEnabled"));
+        return result === 1;
+      }).bind(this));
+    }
+    requestService() {
+      return async.async(core.bool, (function* requestService() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "requestService"));
+        return result === 1;
+      }).bind(this));
+    }
+    get onLocationChanged() {
+      let t0;
+      t0 = this[_onLocationChanged];
+      return t0 == null ? this[_onLocationChanged] = dart.nullCheck(this[_eventChannel$]).receiveBroadcastStream().map(location_platform_interface.LocationData, dart.fn(event => location_platform_interface.LocationData.fromMap(T.LinkedHashMapOfString$dynamic().of(T.MapOfString$dynamic().as(dart.dgsend(event, [core.String, dart.dynamic], 'cast', [])))), T.dynamicToLocationData())) : t0;
+    }
+    changeNotificationOptions(opts) {
+      let channelName = opts && 'channelName' in opts ? opts.channelName : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let iconName = opts && 'iconName' in opts ? opts.iconName : null;
+      let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
+      let description = opts && 'description' in opts ? opts.description : null;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let onTapBringToFront = opts && 'onTapBringToFront' in opts ? opts.onTapBringToFront : null;
+      return async.async(T.AndroidNotificationDataN(), (function* changeNotificationOptions() {
+        if (!io.Platform.isAndroid) {
+          return null;
+        }
+        let data = new (T.IdentityMapOfString$dynamic()).from(["channelName", channelName, "title", title, "iconName", iconName]);
+        if (subtitle != null) {
+          data[$_set]("subtitle", subtitle);
+        }
+        if (description != null) {
+          data[$_set]("description", description);
+        }
+        if (color != null) {
+          data[$_set]("color", "#" + color.value[$toRadixString](16));
+        }
+        if (onTapBringToFront != null) {
+          data[$_set]("onTapBringToFront", onTapBringToFront);
+        }
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.Map, "changeNotificationOptions", data));
+        return result != null ? location_platform_interface.AndroidNotificationData.fromMap(result) : null;
+      }).bind(this));
+    }
+  };
+  (location_platform_interface.MethodChannelLocation.private = function(_methodChannel, _eventChannel) {
+    this[_onLocationChanged] = null;
+    this[_methodChannel$] = _methodChannel;
+    this[_eventChannel$] = _eventChannel;
+    location_platform_interface.MethodChannelLocation.__proto__.new.call(this);
+    ;
+  }).prototype = location_platform_interface.MethodChannelLocation.prototype;
+  dart.addTypeTests(location_platform_interface.MethodChannelLocation);
+  dart.addTypeCaches(location_platform_interface.MethodChannelLocation);
+  dart.setMethodSignature(location_platform_interface.MethodChannelLocation, () => ({
+    __proto__: dart.getMethods(location_platform_interface.MethodChannelLocation.__proto__),
+    [_parsePermissionStatus]: dart.fnType(location_platform_interface.PermissionStatus, [dart.nullable(core.int)])
+  }));
+  dart.setLibraryUri(location_platform_interface.MethodChannelLocation, I[0]);
+  dart.setFieldSignature(location_platform_interface.MethodChannelLocation, () => ({
+    __proto__: dart.getFields(location_platform_interface.MethodChannelLocation.__proto__),
+    [_methodChannel$]: dart.finalFieldType(dart.nullable(platform_channel.MethodChannel)),
+    [_eventChannel$]: dart.finalFieldType(dart.nullable(platform_channel.EventChannel)),
+    [_onLocationChanged]: dart.fieldType(dart.nullable(async.Stream$(location_platform_interface.LocationData)))
+  }));
+  dart.defineLazy(location_platform_interface.MethodChannelLocation, {
+    /*location_platform_interface.MethodChannelLocation._instance*/get _instance() {
       return null;
+    },
+    set _instance(_) {}
+  }, false);
+  var latitude$ = dart.privateName(location_platform_interface, "LocationData.latitude");
+  var longitude$ = dart.privateName(location_platform_interface, "LocationData.longitude");
+  var accuracy$ = dart.privateName(location_platform_interface, "LocationData.accuracy");
+  var verticalAccuracy$ = dart.privateName(location_platform_interface, "LocationData.verticalAccuracy");
+  var altitude$ = dart.privateName(location_platform_interface, "LocationData.altitude");
+  var speed$ = dart.privateName(location_platform_interface, "LocationData.speed");
+  var speedAccuracy$ = dart.privateName(location_platform_interface, "LocationData.speedAccuracy");
+  var heading$ = dart.privateName(location_platform_interface, "LocationData.heading");
+  var time$ = dart.privateName(location_platform_interface, "LocationData.time");
+  var isMock$ = dart.privateName(location_platform_interface, "LocationData.isMock");
+  var headingAccuracy$ = dart.privateName(location_platform_interface, "LocationData.headingAccuracy");
+  var elapsedRealtimeNanos$ = dart.privateName(location_platform_interface, "LocationData.elapsedRealtimeNanos");
+  var elapsedRealtimeUncertaintyNanos$ = dart.privateName(location_platform_interface, "LocationData.elapsedRealtimeUncertaintyNanos");
+  var satelliteNumber$ = dart.privateName(location_platform_interface, "LocationData.satelliteNumber");
+  var provider$ = dart.privateName(location_platform_interface, "LocationData.provider");
+  location_platform_interface.LocationData = class LocationData extends core.Object {
+    get latitude() {
+      return this[latitude$];
     }
-    return new action_code_info.ActionCodeInfo.new({operation: 0, data: new (T.IdentityMapOfString$dynamic()).from(["email", webActionCodeInfo.data.email, "previousEmail", webActionCodeInfo.data.previousEmail])});
-  };
-  web_utils.convertWebAdditionalUserInfo = function convertWebAdditionalUserInfo(webAdditionalUserInfo) {
-    if (webAdditionalUserInfo == null) {
-      return null;
+    set latitude(value) {
+      super.latitude = value;
     }
-    return new additional_user_info.AdditionalUserInfo.new({isNewUser: webAdditionalUserInfo.isNewUser, profile: webAdditionalUserInfo.profile, providerId: webAdditionalUserInfo.providerId, username: webAdditionalUserInfo.username});
-  };
-  web_utils.convertWebIdTokenResult = function convertWebIdTokenResult(webIdTokenResult) {
-    return new id_token_result.IdTokenResult.new(new (T.IdentityMapOfString$dynamic()).from(["claims", webIdTokenResult.claims, "expirationTimestamp", webIdTokenResult.expirationTime.millisecondsSinceEpoch, "issuedAtTimestamp", webIdTokenResult.issuedAtTime.millisecondsSinceEpoch, "authTimestamp", webIdTokenResult.authTime.millisecondsSinceEpoch, "signInProvider", webIdTokenResult.signInProvider, "signInSecondFactor", null, "token", webIdTokenResult.token]));
-  };
-  web_utils.convertPlatformActionCodeSettings = function convertPlatformActionCodeSettings(actionCodeSettings) {
-    if (actionCodeSettings == null) {
-      return null;
+    get longitude() {
+      return this[longitude$];
     }
-    let actionCodeSettingsMap = actionCodeSettings.asMap();
-    let webActionCodeSettings = {url: actionCodeSettings.url, handleCodeInApp: actionCodeSettings.handleCodeInApp};
-    if (actionCodeSettingsMap[$_get]("android") != null) {
-      webActionCodeSettings.android = {packageName: T.StringN().as(dart.dsend(actionCodeSettingsMap[$_get]("android"), '_get', ["packageName"])), minimumVersion: T.StringN().as(dart.dsend(actionCodeSettingsMap[$_get]("android"), '_get', ["minimumVersion"])), installApp: T.boolN().as(dart.dsend(actionCodeSettingsMap[$_get]("android"), '_get', ["installApp"]))};
+    set longitude(value) {
+      super.longitude = value;
     }
-    if (actionCodeSettingsMap[$_get]("iOS") != null) {
-      webActionCodeSettings.iOS = {bundleId: T.StringN().as(dart.dsend(actionCodeSettingsMap[$_get]("iOS"), '_get', ["bundleId"]))};
+    get accuracy() {
+      return this[accuracy$];
     }
-    return webActionCodeSettings;
-  };
-  web_utils.convertPlatformPersistence = function convertPlatformPersistence(persistence) {
-    switch (persistence) {
-      case C[0] || CT.C0:
-      {
-        return "session";
-      }
-      case C[1] || CT.C1:
-      {
-        return "none";
-      }
-      case C[2] || CT.C2:
-      default:
-      {
-        return "local";
-      }
+    set accuracy(value) {
+      super.accuracy = value;
     }
-  };
-  web_utils.convertPlatformAuthProvider = function convertPlatformAuthProvider(authProvider) {
-    if (email_auth.EmailAuthProvider.is(authProvider)) {
-      return auth.EmailAuthProvider.new();
+    get verticalAccuracy() {
+      return this[verticalAccuracy$];
     }
-    if (facebook_auth.FacebookAuthProvider.is(authProvider)) {
-      let facebookAuthProvider = auth.FacebookAuthProvider.new();
-      authProvider.scopes[$forEach](dart.bind(facebookAuthProvider, 'addScope'));
-      facebookAuthProvider.setCustomParameters(authProvider.parameters);
-      return facebookAuthProvider;
+    set verticalAccuracy(value) {
+      super.verticalAccuracy = value;
     }
-    if (github_auth.GithubAuthProvider.is(authProvider)) {
-      let githubAuthProvider = auth.GithubAuthProvider.new();
-      authProvider.scopes[$forEach](dart.bind(githubAuthProvider, 'addScope'));
-      githubAuthProvider.setCustomParameters(authProvider.parameters);
-      return githubAuthProvider;
+    get altitude() {
+      return this[altitude$];
     }
-    if (google_auth.GoogleAuthProvider.is(authProvider)) {
-      let googleAuthProvider = auth.GoogleAuthProvider.new();
-      authProvider.scopes[$forEach](dart.bind(googleAuthProvider, 'addScope'));
-      googleAuthProvider.setCustomParameters(authProvider.parameters);
-      return googleAuthProvider;
+    set altitude(value) {
+      super.altitude = value;
     }
-    if (twitter_auth.TwitterAuthProvider.is(authProvider)) {
-      let twitterAuthProvider = auth.TwitterAuthProvider.new();
-      twitterAuthProvider.setCustomParameters(authProvider.parameters);
-      return twitterAuthProvider;
+    get speed() {
+      return this[speed$];
     }
-    if (phone_auth.PhoneAuthProvider.is(authProvider)) {
-      return auth.PhoneAuthProvider.new();
+    set speed(value) {
+      super.speed = value;
     }
-    if (oauth.OAuthProvider.is(authProvider)) {
-      let oAuthProvider = auth.OAuthProvider.new(authProvider.providerId);
-      authProvider.scopes[$forEach](dart.bind(oAuthProvider, 'addScope'));
-      oAuthProvider.setCustomParameters(authProvider.parameters);
-      return oAuthProvider;
+    get speedAccuracy() {
+      return this[speedAccuracy$];
     }
-    dart.throw(new core.FallThroughError.new());
-  };
-  web_utils.convertWebAuthCredential = function convertWebAuthCredential(authCredential) {
-    if (authCredential == null) {
-      return null;
+    set speedAccuracy(value) {
+      super.speedAccuracy = value;
     }
-    return new auth_credential.AuthCredential.new({providerId: authCredential.providerId, signInMethod: authCredential.signInMethod});
-  };
-  web_utils.convertWebOAuthCredential = function convertWebOAuthCredential(oAuthCredential) {
-    if (oAuthCredential == null) {
-      return null;
+    get heading() {
+      return this[heading$];
     }
-    return new oauth.OAuthProvider.new(oAuthCredential.providerId).credential({accessToken: oAuthCredential.accessToken, secret: oAuthCredential.secret, idToken: oAuthCredential.idToken});
-  };
-  web_utils.convertPlatformCredential = function convertPlatformCredential(credential) {
-    if (email_auth.EmailAuthCredential.is(credential)) {
-      if (credential.emailLink != null) {
-        return auth.EmailAuthProvider.credentialWithLink(credential.email, dart.nullCheck(credential.emailLink));
-      }
-      return auth.EmailAuthProvider.credential(credential.email, dart.nullCheck(credential.password));
+    set heading(value) {
+      super.heading = value;
     }
-    if (facebook_auth.FacebookAuthCredential.is(credential)) {
-      return auth.FacebookAuthProvider.credential(dart.nullCheck(credential.accessToken));
+    get time() {
+      return this[time$];
     }
-    if (github_auth.GithubAuthCredential.is(credential)) {
-      return auth.GithubAuthProvider.credential(dart.nullCheck(credential.accessToken));
+    set time(value) {
+      super.time = value;
     }
-    if (google_auth.GoogleAuthCredential.is(credential)) {
-      return auth.GoogleAuthProvider.credential(credential.idToken, credential.accessToken);
+    get isMock() {
+      return this[isMock$];
     }
-    if (oauth.OAuthCredential.is(credential)) {
-      return auth.OAuthProvider.new(credential.providerId).credential(credential.idToken, credential.accessToken);
+    set isMock(value) {
+      super.isMock = value;
     }
-    if (twitter_auth.TwitterAuthCredential.is(credential)) {
-      return auth.TwitterAuthProvider.credential(dart.nullCheck(credential.accessToken), dart.nullCheck(credential.secret));
+    get headingAccuracy() {
+      return this[headingAccuracy$];
     }
-    if (phone_auth.PhoneAuthCredential.is(credential)) {
-      return auth.PhoneAuthProvider.credential(dart.nullCheck(credential.verificationId), dart.nullCheck(credential.smsCode));
+    set headingAccuracy(value) {
+      super.headingAccuracy = value;
     }
-    if (oauth.OAuthCredential.is(credential)) {
-      return auth.OAuthProvider.new(credential.providerId).credential(credential.idToken, credential.accessToken);
+    get elapsedRealtimeNanos() {
+      return this[elapsedRealtimeNanos$];
     }
-    return null;
-  };
-  web_utils.convertRecaptchaVerifierSize = function convertRecaptchaVerifierSize(size) {
-    switch (size) {
-      case C[3] || CT.C3:
-      {
-        return "compact";
-      }
-      case C[4] || CT.C4:
-      default:
-      {
-        return "normal";
-      }
+    set elapsedRealtimeNanos(value) {
+      super.elapsedRealtimeNanos = value;
+    }
+    get elapsedRealtimeUncertaintyNanos() {
+      return this[elapsedRealtimeUncertaintyNanos$];
+    }
+    set elapsedRealtimeUncertaintyNanos(value) {
+      super.elapsedRealtimeUncertaintyNanos = value;
+    }
+    get satelliteNumber() {
+      return this[satelliteNumber$];
+    }
+    set satelliteNumber(value) {
+      super.satelliteNumber = value;
+    }
+    get provider() {
+      return this[provider$];
+    }
+    set provider(value) {
+      super.provider = value;
+    }
+    static fromMap(dataMap) {
+      return new location_platform_interface.LocationData.__(T.doubleN().as(dataMap[$_get]("latitude")), T.doubleN().as(dataMap[$_get]("longitude")), T.doubleN().as(dataMap[$_get]("accuracy")), T.doubleN().as(dataMap[$_get]("altitude")), T.doubleN().as(dataMap[$_get]("speed")), T.doubleN().as(dataMap[$_get]("speed_accuracy")), T.doubleN().as(dataMap[$_get]("heading")), T.doubleN().as(dataMap[$_get]("time")), dart.equals(dataMap[$_get]("isMock"), 1), T.doubleN().as(dataMap[$_get]("verticalAccuracy")), T.doubleN().as(dataMap[$_get]("headingAccuracy")), T.doubleN().as(dataMap[$_get]("elapsedRealtimeNanos")), T.doubleN().as(dataMap[$_get]("elapsedRealtimeUncertaintyNanos")), T.intN().as(dataMap[$_get]("satelliteNumber")), T.StringN().as(dataMap[$_get]("provider")));
+    }
+    toString() {
+      return "LocationData<lat: " + dart.str(this.latitude) + ", long: " + dart.str(this.longitude) + (this.isMock === true ? ", mocked" : "") + ">";
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return this === other || location_platform_interface.LocationData.is(other) && this[$runtimeType]._equals(other[$runtimeType]) && this.latitude == other.latitude && this.longitude == other.longitude && this.accuracy == other.accuracy && this.altitude == other.altitude && this.speed == other.speed && this.speedAccuracy == other.speedAccuracy && this.heading == other.heading && this.time == other.time && this.isMock == other.isMock;
+    }
+    get hashCode() {
+      return (dart.hashCode(this.latitude) ^ dart.hashCode(this.longitude) ^ dart.hashCode(this.accuracy) ^ dart.hashCode(this.altitude) ^ dart.hashCode(this.speed) ^ dart.hashCode(this.speedAccuracy) ^ dart.hashCode(this.heading) ^ dart.hashCode(this.time) ^ dart.hashCode(this.isMock)) >>> 0;
     }
   };
-  web_utils.convertRecaptchaVerifierTheme = function convertRecaptchaVerifierTheme(theme) {
-    switch (theme) {
-      case C[5] || CT.C5:
-      {
-        return "dark";
-      }
-      case C[6] || CT.C6:
-      default:
-      {
-        return "light";
-      }
+  (location_platform_interface.LocationData.__ = function(latitude, longitude, accuracy, altitude, speed, speedAccuracy, heading, time, isMock, verticalAccuracy, headingAccuracy, elapsedRealtimeNanos, elapsedRealtimeUncertaintyNanos, satelliteNumber, provider) {
+    this[latitude$] = latitude;
+    this[longitude$] = longitude;
+    this[accuracy$] = accuracy;
+    this[altitude$] = altitude;
+    this[speed$] = speed;
+    this[speedAccuracy$] = speedAccuracy;
+    this[heading$] = heading;
+    this[time$] = time;
+    this[isMock$] = isMock;
+    this[verticalAccuracy$] = verticalAccuracy;
+    this[headingAccuracy$] = headingAccuracy;
+    this[elapsedRealtimeNanos$] = elapsedRealtimeNanos;
+    this[elapsedRealtimeUncertaintyNanos$] = elapsedRealtimeUncertaintyNanos;
+    this[satelliteNumber$] = satelliteNumber;
+    this[provider$] = provider;
+    ;
+  }).prototype = location_platform_interface.LocationData.prototype;
+  dart.addTypeTests(location_platform_interface.LocationData);
+  dart.addTypeCaches(location_platform_interface.LocationData);
+  dart.setLibraryUri(location_platform_interface.LocationData, I[0]);
+  dart.setFieldSignature(location_platform_interface.LocationData, () => ({
+    __proto__: dart.getFields(location_platform_interface.LocationData.__proto__),
+    latitude: dart.finalFieldType(dart.nullable(core.double)),
+    longitude: dart.finalFieldType(dart.nullable(core.double)),
+    accuracy: dart.finalFieldType(dart.nullable(core.double)),
+    verticalAccuracy: dart.finalFieldType(dart.nullable(core.double)),
+    altitude: dart.finalFieldType(dart.nullable(core.double)),
+    speed: dart.finalFieldType(dart.nullable(core.double)),
+    speedAccuracy: dart.finalFieldType(dart.nullable(core.double)),
+    heading: dart.finalFieldType(dart.nullable(core.double)),
+    time: dart.finalFieldType(dart.nullable(core.double)),
+    isMock: dart.finalFieldType(dart.nullable(core.bool)),
+    headingAccuracy: dart.finalFieldType(dart.nullable(core.double)),
+    elapsedRealtimeNanos: dart.finalFieldType(dart.nullable(core.double)),
+    elapsedRealtimeUncertaintyNanos: dart.finalFieldType(dart.nullable(core.double)),
+    satelliteNumber: dart.finalFieldType(dart.nullable(core.int)),
+    provider: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  dart.defineExtensionMethods(location_platform_interface.LocationData, ['toString', '_equals']);
+  dart.defineExtensionAccessors(location_platform_interface.LocationData, ['hashCode']);
+  location_platform_interface.LocationAccuracy = class LocationAccuracy extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  dart.trackLibraries("packages/firebase_auth_web/src/utils/web_utils.dart", {
-    "package:firebase_auth_web/src/utils/web_utils.dart": web_utils
+  (location_platform_interface.LocationAccuracy.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = location_platform_interface.LocationAccuracy.prototype;
+  dart.addTypeTests(location_platform_interface.LocationAccuracy);
+  dart.addTypeCaches(location_platform_interface.LocationAccuracy);
+  dart.setLibraryUri(location_platform_interface.LocationAccuracy, I[0]);
+  dart.setFieldSignature(location_platform_interface.LocationAccuracy, () => ({
+    __proto__: dart.getFields(location_platform_interface.LocationAccuracy.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(location_platform_interface.LocationAccuracy, ['toString']);
+  location_platform_interface.LocationAccuracy.powerSave = C[5] || CT.C5;
+  location_platform_interface.LocationAccuracy.low = C[6] || CT.C6;
+  location_platform_interface.LocationAccuracy.balanced = C[7] || CT.C7;
+  location_platform_interface.LocationAccuracy.high = C[4] || CT.C4;
+  location_platform_interface.LocationAccuracy.navigation = C[8] || CT.C8;
+  location_platform_interface.LocationAccuracy.reduced = C[9] || CT.C9;
+  location_platform_interface.LocationAccuracy.values = C[10] || CT.C10;
+  location_platform_interface.PermissionStatus = class PermissionStatus extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (location_platform_interface.PermissionStatus.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = location_platform_interface.PermissionStatus.prototype;
+  dart.addTypeTests(location_platform_interface.PermissionStatus);
+  dart.addTypeCaches(location_platform_interface.PermissionStatus);
+  dart.setLibraryUri(location_platform_interface.PermissionStatus, I[0]);
+  dart.setFieldSignature(location_platform_interface.PermissionStatus, () => ({
+    __proto__: dart.getFields(location_platform_interface.PermissionStatus.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(location_platform_interface.PermissionStatus, ['toString']);
+  location_platform_interface.PermissionStatus.granted = C[11] || CT.C11;
+  location_platform_interface.PermissionStatus.grantedLimited = C[12] || CT.C12;
+  location_platform_interface.PermissionStatus.denied = C[13] || CT.C13;
+  location_platform_interface.PermissionStatus.deniedForever = C[14] || CT.C14;
+  location_platform_interface.PermissionStatus.values = C[15] || CT.C15;
+  var channelId$ = dart.privateName(location_platform_interface, "AndroidNotificationData.channelId");
+  var notificationId$ = dart.privateName(location_platform_interface, "AndroidNotificationData.notificationId");
+  location_platform_interface.AndroidNotificationData = class AndroidNotificationData extends core.Object {
+    get channelId() {
+      return this[channelId$];
+    }
+    set channelId(value) {
+      super.channelId = value;
+    }
+    get notificationId() {
+      return this[notificationId$];
+    }
+    set notificationId(value) {
+      super.notificationId = value;
+    }
+    static fromMap(data) {
+      return new location_platform_interface.AndroidNotificationData.__(core.String.as(data[$_get]("channelId")), core.int.as(data[$_get]("notificationId")));
+    }
+    toString() {
+      return "AndroidNotificationData<channelId: " + this.channelId + ", notificationId: " + dart.str(this.notificationId) + ">";
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return this === other || location_platform_interface.AndroidNotificationData.is(other) && this[$runtimeType]._equals(other[$runtimeType]) && this.channelId === other.channelId && this.notificationId === other.notificationId;
+    }
+    get hashCode() {
+      return (this.channelId[$hashCode] ^ this.notificationId[$hashCode]) >>> 0;
+    }
+  };
+  (location_platform_interface.AndroidNotificationData.__ = function(channelId, notificationId) {
+    this[channelId$] = channelId;
+    this[notificationId$] = notificationId;
+    ;
+  }).prototype = location_platform_interface.AndroidNotificationData.prototype;
+  dart.addTypeTests(location_platform_interface.AndroidNotificationData);
+  dart.addTypeCaches(location_platform_interface.AndroidNotificationData);
+  dart.setLibraryUri(location_platform_interface.AndroidNotificationData, I[0]);
+  dart.setFieldSignature(location_platform_interface.AndroidNotificationData, () => ({
+    __proto__: dart.getFields(location_platform_interface.AndroidNotificationData.__proto__),
+    channelId: dart.finalFieldType(core.String),
+    notificationId: dart.finalFieldType(core.int)
+  }));
+  dart.defineExtensionMethods(location_platform_interface.AndroidNotificationData, ['toString', '_equals']);
+  dart.defineExtensionAccessors(location_platform_interface.AndroidNotificationData, ['hashCode']);
+  dart.trackLibraries("packages/location_platform_interface/location_platform_interface.dart", {
+    "package:location_platform_interface/location_platform_interface.dart": location_platform_interface
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["web_utils.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/firebase_auth_web/src/utils/web_utils.dart.lib.js"}');
+    "package:location_platform_interface/location_platform_interface.dart": ["src/method_channel_location.dart", "src/types.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["location_platform_interface.dart","src/method_channel_location.dart","src/types.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/location_platform_interface/location_platform_interface.dart.lib.js"}');
   // Exports:
   return {
-    src__utils__web_utils: web_utils
+    location_platform_interface: location_platform_interface
   };
 }));
 
-//# sourceMappingURL=web_utils.dart.lib.js.map
+//# sourceMappingURL=location_platform_interface.dart.lib.js.map
