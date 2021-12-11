@@ -19,16 +19,16 @@ define("main_module.bootstrap", ["web_entrypoint.dart", "dart_sdk"], function(ap
          main();
       });
     }
-    window.$dartAppId = "GlWFfLijsubEheI7Fq3TsQ==";
+    window.$dartAppId = "DcL75d5d1eLplbgF2SBhKw==";
 window.$dartReloadConfiguration = "ReloadConfiguration.none";
 window.$dartModuleStrategy = "require-js";
 window.$loadModuleConfig = require;
 window.$dwdsVersion = "11.0.2";
-window.$dwdsDevHandlerPath = "http://localhost:56392/$dwdsSseHandler";
+window.$dwdsDevHandlerPath = "http://localhost:52710/$dwdsSseHandler";
 window.$dwdsEnableDevtoolsLaunch = true;
 window.$dartEntrypointPath = "main_module.bootstrap.js";
 window.$requireLoader.forceLoadModule("dwds/src/injected/client");
-window.$dartExtensionUri = "http://127.0.0.1:56394/$debug";
+window.$dartExtensionUri = "http://127.0.0.1:52713/$debug";
 
   } else {
     if(window.$dartMainExecuted){
@@ -589,19 +589,17 @@ let modulePaths = {
  "packages/cloud_firestore_web/src/load_bundle_task_web.dart": "packages/cloud_firestore_web/src/load_bundle_task_web.dart.lib",
  "packages/projetodatamob/main.dart": "packages/projetodatamob/main.dart.lib",
  "packages/projetodatamob/theme.dart": "packages/projetodatamob/theme.dart.lib",
- "packages/projetodatamob/screens/Navbar.dart": "packages/projetodatamob/screens/Navbar.dart.lib",
+ "packages/projetodatamob/screens/menu.dart": "packages/projetodatamob/screens/menu.dart.lib",
  "packages/projetodatamob/size.dart": "packages/projetodatamob/size.dart.lib",
- "packages/projetodatamob/screens/navbar_parts/menu_body.dart": "packages/projetodatamob/screens/navbar_parts/menu_body.dart.lib",
- "packages/projetodatamob/screens/menu_parts/functions_menu.dart": "packages/projetodatamob/screens/menu_parts/functions_menu.dart.lib",
+ "packages/projetodatamob/generalfunctions.dart": "packages/projetodatamob/generalfunctions.dart.lib",
+ "packages/projetodatamob/firestore.dart": "packages/projetodatamob/firestore.dart.lib",
+ "packages/cloud_firestore/cloud_firestore.dart": "packages/cloud_firestore/cloud_firestore.dart.lib",
+ "packages/projetodatamob/screens/login_parts/background.dart": "packages/projetodatamob/screens/login_parts/background.dart.lib",
  "packages/projetodatamob/screens/apontamentos.dart": "packages/projetodatamob/screens/apontamentos.dart.lib",
  "packages/projetodatamob/screens/apontamentos_parts/maps.dart": "packages/projetodatamob/screens/apontamentos_parts/maps.dart.lib",
  "packages/location/location.dart": "packages/location/location.dart.lib",
  "packages/projetodatamob/screens/apontamentos_parts/apontamentos_body.dart": "packages/projetodatamob/screens/apontamentos_parts/apontamentos_body.dart.lib",
  "packages/projetodatamob/screens/apontamentos_parts/apontamento_broca_populacional.dart": "packages/projetodatamob/screens/apontamentos_parts/apontamento_broca_populacional.dart.lib",
- "packages/projetodatamob/generalfunctions.dart": "packages/projetodatamob/generalfunctions.dart.lib",
- "packages/projetodatamob/firestore.dart": "packages/projetodatamob/firestore.dart.lib",
- "packages/cloud_firestore/cloud_firestore.dart": "packages/cloud_firestore/cloud_firestore.dart.lib",
- "packages/projetodatamob/screens/login_parts/background.dart": "packages/projetodatamob/screens/login_parts/background.dart.lib",
  "packages/projetodatamob/routes.dart": "packages/projetodatamob/routes.dart.lib"
 };
 let moduleNames = {
@@ -1113,19 +1111,17 @@ let moduleNames = {
  "packages/cloud_firestore_web/src/load_bundle_task_web.dart.lib": "packages/cloud_firestore_web/src/load_bundle_task_web.dart",
  "packages/projetodatamob/main.dart.lib": "packages/projetodatamob/main.dart",
  "packages/projetodatamob/theme.dart.lib": "packages/projetodatamob/theme.dart",
- "packages/projetodatamob/screens/Navbar.dart.lib": "packages/projetodatamob/screens/Navbar.dart",
+ "packages/projetodatamob/screens/menu.dart.lib": "packages/projetodatamob/screens/menu.dart",
  "packages/projetodatamob/size.dart.lib": "packages/projetodatamob/size.dart",
- "packages/projetodatamob/screens/navbar_parts/menu_body.dart.lib": "packages/projetodatamob/screens/navbar_parts/menu_body.dart",
- "packages/projetodatamob/screens/menu_parts/functions_menu.dart.lib": "packages/projetodatamob/screens/menu_parts/functions_menu.dart",
+ "packages/projetodatamob/generalfunctions.dart.lib": "packages/projetodatamob/generalfunctions.dart",
+ "packages/projetodatamob/firestore.dart.lib": "packages/projetodatamob/firestore.dart",
+ "packages/cloud_firestore/cloud_firestore.dart.lib": "packages/cloud_firestore/cloud_firestore.dart",
+ "packages/projetodatamob/screens/login_parts/background.dart.lib": "packages/projetodatamob/screens/login_parts/background.dart",
  "packages/projetodatamob/screens/apontamentos.dart.lib": "packages/projetodatamob/screens/apontamentos.dart",
  "packages/projetodatamob/screens/apontamentos_parts/maps.dart.lib": "packages/projetodatamob/screens/apontamentos_parts/maps.dart",
  "packages/location/location.dart.lib": "packages/location/location.dart",
  "packages/projetodatamob/screens/apontamentos_parts/apontamentos_body.dart.lib": "packages/projetodatamob/screens/apontamentos_parts/apontamentos_body.dart",
  "packages/projetodatamob/screens/apontamentos_parts/apontamento_broca_populacional.dart.lib": "packages/projetodatamob/screens/apontamentos_parts/apontamento_broca_populacional.dart",
- "packages/projetodatamob/generalfunctions.dart.lib": "packages/projetodatamob/generalfunctions.dart",
- "packages/projetodatamob/firestore.dart.lib": "packages/projetodatamob/firestore.dart",
- "packages/cloud_firestore/cloud_firestore.dart.lib": "packages/cloud_firestore/cloud_firestore.dart",
- "packages/projetodatamob/screens/login_parts/background.dart.lib": "packages/projetodatamob/screens/login_parts/background.dart",
  "packages/projetodatamob/routes.dart.lib": "packages/projetodatamob/routes.dart"
 };
 if(!window.$requireLoader) {

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'generalfunctions.dart';
 
 void addLogin(FirebaseFirestore dataBase, String nome, String senha) async {
@@ -43,33 +46,115 @@ Future<bool> validaLogin(
   return retorno;
 }
 
-Future<List> menuExpansionMap(
-    FirebaseFirestore dataBase, String nameUser) async {
-  String codUsuario = '';
-  var mapeamento = [{}];
-
+Future<List<Map<String, String>>> moduloListMap(String user) async {
+  FirebaseFirestore dataBase = FirebaseFirestore.instance;
   CollectionReference aptUsuariosCol = dataBase.collection("APT_USUARIOS_COL");
-  await aptUsuariosCol
-      .where("nom_usuario", isEqualTo: "$nameUser")
-      .get()
-      .then((QuerySnapshot rs) {
-    rs.docs.forEach((documento) {
-      codUsuario = documento['cod_usuario_col'];
-    });
-  });
-
   CollectionReference aptUsuariosColModulos =
       dataBase.collection("APT_USUARIOS_COL_MODULOS");
-  await aptUsuariosColModulos
-      .where("cod_usuario_col", isEqualTo: "$codUsuario")
+  CollectionReference aptModulos = dataBase.collection("APT_MODULOS");
+  CollectionReference aptMenus = dataBase.collection("APT_MENUS");
+
+  var auxAptUsuariosCol;
+  var stringAptUsuariosColModulos = '';
+  List<String> auxAptUsuariosColModulos;
+  List<Map<String, String>> mapeamento = [{}];
+
+  await aptUsuariosCol
+      .where("nom_usuario", isEqualTo: user)
       .get()
       .then((QuerySnapshot rs) {
-    rs.docs.forEach((documento) {
-      mapeamento = [
-        {'': '${documento['nom_usuario']}'},
-      ];
+    rs.docs.forEach((getAptUsuariosCol) {
+      auxAptUsuariosCol = (getAptUsuariosCol['cod_usuario_col'].toString());
+    });
+  });
+  //print("auxAptUsuariosCol > $auxAptUsuariosCol");
+
+  await aptUsuariosColModulos
+      .where("cod_usuario_col", isEqualTo: auxAptUsuariosCol)
+      .get()
+      .then((QuerySnapshot rs) {
+    rs.docs.forEach((getAptUsuariosColModulos) {
+      if (getAptUsuariosColModulos['cod_modulo'] != null ||
+          getAptUsuariosColModulos['cod_modulo'] != '') {
+        stringAptUsuariosColModulos +=
+            "${getAptUsuariosColModulos['cod_modulo']},";
+      }
     });
   });
 
+  stringAptUsuariosColModulos = stringAptUsuariosColModulos.substring(
+      0, stringAptUsuariosColModulos.length - 1);
+
+  auxAptUsuariosColModulos = stringAptUsuariosColModulos.split(",").toList();
+
+  //print("auxAptUsuariosColModulos(List) > $auxAptUsuariosColModulos");
+
+  await aptModulos.get().then(
+    (QuerySnapshot rs) {
+      rs.docs.forEach((getAptModulos) {
+        for (var i = 0; i < auxAptUsuariosColModulos.length; i++) {
+          if (getAptModulos["cod_modulo"].toString() ==
+              auxAptUsuariosColModulos[i]) {
+            mapeamento += [
+              {
+                "cod_menu": getAptModulos["cod_menu"].toString(),
+                "cod_modulo": getAptModulos["cod_modulo"].toString(),
+                "des_modulo": getAptModulos["des_modulo"].toString(),
+              }
+            ];
+          }
+        }
+      });
+    },
+  );
+  //print(mapeamento);
   return mapeamento;
 }
+
+Future<List<Map<String, String>>> menuListMap(String user) async {
+  FirebaseFirestore dataBase = FirebaseFirestore.instance;
+  CollectionReference aptMenus = dataBase.collection("APT_MENUS");
+  List<Map<String, String>> mapeamento = [{}];
+
+  await aptMenus.orderBy("nro_ordem").get().then(
+    (querySnap) {
+      querySnap.docs.forEach((document) {
+        var aux = document.data() as Map;
+
+        mapeamento += [
+          {
+            "cod_menu": aux["cod_menu"],
+            "des_menu": aux["des_menu"],
+            "flg_modulo": aux["flg_modulo"],
+            "nro_ordem": aux["nro_ordem"],
+          }
+        ];
+      });
+    },
+  );
+  return mapeamento;
+}
+
+// Future<List<Map<String, String>>> moduloListMap() async {
+//   FirebaseFirestore dataBase = FirebaseFirestore.instance;
+//   CollectionReference aptMenus = dataBase.collection("APT_MENUS");
+//   List<Map<String, String>> mapeamento = [{}];
+//   await aptMenus.orderBy("nro_ordem").get().then(
+//     (querySnap) {
+//       querySnap.docs.forEach((document) {
+//         var aux = document.data() as Map;
+
+//         mapeamento += [
+//           {
+//             "cod_menu": aux["cod_menu"],
+//             "des_menu": aux["des_menu"],
+//             "flg_modulo": aux["flg_modulo"],
+//             "nro_ordem": aux["nro_ordem"],
+//           }
+//         ];
+//       });
+//     },
+//   );
+
+//   return mapeamento;
+// }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projetodatamob/screens/apontamentos.dart';
-import 'package:projetodatamob/screens/menu_parts/functions_menu.dart';
 
 class MenuBody extends StatefulWidget {
   const MenuBody({Key? key}) : super(key: key);
