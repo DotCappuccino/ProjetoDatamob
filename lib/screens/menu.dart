@@ -17,6 +17,8 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   late String name = widget.nameuser;
 
+  late List<Map<String, String>> cardList = [];
+
   late List<Map<String, String>> menu = [];
 
   late List<Map<String, String>> modulo = [];
@@ -38,7 +40,6 @@ class _MenuState extends State<Menu> {
               title: Text('Menus'),
             ),
             Expanded(
-              //height: 50,
               child: FutureBuilder(
                 future: menuListMap(name),
                 builder: (ctx, snapshot) {
@@ -132,17 +133,17 @@ class _MenuState extends State<Menu> {
                 },
               ),
             ),
-            Divider(),
-            ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Configurações'),
-                onTap: () => showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(content: Text('$menu'));
-                      },
-                    ) //Navigator.pushNamed(context, Login.routeName),
-                ),
+            // Divider(),
+            // ListTile(
+            //     leading: Icon(Icons.settings),
+            //     title: Text('Configurações'),
+            //     onTap: () => showDialog(
+            //           context: context,
+            //           builder: (context) {
+            //             return AlertDialog(content: Text('$menu'));
+            //           },
+            //         ) //Navigator.pushNamed(context, Login.routeName),
+            //     ),
             Divider(),
             ListTile(
               title: Text('Exit'),
@@ -160,8 +161,78 @@ class _MenuState extends State<Menu> {
           ),
         ),
       ),
-      body: Stack(
-        children: [Text('Clique no canto superior esquerdo Sr. $name')],
+      body: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ListTile(
+            title: Text(
+              "+ 10 Ultimos Apontamentos",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Divider(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                child: ListView.builder(
+                  padding: EdgeInsets.only(right: 10),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: ((BuildContext context, int x) {
+                    return Container(
+                      width: 200,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black)),
+                      alignment: Alignment.center,
+                      child: ListTile(
+                        title: Text(
+                          "Apontamento ${x + 1}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () => Navigator.pushNamed(
+                            context, Apontamentos.routeName),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+
+              // Container(
+              //   width: 200,
+              //   height: 60,
+              //   //color: Colors.red,
+              //   decoration:
+              //       BoxDecoration(border: Border.all(color: Colors.black)),
+              //   alignment: Alignment.center,
+              //   child: ListTile(
+              //     title: Text(
+              //       "Apontamento x",
+              //       textAlign: TextAlign.center,
+              //       style: TextStyle(
+              //         fontSize: 18.0,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //     onTap: () =>
+              //         Navigator.pushNamed(context, Apontamentos.routeName),
+              //   ),
+              // ),
+            ],
+          ),
+        ],
       ),
     );
   }
