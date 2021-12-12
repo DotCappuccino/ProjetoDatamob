@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projetodatamob/screens/apontamentos_parts/apontamento_broca_populacional.dart';
 import 'package:projetodatamob/screens/apontamentos_parts/apontamentos_body.dart';
 import 'package:projetodatamob/screens/apontamentos_parts/maps.dart';
 import 'package:projetodatamob/size.dart';
@@ -18,17 +17,7 @@ class _ApontamentosState extends State<Apontamentos> {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: new AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Apontamentos.routeName);
-            },
-            icon: Icon(Icons.add_circle_outline_sharp),
-          ),
-          //Text('Adicionar Novo'),
-        ],
-      ),
+      appBar: new AppBar(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -59,10 +48,10 @@ class _ApontamentosState extends State<Apontamentos> {
           ),
         ],
       ),
-      body: Stack(
+      body: Column(
         children: [
           ApontamentosBody(),
-          ApontamentoBP(),
+          //ApontamentoBP(),
         ],
       ),
     );

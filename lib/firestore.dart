@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'generalfunctions.dart';
 
 void addLogin(FirebaseFirestore dataBase, String nome, String senha) async {
@@ -52,7 +49,6 @@ Future<List<Map<String, String>>> moduloListMap(String user) async {
   CollectionReference aptUsuariosColModulos =
       dataBase.collection("APT_USUARIOS_COL_MODULOS");
   CollectionReference aptModulos = dataBase.collection("APT_MODULOS");
-  CollectionReference aptMenus = dataBase.collection("APT_MENUS");
 
   var auxAptUsuariosCol;
   var stringAptUsuariosColModulos = '';
@@ -135,26 +131,87 @@ Future<List<Map<String, String>>> menuListMap(String user) async {
   return mapeamento;
 }
 
-// Future<List<Map<String, String>>> moduloListMap() async {
-//   FirebaseFirestore dataBase = FirebaseFirestore.instance;
-//   CollectionReference aptMenus = dataBase.collection("APT_MENUS");
-//   List<Map<String, String>> mapeamento = [{}];
-//   await aptMenus.orderBy("nro_ordem").get().then(
-//     (querySnap) {
-//       querySnap.docs.forEach((document) {
-//         var aux = document.data() as Map;
+Future<List<String>> getSecaoApontamento(FirebaseFirestore dataBase) async {
+  List<String> listSecao = [];
+  CollectionReference aptFazendas = dataBase.collection("APT_FAZENDAS");
 
-//         mapeamento += [
-//           {
-//             "cod_menu": aux["cod_menu"],
-//             "des_menu": aux["des_menu"],
-//             "flg_modulo": aux["flg_modulo"],
-//             "nro_ordem": aux["nro_ordem"],
-//           }
-//         ];
-//       });
-//     },
-//   );
+  await aptFazendas.get().then(
+    (querySnap) {
+      querySnap.docs.forEach((document) {
+        var aux = document.data() as Map;
+        listSecao += [aux["des_fazenda"]];
+      });
+    },
+  );
+  return listSecao;
+}
 
-//   return mapeamento;
-// }
+Future<List<String>> getQuadraApontamento(
+    FirebaseFirestore dataBase, selectSecao) async {
+  List<String> listQuadra = [];
+
+  CollectionReference aptFazendas = dataBase.collection("APT_FAZENDAS");
+  CollectionReference aptTalhoes = dataBase.collection("APT_TALHOES");
+
+  String codFazenda = '';
+
+  await aptFazendas
+      .where("des_fazenda", isEqualTo: selectSecao.toString())
+      .get()
+      .then((querySnap) {
+    querySnap.docs.forEach((document) {
+      var auxFazenda = document.data() as Map;
+      codFazenda = auxFazenda["cod_fazenda"];
+    });
+  });
+
+  //if (codFazenda.isEmpty) throw Exception("Erro, codFazenda não pode ser null");
+
+  await aptTalhoes
+      .where("cod_fazenda", isEqualTo: codFazenda)
+      .get()
+      .then((querySnap) {
+    querySnap.docs.forEach((document) {
+      var auxQuadra = document.data() as Map;
+      listQuadra += [auxQuadra["cod_talhao_01"]];
+    });
+  });
+
+  return listQuadra;
+}
+
+Future<List<String>> getTalhoApontamento(
+    FirebaseFirestore dataBase, String selectSecao, String codQuadra) async {
+  List<String> listTalho = ['0'];
+
+  CollectionReference aptFazendas = dataBase.collection("APT_FAZENDAS");
+  CollectionReference aptTalhoes = dataBase.collection("APT_TALHOES");
+
+  String codFazenda = '';
+
+  await aptFazendas
+      .where("des_fazenda", isEqualTo: selectSecao.toString())
+      .get()
+      .then((querySnap) {
+    querySnap.docs.forEach((document) {
+      var auxFazenda = document.data() as Map;
+      codFazenda = auxFazenda["cod_fazenda"];
+    });
+  });
+
+  //if (codFazenda.isEmpty) throw Exception("Erro, codFazenda não pode ser null");
+  //if (codFazenda.isEmpty) throw Exception("Erro, codFazenda não pode ser null");
+
+  await aptTalhoes
+      .where("cod_fazenda", isEqualTo: codFazenda)
+      .where("cod_talhao_01", isEqualTo: codQuadra)
+      .get()
+      .then((querySnap) {
+    querySnap.docs.forEach((document) {
+      var auxTalho2 = document.data() as Map;
+      listTalho += [auxTalho2["cod_talhao_02"]];
+    });
+  });
+
+  return listTalho;
+}

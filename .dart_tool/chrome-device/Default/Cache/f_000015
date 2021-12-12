@@ -1,869 +1,842 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/debug.dart', 'packages/collection/src/priority_queue.dart', 'packages/flutter/src/foundation/print.dart', 'packages/flutter/src/scheduler/debug.dart', 'packages/flutter/src/foundation/binding.dart', 'packages/flutter/src/scheduler/priority.dart'], (function load__packages__flutter__src__scheduler__binding_dart(dart_sdk, packages__flutter__src__foundation__debug$46dart, packages__collection__src__priority_queue$46dart, packages__flutter__src__foundation__print$46dart, packages__flutter__src__scheduler__debug$46dart, packages__flutter__src__foundation__binding$46dart, packages__flutter__src__scheduler__priority$46dart) {
+define(['dart_sdk', 'packages/firebase_core_web/src/interop/utils/js.dart', 'packages/firebase_core_web/src/interop/utils/utils.dart', 'packages/firebase_auth_web/src/interop/utils/utils.dart', 'packages/http_parser/src/http_date.dart', 'packages/firebase_core_web/src/interop/app.dart'], (function load__packages__firebase_auth_web__src__interop__auth_dart(dart_sdk, packages__firebase_core_web__src__interop__utils__js$46dart, packages__firebase_core_web__src__interop__utils__utils$46dart, packages__firebase_auth_web__src__interop__utils__utils$46dart, packages__http_parser__src__http_date$46dart, packages__firebase_core_web__src__interop__app$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const async = dart_sdk.async;
-  const _internal = dart_sdk._internal;
-  const developer = dart_sdk.developer;
-  const _interceptors = dart_sdk._interceptors;
-  const ui = dart_sdk.ui;
-  const _js_helper = dart_sdk._js_helper;
-  const collection = dart_sdk.collection;
+  const js = dart_sdk.js;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
-  const priority_queue = packages__collection__src__priority_queue$46dart.src__priority_queue;
-  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
-  const debug$ = packages__flutter__src__scheduler__debug$46dart.src__scheduler__debug;
-  const binding = packages__flutter__src__foundation__binding$46dart.src__foundation__binding;
-  const priority$ = packages__flutter__src__scheduler__priority$46dart.src__scheduler__priority;
-  var binding$ = Object.create(dart.library);
-  var $add = dartx.add;
-  var $length = dartx.length;
-  var $contains = dartx.contains;
-  var $remove = dartx.remove;
-  var $isEmpty = dartx.isEmpty;
-  var $compareTo = dartx.compareTo;
-  var $_set = dartx._set;
-  var $keys = dartx.keys;
-  var $_get = dartx._get;
-  var $trimRight = dartx.trimRight;
-  var $split = dartx.split;
-  var $join = dartx.join;
-  var $round = dartx.round;
-  var $toString = dartx.toString;
-  var $padRight = dartx.padRight;
-  var $padLeft = dartx.padLeft;
-  var $forEach = dartx.forEach;
-  var $clear = dartx.clear;
-  var $times = dartx['*'];
+  const js$ = packages__firebase_core_web__src__interop__utils__js$46dart.src__interop__utils__js;
+  const utils = packages__firebase_core_web__src__interop__utils__utils$46dart.src__interop__utils__utils;
+  const utils$ = packages__firebase_auth_web__src__interop__utils__utils$46dart.src__interop__utils__utils;
+  const http_date = packages__http_parser__src__http_date$46dart.src__http_date;
+  const app = packages__firebase_core_web__src__interop__app$46dart.src__interop__app;
+  var auth$ = Object.create(dart.library);
+  var $map = dartx.map;
+  var $toList = dartx.toList;
   dart._checkModuleNullSafetyMode(true);
-  var T$ = {
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
-    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
-    ListOfFrameTiming: () => (T$.ListOfFrameTiming = dart.constFn(core.List$(ui.FrameTiming)))(),
-    ListOfFrameTimingTovoid: () => (T$.ListOfFrameTimingTovoid = dart.constFn(dart.fnType(dart.void, [T$.ListOfFrameTiming()])))(),
-    JSArrayOfListOfFrameTimingTovoid: () => (T$.JSArrayOfListOfFrameTimingTovoid = dart.constFn(_interceptors.JSArray$(T$.ListOfFrameTimingTovoid())))(),
-    __Tobool: () => (T$.__Tobool = dart.constFn(dart.fnType(core.bool, [], {}, {priority: core.int, scheduler: binding$.SchedulerBinding})))(),
-    HeapPriorityQueueOf_TaskEntry: () => (T$.HeapPriorityQueueOf_TaskEntry = dart.constFn(priority_queue.HeapPriorityQueue$(binding$._TaskEntry)))(),
-    _TaskEntryAnd_TaskEntryToint: () => (T$._TaskEntryAnd_TaskEntryToint = dart.constFn(dart.fnType(core.int, [binding$._TaskEntry, binding$._TaskEntry])))(),
-    IdentityMapOfint$_FrameCallbackEntry: () => (T$.IdentityMapOfint$_FrameCallbackEntry = dart.constFn(_js_helper.IdentityMap$(core.int, binding$._FrameCallbackEntry)))(),
-    _IdentityHashSetOfint: () => (T$._IdentityHashSetOfint = dart.constFn(collection._IdentityHashSet$(core.int)))(),
-    DurationTovoid: () => (T$.DurationTovoid = dart.constFn(dart.fnType(dart.void, [core.Duration])))(),
-    JSArrayOfDurationTovoid: () => (T$.JSArrayOfDurationTovoid = dart.constFn(_interceptors.JSArray$(T$.DurationTovoid())))(),
-    ListOfListOfFrameTimingTovoid: () => (T$.ListOfListOfFrameTimingTovoid = dart.constFn(core.List$(T$.ListOfFrameTimingTovoid())))(),
-    DiagnosticsPropertyOfListOfFrameTimingTovoid: () => (T$.DiagnosticsPropertyOfListOfFrameTimingTovoid = dart.constFn(diagnostics.DiagnosticsProperty$(T$.ListOfFrameTimingTovoid())))(),
-    SyncIterableOfDiagnosticsNode: () => (T$.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
-    IterableOfDiagnosticsNode: () => (T$.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
-    VoidToIterableOfDiagnosticsNode: () => (T$.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T$.IterableOfDiagnosticsNode(), [])))(),
-    FutureOfdouble: () => (T$.FutureOfdouble = dart.constFn(async.Future$(core.double)))(),
-    VoidToFutureOfdouble: () => (T$.VoidToFutureOfdouble = dart.constFn(dart.fnType(T$.FutureOfdouble(), [])))(),
-    FutureOfvoid: () => (T$.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
-    doubleToFutureOfvoid: () => (T$.doubleToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [core.double])))(),
-    LinkedHashMapOfint$_FrameCallbackEntry: () => (T$.LinkedHashMapOfint$_FrameCallbackEntry = dart.constFn(collection.LinkedHashMap$(core.int, binding$._FrameCallbackEntry)))(),
-    CompleterOfvoid: () => (T$.CompleterOfvoid = dart.constFn(async.Completer$(dart.void)))(),
-    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidToFutureOfvoid: () => (T$.VoidToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [])))(),
-    intAnd_FrameCallbackEntryTovoid: () => (T$.intAnd_FrameCallbackEntryTovoid = dart.constFn(dart.fnType(dart.void, [core.int, binding$._FrameCallbackEntry])))(),
-    ListOfDurationTovoid: () => (T$.ListOfDurationTovoid = dart.constFn(core.List$(T$.DurationTovoid())))(),
-    IdentityMapOfString$dynamic: () => (T$.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))()
+  var T = {
+    UserInfoOfUserInfoJsImpl: () => (T.UserInfoOfUserInfoJsImpl = dart.constFn(auth$.UserInfo$(dart.anonymousJSType("UserInfoJsImpl"))))(),
+    dynamicToUserInfoOfUserInfoJsImpl: () => (T.dynamicToUserInfoOfUserInfoJsImpl = dart.constFn(dart.fnType(T.UserInfoOfUserInfoJsImpl(), [dart.dynamic])))(),
+    UserCredentialJsImplToUserCredential: () => (T.UserCredentialJsImplToUserCredential = dart.constFn(dart.fnType(auth$.UserCredential, [dart.anonymousJSType("UserCredentialJsImpl")])))(),
+    ConfirmationResultJsImplToConfirmationResult: () => (T.ConfirmationResultJsImplToConfirmationResult = dart.constFn(dart.fnType(auth$.ConfirmationResult, [dart.lazyJSType(() => dart.global.firebase.auth.ConfirmationResult, "firebase.auth.ConfirmationResult")])))(),
+    UserJsImplToUser: () => (T.UserJsImplToUser = dart.constFn(dart.fnType(auth$.User, [dart.anonymousJSType("UserJsImpl")])))(),
+    IdTokenResultImplToIdTokenResult: () => (T.IdTokenResultImplToIdTokenResult = dart.constFn(dart.fnType(auth$.IdTokenResult, [dart.anonymousJSType("IdTokenResultImpl")])))(),
+    MapOfString$dynamic: () => (T.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    ExpandoOfUser: () => (T.ExpandoOfUser = dart.constFn(core.Expando$(auth$.User)))(),
+    MapNOfString$dynamic: () => (T.MapNOfString$dynamic = dart.constFn(dart.nullable(T.MapOfString$dynamic())))(),
+    UserJsImplNToNull: () => (T.UserJsImplNToNull = dart.constFn(dart.fnType(core.Null, [dart.nullable(dart.anonymousJSType("UserJsImpl"))])))(),
+    dynamicTovoid: () => (T.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    UserN: () => (T.UserN = dart.constFn(dart.nullable(auth$.User)))(),
+    StreamControllerOfUserN: () => (T.StreamControllerOfUserN = dart.constFn(async.StreamController$(T.UserN())))(),
+    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
+    ListToListOfString: () => (T.ListToListOfString = dart.constFn(dart.fnType(T.ListOfString(), [core.List])))(),
+    ExpandoOfAuth: () => (T.ExpandoOfAuth = dart.constFn(core.Expando$(auth$.Auth)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: binding$.SchedulerPhase.prototype,
-        [_name$]: "SchedulerPhase.idle",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: binding$.SchedulerPhase.prototype,
-        [_name$]: "SchedulerPhase.transientCallbacks",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: binding$.SchedulerPhase.prototype,
-        [_name$]: "SchedulerPhase.midFrameMicrotasks",
-        index: 2
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: binding$.SchedulerPhase.prototype,
-        [_name$]: "SchedulerPhase.persistentCallbacks",
-        index: 3
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: binding$.SchedulerPhase.prototype,
-        [_name$]: "SchedulerPhase.postFrameCallbacks",
-        index: 4
-      });
-    },
-    get C5() {
-      return C[5] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4], binding$.SchedulerPhase);
-    },
-    get C6() {
-      return C[6] = dart.fn(binding$.defaultSchedulingStrategy, T$.__Tobool());
-    },
-    get C7() {
-      return C[7] = dart.fn(binding$.SchedulerBinding._taskSorter, T$._TaskEntryAnd_TaskEntryToint());
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: ui.AppLifecycleState.prototype,
-        [_name]: "AppLifecycleState.resumed",
-        index: 0
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: ui.AppLifecycleState.prototype,
-        [_name]: "AppLifecycleState.inactive",
-        index: 1
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.AppLifecycleState.prototype,
-        [_name]: "AppLifecycleState.paused",
-        index: 2
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.AppLifecycleState.prototype,
-        [_name]: "AppLifecycleState.detached",
-        index: 3
-      });
-    }
-  }, false);
-  var C = Array(12).fill(void 0);
   var I = [
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/scheduler/binding.dart",
-    "package:flutter/src/scheduler/binding.dart"
+    "package:firebase_auth_web/src/interop/auth.dart",
+    "file:///C:/flutter/sdk/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.2.0/lib/src/interop/auth.dart"
   ];
-  var ___TaskEntry_debugStack = dart.privateName(binding$, "_#_TaskEntry#debugStack");
-  const _is__TaskEntry_default = Symbol('_is__TaskEntry_default');
-  binding$._TaskEntry$ = dart.generic(T => {
-    var CompleterOfT = () => (CompleterOfT = dart.constFn(async.Completer$(T)))();
-    class _TaskEntry extends core.Object {
-      get debugStack() {
-        let t0;
-        t0 = this[___TaskEntry_debugStack];
-        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("debugStack")) : t0;
+  const _is_UserInfo_default = Symbol('_is_UserInfo_default');
+  auth$.UserInfo$ = dart.generic(T => {
+    class UserInfo extends js$.JsObjectWrapper$(T) {
+      get displayName() {
+        return this.jsObject.displayName;
       }
-      set debugStack(t0) {
-        this[___TaskEntry_debugStack] = t0;
+      get email() {
+        return this.jsObject.email;
       }
-      run() {
-        let t1;
-        if (!false) {
-          developer.Timeline.timeSync(core.Null, (t1 = this.debugLabel, t1 == null ? "Scheduled Task" : t1), dart.fn(() => {
-            this.completer.complete(this.task());
-          }, T$.VoidToNull()), {flow: this.flow != null ? developer.Flow.step(dart.nullCheck(this.flow).id) : null});
-        } else {
-          this.completer.complete(this.task());
-        }
+      get phoneNumber() {
+        return this.jsObject.phoneNumber;
+      }
+      get photoURL() {
+        return this.jsObject.photoURL;
+      }
+      get providerId() {
+        return this.jsObject.providerId;
+      }
+      get uid() {
+        return this.jsObject.uid;
       }
     }
-    (_TaskEntry.new = function(task, priority, debugLabel, flow) {
-      this[___TaskEntry_debugStack] = null;
-      this.completer = CompleterOfT().new();
-      this.task = task;
-      this.priority = priority;
-      this.debugLabel = debugLabel;
-      this.flow = flow;
-      if (!dart.fn(() => {
-        this.debugStack = core.StackTrace.current;
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 62, 12, "() {\r\n      debugStack = StackTrace.current;\r\n      return true;\r\n    }()");
-    }).prototype = _TaskEntry.prototype;
-    dart.addTypeTests(_TaskEntry);
-    _TaskEntry.prototype[_is__TaskEntry_default] = true;
-    dart.addTypeCaches(_TaskEntry);
-    dart.setMethodSignature(_TaskEntry, () => ({
-      __proto__: dart.getMethods(_TaskEntry.__proto__),
-      run: dart.fnType(dart.void, [])
+    (UserInfo._fromJsObject = function(jsObject) {
+      UserInfo.__proto__.fromJsObject.call(this, T.as(jsObject));
+      ;
+    }).prototype = UserInfo.prototype;
+    dart.addTypeTests(UserInfo);
+    UserInfo.prototype[_is_UserInfo_default] = true;
+    dart.addTypeCaches(UserInfo);
+    dart.setGetterSignature(UserInfo, () => ({
+      __proto__: dart.getGetters(UserInfo.__proto__),
+      displayName: dart.nullable(core.String),
+      email: dart.nullable(core.String),
+      phoneNumber: dart.nullable(core.String),
+      photoURL: dart.nullable(core.String),
+      providerId: core.String,
+      uid: core.String
     }));
-    dart.setGetterSignature(_TaskEntry, () => ({
-      __proto__: dart.getGetters(_TaskEntry.__proto__),
-      debugStack: core.StackTrace
-    }));
-    dart.setSetterSignature(_TaskEntry, () => ({
-      __proto__: dart.getSetters(_TaskEntry.__proto__),
-      debugStack: core.StackTrace
-    }));
-    dart.setLibraryUri(_TaskEntry, I[1]);
-    dart.setFieldSignature(_TaskEntry, () => ({
-      __proto__: dart.getFields(_TaskEntry.__proto__),
-      task: dart.finalFieldType(dart.fnType(T, [])),
-      priority: dart.finalFieldType(core.int),
-      debugLabel: dart.finalFieldType(dart.nullable(core.String)),
-      flow: dart.finalFieldType(dart.nullable(developer.Flow)),
-      [___TaskEntry_debugStack]: dart.fieldType(dart.nullable(core.StackTrace)),
-      completer: dart.finalFieldType(async.Completer$(T))
-    }));
-    return _TaskEntry;
+    dart.setLibraryUri(UserInfo, I[0]);
+    return UserInfo;
   });
-  binding$._TaskEntry = binding$._TaskEntry$();
-  dart.addTypeTests(binding$._TaskEntry, _is__TaskEntry_default);
-  binding$._FrameCallbackEntry = class _FrameCallbackEntry extends core.Object {};
-  (binding$._FrameCallbackEntry.new = function(callback, opts) {
-    let rescheduling = opts && 'rescheduling' in opts ? opts.rescheduling : false;
-    this.debugStack = null;
-    this.callback = callback;
-    if (!dart.fn(() => {
-      if (rescheduling) {
-        if (!dart.fn(() => {
-          if (binding$._FrameCallbackEntry.debugCurrentCallbackStack == null) {
-            dart.throw(new assertions.FlutterError.fromParts(T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("scheduleFrameCallback called with rescheduling true, but no callback is in scope."), new assertions.ErrorDescription.new("The \"rescheduling\" argument should only be set to true if the " + "callback is being reregistered from within the callback itself, " + "and only then if the callback itself is entirely synchronous."), new assertions.ErrorHint.new("If this is the initial registration of the callback, or if the " + "callback is asynchronous, then do not use the \"rescheduling\" " + "argument.")])));
-          }
-          return true;
-        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 94, 16, "() {\r\n          if (debugCurrentCallbackStack == null) {\r\n            throw FlutterError.fromParts(<DiagnosticsNode>[\r\n              ErrorSummary('scheduleFrameCallback called with rescheduling true, but no callback is in scope.'),\r\n              ErrorDescription(\r\n                'The \"rescheduling\" argument should only be set to true if the '\r\n                'callback is being reregistered from within the callback itself, '\r\n                'and only then if the callback itself is entirely synchronous.',\r\n              ),\r\n              ErrorHint(\r\n                'If this is the initial registration of the callback, or if the '\r\n                'callback is asynchronous, then do not use the \"rescheduling\" '\r\n                'argument.',\r\n              ),\r\n            ]);\r\n          }\r\n          return true;\r\n        }()");
-        this.debugStack = binding$._FrameCallbackEntry.debugCurrentCallbackStack;
-      } else {
-        this.debugStack = core.StackTrace.current;
+  auth$.UserInfo = auth$.UserInfo$();
+  dart.addTypeTests(auth$.UserInfo, _is_UserInfo_default);
+  auth$.User = class User extends auth$.UserInfo$(dart.anonymousJSType("UserJsImpl")) {
+    get uid() {
+      return this.jsObject.uid;
+    }
+    get emailVerified() {
+      return this.jsObject.emailVerified;
+    }
+    get isAnonymous() {
+      return this.jsObject.isAnonymous;
+    }
+    get tenantId() {
+      return this.jsObject.tenantId;
+    }
+    get metadata() {
+      return this.jsObject.metadata;
+    }
+    get providerData() {
+      return this.jsObject.providerData[$map](T.UserInfoOfUserInfoJsImpl(), dart.fn(data => new (T.UserInfoOfUserInfoJsImpl())._fromJsObject(dart.anonymousJSType("UserInfoJsImpl").as(data)), T.dynamicToUserInfoOfUserInfoJsImpl()))[$toList]();
+    }
+    get refreshToken() {
+      return this.jsObject.refreshToken;
+    }
+    static getInstance(jsObject) {
+      let t3, t2, t1, t0;
+      if (jsObject == null) {
+        return null;
       }
-      return true;
-    }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 92, 12, "() {\r\n      if (rescheduling) {\r\n        assert(() {\r\n          if (debugCurrentCallbackStack == null) {\r\n            throw FlutterError.fromParts(<DiagnosticsNode>[\r\n              ErrorSummary('scheduleFrameCallback called with rescheduling true, but no callback is in scope.'),\r\n              ErrorDescription(\r\n                'The \"rescheduling\" argument should only be set to true if the '\r\n                'callback is being reregistered from within the callback itself, '\r\n                'and only then if the callback itself is entirely synchronous.',\r\n              ),\r\n              ErrorHint(\r\n                'If this is the initial registration of the callback, or if the '\r\n                'callback is asynchronous, then do not use the \"rescheduling\" '\r\n                'argument.',\r\n              ),\r\n            ]);\r\n          }\r\n          return true;\r\n        }());\r\n        debugStack = debugCurrentCallbackStack;\r\n      } else {\r\n        // TODO(ianh): trim the frames from this library, so that the call to scheduleFrameCallback is the top one\r\n        debugStack = StackTrace.current;\r\n      }\r\n      return true;\r\n    }()");
-  }).prototype = binding$._FrameCallbackEntry.prototype;
-  dart.addTypeTests(binding$._FrameCallbackEntry);
-  dart.addTypeCaches(binding$._FrameCallbackEntry);
-  dart.setLibraryUri(binding$._FrameCallbackEntry, I[1]);
-  dart.setFieldSignature(binding$._FrameCallbackEntry, () => ({
-    __proto__: dart.getFields(binding$._FrameCallbackEntry.__proto__),
-    callback: dart.finalFieldType(dart.fnType(dart.void, [core.Duration])),
-    debugStack: dart.fieldType(dart.nullable(core.StackTrace))
-  }));
-  dart.defineLazy(binding$._FrameCallbackEntry, {
-    /*binding$._FrameCallbackEntry.debugCurrentCallbackStack*/get debugCurrentCallbackStack() {
-      return null;
-    },
-    set debugCurrentCallbackStack(_) {}
-  }, false);
-  var _name$ = dart.privateName(binding$, "_name");
-  binding$.SchedulerPhase = class SchedulerPhase extends core.Object {
+      t0 = auth$.User._expando;
+      t1 = jsObject;
+      t2 = t0._get(t1);
+      return t2 == null ? (t3 = new auth$.User._fromJsObject(jsObject), t0._set(t1, t3), t3) : t2;
+    }
+    delete() {
+      return utils.handleThenable(dart.void, this.jsObject.delete());
+    }
+    getIdToken(forceRefresh = false) {
+      return utils.handleThenable(core.String, this.jsObject.getIdToken(forceRefresh));
+    }
+    linkWithCredential(credential) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.linkWithCredential(credential)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    linkWithPhoneNumber(phoneNumber, applicationVerifier) {
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.auth.ConfirmationResult, "firebase.auth.ConfirmationResult"), this.jsObject.linkWithPhoneNumber(phoneNumber, applicationVerifier.jsObject)).then(auth$.ConfirmationResult, dart.fn(c => new auth$.ConfirmationResult.fromJsObject(c), T.ConfirmationResultJsImplToConfirmationResult()));
+    }
+    linkWithPopup(provider) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.linkWithPopup(provider.jsObject)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    linkWithRedirect(provider) {
+      return utils.handleThenable(dart.void, this.jsObject.linkWithRedirect(provider.jsObject));
+    }
+    reauthenticateWithCredential(credential) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.reauthenticateWithCredential(credential)).then(auth$.UserCredential, dart.fn(o => new auth$.UserCredential.fromJsObject(o), T.UserCredentialJsImplToUserCredential()));
+    }
+    reauthenticateWithPhoneNumber(phoneNumber, applicationVerifier) {
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.auth.ConfirmationResult, "firebase.auth.ConfirmationResult"), this.jsObject.reauthenticateWithPhoneNumber(phoneNumber, applicationVerifier.jsObject)).then(auth$.ConfirmationResult, dart.fn(c => new auth$.ConfirmationResult.fromJsObject(c), T.ConfirmationResultJsImplToConfirmationResult()));
+    }
+    reauthenticateWithPopup(provider) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.reauthenticateWithPopup(provider.jsObject)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    reauthenticateWithRedirect(provider) {
+      return utils.handleThenable(dart.void, this.jsObject.reauthenticateWithRedirect(provider.jsObject));
+    }
+    reload() {
+      return utils.handleThenable(dart.void, this.jsObject.reload());
+    }
+    sendEmailVerification(actionCodeSettings = null) {
+      return utils.handleThenable(dart.void, this.jsObject.sendEmailVerification(actionCodeSettings));
+    }
+    verifyBeforeUpdateEmail(newEmail, actionCodeSettings = null) {
+      return utils.handleThenable(dart.void, this.jsObject.verifyBeforeUpdateEmail(newEmail, actionCodeSettings));
+    }
+    unlink(providerId) {
+      return utils.handleThenable(dart.anonymousJSType("UserJsImpl"), this.jsObject.unlink(providerId)).then(auth$.User, dart.fn(user => dart.nullCheck(auth$.User.getInstance(user)), T.UserJsImplToUser()));
+    }
+    updateEmail(newEmail) {
+      return utils.handleThenable(dart.void, this.jsObject.updateEmail(newEmail));
+    }
+    updatePassword(newPassword) {
+      return utils.handleThenable(dart.void, this.jsObject.updatePassword(newPassword));
+    }
+    updatePhoneNumber(phoneCredential) {
+      return utils.handleThenable(dart.void, this.jsObject.updatePhoneNumber(phoneCredential));
+    }
+    updateProfile(profile) {
+      return utils.handleThenable(dart.void, this.jsObject.updateProfile(profile));
+    }
+    getIdTokenResult(forceRefresh = null) {
+      let promise = forceRefresh == null ? this.jsObject.getIdTokenResult() : this.jsObject.getIdTokenResult(forceRefresh);
+      return utils.handleThenable(dart.anonymousJSType("IdTokenResultImpl"), promise).then(auth$.IdTokenResult, dart.fn(object => new auth$.IdTokenResult._fromJsObject(object), T.IdTokenResultImplToIdTokenResult()));
+    }
+    toJson() {
+      return T.MapOfString$dynamic().as(utils$.dartify(this.jsObject.toJSON()));
+    }
     toString() {
-      return this[_name$];
+      return "User: " + this.uid;
     }
   };
-  (binding$.SchedulerPhase.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (auth$.User._fromJsObject = function(jsObject) {
+    auth$.User.__proto__._fromJsObject.call(this, jsObject);
     ;
-  }).prototype = binding$.SchedulerPhase.prototype;
-  dart.addTypeTests(binding$.SchedulerPhase);
-  dart.addTypeCaches(binding$.SchedulerPhase);
-  dart.setLibraryUri(binding$.SchedulerPhase, I[1]);
-  dart.setFieldSignature(binding$.SchedulerPhase, () => ({
-    __proto__: dart.getFields(binding$.SchedulerPhase.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = auth$.User.prototype;
+  dart.addTypeTests(auth$.User);
+  dart.addTypeCaches(auth$.User);
+  dart.setMethodSignature(auth$.User, () => ({
+    __proto__: dart.getMethods(auth$.User.__proto__),
+    delete: dart.fnType(async.Future$(dart.void), []),
+    getIdToken: dart.fnType(async.Future$(core.String), [], [core.bool]),
+    linkWithCredential: dart.fnType(async.Future$(auth$.UserCredential), [dart.nullable(dart.anonymousJSType("OAuthCredential"))]),
+    linkWithPhoneNumber: dart.fnType(async.Future$(auth$.ConfirmationResult), [core.String, auth$.ApplicationVerifier$(dart.lazyJSType(() => dart.global.firebase.auth.ApplicationVerifier, "firebase.auth.ApplicationVerifier"))]),
+    linkWithPopup: dart.fnType(async.Future$(auth$.UserCredential), [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    linkWithRedirect: dart.fnType(async.Future$(dart.void), [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    reauthenticateWithCredential: dart.fnType(async.Future$(auth$.UserCredential), [dart.anonymousJSType("OAuthCredential")]),
+    reauthenticateWithPhoneNumber: dart.fnType(async.Future$(auth$.ConfirmationResult), [core.String, auth$.ApplicationVerifier$(dart.lazyJSType(() => dart.global.firebase.auth.ApplicationVerifier, "firebase.auth.ApplicationVerifier"))]),
+    reauthenticateWithPopup: dart.fnType(async.Future$(auth$.UserCredential), [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    reauthenticateWithRedirect: dart.fnType(async.Future$(dart.void), [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    reload: dart.fnType(async.Future$(dart.void), []),
+    sendEmailVerification: dart.fnType(async.Future$(dart.void), [], [dart.nullable(dart.anonymousJSType("ActionCodeSettings"))]),
+    verifyBeforeUpdateEmail: dart.fnType(async.Future$(dart.void), [core.String], [dart.nullable(dart.anonymousJSType("ActionCodeSettings"))]),
+    unlink: dart.fnType(async.Future$(auth$.User), [core.String]),
+    updateEmail: dart.fnType(async.Future$(dart.void), [core.String]),
+    updatePassword: dart.fnType(async.Future$(dart.void), [core.String]),
+    updatePhoneNumber: dart.fnType(async.Future$(dart.void), [dart.nullable(dart.anonymousJSType("OAuthCredential"))]),
+    updateProfile: dart.fnType(async.Future$(dart.void), [dart.anonymousJSType("UserProfile")]),
+    getIdTokenResult: dart.fnType(async.Future$(auth$.IdTokenResult), [], [dart.nullable(core.bool)]),
+    toJson: dart.fnType(core.Map$(core.String, dart.dynamic), [])
   }));
-  dart.defineExtensionMethods(binding$.SchedulerPhase, ['toString']);
-  binding$.SchedulerPhase.idle = C[0] || CT.C0;
-  binding$.SchedulerPhase.transientCallbacks = C[1] || CT.C1;
-  binding$.SchedulerPhase.midFrameMicrotasks = C[2] || CT.C2;
-  binding$.SchedulerPhase.persistentCallbacks = C[3] || CT.C3;
-  binding$.SchedulerPhase.postFrameCallbacks = C[4] || CT.C4;
-  binding$.SchedulerPhase.values = C[5] || CT.C5;
-  var schedulingStrategy = dart.privateName(binding$, "SchedulerBinding.schedulingStrategy");
-  var _timingsCallbacks = dart.privateName(binding$, "_timingsCallbacks");
-  var _lifecycleState = dart.privateName(binding$, "_lifecycleState");
-  var _taskQueue = dart.privateName(binding$, "_taskQueue");
-  var _hasRequestedAnEventLoopCallback = dart.privateName(binding$, "_hasRequestedAnEventLoopCallback");
-  var _nextFrameCallbackId = dart.privateName(binding$, "_nextFrameCallbackId");
-  var _transientCallbacks = dart.privateName(binding$, "_transientCallbacks");
-  var _removedIds = dart.privateName(binding$, "_removedIds");
-  var _persistentCallbacks = dart.privateName(binding$, "_persistentCallbacks");
-  var _postFrameCallbacks = dart.privateName(binding$, "_postFrameCallbacks");
-  var _nextFrameCompleter = dart.privateName(binding$, "_nextFrameCompleter");
-  var _hasScheduledFrame = dart.privateName(binding$, "_hasScheduledFrame");
-  var _schedulerPhase = dart.privateName(binding$, "_schedulerPhase");
-  var _framesEnabled = dart.privateName(binding$, "_framesEnabled");
-  var _warmUpFrame = dart.privateName(binding$, "_warmUpFrame");
-  var _firstRawTimeStampInEpoch = dart.privateName(binding$, "_firstRawTimeStampInEpoch");
-  var _epochStart = dart.privateName(binding$, "_epochStart");
-  var _lastRawTimeStamp = dart.privateName(binding$, "_lastRawTimeStamp");
-  var _currentFrameTimeStamp = dart.privateName(binding$, "_currentFrameTimeStamp");
-  var _debugFrameNumber = dart.privateName(binding$, "_debugFrameNumber");
-  var _debugBanner = dart.privateName(binding$, "_debugBanner");
-  var _rescheduleAfterWarmUpFrame = dart.privateName(binding$, "_rescheduleAfterWarmUpFrame");
-  var _profileFramePostEvent = dart.privateName(binding$, "_profileFramePostEvent");
-  var _executeTimingsCallbacks = dart.privateName(binding$, "_executeTimingsCallbacks");
-  var _setFramesEnabledState = dart.privateName(binding$, "_setFramesEnabledState");
-  var _name = dart.privateName(ui, "_name");
-  var _ensureEventLoopCallback = dart.privateName(binding$, "_ensureEventLoopCallback");
-  var _runTasks = dart.privateName(binding$, "_runTasks");
-  var _handleBeginFrame = dart.privateName(binding$, "_handleBeginFrame");
-  var _handleDrawFrame = dart.privateName(binding$, "_handleDrawFrame");
-  var _adjustForEpoch = dart.privateName(binding$, "_adjustForEpoch");
-  var _invokeFrameCallback = dart.privateName(binding$, "_invokeFrameCallback");
-  binding$.SchedulerBinding = class SchedulerBinding extends binding.BindingBase {
-    static get instance() {
-      return binding$.SchedulerBinding._instance;
-    }
-    static _taskSorter(e1, e2) {
-      return -e1.priority[$compareTo](e2.priority);
-    }
-    static debugPrintTransientCallbackRegistrationStack() {
-      if (!dart.fn(() => {
-        if (binding$._FrameCallbackEntry.debugCurrentCallbackStack != null) {
-          print.debugPrint("When the current transient callback was registered, this was the stack:");
-          print.debugPrint(assertions.FlutterError.defaultStackFilter(assertions.FlutterError.demangleStackTrace(dart.nullCheck(binding$._FrameCallbackEntry.debugCurrentCallbackStack)).toString()[$trimRight]()[$split]("\n"))[$join]("\n"));
-        } else {
-          print.debugPrint("No transient callback is currently executing.");
-        }
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 616, 12, "() {\r\n      if (_FrameCallbackEntry.debugCurrentCallbackStack != null) {\r\n        debugPrint('When the current transient callback was registered, this was the stack:');\r\n        debugPrint(\r\n          FlutterError.defaultStackFilter(\r\n            FlutterError.demangleStackTrace(\r\n              _FrameCallbackEntry.debugCurrentCallbackStack!,\r\n            ).toString().trimRight().split('\\n'),\r\n          ).join('\\n'),\r\n        );\r\n      } else {\r\n        debugPrint('No transient callback is currently executing.');\r\n      }\r\n      return true;\r\n    }()");
-    }
-    static _debugDescribeTimeStamp(timeStamp, buffer) {
-      if (timeStamp.inDays > 0) buffer.write(dart.str(timeStamp.inDays) + "d ");
-      if (timeStamp.inHours > 0) buffer.write(dart.str(timeStamp.inHours - timeStamp.inDays * 24) + "h ");
-      if (timeStamp.inMinutes > 0) buffer.write(dart.str(timeStamp.inMinutes - timeStamp.inHours * 60) + "m ");
-      if (timeStamp.inSeconds > 0) buffer.write(dart.str(timeStamp.inSeconds - timeStamp.inMinutes * 60) + "s ");
-      buffer.write(dart.str(timeStamp.inMilliseconds - timeStamp.inSeconds * 1000));
-      let microseconds = timeStamp.inMicroseconds - timeStamp.inMilliseconds * 1000;
-      if (microseconds > 0) buffer.write("." + microseconds[$toString]()[$padLeft](3, "0"));
-      buffer.write("ms");
-    }
-  };
-  binding$.SchedulerBinding[dart.mixinOn] = BindingBase => class SchedulerBinding extends BindingBase {
-    get schedulingStrategy() {
-      return this[schedulingStrategy];
-    }
-    set schedulingStrategy(value) {
-      this[schedulingStrategy] = value;
-    }
-    initInstances() {
-      super.initInstances();
-      binding$.SchedulerBinding._instance = this;
-      if (!false) {
-        let frameNumber = 0;
-        this.addTimingsCallback(dart.fn(timings => {
-          for (let frameTiming of timings) {
-            frameNumber = frameNumber + 1;
-            this[_profileFramePostEvent](frameNumber, frameTiming);
-          }
-        }, T$.ListOfFrameTimingTovoid()));
-      }
-    }
-    addTimingsCallback(callback) {
-      this[_timingsCallbacks][$add](callback);
-      if (this[_timingsCallbacks][$length] === 1) {
-        if (!(this.window.onReportTimings == null)) dart.assertFailed(null, I[0], 268, 14, "window.onReportTimings == null");
-        this.window.onReportTimings = dart.bind(this, _executeTimingsCallbacks);
-      }
-      if (!dart.equals(this.window.onReportTimings, dart.bind(this, _executeTimingsCallbacks))) dart.assertFailed(null, I[0], 271, 12, "window.onReportTimings == _executeTimingsCallbacks");
-    }
-    removeTimingsCallback(callback) {
-      if (!this[_timingsCallbacks][$contains](callback)) dart.assertFailed(null, I[0], 276, 12, "_timingsCallbacks.contains(callback)");
-      this[_timingsCallbacks][$remove](callback);
-      if (this[_timingsCallbacks][$isEmpty]) {
-        this.window.onReportTimings = null;
-      }
-    }
-    [_executeTimingsCallbacks](timings) {
-      let clonedCallbacks = T$.ListOfListOfFrameTimingTovoid().from(this[_timingsCallbacks]);
-      for (let callback of clonedCallbacks) {
-        try {
-          if (this[_timingsCallbacks][$contains](callback)) {
-            callback(timings);
-          }
-        } catch (e) {
-          let exception = dart.getThrown(e);
-          let stack = dart.stackTrace(e);
-          if (core.Object.is(exception)) {
-            let collector = null;
-            if (!dart.fn(() => {
-              collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
-                yield new (T$.DiagnosticsPropertyOfListOfFrameTimingTovoid()).new("The TimingsCallback that gets executed was", callback, {style: diagnostics.DiagnosticsTreeStyle.errorProperty});
-              }), T$.VoidToIterableOfDiagnosticsNode());
-              return true;
-            }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 293, 16, "() {\r\n          collector = () sync* {\r\n            yield DiagnosticsProperty<TimingsCallback>(\r\n              'The TimingsCallback that gets executed was',\r\n              callback,\r\n              style: DiagnosticsTreeStyle.errorProperty,\r\n            );\r\n          };\r\n          return true;\r\n        }()");
-            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, context: new assertions.ErrorDescription.new("while executing callbacks for FrameTiming"), informationCollector: collector}));
-          } else
-            throw e;
-        }
-      }
-    }
-    initServiceExtensions() {
-      super.initServiceExtensions();
-      if (!false) {
-        this.registerNumericServiceExtension({name: "timeDilation", getter: dart.fn(() => async.async(core.double, function*() {
-            return binding$.timeDilation;
-          }), T$.VoidToFutureOfdouble()), setter: dart.fn(value => async.async(dart.void, function*() {
-            binding$.timeDilation = value;
-          }), T$.doubleToFutureOfvoid())});
-      }
-    }
-    get lifecycleState() {
-      return this[_lifecycleState];
-    }
-    handleAppLifecycleStateChanged(state) {
-      if (!(state !== null)) dart.assertFailed(null, I[0], 352, 12, "state != null");
-      this[_lifecycleState] = state;
-      switch (state) {
-        case C[8] || CT.C8:
-        case C[9] || CT.C9:
-        {
-          this[_setFramesEnabledState](true);
-          break;
-        }
-        case C[10] || CT.C10:
-        case C[11] || CT.C11:
-        {
-          this[_setFramesEnabledState](false);
-          break;
-        }
-      }
-    }
-    scheduleTask(T, task, priority, opts) {
-      let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-      let flow = opts && 'flow' in opts ? opts.flow : null;
-      let isFirstTask = this[_taskQueue].isEmpty;
-      let entry = new (binding$._TaskEntry$(T)).new(task, priority.value, debugLabel, flow);
-      this[_taskQueue].add(entry);
-      if (isFirstTask && !this.locked) this[_ensureEventLoopCallback]();
-      return entry.completer.future;
-    }
-    unlocked() {
-      super.unlocked();
-      if (this[_taskQueue].isNotEmpty) this[_ensureEventLoopCallback]();
-    }
-    [_ensureEventLoopCallback]() {
-      if (!!this.locked) dart.assertFailed(null, I[0], 427, 12, "!locked");
-      if (!this[_taskQueue].isNotEmpty) dart.assertFailed(null, I[0], 428, 12, "_taskQueue.isNotEmpty");
-      if (this[_hasRequestedAnEventLoopCallback]) return;
-      this[_hasRequestedAnEventLoopCallback] = true;
-      async.Timer.run(dart.bind(this, _runTasks));
-    }
-    [_runTasks]() {
-      this[_hasRequestedAnEventLoopCallback] = false;
-      if (this.handleEventLoopCallback()) this[_ensureEventLoopCallback]();
-    }
-    handleEventLoopCallback() {
-      let t2;
-      if (this[_taskQueue].isEmpty || this.locked) return false;
-      let entry = this[_taskQueue].first;
-      if (t2 = entry.priority, this.schedulingStrategy({priority: t2, scheduler: this})) {
-        try {
-          this[_taskQueue].removeFirst();
-          entry.run();
-        } catch (e) {
-          let exception = dart.getThrown(e);
-          let exceptionStack = dart.stackTrace(e);
-          if (core.Object.is(exception)) {
-            let callbackStack = null;
-            if (!dart.fn(() => {
-              callbackStack = entry.debugStack;
-              return true;
-            }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 463, 16, "() {\r\n          callbackStack = entry.debugStack;\r\n          return true;\r\n        }()");
-            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: exceptionStack, library: "scheduler library", context: new assertions.ErrorDescription.new("during a task callback"), informationCollector: callbackStack == null ? null : dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
-                yield new assertions.DiagnosticsStackTrace.new("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
-              }), T$.VoidToIterableOfDiagnosticsNode())}));
-          } else
-            throw e;
-        }
-        return this[_taskQueue].isNotEmpty;
-      }
-      return false;
-    }
-    get transientCallbackCount() {
-      return this[_transientCallbacks][$length];
-    }
-    scheduleFrameCallback(callback, opts) {
-      let rescheduling = opts && 'rescheduling' in opts ? opts.rescheduling : false;
-      this.scheduleFrame();
-      this[_nextFrameCallbackId] = this[_nextFrameCallbackId] + 1;
-      this[_transientCallbacks][$_set](this[_nextFrameCallbackId], new binding$._FrameCallbackEntry.new(callback, {rescheduling: rescheduling}));
-      return this[_nextFrameCallbackId];
-    }
-    cancelFrameCallbackWithId(id) {
-      if (!(id > 0)) dart.assertFailed(null, I[0], 535, 12, "id > 0");
-      this[_transientCallbacks][$remove](id);
-      this[_removedIds].add(id);
-    }
-    debugAssertNoTransientCallbacks(reason) {
-      if (!dart.fn(() => {
-        if (this.transientCallbackCount > 0) {
-          let count = this.transientCallbackCount;
-          let callbacks = T$.LinkedHashMapOfint$_FrameCallbackEntry().from(this[_transientCallbacks]);
-          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: reason, library: "scheduler library", informationCollector: dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
-              if (count === 1) {
-                yield new assertions.ErrorDescription.new("There was one transient callback left. " + "The stack trace for when it was registered is as follows:");
-              } else {
-                yield new assertions.ErrorDescription.new("There were " + dart.str(count) + " transient callbacks left. " + "The stack traces for when they were registered are as follows:");
-              }
-              for (let id of callbacks[$keys]) {
-                let entry = dart.nullCheck(callbacks[$_get](id));
-                yield new assertions.DiagnosticsStackTrace.new("── callback " + dart.str(id) + " ──", entry.debugStack, {showSeparator: false});
-              }
-            }), T$.VoidToIterableOfDiagnosticsNode())}));
-        }
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 561, 12, "() {\r\n      if (transientCallbackCount > 0) {\r\n        // We cache the values so that we can produce them later\r\n        // even if the information collector is called after\r\n        // the problem has been resolved.\r\n        final int count = transientCallbackCount;\r\n        final Map<int, _FrameCallbackEntry> callbacks = Map<int, _FrameCallbackEntry>.from(_transientCallbacks);\r\n        FlutterError.reportError(FlutterErrorDetails(\r\n          exception: reason,\r\n          library: 'scheduler library',\r\n          informationCollector: () sync* {\r\n            if (count == 1) {\r\n              // TODO(jacobr): I have added an extra line break in this case.\r\n              yield ErrorDescription(\r\n                'There was one transient callback left. '\r\n                'The stack trace for when it was registered is as follows:',\r\n              );\r\n            } else {\r\n              yield ErrorDescription(\r\n                'There were $count transient callbacks left. '\r\n                'The stack traces for when they were registered are as follows:',\r\n              );\r\n            }\r\n            for (final int id in callbacks.keys) {\r\n              final _FrameCallbackEntry entry = callbacks[id]!;\r\n              yield DiagnosticsStackTrace('── callback $id ──', entry.debugStack, showSeparator: false);\r\n            }\r\n          },\r\n        ));\r\n      }\r\n      return true;\r\n    }()");
-      return true;
-    }
-    addPersistentFrameCallback(callback) {
-      this[_persistentCallbacks][$add](callback);
-    }
-    addPostFrameCallback(callback) {
-      this[_postFrameCallbacks][$add](callback);
-    }
-    get endOfFrame() {
-      if (this[_nextFrameCompleter] == null) {
-        if (this.schedulerPhase === binding$.SchedulerPhase.idle) this.scheduleFrame();
-        this[_nextFrameCompleter] = T$.CompleterOfvoid().new();
-        this.addPostFrameCallback(dart.fn(timeStamp => {
-          dart.nullCheck(this[_nextFrameCompleter]).complete();
-          this[_nextFrameCompleter] = null;
-        }, T$.DurationTovoid()));
-      }
-      return dart.nullCheck(this[_nextFrameCompleter]).future;
-    }
-    get hasScheduledFrame() {
-      return this[_hasScheduledFrame];
-    }
-    get schedulerPhase() {
-      return this[_schedulerPhase];
-    }
-    get framesEnabled() {
-      return this[_framesEnabled];
-    }
-    [_setFramesEnabledState](enabled) {
-      if (this[_framesEnabled] === enabled) return;
-      this[_framesEnabled] = enabled;
-      if (enabled) this.scheduleFrame();
-    }
-    ensureFrameCallbacksRegistered() {
-      let t3, t3$;
-      t3 = this.window;
-      t3.onBeginFrame == null ? t3.onBeginFrame = dart.bind(this, _handleBeginFrame) : null;
-      t3$ = this.window;
-      t3$.onDrawFrame == null ? t3$.onDrawFrame = dart.bind(this, _handleDrawFrame) : null;
-    }
-    ensureVisualUpdate() {
-      switch (this.schedulerPhase) {
-        case C[0] || CT.C0:
-        case C[4] || CT.C4:
-        {
-          this.scheduleFrame();
-          return;
-        }
-        case C[1] || CT.C1:
-        case C[2] || CT.C2:
-        case C[3] || CT.C3:
-        {
-          return;
-        }
-      }
-    }
-    scheduleFrame() {
-      if (this[_hasScheduledFrame] || !this.framesEnabled) return;
-      if (!dart.fn(() => {
-        if (debug$.debugPrintScheduleFrameStacks) assertions.debugPrintStack({label: "scheduleFrame() called. Current phase is " + dart.str(this.schedulerPhase) + "."});
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 787, 12, "() {\r\n      if (debugPrintScheduleFrameStacks)\r\n        debugPrintStack(label: 'scheduleFrame() called. Current phase is $schedulerPhase.');\r\n      return true;\r\n    }()");
-      this.ensureFrameCallbacksRegistered();
-      this.window.scheduleFrame();
-      this[_hasScheduledFrame] = true;
-    }
-    scheduleForcedFrame() {
-      if (!this.framesEnabled) return;
-      if (this[_hasScheduledFrame]) return;
-      if (!dart.fn(() => {
-        if (debug$.debugPrintScheduleFrameStacks) assertions.debugPrintStack({label: "scheduleForcedFrame() called. Current phase is " + dart.str(this.schedulerPhase) + "."});
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 825, 12, "() {\r\n      if (debugPrintScheduleFrameStacks)\r\n        debugPrintStack(label: 'scheduleForcedFrame() called. Current phase is $schedulerPhase.');\r\n      return true;\r\n    }()");
-      this.window.scheduleFrame();
-      this[_hasScheduledFrame] = true;
-    }
-    scheduleWarmUpFrame() {
-      if (this[_warmUpFrame] || this.schedulerPhase !== binding$.SchedulerPhase.idle) return;
-      this[_warmUpFrame] = true;
-      developer.Timeline.startSync("Warm-up frame");
-      let hadScheduledFrame = this[_hasScheduledFrame];
-      async.Timer.run(dart.fn(() => {
-        if (!this[_warmUpFrame]) dart.assertFailed(null, I[0], 860, 14, "_warmUpFrame");
-        this.handleBeginFrame(null);
-      }, T$.VoidTovoid()));
-      async.Timer.run(dart.fn(() => {
-        if (!this[_warmUpFrame]) dart.assertFailed(null, I[0], 864, 14, "_warmUpFrame");
-        this.handleDrawFrame();
-        this.resetEpoch();
-        this[_warmUpFrame] = false;
-        if (hadScheduledFrame) this.scheduleFrame();
-      }, T$.VoidTovoid()));
-      this.lockEvents(dart.fn(() => async.async(dart.void, (function*() {
-        yield this.endOfFrame;
-        developer.Timeline.finishSync();
-      }).bind(this)), T$.VoidToFutureOfvoid()));
-    }
-    resetEpoch() {
-      this[_epochStart] = this[_adjustForEpoch](this[_lastRawTimeStamp]);
-      this[_firstRawTimeStampInEpoch] = null;
-    }
-    [_adjustForEpoch](rawTimeStamp) {
-      let rawDurationSinceEpoch = this[_firstRawTimeStampInEpoch] == null ? core.Duration.zero : rawTimeStamp['-'](dart.nullCheck(this[_firstRawTimeStampInEpoch]));
-      return new core.Duration.new({microseconds: (rawDurationSinceEpoch.inMicroseconds / binding$.timeDilation)[$round]() + this[_epochStart].inMicroseconds});
-    }
-    get currentFrameTimeStamp() {
-      if (!(this[_currentFrameTimeStamp] != null)) dart.assertFailed(null, I[0], 933, 12, "_currentFrameTimeStamp != null");
-      return dart.nullCheck(this[_currentFrameTimeStamp]);
-    }
-    get currentSystemFrameTimeStamp() {
-      if (!(this[_lastRawTimeStamp] !== null)) dart.assertFailed(null, I[0], 951, 12, "_lastRawTimeStamp != null");
-      return this[_lastRawTimeStamp];
-    }
-    [_handleBeginFrame](rawTimeStamp) {
-      if (this[_warmUpFrame]) {
-        if (!!this[_rescheduleAfterWarmUpFrame]) dart.assertFailed(null, I[0], 973, 14, "!_rescheduleAfterWarmUpFrame");
-        this[_rescheduleAfterWarmUpFrame] = true;
-        return;
-      }
-      this.handleBeginFrame(rawTimeStamp);
-    }
-    [_handleDrawFrame]() {
-      if (this[_rescheduleAfterWarmUpFrame]) {
-        this[_rescheduleAfterWarmUpFrame] = false;
-        this.addPostFrameCallback(dart.fn(timeStamp => {
-          this[_hasScheduledFrame] = false;
-          this.scheduleFrame();
-        }, T$.DurationTovoid()));
-        return;
-      }
-      this.handleDrawFrame();
-    }
-    handleBeginFrame(rawTimeStamp) {
-      let t3;
-      developer.Timeline.startSync("Frame", {arguments: debug.timelineArgumentsIndicatingLandmarkEvent});
-      this[_firstRawTimeStampInEpoch] == null ? this[_firstRawTimeStampInEpoch] = rawTimeStamp : null;
-      this[_currentFrameTimeStamp] = this[_adjustForEpoch]((t3 = rawTimeStamp, t3 == null ? this[_lastRawTimeStamp] : t3));
-      if (rawTimeStamp != null) this[_lastRawTimeStamp] = rawTimeStamp;
-      if (!dart.fn(() => {
-        this[_debugFrameNumber] = this[_debugFrameNumber] + 1;
-        if (debug$.debugPrintBeginFrameBanner || debug$.debugPrintEndFrameBanner) {
-          let frameTimeStampDescription = new core.StringBuffer.new();
-          if (rawTimeStamp != null) {
-            binding$.SchedulerBinding._debugDescribeTimeStamp(dart.nullCheck(this[_currentFrameTimeStamp]), frameTimeStampDescription);
-          } else {
-            frameTimeStampDescription.write("(warm-up frame)");
-          }
-          this[_debugBanner] = "▄▄▄▄▄▄▄▄ Frame " + this[_debugFrameNumber][$toString]()[$padRight](7) + "   " + frameTimeStampDescription.toString()[$padLeft](18) + " ▄▄▄▄▄▄▄▄";
-          if (debug$.debugPrintBeginFrameBanner) print.debugPrint(this[_debugBanner]);
-        }
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1031, 12, "() {\r\n      _debugFrameNumber += 1;\r\n\r\n      if (debugPrintBeginFrameBanner || debugPrintEndFrameBanner) {\r\n        final StringBuffer frameTimeStampDescription = StringBuffer();\r\n        if (rawTimeStamp != null) {\r\n          _debugDescribeTimeStamp(_currentFrameTimeStamp!, frameTimeStampDescription);\r\n        } else {\r\n          frameTimeStampDescription.write('(warm-up frame)');\r\n        }\r\n        _debugBanner = '▄▄▄▄▄▄▄▄ Frame ${_debugFrameNumber.toString().padRight(7)}   ${frameTimeStampDescription.toString().padLeft(18)} ▄▄▄▄▄▄▄▄';\r\n        if (debugPrintBeginFrameBanner)\r\n          debugPrint(_debugBanner);\r\n      }\r\n      return true;\r\n    }()");
-      if (!(this.schedulerPhase === binding$.SchedulerPhase.idle)) dart.assertFailed(null, I[0], 1048, 12, "schedulerPhase == SchedulerPhase.idle");
-      this[_hasScheduledFrame] = false;
-      try {
-        developer.Timeline.startSync("Animate", {arguments: debug.timelineArgumentsIndicatingLandmarkEvent});
-        this[_schedulerPhase] = binding$.SchedulerPhase.transientCallbacks;
-        let callbacks = this[_transientCallbacks];
-        this[_transientCallbacks] = new (T$.IdentityMapOfint$_FrameCallbackEntry()).new();
-        callbacks[$forEach](dart.fn((id, callbackEntry) => {
-          if (!this[_removedIds].contains(id)) this[_invokeFrameCallback](callbackEntry.callback, dart.nullCheck(this[_currentFrameTimeStamp]), callbackEntry.debugStack);
-        }, T$.intAnd_FrameCallbackEntryTovoid()));
-        this[_removedIds].clear();
-      } finally {
-        this[_schedulerPhase] = binding$.SchedulerPhase.midFrameMicrotasks;
-      }
-    }
-    handleDrawFrame() {
-      if (!(this[_schedulerPhase] === binding$.SchedulerPhase.midFrameMicrotasks)) dart.assertFailed(null, I[0], 1076, 12, "_schedulerPhase == SchedulerPhase.midFrameMicrotasks");
-      developer.Timeline.finishSync();
-      try {
-        this[_schedulerPhase] = binding$.SchedulerPhase.persistentCallbacks;
-        for (let callback of this[_persistentCallbacks])
-          this[_invokeFrameCallback](callback, dart.nullCheck(this[_currentFrameTimeStamp]));
-        this[_schedulerPhase] = binding$.SchedulerPhase.postFrameCallbacks;
-        let localPostFrameCallbacks = T$.ListOfDurationTovoid().from(this[_postFrameCallbacks]);
-        this[_postFrameCallbacks][$clear]();
-        for (let callback of localPostFrameCallbacks)
-          this[_invokeFrameCallback](callback, dart.nullCheck(this[_currentFrameTimeStamp]));
-      } finally {
-        this[_schedulerPhase] = binding$.SchedulerPhase.idle;
-        developer.Timeline.finishSync();
-        if (!dart.fn(() => {
-          if (debug$.debugPrintEndFrameBanner) print.debugPrint("▀"[$times](dart.nullCheck(this[_debugBanner]).length));
-          this[_debugBanner] = null;
-          return true;
-        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1094, 14, "() {\r\n        if (debugPrintEndFrameBanner)\r\n          debugPrint('▀' * _debugBanner!.length);\r\n        _debugBanner = null;\r\n        return true;\r\n      }()");
-        this[_currentFrameTimeStamp] = null;
-      }
-    }
-    [_profileFramePostEvent](frameNumber, frameTiming) {
-      this.postEvent("Flutter.Frame", new (T$.IdentityMapOfString$dynamic()).from(["number", frameNumber, "startTime", frameTiming.timestampInMicroseconds(ui.FramePhase.buildStart), "elapsed", frameTiming.totalSpan.inMicroseconds, "build", frameTiming.buildDuration.inMicroseconds, "raster", frameTiming.rasterDuration.inMicroseconds, "vsyncOverhead", frameTiming.vsyncOverhead.inMicroseconds]));
-    }
-    [_invokeFrameCallback](callback, timeStamp, callbackStack = null) {
-      if (!(callback !== null)) dart.assertFailed(null, I[0], 1137, 12, "callback != null");
-      if (!(binding$._FrameCallbackEntry.debugCurrentCallbackStack == null)) dart.assertFailed(null, I[0], 1138, 12, "_FrameCallbackEntry.debugCurrentCallbackStack == null");
-      if (!dart.fn(() => {
-        binding$._FrameCallbackEntry.debugCurrentCallbackStack = callbackStack;
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1139, 12, "() {\r\n      _FrameCallbackEntry.debugCurrentCallbackStack = callbackStack;\r\n      return true;\r\n    }()");
-      try {
-        callback(timeStamp);
-      } catch (e) {
-        let exception = dart.getThrown(e);
-        let exceptionStack = dart.stackTrace(e);
-        if (core.Object.is(exception)) {
-          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: exceptionStack, library: "scheduler library", context: new assertions.ErrorDescription.new("during a scheduler callback"), informationCollector: callbackStack == null ? null : dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
-              yield new assertions.DiagnosticsStackTrace.new("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
-            }), T$.VoidToIterableOfDiagnosticsNode())}));
-        } else
-          throw e;
-      }
-      if (!dart.fn(() => {
-        binding$._FrameCallbackEntry.debugCurrentCallbackStack = null;
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1161, 12, "() {\r\n      _FrameCallbackEntry.debugCurrentCallbackStack = null;\r\n      return true;\r\n    }()");
-    }
-  };
-  (binding$.SchedulerBinding[dart.mixinNew] = function() {
-    this[_timingsCallbacks] = T$.JSArrayOfListOfFrameTimingTovoid().of([]);
-    this[_lifecycleState] = null;
-    this[schedulingStrategy] = C[6] || CT.C6;
-    this[_taskQueue] = new (T$.HeapPriorityQueueOf_TaskEntry()).new(C[7] || CT.C7);
-    this[_hasRequestedAnEventLoopCallback] = false;
-    this[_nextFrameCallbackId] = 0;
-    this[_transientCallbacks] = new (T$.IdentityMapOfint$_FrameCallbackEntry()).new();
-    this[_removedIds] = new (T$._IdentityHashSetOfint()).new();
-    this[_persistentCallbacks] = T$.JSArrayOfDurationTovoid().of([]);
-    this[_postFrameCallbacks] = T$.JSArrayOfDurationTovoid().of([]);
-    this[_nextFrameCompleter] = null;
-    this[_hasScheduledFrame] = false;
-    this[_schedulerPhase] = binding$.SchedulerPhase.idle;
-    this[_framesEnabled] = true;
-    this[_warmUpFrame] = false;
-    this[_firstRawTimeStampInEpoch] = null;
-    this[_epochStart] = core.Duration.zero;
-    this[_lastRawTimeStamp] = core.Duration.zero;
-    this[_currentFrameTimeStamp] = null;
-    this[_debugFrameNumber] = 0;
-    this[_debugBanner] = null;
-    this[_rescheduleAfterWarmUpFrame] = false;
-  }).prototype = binding$.SchedulerBinding.prototype;
-  dart.addTypeTests(binding$.SchedulerBinding);
-  dart.addTypeCaches(binding$.SchedulerBinding);
-  binding$.SchedulerBinding[dart.implements] = () => [binding.BindingBase];
-  dart.setMethodSignature(binding$.SchedulerBinding, () => ({
-    __proto__: dart.getMethods(binding$.SchedulerBinding.__proto__),
-    addTimingsCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.List$(ui.FrameTiming)])]),
-    removeTimingsCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.List$(ui.FrameTiming)])]),
-    [_executeTimingsCallbacks]: dart.fnType(dart.void, [core.List$(ui.FrameTiming)]),
-    handleAppLifecycleStateChanged: dart.fnType(dart.void, [ui.AppLifecycleState]),
-    scheduleTask: dart.gFnType(T => [async.Future$(T), [dart.fnType(T, []), priority$.Priority], {debugLabel: dart.nullable(core.String), flow: dart.nullable(developer.Flow)}, {}], T => [dart.nullable(core.Object)]),
-    [_ensureEventLoopCallback]: dart.fnType(dart.void, []),
-    [_runTasks]: dart.fnType(dart.void, []),
-    handleEventLoopCallback: dart.fnType(core.bool, []),
-    scheduleFrameCallback: dart.fnType(core.int, [dart.fnType(dart.void, [core.Duration])], {rescheduling: core.bool}, {}),
-    cancelFrameCallbackWithId: dart.fnType(dart.void, [core.int]),
-    debugAssertNoTransientCallbacks: dart.fnType(core.bool, [core.String]),
-    addPersistentFrameCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration])]),
-    addPostFrameCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration])]),
-    [_setFramesEnabledState]: dart.fnType(dart.void, [core.bool]),
-    ensureFrameCallbacksRegistered: dart.fnType(dart.void, []),
-    ensureVisualUpdate: dart.fnType(dart.void, []),
-    scheduleFrame: dart.fnType(dart.void, []),
-    scheduleForcedFrame: dart.fnType(dart.void, []),
-    scheduleWarmUpFrame: dart.fnType(dart.void, []),
-    resetEpoch: dart.fnType(dart.void, []),
-    [_adjustForEpoch]: dart.fnType(core.Duration, [core.Duration]),
-    [_handleBeginFrame]: dart.fnType(dart.void, [core.Duration]),
-    [_handleDrawFrame]: dart.fnType(dart.void, []),
-    handleBeginFrame: dart.fnType(dart.void, [dart.nullable(core.Duration)]),
-    handleDrawFrame: dart.fnType(dart.void, []),
-    [_profileFramePostEvent]: dart.fnType(dart.void, [core.int, ui.FrameTiming]),
-    [_invokeFrameCallback]: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration]), core.Duration], [dart.nullable(core.StackTrace)])
+  dart.setGetterSignature(auth$.User, () => ({
+    __proto__: dart.getGetters(auth$.User.__proto__),
+    emailVerified: core.bool,
+    isAnonymous: core.bool,
+    tenantId: dart.nullable(core.String),
+    metadata: dart.lazyJSType(() => dart.global.firebase.auth.UserMetadata, "firebase.auth.UserMetadata"),
+    providerData: core.List$(auth$.UserInfo$(dart.anonymousJSType("UserInfoJsImpl"))),
+    refreshToken: core.String
   }));
-  dart.setGetterSignature(binding$.SchedulerBinding, () => ({
-    __proto__: dart.getGetters(binding$.SchedulerBinding.__proto__),
-    lifecycleState: dart.nullable(ui.AppLifecycleState),
-    transientCallbackCount: core.int,
-    endOfFrame: async.Future$(dart.void),
-    hasScheduledFrame: core.bool,
-    schedulerPhase: binding$.SchedulerPhase,
-    framesEnabled: core.bool,
-    currentFrameTimeStamp: core.Duration,
-    currentSystemFrameTimeStamp: core.Duration
-  }));
-  dart.setLibraryUri(binding$.SchedulerBinding, I[1]);
-  dart.setFieldSignature(binding$.SchedulerBinding, () => ({
-    __proto__: dart.getFields(binding$.SchedulerBinding.__proto__),
-    [_timingsCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.List$(ui.FrameTiming)]))),
-    [_lifecycleState]: dart.fieldType(dart.nullable(ui.AppLifecycleState)),
-    schedulingStrategy: dart.fieldType(dart.fnType(core.bool, [], {}, {priority: core.int, scheduler: binding$.SchedulerBinding})),
-    [_taskQueue]: dart.finalFieldType(priority_queue.PriorityQueue$(binding$._TaskEntry)),
-    [_hasRequestedAnEventLoopCallback]: dart.fieldType(core.bool),
-    [_nextFrameCallbackId]: dart.fieldType(core.int),
-    [_transientCallbacks]: dart.fieldType(core.Map$(core.int, binding$._FrameCallbackEntry)),
-    [_removedIds]: dart.finalFieldType(core.Set$(core.int)),
-    [_persistentCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.Duration]))),
-    [_postFrameCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.Duration]))),
-    [_nextFrameCompleter]: dart.fieldType(dart.nullable(async.Completer$(dart.void))),
-    [_hasScheduledFrame]: dart.fieldType(core.bool),
-    [_schedulerPhase]: dart.fieldType(binding$.SchedulerPhase),
-    [_framesEnabled]: dart.fieldType(core.bool),
-    [_warmUpFrame]: dart.fieldType(core.bool),
-    [_firstRawTimeStampInEpoch]: dart.fieldType(dart.nullable(core.Duration)),
-    [_epochStart]: dart.fieldType(core.Duration),
-    [_lastRawTimeStamp]: dart.fieldType(core.Duration),
-    [_currentFrameTimeStamp]: dart.fieldType(dart.nullable(core.Duration)),
-    [_debugFrameNumber]: dart.fieldType(core.int),
-    [_debugBanner]: dart.fieldType(dart.nullable(core.String)),
-    [_rescheduleAfterWarmUpFrame]: dart.fieldType(core.bool)
-  }));
-  dart.defineLazy(binding$.SchedulerBinding, {
-    /*binding$.SchedulerBinding._instance*/get _instance() {
-      return null;
-    },
-    set _instance(_) {}
+  dart.setLibraryUri(auth$.User, I[0]);
+  dart.defineExtensionMethods(auth$.User, ['toString']);
+  dart.defineLazy(auth$.User, {
+    /*auth$.User._expando*/get _expando() {
+      return new (T.ExpandoOfUser()).new();
+    }
   }, false);
-  binding$.defaultSchedulingStrategy = function defaultSchedulingStrategy(opts) {
-    let priority = opts && 'priority' in opts ? opts.priority : null;
-    let scheduler = opts && 'scheduler' in opts ? opts.scheduler : null;
-    if (scheduler.transientCallbackCount > 0) return priority >= priority$.Priority.animation.value;
-    return true;
-  };
-  dart.copyProperties(binding$, {
-    get timeDilation() {
-      return binding$._timeDilation;
-    },
-    set timeDilation(value) {
-      let t4;
-      if (!(value > 0.0)) dart.assertFailed(null, I[0], 25, 10, "value > 0.0");
-      if (binding$._timeDilation === value) return;
-      t4 = binding$.SchedulerBinding.instance;
-      t4 == null ? null : t4.resetEpoch();
-      binding$._timeDilation = value;
+  auth$.IdTokenResult = class IdTokenResult extends js$.JsObjectWrapper$(dart.anonymousJSType("IdTokenResultImpl")) {
+    get authTime() {
+      return http_date.parseHttpDate(this.jsObject.authTime);
     }
+    get claims() {
+      return T.MapNOfString$dynamic().as(utils$.dartify(this.jsObject.claims));
+    }
+    get expirationTime() {
+      return http_date.parseHttpDate(this.jsObject.expirationTime);
+    }
+    get issuedAtTime() {
+      return http_date.parseHttpDate(this.jsObject.issuedAtTime);
+    }
+    get signInProvider() {
+      return this.jsObject.signInProvider;
+    }
+    get token() {
+      return this.jsObject.token;
+    }
+  };
+  (auth$.IdTokenResult._fromJsObject = function(jsObject) {
+    auth$.IdTokenResult.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.IdTokenResult.prototype;
+  dart.addTypeTests(auth$.IdTokenResult);
+  dart.addTypeCaches(auth$.IdTokenResult);
+  dart.setGetterSignature(auth$.IdTokenResult, () => ({
+    __proto__: dart.getGetters(auth$.IdTokenResult.__proto__),
+    authTime: core.DateTime,
+    claims: dart.nullable(core.Map$(core.String, dart.dynamic)),
+    expirationTime: core.DateTime,
+    issuedAtTime: core.DateTime,
+    signInProvider: core.String,
+    token: core.String
+  }));
+  dart.setLibraryUri(auth$.IdTokenResult, I[0]);
+  var _onAuthUnsubscribe = dart.privateName(auth$, "_onAuthUnsubscribe");
+  var _changeController = dart.privateName(auth$, "_changeController");
+  var _onIdTokenChangedUnsubscribe = dart.privateName(auth$, "_onIdTokenChangedUnsubscribe");
+  var _idTokenChangedController = dart.privateName(auth$, "_idTokenChangedController");
+  auth$.Auth = class Auth extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.auth.Auth, "firebase.auth.Auth")) {
+    get app() {
+      return app.App.getInstance(this.jsObject.app);
+    }
+    get currentUser() {
+      return auth$.User.getInstance(this.jsObject.currentUser);
+    }
+    get tenantId() {
+      return this.jsObject.tenantId;
+    }
+    set tenantId(tenantId) {
+      this.jsObject.tenantId = tenantId;
+    }
+    get languageCode() {
+      return this.jsObject.languageCode;
+    }
+    set languageCode(s) {
+      this.jsObject.languageCode = s;
+    }
+    get settings() {
+      return this.jsObject.settings;
+    }
+    get onAuthStateChanged() {
+      if (this[_changeController] == null) {
+        let nextWrapper = js.allowInterop(T.UserJsImplNToNull(), dart.fn(user => {
+          dart.nullCheck(this[_changeController]).add(auth$.User.getInstance(user));
+        }, T.UserJsImplNToNull()));
+        let errorWrapper = js.allowInterop(T.dynamicTovoid(), dart.fn(e => dart.nullCheck(this[_changeController]).addError(core.Object.as(e)), T.dynamicTovoid()));
+        const startListen = () => {
+          if (!(this[_onAuthUnsubscribe] == null)) dart.assertFailed(null, I[1], 347, 16, "_onAuthUnsubscribe == null");
+          this[_onAuthUnsubscribe] = this.jsObject.onAuthStateChanged(dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper));
+        };
+        dart.fn(startListen, T.VoidTovoid());
+        const stopListen = () => {
+          dart.nullCheck(this[_onAuthUnsubscribe])();
+          this[_onAuthUnsubscribe] = null;
+        };
+        dart.fn(stopListen, T.VoidTovoid());
+        this[_changeController] = T.StreamControllerOfUserN().broadcast({onListen: startListen, onCancel: stopListen, sync: true});
+      }
+      return dart.nullCheck(this[_changeController]).stream;
+    }
+    get onIdTokenChanged() {
+      if (this[_idTokenChangedController] == null) {
+        let nextWrapper = js.allowInterop(T.UserJsImplNToNull(), dart.fn(user => {
+          dart.nullCheck(this[_idTokenChangedController]).add(auth$.User.getInstance(user));
+        }, T.UserJsImplNToNull()));
+        let errorWrapper = js.allowInterop(T.dynamicTovoid(), dart.fn(e => dart.nullCheck(this[_idTokenChangedController]).addError(core.Object.as(e)), T.dynamicTovoid()));
+        const startListen = () => {
+          if (!(this[_onIdTokenChangedUnsubscribe] == null)) dart.assertFailed(null, I[1], 387, 16, "_onIdTokenChangedUnsubscribe == null");
+          this[_onIdTokenChangedUnsubscribe] = this.jsObject.onIdTokenChanged(dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper));
+        };
+        dart.fn(startListen, T.VoidTovoid());
+        const stopListen = () => {
+          dart.nullCheck(this[_onIdTokenChangedUnsubscribe])();
+          this[_onIdTokenChangedUnsubscribe] = null;
+        };
+        dart.fn(stopListen, T.VoidTovoid());
+        this[_idTokenChangedController] = T.StreamControllerOfUserN().broadcast({onListen: startListen, onCancel: stopListen, sync: true});
+      }
+      return dart.nullCheck(this[_idTokenChangedController]).stream;
+    }
+    static getInstance(jsObject) {
+      let t3, t2, t1, t0;
+      t0 = auth$.Auth._expando;
+      t1 = jsObject;
+      t2 = t0._get(t1);
+      return t2 == null ? (t3 = new auth$.Auth._fromJsObject(jsObject), t0._set(t1, t3), t3) : t2;
+    }
+    applyActionCode(code) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.applyActionCode(code));
+    }
+    checkActionCode(code) {
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.auth.ActionCodeInfo, "firebase.auth.ActionCodeInfo"), this.jsObject.checkActionCode(code));
+    }
+    confirmPasswordReset(code, newPassword) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.confirmPasswordReset(code, newPassword));
+    }
+    createUserWithEmailAndPassword(email, password) {
+      return async.async(auth$.UserCredential, (function* createUserWithEmailAndPassword() {
+        let u = (yield utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.createUserWithEmailAndPassword(email, password)));
+        return new auth$.UserCredential.fromJsObject(u);
+      }).bind(this));
+    }
+    fetchSignInMethodsForEmail(email) {
+      return utils.handleThenable(core.List, this.jsObject.fetchSignInMethodsForEmail(email)).then(T.ListOfString(), dart.fn(list => T.ListOfString().from(list), T.ListToListOfString()));
+    }
+    isSignInWithEmailLink(emailLink) {
+      return this.jsObject.isSignInWithEmailLink(emailLink);
+    }
+    getRedirectResult() {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.getRedirectResult()).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    sendSignInLinkToEmail(email, actionCodeSettings = null) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.sendSignInLinkToEmail(email, actionCodeSettings));
+    }
+    sendPasswordResetEmail(email, actionCodeSettings = null) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.sendPasswordResetEmail(email, actionCodeSettings));
+    }
+    setPersistence(persistence) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.setPersistence(persistence));
+    }
+    signInWithCredential(credential) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInWithCredential(credential)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInAnonymously() {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInAnonymously()).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInWithCustomToken(token) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInWithCustomToken(token)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInAndRetrieveDataWithCustomToken(token) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInAndRetrieveDataWithCustomToken(token)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInWithEmailAndPassword(email, password) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInWithEmailAndPassword(email, password)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInWithEmailLink(email, emailLink) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInWithEmailLink(email, emailLink)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInWithPhoneNumber(phoneNumber, applicationVerifier) {
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.auth.ConfirmationResult, "firebase.auth.ConfirmationResult"), this.jsObject.signInWithPhoneNumber(phoneNumber, applicationVerifier.jsObject)).then(auth$.ConfirmationResult, dart.fn(c => new auth$.ConfirmationResult.fromJsObject(c), T.ConfirmationResultJsImplToConfirmationResult()));
+    }
+    signInWithPopup(provider) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.signInWithPopup(provider.jsObject)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+    signInWithRedirect(provider) {
+      return utils.handleThenable(dart.dynamic, this.jsObject.signInWithRedirect(provider.jsObject));
+    }
+    signOut() {
+      return utils.handleThenable(dart.dynamic, this.jsObject.signOut());
+    }
+    useAuthEmulator(origin) {
+      return this.jsObject.useEmulator(origin);
+    }
+    useDeviceLanguage() {
+      return this.jsObject.useDeviceLanguage();
+    }
+    verifyPasswordResetCode(code) {
+      return utils.handleThenable(core.String, this.jsObject.verifyPasswordResetCode(code));
+    }
+  };
+  (auth$.Auth._fromJsObject = function(jsObject) {
+    this[_onAuthUnsubscribe] = null;
+    this[_changeController] = null;
+    this[_onIdTokenChangedUnsubscribe] = null;
+    this[_idTokenChangedController] = null;
+    auth$.Auth.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.Auth.prototype;
+  dart.addTypeTests(auth$.Auth);
+  dart.addTypeCaches(auth$.Auth);
+  dart.setMethodSignature(auth$.Auth, () => ({
+    __proto__: dart.getMethods(auth$.Auth.__proto__),
+    applyActionCode: dart.fnType(async.Future, [core.String]),
+    checkActionCode: dart.fnType(async.Future$(dart.lazyJSType(() => dart.global.firebase.auth.ActionCodeInfo, "firebase.auth.ActionCodeInfo")), [core.String]),
+    confirmPasswordReset: dart.fnType(async.Future, [core.String, core.String]),
+    createUserWithEmailAndPassword: dart.fnType(async.Future$(auth$.UserCredential), [core.String, core.String]),
+    fetchSignInMethodsForEmail: dart.fnType(async.Future$(core.List$(core.String)), [core.String]),
+    isSignInWithEmailLink: dart.fnType(core.bool, [core.String]),
+    getRedirectResult: dart.fnType(async.Future$(auth$.UserCredential), []),
+    sendSignInLinkToEmail: dart.fnType(async.Future, [core.String], [dart.nullable(dart.anonymousJSType("ActionCodeSettings"))]),
+    sendPasswordResetEmail: dart.fnType(async.Future, [core.String], [dart.nullable(dart.anonymousJSType("ActionCodeSettings"))]),
+    setPersistence: dart.fnType(async.Future, [core.String]),
+    signInWithCredential: dart.fnType(async.Future$(auth$.UserCredential), [dart.anonymousJSType("OAuthCredential")]),
+    signInAnonymously: dart.fnType(async.Future$(auth$.UserCredential), []),
+    signInWithCustomToken: dart.fnType(async.Future$(auth$.UserCredential), [core.String]),
+    signInAndRetrieveDataWithCustomToken: dart.fnType(async.Future$(auth$.UserCredential), [core.String]),
+    signInWithEmailAndPassword: dart.fnType(async.Future$(auth$.UserCredential), [core.String, core.String]),
+    signInWithEmailLink: dart.fnType(async.Future$(auth$.UserCredential), [core.String, core.String]),
+    signInWithPhoneNumber: dart.fnType(async.Future$(auth$.ConfirmationResult), [core.String, auth$.ApplicationVerifier$(dart.lazyJSType(() => dart.global.firebase.auth.ApplicationVerifier, "firebase.auth.ApplicationVerifier"))]),
+    signInWithPopup: dart.fnType(async.Future$(auth$.UserCredential), [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    signInWithRedirect: dart.fnType(async.Future, [auth$.AuthProvider$(dart.anonymousJSType("AuthProviderJsImpl"))]),
+    signOut: dart.fnType(async.Future, []),
+    useAuthEmulator: dart.fnType(dart.void, [core.String]),
+    useDeviceLanguage: dart.fnType(dart.void, []),
+    verifyPasswordResetCode: dart.fnType(async.Future$(core.String), [core.String])
+  }));
+  dart.setGetterSignature(auth$.Auth, () => ({
+    __proto__: dart.getGetters(auth$.Auth.__proto__),
+    app: app.App,
+    currentUser: dart.nullable(auth$.User),
+    tenantId: dart.nullable(core.String),
+    languageCode: core.String,
+    settings: dart.anonymousJSType("AuthSettings"),
+    onAuthStateChanged: async.Stream$(dart.nullable(auth$.User)),
+    onIdTokenChanged: async.Stream$(dart.nullable(auth$.User))
+  }));
+  dart.setSetterSignature(auth$.Auth, () => ({
+    __proto__: dart.getSetters(auth$.Auth.__proto__),
+    tenantId: dart.nullable(core.String),
+    languageCode: dart.nullable(core.String)
+  }));
+  dart.setLibraryUri(auth$.Auth, I[0]);
+  dart.setFieldSignature(auth$.Auth, () => ({
+    __proto__: dart.getFields(auth$.Auth.__proto__),
+    [_onAuthUnsubscribe]: dart.fieldType(dart.nullable(dart.fnType(dart.dynamic, []))),
+    [_changeController]: dart.fieldType(dart.nullable(async.StreamController$(dart.nullable(auth$.User)))),
+    [_onIdTokenChangedUnsubscribe]: dart.fieldType(dart.nullable(dart.fnType(dart.dynamic, []))),
+    [_idTokenChangedController]: dart.fieldType(dart.nullable(async.StreamController$(dart.nullable(auth$.User))))
+  }));
+  dart.defineLazy(auth$.Auth, {
+    /*auth$.Auth._expando*/get _expando() {
+      return new (T.ExpandoOfAuth()).new();
+    }
+  }, false);
+  const _is_AuthProvider_default = Symbol('_is_AuthProvider_default');
+  auth$.AuthProvider$ = dart.generic(T => {
+    class AuthProvider extends js$.JsObjectWrapper$(T) {
+      get providerId() {
+        return this.jsObject.providerId;
+      }
+    }
+    (AuthProvider.fromJsObject = function(jsObject) {
+      AuthProvider.__proto__.fromJsObject.call(this, jsObject);
+      ;
+    }).prototype = AuthProvider.prototype;
+    dart.addTypeTests(AuthProvider);
+    AuthProvider.prototype[_is_AuthProvider_default] = true;
+    dart.addTypeCaches(AuthProvider);
+    dart.setGetterSignature(AuthProvider, () => ({
+      __proto__: dart.getGetters(AuthProvider.__proto__),
+      providerId: core.String
+    }));
+    dart.setLibraryUri(AuthProvider, I[0]);
+    return AuthProvider;
   });
-  dart.defineLazy(binding$, {
-    /*binding$._timeDilation*/get _timeDilation() {
-      return 1.0;
+  auth$.AuthProvider = auth$.AuthProvider$();
+  dart.addTypeTests(auth$.AuthProvider, _is_AuthProvider_default);
+  auth$.EmailAuthProvider = class EmailAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.EmailAuthProvider, "firebase.auth.EmailAuthProvider")) {
+    static new() {
+      return new auth$.EmailAuthProvider.fromJsObject(new dart.global.firebase.auth.EmailAuthProvider());
+    }
+    static credential(email, password) {
+      return dart.anonymousJSType("OAuthCredential").as(dart.global.firebase.auth.EmailAuthProvider.credential(email, password));
+    }
+    static credentialWithLink(email, emailLink) {
+      return dart.anonymousJSType("OAuthCredential").as(dart.global.firebase.auth.EmailAuthProvider.credentialWithLink(email, emailLink));
+    }
+  };
+  (auth$.EmailAuthProvider.fromJsObject = function(jsObject) {
+    auth$.EmailAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.EmailAuthProvider.prototype;
+  dart.addTypeTests(auth$.EmailAuthProvider);
+  dart.addTypeCaches(auth$.EmailAuthProvider);
+  dart.setLibraryUri(auth$.EmailAuthProvider, I[0]);
+  dart.defineLazy(auth$.EmailAuthProvider, {
+    /*auth$.EmailAuthProvider.PROVIDER_ID*/get PROVIDER_ID() {
+      return dart.global.firebase.auth.EmailAuthProvider.PROVIDER_ID;
     },
-    set _timeDilation(_) {}
+    set PROVIDER_ID(_) {}
   }, false);
-  dart.trackLibraries("packages/flutter/src/scheduler/binding.dart", {
-    "package:flutter/src/scheduler/binding.dart": binding$
+  auth$.FacebookAuthProvider = class FacebookAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.FacebookAuthProvider, "firebase.auth.FacebookAuthProvider")) {
+    static new() {
+      return new auth$.FacebookAuthProvider.fromJsObject(new dart.global.firebase.auth.FacebookAuthProvider());
+    }
+    addScope(scope) {
+      return new auth$.FacebookAuthProvider.fromJsObject(this.jsObject.addScope(scope));
+    }
+    setCustomParameters(customOAuthParameters) {
+      return new auth$.FacebookAuthProvider.fromJsObject(this.jsObject.setCustomParameters(utils$.jsify(customOAuthParameters)));
+    }
+    static credential(token) {
+      return dart.global.firebase.auth.FacebookAuthProvider.credential(token);
+    }
+  };
+  (auth$.FacebookAuthProvider.fromJsObject = function(jsObject) {
+    auth$.FacebookAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.FacebookAuthProvider.prototype;
+  dart.addTypeTests(auth$.FacebookAuthProvider);
+  dart.addTypeCaches(auth$.FacebookAuthProvider);
+  dart.setMethodSignature(auth$.FacebookAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.FacebookAuthProvider.__proto__),
+    addScope: dart.fnType(auth$.FacebookAuthProvider, [core.String]),
+    setCustomParameters: dart.fnType(auth$.FacebookAuthProvider, [core.Map$(dart.nullable(core.Object), dart.nullable(core.Object))])
+  }));
+  dart.setLibraryUri(auth$.FacebookAuthProvider, I[0]);
+  dart.defineLazy(auth$.FacebookAuthProvider, {
+    /*auth$.FacebookAuthProvider.PROVIDER_ID*/get PROVIDER_ID() {
+      return dart.global.firebase.auth.FacebookAuthProvider.PROVIDER_ID;
+    },
+    set PROVIDER_ID(_) {}
+  }, false);
+  auth$.GithubAuthProvider = class GithubAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.GithubAuthProvider, "firebase.auth.GithubAuthProvider")) {
+    static new() {
+      return new auth$.GithubAuthProvider.fromJsObject(new dart.global.firebase.auth.GithubAuthProvider());
+    }
+    addScope(scope) {
+      return new auth$.GithubAuthProvider.fromJsObject(this.jsObject.addScope(scope));
+    }
+    setCustomParameters(customOAuthParameters) {
+      return new auth$.GithubAuthProvider.fromJsObject(this.jsObject.setCustomParameters(utils$.jsify(customOAuthParameters)));
+    }
+    static credential(token) {
+      return dart.global.firebase.auth.GithubAuthProvider.credential(token);
+    }
+  };
+  (auth$.GithubAuthProvider.fromJsObject = function(jsObject) {
+    auth$.GithubAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.GithubAuthProvider.prototype;
+  dart.addTypeTests(auth$.GithubAuthProvider);
+  dart.addTypeCaches(auth$.GithubAuthProvider);
+  dart.setMethodSignature(auth$.GithubAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.GithubAuthProvider.__proto__),
+    addScope: dart.fnType(auth$.GithubAuthProvider, [core.String]),
+    setCustomParameters: dart.fnType(auth$.GithubAuthProvider, [core.Map$(dart.nullable(core.Object), dart.nullable(core.Object))])
+  }));
+  dart.setLibraryUri(auth$.GithubAuthProvider, I[0]);
+  dart.defineLazy(auth$.GithubAuthProvider, {
+    /*auth$.GithubAuthProvider.PROVIDER_ID*/get PROVIDER_ID() {
+      return dart.global.firebase.auth.GithubAuthProvider.PROVIDER_ID;
+    },
+    set PROVIDER_ID(_) {}
+  }, false);
+  auth$.GoogleAuthProvider = class GoogleAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.GoogleAuthProvider, "firebase.auth.GoogleAuthProvider")) {
+    static new() {
+      return new auth$.GoogleAuthProvider.fromJsObject(new dart.global.firebase.auth.GoogleAuthProvider());
+    }
+    addScope(scope) {
+      return new auth$.GoogleAuthProvider.fromJsObject(this.jsObject.addScope(scope));
+    }
+    setCustomParameters(customOAuthParameters) {
+      return new auth$.GoogleAuthProvider.fromJsObject(this.jsObject.setCustomParameters(utils$.jsify(customOAuthParameters)));
+    }
+    static credential(idToken = null, accessToken = null) {
+      return dart.global.firebase.auth.GoogleAuthProvider.credential(idToken, accessToken);
+    }
+  };
+  (auth$.GoogleAuthProvider.fromJsObject = function(jsObject) {
+    auth$.GoogleAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.GoogleAuthProvider.prototype;
+  dart.addTypeTests(auth$.GoogleAuthProvider);
+  dart.addTypeCaches(auth$.GoogleAuthProvider);
+  dart.setMethodSignature(auth$.GoogleAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.GoogleAuthProvider.__proto__),
+    addScope: dart.fnType(auth$.GoogleAuthProvider, [core.String]),
+    setCustomParameters: dart.fnType(auth$.GoogleAuthProvider, [core.Map$(dart.nullable(core.Object), dart.nullable(core.Object))])
+  }));
+  dart.setLibraryUri(auth$.GoogleAuthProvider, I[0]);
+  dart.defineLazy(auth$.GoogleAuthProvider, {
+    /*auth$.GoogleAuthProvider.PROVIDER_ID*/get PROVIDER_ID() {
+      return dart.global.firebase.auth.GoogleAuthProvider.PROVIDER_ID;
+    },
+    set PROVIDER_ID(_) {}
+  }, false);
+  auth$.OAuthProvider = class OAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.OAuthProvider, "firebase.auth.OAuthProvider")) {
+    static new(providerId) {
+      return new auth$.OAuthProvider.fromJsObject(new dart.global.firebase.auth.OAuthProvider(providerId));
+    }
+    addScope(scope) {
+      return new auth$.OAuthProvider.fromJsObject(this.jsObject.addScope(scope));
+    }
+    setCustomParameters(customOAuthParameters) {
+      return new auth$.OAuthProvider.fromJsObject(this.jsObject.setCustomParameters(utils$.jsify(customOAuthParameters)));
+    }
+    credential(idToken = null, accessToken = null) {
+      return this.jsObject.credential(idToken, accessToken);
+    }
+  };
+  (auth$.OAuthProvider.fromJsObject = function(jsObject) {
+    auth$.OAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.OAuthProvider.prototype;
+  dart.addTypeTests(auth$.OAuthProvider);
+  dart.addTypeCaches(auth$.OAuthProvider);
+  dart.setMethodSignature(auth$.OAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.OAuthProvider.__proto__),
+    addScope: dart.fnType(auth$.OAuthProvider, [core.String]),
+    setCustomParameters: dart.fnType(auth$.OAuthProvider, [core.Map$(dart.nullable(core.Object), dart.nullable(core.Object))]),
+    credential: dart.fnType(dart.anonymousJSType("OAuthCredential"), [], [dart.nullable(core.String), dart.nullable(core.String)])
+  }));
+  dart.setLibraryUri(auth$.OAuthProvider, I[0]);
+  auth$.TwitterAuthProvider = class TwitterAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.TwitterAuthProvider, "firebase.auth.TwitterAuthProvider")) {
+    static new() {
+      return new auth$.TwitterAuthProvider.fromJsObject(new dart.global.firebase.auth.TwitterAuthProvider());
+    }
+    setCustomParameters(customOAuthParameters) {
+      return new auth$.TwitterAuthProvider.fromJsObject(this.jsObject.setCustomParameters(utils$.jsify(customOAuthParameters)));
+    }
+    static credential(token, secret) {
+      return dart.global.firebase.auth.TwitterAuthProvider.credential(token, secret);
+    }
+  };
+  (auth$.TwitterAuthProvider.fromJsObject = function(jsObject) {
+    auth$.TwitterAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.TwitterAuthProvider.prototype;
+  dart.addTypeTests(auth$.TwitterAuthProvider);
+  dart.addTypeCaches(auth$.TwitterAuthProvider);
+  dart.setMethodSignature(auth$.TwitterAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.TwitterAuthProvider.__proto__),
+    setCustomParameters: dart.fnType(auth$.TwitterAuthProvider, [core.Map$(dart.nullable(core.Object), dart.nullable(core.Object))])
+  }));
+  dart.setLibraryUri(auth$.TwitterAuthProvider, I[0]);
+  dart.defineLazy(auth$.TwitterAuthProvider, {
+    /*auth$.TwitterAuthProvider.PROVIDER_ID*/get PROVIDER_ID() {
+      return dart.global.firebase.auth.TwitterAuthProvider.PROVIDER_ID;
+    },
+    set PROVIDER_ID(_) {}
+  }, false);
+  auth$.PhoneAuthProvider = class PhoneAuthProvider extends auth$.AuthProvider$(dart.lazyJSType(() => dart.global.firebase.auth.PhoneAuthProvider, "firebase.auth.PhoneAuthProvider")) {
+    static get PROVIDER_ID() {
+      return dart.global.firebase.auth.PhoneAuthProvider.PROVIDER_ID;
+    }
+    static new(auth = null) {
+      return new auth$.PhoneAuthProvider.fromJsObject(auth != null ? new dart.global.firebase.auth.PhoneAuthProvider(auth.jsObject) : new dart.global.firebase.auth.PhoneAuthProvider());
+    }
+    verifyPhoneNumber(phoneNumber, applicationVerifier) {
+      return utils.handleThenable(core.String, this.jsObject.verifyPhoneNumber(phoneNumber, applicationVerifier.jsObject));
+    }
+    static credential(verificationId, verificationCode) {
+      return dart.anonymousJSType("OAuthCredential").as(dart.global.firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode));
+    }
+  };
+  (auth$.PhoneAuthProvider.fromJsObject = function(jsObject) {
+    auth$.PhoneAuthProvider.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.PhoneAuthProvider.prototype;
+  dart.addTypeTests(auth$.PhoneAuthProvider);
+  dart.addTypeCaches(auth$.PhoneAuthProvider);
+  dart.setMethodSignature(auth$.PhoneAuthProvider, () => ({
+    __proto__: dart.getMethods(auth$.PhoneAuthProvider.__proto__),
+    verifyPhoneNumber: dart.fnType(async.Future$(core.String), [core.String, auth$.ApplicationVerifier$(dart.lazyJSType(() => dart.global.firebase.auth.ApplicationVerifier, "firebase.auth.ApplicationVerifier"))])
+  }));
+  dart.setLibraryUri(auth$.PhoneAuthProvider, I[0]);
+  const _is_ApplicationVerifier_default = Symbol('_is_ApplicationVerifier_default');
+  auth$.ApplicationVerifier$ = dart.generic(T => {
+    class ApplicationVerifier extends js$.JsObjectWrapper$(T) {
+      get type() {
+        return this.jsObject.type;
+      }
+      verify() {
+        return utils.handleThenable(core.String, this.jsObject.verify());
+      }
+    }
+    (ApplicationVerifier.fromJsObject = function(jsObject) {
+      ApplicationVerifier.__proto__.fromJsObject.call(this, jsObject);
+      ;
+    }).prototype = ApplicationVerifier.prototype;
+    dart.addTypeTests(ApplicationVerifier);
+    ApplicationVerifier.prototype[_is_ApplicationVerifier_default] = true;
+    dart.addTypeCaches(ApplicationVerifier);
+    dart.setMethodSignature(ApplicationVerifier, () => ({
+      __proto__: dart.getMethods(ApplicationVerifier.__proto__),
+      verify: dart.fnType(async.Future$(core.String), [])
+    }));
+    dart.setGetterSignature(ApplicationVerifier, () => ({
+      __proto__: dart.getGetters(ApplicationVerifier.__proto__),
+      type: core.String
+    }));
+    dart.setLibraryUri(ApplicationVerifier, I[0]);
+    return ApplicationVerifier;
+  });
+  auth$.ApplicationVerifier = auth$.ApplicationVerifier$();
+  dart.addTypeTests(auth$.ApplicationVerifier, _is_ApplicationVerifier_default);
+  auth$.RecaptchaVerifier = class RecaptchaVerifier extends auth$.ApplicationVerifier$(dart.lazyJSType(() => dart.global.firebase.auth.RecaptchaVerifier, "firebase.auth.RecaptchaVerifier")) {
+    static new(container, parameters = null, app = null) {
+      return parameters != null ? app != null ? new auth$.RecaptchaVerifier.fromJsObject(new dart.global.firebase.auth.RecaptchaVerifier(container, utils$.jsify(parameters), app.jsObject)) : new auth$.RecaptchaVerifier.fromJsObject(new dart.global.firebase.auth.RecaptchaVerifier(container, utils$.jsify(parameters))) : new auth$.RecaptchaVerifier.fromJsObject(new dart.global.firebase.auth.RecaptchaVerifier(container));
+    }
+    clear() {
+      return this.jsObject.clear();
+    }
+    render() {
+      return utils.handleThenable(core.num, this.jsObject.render());
+    }
+  };
+  (auth$.RecaptchaVerifier.fromJsObject = function(jsObject) {
+    auth$.RecaptchaVerifier.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.RecaptchaVerifier.prototype;
+  dart.addTypeTests(auth$.RecaptchaVerifier);
+  dart.addTypeCaches(auth$.RecaptchaVerifier);
+  dart.setMethodSignature(auth$.RecaptchaVerifier, () => ({
+    __proto__: dart.getMethods(auth$.RecaptchaVerifier.__proto__),
+    clear: dart.fnType(dart.void, []),
+    render: dart.fnType(async.Future$(core.num), [])
+  }));
+  dart.setLibraryUri(auth$.RecaptchaVerifier, I[0]);
+  auth$.ConfirmationResult = class ConfirmationResult extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.auth.ConfirmationResult, "firebase.auth.ConfirmationResult")) {
+    get verificationId() {
+      return this.jsObject.verificationId;
+    }
+    confirm(verificationCode) {
+      return utils.handleThenable(dart.anonymousJSType("UserCredentialJsImpl"), this.jsObject.confirm(verificationCode)).then(auth$.UserCredential, dart.fn(u => new auth$.UserCredential.fromJsObject(u), T.UserCredentialJsImplToUserCredential()));
+    }
+  };
+  (auth$.ConfirmationResult.fromJsObject = function(jsObject) {
+    auth$.ConfirmationResult.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.ConfirmationResult.prototype;
+  dart.addTypeTests(auth$.ConfirmationResult);
+  dart.addTypeCaches(auth$.ConfirmationResult);
+  dart.setMethodSignature(auth$.ConfirmationResult, () => ({
+    __proto__: dart.getMethods(auth$.ConfirmationResult.__proto__),
+    confirm: dart.fnType(async.Future$(auth$.UserCredential), [core.String])
+  }));
+  dart.setGetterSignature(auth$.ConfirmationResult, () => ({
+    __proto__: dart.getGetters(auth$.ConfirmationResult.__proto__),
+    verificationId: core.String
+  }));
+  dart.setLibraryUri(auth$.ConfirmationResult, I[0]);
+  auth$.UserCredential = class UserCredential extends js$.JsObjectWrapper$(dart.anonymousJSType("UserCredentialJsImpl")) {
+    get user() {
+      return auth$.User.getInstance(this.jsObject.user);
+    }
+    get credential() {
+      return this.jsObject.credential;
+    }
+    get operationType() {
+      return this.jsObject.operationType;
+    }
+    get additionalUserInfo() {
+      return new auth$.AdditionalUserInfo.fromJsObject(this.jsObject.additionalUserInfo);
+    }
+  };
+  (auth$.UserCredential.fromJsObject = function(jsObject) {
+    auth$.UserCredential.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.UserCredential.prototype;
+  dart.addTypeTests(auth$.UserCredential);
+  dart.addTypeCaches(auth$.UserCredential);
+  dart.setGetterSignature(auth$.UserCredential, () => ({
+    __proto__: dart.getGetters(auth$.UserCredential.__proto__),
+    user: dart.nullable(auth$.User),
+    credential: dart.anonymousJSType("OAuthCredential"),
+    operationType: core.String,
+    additionalUserInfo: auth$.AdditionalUserInfo
+  }));
+  dart.setLibraryUri(auth$.UserCredential, I[0]);
+  auth$.AdditionalUserInfo = class AdditionalUserInfo extends js$.JsObjectWrapper$(dart.anonymousJSType("AdditionalUserInfoJsImpl")) {
+    get providerId() {
+      return this.jsObject.providerId;
+    }
+    get profile() {
+      return T.MapNOfString$dynamic().as(utils$.dartify(this.jsObject.profile));
+    }
+    get username() {
+      return this.jsObject.username;
+    }
+    get isNewUser() {
+      return this.jsObject.isNewUser;
+    }
+  };
+  (auth$.AdditionalUserInfo.fromJsObject = function(jsObject) {
+    auth$.AdditionalUserInfo.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = auth$.AdditionalUserInfo.prototype;
+  dart.addTypeTests(auth$.AdditionalUserInfo);
+  dart.addTypeCaches(auth$.AdditionalUserInfo);
+  dart.setGetterSignature(auth$.AdditionalUserInfo, () => ({
+    __proto__: dart.getGetters(auth$.AdditionalUserInfo.__proto__),
+    providerId: core.String,
+    profile: dart.nullable(core.Map$(core.String, dart.dynamic)),
+    username: core.String,
+    isNewUser: core.bool
+  }));
+  dart.setLibraryUri(auth$.AdditionalUserInfo, I[0]);
+  auth$.getAuthInstance = function getAuthInstance(app = null) {
+    return auth$.Auth.getInstance(app != null ? dart.global.firebase.auth(app.jsObject) : dart.global.firebase.auth());
+  };
+  dart.trackLibraries("packages/firebase_auth_web/src/interop/auth.dart", {
+    "package:firebase_auth_web/src/interop/auth.dart": auth$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["binding.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/scheduler/binding.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["auth.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/firebase_auth_web/src/interop/auth.dart.lib.js"}');
   // Exports:
   return {
-    src__scheduler__binding: binding$
+    src__interop__auth: auth$
   };
 }));
 
-//# sourceMappingURL=binding.dart.lib.js.map
+//# sourceMappingURL=auth.dart.lib.js.map

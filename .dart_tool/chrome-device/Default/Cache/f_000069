@@ -1,31 +1,46 @@
-define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/layout_helper.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__rendering__wrap_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__layout_helper$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__flutter__src__rendering__debug_overflow_indicator_dart(dart_sdk, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__painting__strut_style$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
   const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const layout_helper = packages__flutter__src__rendering__layout_helper$46dart.src__rendering__layout_helper;
+  const text_painter = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_painter;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var wrap = Object.create(dart.library);
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  var debug_overflow_indicator = Object.create(dart.library);
+  var $length = dartx.length;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $toStringAsPrecision = dartx.toStringAsPrecision;
+  var $add = dartx.add;
+  var $isEmpty = dartx.isEmpty;
   var $runtimeType = dartx.runtimeType;
   var $isNotEmpty = dartx.isNotEmpty;
-  var $add = dartx.add;
-  var $length = dartx.length;
+  var $first = dartx.first;
+  var $last = dartx.last;
   var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $join = dartx.join;
+  var $times = dartx['*'];
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    RenderBoxAndBoxConstraintsToSize: () => (T.RenderBoxAndBoxConstraintsToSize = dart.constFn(dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])))(),
-    JSArrayOf_RunMetrics: () => (T.JSArrayOf_RunMetrics = dart.constFn(_interceptors.JSArray$(wrap._RunMetrics)))(),
-    EnumPropertyOfAxis: () => (T.EnumPropertyOfAxis = dart.constFn(diagnostics.EnumProperty$(basic_types.Axis)))(),
-    EnumPropertyOfWrapAlignment: () => (T.EnumPropertyOfWrapAlignment = dart.constFn(diagnostics.EnumProperty$(wrap.WrapAlignment)))(),
-    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
-    EnumPropertyOfVerticalDirection: () => (T.EnumPropertyOfVerticalDirection = dart.constFn(diagnostics.EnumProperty$(basic_types.VerticalDirection)))()
+    ListOfTextPainter: () => (T.ListOfTextPainter = dart.constFn(core.List$(text_painter.TextPainter)))(),
+    JSArrayOf_OverflowRegionData: () => (T.JSArrayOf_OverflowRegionData = dart.constFn(_interceptors.JSArray$(debug_overflow_indicator._OverflowRegionData)))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
+    SyncIterableOfDiagnosticsNode: () => (T.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T.IterableOfDiagnosticsNode(), [])))(),
+    TextSpanN: () => (T.TextSpanN = dart.constFn(dart.nullable(text_span.TextSpan)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    JSArrayOfColor: () => (T.JSArrayOfColor = dart.constFn(_interceptors.JSArray$(ui.Color)))(),
+    JSArrayOfdouble: () => (T.JSArrayOfdouble = dart.constFn(_interceptors.JSArray$(core.double)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -33,862 +48,428 @@ define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutt
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.start",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.left",
         index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.end",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.top",
         index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.center",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.bottom",
         index: 2
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.spaceBetween",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.right",
         index: 3
       });
     },
     get C4() {
-      return C[4] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.spaceAround",
-        index: 4
-      });
+      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], debug_overflow_indicator._OverflowSide);
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: wrap.WrapAlignment.prototype,
-        [_name$]: "WrapAlignment.spaceEvenly",
-        index: 5
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
       });
     },
     get C6() {
-      return C[6] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], wrap.WrapAlignment);
+      return C[6] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 8.5
+      });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: wrap.WrapCrossAlignment.prototype,
-        [_name$]: "WrapCrossAlignment.start",
-        index: 0
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 1,
+        [OffsetBase__dx]: 0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: wrap.WrapCrossAlignment.prototype,
-        [_name$]: "WrapCrossAlignment.end",
-        index: 1
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 8.5,
+        [OffsetBase__dx]: 0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: wrap.WrapCrossAlignment.prototype,
-        [_name$]: "WrapCrossAlignment.center",
-        index: 2
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3204448256.0
       });
     },
     get C10() {
-      return C[10] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], wrap.WrapCrossAlignment);
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.horizontal",
-        index: 0
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3221225216.0
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: basic_types.VerticalDirection.prototype,
-        [_name]: "VerticalDirection.down",
-        index: 1
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 7
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: ui.Clip.prototype,
-        [_name$0]: "Clip.none",
-        index: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287627264.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[12] || CT.C12,
+        [TextStyle_fontSize]: 7.5,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[13] || CT.C13,
+        [TextStyle_inherit]: true
       });
     },
     get C14() {
       return C[14] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 10,
+        [OffsetBase__dx]: 10
       });
     },
     get C15() {
-      return C[15] = dart.fn(layout_helper.ChildLayoutHelper.dryLayoutChild, T.RenderBoxAndBoxConstraintsToSize());
+      return C[15] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
+      });
     }
   }, false);
   var C = Array(16).fill(void 0);
   var I = [
-    "package:flutter/src/rendering/wrap.dart",
-    "file:///C:/flutter/sdk/packages/flutter/lib/src/rendering/wrap.dart"
+    "package:flutter/src/rendering/debug_overflow_indicator.dart",
+    "file:///C:/flutter/sdk/packages/flutter/lib/src/rendering/debug_overflow_indicator.dart"
   ];
-  var _name$ = dart.privateName(wrap, "_name");
-  wrap.WrapAlignment = class WrapAlignment extends core.Object {
+  var _name$ = dart.privateName(debug_overflow_indicator, "_name");
+  debug_overflow_indicator._OverflowSide = class _OverflowSide extends core.Object {
     toString() {
       return this[_name$];
     }
   };
-  (wrap.WrapAlignment.new = function(index, _name) {
+  (debug_overflow_indicator._OverflowSide.new = function(index, _name) {
     this.index = index;
     this[_name$] = _name;
     ;
-  }).prototype = wrap.WrapAlignment.prototype;
-  dart.addTypeTests(wrap.WrapAlignment);
-  dart.addTypeCaches(wrap.WrapAlignment);
-  dart.setLibraryUri(wrap.WrapAlignment, I[0]);
-  dart.setFieldSignature(wrap.WrapAlignment, () => ({
-    __proto__: dart.getFields(wrap.WrapAlignment.__proto__),
+  }).prototype = debug_overflow_indicator._OverflowSide.prototype;
+  dart.addTypeTests(debug_overflow_indicator._OverflowSide);
+  dart.addTypeCaches(debug_overflow_indicator._OverflowSide);
+  dart.setLibraryUri(debug_overflow_indicator._OverflowSide, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator._OverflowSide, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator._OverflowSide.__proto__),
     index: dart.finalFieldType(core.int),
     [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.defineExtensionMethods(wrap.WrapAlignment, ['toString']);
-  wrap.WrapAlignment.start = C[0] || CT.C0;
-  wrap.WrapAlignment.end = C[1] || CT.C1;
-  wrap.WrapAlignment.center = C[2] || CT.C2;
-  wrap.WrapAlignment.spaceBetween = C[3] || CT.C3;
-  wrap.WrapAlignment.spaceAround = C[4] || CT.C4;
-  wrap.WrapAlignment.spaceEvenly = C[5] || CT.C5;
-  wrap.WrapAlignment.values = C[6] || CT.C6;
-  wrap.WrapCrossAlignment = class WrapCrossAlignment extends core.Object {
-    toString() {
-      return this[_name$];
+  dart.defineExtensionMethods(debug_overflow_indicator._OverflowSide, ['toString']);
+  debug_overflow_indicator._OverflowSide.left = C[0] || CT.C0;
+  debug_overflow_indicator._OverflowSide.top = C[1] || CT.C1;
+  debug_overflow_indicator._OverflowSide.bottom = C[2] || CT.C2;
+  debug_overflow_indicator._OverflowSide.right = C[3] || CT.C3;
+  debug_overflow_indicator._OverflowSide.values = C[4] || CT.C4;
+  var rect$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.rect");
+  var label$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.label");
+  var labelOffset$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.labelOffset");
+  var rotation$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.rotation");
+  var side$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.side");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  debug_overflow_indicator._OverflowRegionData = class _OverflowRegionData extends core.Object {
+    get rect() {
+      return this[rect$];
+    }
+    set rect(value) {
+      super.rect = value;
+    }
+    get label() {
+      return this[label$];
+    }
+    set label(value) {
+      super.label = value;
+    }
+    get labelOffset() {
+      return this[labelOffset$];
+    }
+    set labelOffset(value) {
+      super.labelOffset = value;
+    }
+    get rotation() {
+      return this[rotation$];
+    }
+    set rotation(value) {
+      super.rotation = value;
+    }
+    get side() {
+      return this[side$];
+    }
+    set side(value) {
+      super.side = value;
     }
   };
-  (wrap.WrapCrossAlignment.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (debug_overflow_indicator._OverflowRegionData.new = function(opts) {
+    let rect = opts && 'rect' in opts ? opts.rect : null;
+    let label = opts && 'label' in opts ? opts.label : "";
+    let labelOffset = opts && 'labelOffset' in opts ? opts.labelOffset : C[5] || CT.C5;
+    let rotation = opts && 'rotation' in opts ? opts.rotation : 0;
+    let side = opts && 'side' in opts ? opts.side : null;
+    this[rect$] = rect;
+    this[label$] = label;
+    this[labelOffset$] = labelOffset;
+    this[rotation$] = rotation;
+    this[side$] = side;
     ;
-  }).prototype = wrap.WrapCrossAlignment.prototype;
-  dart.addTypeTests(wrap.WrapCrossAlignment);
-  dart.addTypeCaches(wrap.WrapCrossAlignment);
-  dart.setLibraryUri(wrap.WrapCrossAlignment, I[0]);
-  dart.setFieldSignature(wrap.WrapCrossAlignment, () => ({
-    __proto__: dart.getFields(wrap.WrapCrossAlignment.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = debug_overflow_indicator._OverflowRegionData.prototype;
+  dart.addTypeTests(debug_overflow_indicator._OverflowRegionData);
+  dart.addTypeCaches(debug_overflow_indicator._OverflowRegionData);
+  dart.setLibraryUri(debug_overflow_indicator._OverflowRegionData, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator._OverflowRegionData, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator._OverflowRegionData.__proto__),
+    rect: dart.finalFieldType(ui.Rect),
+    label: dart.finalFieldType(core.String),
+    labelOffset: dart.finalFieldType(ui.Offset),
+    rotation: dart.finalFieldType(core.double),
+    side: dart.finalFieldType(debug_overflow_indicator._OverflowSide)
   }));
-  dart.defineExtensionMethods(wrap.WrapCrossAlignment, ['toString']);
-  wrap.WrapCrossAlignment.start = C[7] || CT.C7;
-  wrap.WrapCrossAlignment.end = C[8] || CT.C8;
-  wrap.WrapCrossAlignment.center = C[9] || CT.C9;
-  wrap.WrapCrossAlignment.values = C[10] || CT.C10;
-  wrap._RunMetrics = class _RunMetrics extends core.Object {};
-  (wrap._RunMetrics.new = function(mainAxisExtent, crossAxisExtent, childCount) {
-    this.mainAxisExtent = mainAxisExtent;
-    this.crossAxisExtent = crossAxisExtent;
-    this.childCount = childCount;
-    ;
-  }).prototype = wrap._RunMetrics.prototype;
-  dart.addTypeTests(wrap._RunMetrics);
-  dart.addTypeCaches(wrap._RunMetrics);
-  dart.setLibraryUri(wrap._RunMetrics, I[0]);
-  dart.setFieldSignature(wrap._RunMetrics, () => ({
-    __proto__: dart.getFields(wrap._RunMetrics.__proto__),
-    mainAxisExtent: dart.finalFieldType(core.double),
-    crossAxisExtent: dart.finalFieldType(core.double),
-    childCount: dart.finalFieldType(core.int)
-  }));
-  var _runIndex = dart.privateName(wrap, "_runIndex");
-  wrap.WrapParentData = class WrapParentData extends box.ContainerBoxParentData$(box.RenderBox) {};
-  (wrap.WrapParentData.new = function() {
-    this[_runIndex] = 0;
-    wrap.WrapParentData.__proto__.new.call(this);
-    ;
-  }).prototype = wrap.WrapParentData.prototype;
-  dart.addTypeTests(wrap.WrapParentData);
-  dart.addTypeCaches(wrap.WrapParentData);
-  dart.setLibraryUri(wrap.WrapParentData, I[0]);
-  dart.setFieldSignature(wrap.WrapParentData, () => ({
-    __proto__: dart.getFields(wrap.WrapParentData.__proto__),
-    [_runIndex]: dart.fieldType(core.int)
-  }));
-  var _name = dart.privateName(basic_types, "_name");
-  var _name$0 = dart.privateName(ui, "_name");
-  var _clipBehavior = dart.privateName(wrap, "_clipBehavior");
-  var _hasVisualOverflow = dart.privateName(wrap, "_hasVisualOverflow");
-  var _clipRectLayer = dart.privateName(wrap, "_clipRectLayer");
-  var _direction = dart.privateName(wrap, "_direction");
-  var _alignment = dart.privateName(wrap, "_alignment");
-  var _spacing = dart.privateName(wrap, "_spacing");
-  var _runAlignment = dart.privateName(wrap, "_runAlignment");
-  var _runSpacing = dart.privateName(wrap, "_runSpacing");
-  var _crossAxisAlignment = dart.privateName(wrap, "_crossAxisAlignment");
-  var _textDirection = dart.privateName(wrap, "_textDirection");
-  var _verticalDirection = dart.privateName(wrap, "_verticalDirection");
-  var _debugHasNecessaryDirections = dart.privateName(wrap, "_debugHasNecessaryDirections");
-  var _getMainAxisExtent = dart.privateName(wrap, "_getMainAxisExtent");
-  var _getCrossAxisExtent = dart.privateName(wrap, "_getCrossAxisExtent");
-  var _getOffset = dart.privateName(wrap, "_getOffset");
-  var _getChildCrossAxisOffset = dart.privateName(wrap, "_getChildCrossAxisOffset");
-  var _computeDryLayout = dart.privateName(wrap, "_computeDryLayout");
-  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
-  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
-    object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData)[dart.mixinNew].call(this);
-    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
-  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData));
-  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
-  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
-    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
-  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, wrap.WrapParentData));
-  wrap.RenderWrap = class RenderWrap extends RenderBox_RenderBoxContainerDefaultsMixin$36 {
-    get direction() {
-      return this[_direction];
-    }
-    set direction(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 152, 12, "value != null");
-      if (this[_direction] === value) return;
-      this[_direction] = value;
-      this.markNeedsLayout();
-    }
-    get alignment() {
-      return this[_alignment];
-    }
-    set alignment(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 175, 12, "value != null");
-      if (this[_alignment] === value) return;
-      this[_alignment] = value;
-      this.markNeedsLayout();
-    }
-    get spacing() {
-      return this[_spacing];
-    }
-    set spacing(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 196, 12, "value != null");
-      if (this[_spacing] === value) return;
-      this[_spacing] = value;
-      this.markNeedsLayout();
-    }
-    get runAlignment() {
-      return this[_runAlignment];
-    }
-    set runAlignment(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 220, 12, "value != null");
-      if (this[_runAlignment] === value) return;
-      this[_runAlignment] = value;
-      this.markNeedsLayout();
-    }
-    get runSpacing() {
-      return this[_runSpacing];
-    }
-    set runSpacing(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 240, 12, "value != null");
-      if (this[_runSpacing] === value) return;
-      this[_runSpacing] = value;
-      this.markNeedsLayout();
-    }
-    get crossAxisAlignment() {
-      return this[_crossAxisAlignment];
-    }
-    set crossAxisAlignment(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 265, 12, "value != null");
-      if (this[_crossAxisAlignment] === value) return;
-      this[_crossAxisAlignment] = value;
-      this.markNeedsLayout();
-    }
-    get textDirection() {
-      return this[_textDirection];
-    }
-    set textDirection(value) {
-      if (this[_textDirection] != value) {
-        this[_textDirection] = value;
-        this.markNeedsLayout();
+  var _indicatorLabel = dart.privateName(debug_overflow_indicator, "_indicatorLabel");
+  var _overflowReportNeeded = dart.privateName(debug_overflow_indicator, "_overflowReportNeeded");
+  var _formatPixels = dart.privateName(debug_overflow_indicator, "_formatPixels");
+  var _calculateOverflowRegions = dart.privateName(debug_overflow_indicator, "_calculateOverflowRegions");
+  var _reportOverflow = dart.privateName(debug_overflow_indicator, "_reportOverflow");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  debug_overflow_indicator.DebugOverflowIndicatorMixin = class DebugOverflowIndicatorMixin extends object.RenderObject {};
+  debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.mixinOn] = RenderObject => class DebugOverflowIndicatorMixin extends RenderObject {
+    [_formatPixels](value) {
+      if (!(value > 0.0)) dart.assertFailed(null, I[1], 122, 12, "value > 0.0");
+      let pixels = null;
+      if (value > 10.0) {
+        pixels = value[$toStringAsFixed](0);
+      } else if (value > 1.0) {
+        pixels = value[$toStringAsFixed](1);
+      } else {
+        pixels = value[$toStringAsPrecision](3);
       }
+      return pixels;
     }
-    get verticalDirection() {
-      return this[_verticalDirection];
-    }
-    set verticalDirection(value) {
-      if (this[_verticalDirection] !== value) {
-        this[_verticalDirection] = value;
-        this.markNeedsLayout();
+    [_calculateOverflowRegions](overflow, containerRect) {
+      let regions = T.JSArrayOf_OverflowRegionData().of([]);
+      if (overflow.left > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, 0.0, containerRect.width * 0.1, containerRect.height);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "LEFT OVERFLOWED BY " + this[_formatPixels](overflow.left) + " PIXELS", labelOffset: markerRect.centerLeft['+'](C[6] || CT.C6), rotation: 3.141592653589793 / 2.0, side: debug_overflow_indicator._OverflowSide.left}));
       }
-    }
-    get clipBehavior() {
-      return this[_clipBehavior];
-    }
-    set clipBehavior(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[1], 341, 12, "value != null");
-      if (value !== this[_clipBehavior]) {
-        this[_clipBehavior] = value;
-        this.markNeedsPaint();
-        this.markNeedsSemanticsUpdate();
+      if (overflow.right > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(containerRect.width * (1.0 - 0.1), 0.0, containerRect.width * 0.1, containerRect.height);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "RIGHT OVERFLOWED BY " + this[_formatPixels](overflow.right) + " PIXELS", labelOffset: markerRect.centerRight['-'](C[6] || CT.C6), rotation: -3.141592653589793 / 2.0, side: debug_overflow_indicator._OverflowSide.right}));
       }
-    }
-    get [_debugHasNecessaryDirections]() {
-      if (!(this.direction !== null)) dart.assertFailed(null, I[1], 350, 12, "direction != null");
-      if (!(this.alignment !== null)) dart.assertFailed(null, I[1], 351, 12, "alignment != null");
-      if (!(this.runAlignment !== null)) dart.assertFailed(null, I[1], 352, 12, "runAlignment != null");
-      if (!(this.crossAxisAlignment !== null)) dart.assertFailed(null, I[1], 353, 12, "crossAxisAlignment != null");
-      if (this.firstChild != null && !dart.equals(this.lastChild, this.firstChild)) {
-        switch (this.direction) {
-          case C[11] || CT.C11:
-          {
-            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with multiple children has a null textDirection, so the layout order is undefined.", I[1], 358, 18, "textDirection != null");
-            break;
-          }
-          case C[14] || CT.C14:
-          {
-            if (!(this.verticalDirection !== null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with multiple children has a null verticalDirection, so the layout order is undefined.", I[1], 361, 18, "verticalDirection != null");
-            break;
-          }
-        }
+      if (overflow.top > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, 0.0, containerRect.width, containerRect.height * 0.1);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "TOP OVERFLOWED BY " + this[_formatPixels](overflow.top) + " PIXELS", labelOffset: markerRect.topCenter['+'](C[7] || CT.C7), rotation: 0.0, side: debug_overflow_indicator._OverflowSide.top}));
       }
-      if (this.alignment === wrap.WrapAlignment.start || this.alignment === wrap.WrapAlignment.end) {
-        switch (this.direction) {
-          case C[11] || CT.C11:
-          {
-            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 368, 18, "textDirection != null");
-            break;
-          }
-          case C[14] || CT.C14:
-          {
-            if (!(this.verticalDirection !== null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 371, 18, "verticalDirection != null");
-            break;
-          }
-        }
+      if (overflow.bottom > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, containerRect.height * (1.0 - 0.1), containerRect.width, containerRect.height * 0.1);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "BOTTOM OVERFLOWED BY " + this[_formatPixels](overflow.bottom) + " PIXELS", labelOffset: markerRect.bottomCenter['-'](C[8] || CT.C8), rotation: 0.0, side: debug_overflow_indicator._OverflowSide.bottom}));
       }
-      if (this.runAlignment === wrap.WrapAlignment.start || this.runAlignment === wrap.WrapAlignment.end) {
-        switch (this.direction) {
-          case C[11] || CT.C11:
-          {
-            if (!(this.verticalDirection !== null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 378, 18, "verticalDirection != null");
-            break;
-          }
-          case C[14] || CT.C14:
-          {
-            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 381, 18, "textDirection != null");
-            break;
-          }
-        }
+      return regions;
+    }
+    [_reportOverflow](overflow, overflowHints) {
+      overflowHints == null ? overflowHints = T.JSArrayOfDiagnosticsNode().of([]) : null;
+      if (overflowHints[$isEmpty]) {
+        overflowHints[$add](new assertions.ErrorDescription.new("The edge of the " + dart.str(this[$runtimeType]) + " that is " + "overflowing has been marked in the rendering with a yellow and black " + "striped pattern. This is usually caused by the contents being too big " + "for the " + dart.str(this[$runtimeType]) + "."));
+        overflowHints[$add](new assertions.ErrorHint.new("This is considered an error condition because it indicates that there " + "is content that cannot be seen. If the content is legitimately bigger " + "than the available space, consider clipping it with a ClipRect widget " + "before putting it in the " + dart.str(this[$runtimeType]) + ", or using a scrollable " + "container, like a ListView."));
       }
-      if (this.crossAxisAlignment === wrap.WrapCrossAlignment.start || this.crossAxisAlignment === wrap.WrapCrossAlignment.end) {
-        switch (this.direction) {
-          case C[11] || CT.C11:
-          {
-            if (!(this.verticalDirection !== null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 388, 18, "verticalDirection != null");
-            break;
-          }
-          case C[14] || CT.C14:
-          {
-            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 391, 18, "textDirection != null");
-            break;
-          }
-        }
-      }
-      return true;
-    }
-    setupParentData(child) {
-      box.RenderBox.as(child);
-      if (!wrap.WrapParentData.is(child.parentData)) child.parentData = new wrap.WrapParentData.new();
-    }
-    computeMinIntrinsicWidth(height) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
+      let overflows = (() => {
+        let t0 = T.JSArrayOfString().of([]);
+        if (overflow.left > 0.0) t0[$add](this[_formatPixels](overflow.left) + " pixels on the left");
+        if (overflow.top > 0.0) t0[$add](this[_formatPixels](overflow.top) + " pixels on the top");
+        if (overflow.bottom > 0.0) t0[$add](this[_formatPixels](overflow.bottom) + " pixels on the bottom");
+        if (overflow.right > 0.0) t0[$add](this[_formatPixels](overflow.right) + " pixels on the right");
+        return t0;
+      })();
+      let overflowText = "";
+      if (!overflows[$isNotEmpty]) dart.assertFailed("Somehow " + dart.str(this[$runtimeType]) + " didn't actually overflow like it thought it did.", I[1], 227, 12, "overflows.isNotEmpty");
+      switch (overflows[$length]) {
+        case 1:
         {
-          let width = 0.0;
-          let child = this.firstChild;
-          while (child != null) {
-            width = math.max(core.double, width, child.getMinIntrinsicWidth(1 / 0));
-            child = this.childAfter(child);
-          }
-          return width;
-        }
-        case C[14] || CT.C14:
-        {
-          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
-        }
-      }
-    }
-    computeMaxIntrinsicWidth(height) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          let width = 0.0;
-          let child = this.firstChild;
-          while (child != null) {
-            width = width + child.getMaxIntrinsicWidth(1 / 0);
-            child = this.childAfter(child);
-          }
-          return width;
-        }
-        case C[14] || CT.C14:
-        {
-          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
-        }
-      }
-    }
-    computeMinIntrinsicHeight(width) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
-        }
-        case C[14] || CT.C14:
-        {
-          let height = 0.0;
-          let child = this.firstChild;
-          while (child != null) {
-            height = math.max(core.double, height, child.getMinIntrinsicHeight(1 / 0));
-            child = this.childAfter(child);
-          }
-          return height;
-        }
-      }
-    }
-    computeMaxIntrinsicHeight(width) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
-        }
-        case C[14] || CT.C14:
-        {
-          let height = 0.0;
-          let child = this.firstChild;
-          while (child != null) {
-            height = height + child.getMaxIntrinsicHeight(1 / 0);
-            child = this.childAfter(child);
-          }
-          return height;
-        }
-      }
-    }
-    computeDistanceToActualBaseline(baseline) {
-      return this.defaultComputeDistanceToHighestActualBaseline(baseline);
-    }
-    [_getMainAxisExtent](childSize) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          return childSize.width;
-        }
-        case C[14] || CT.C14:
-        {
-          return childSize.height;
-        }
-      }
-    }
-    [_getCrossAxisExtent](childSize) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          return childSize.height;
-        }
-        case C[14] || CT.C14:
-        {
-          return childSize.width;
-        }
-      }
-    }
-    [_getOffset](mainAxisOffset, crossAxisOffset) {
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          return new ui.Offset.new(mainAxisOffset, crossAxisOffset);
-        }
-        case C[14] || CT.C14:
-        {
-          return new ui.Offset.new(crossAxisOffset, mainAxisOffset);
-        }
-      }
-    }
-    [_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent) {
-      let freeSpace = runCrossAxisExtent - childCrossAxisExtent;
-      switch (this.crossAxisAlignment) {
-        case C[7] || CT.C7:
-        {
-          return flipCrossAxis ? freeSpace : 0.0;
-        }
-        case C[8] || CT.C8:
-        {
-          return flipCrossAxis ? 0.0 : freeSpace;
-        }
-        case C[9] || CT.C9:
-        {
-          return freeSpace / 2.0;
-        }
-      }
-    }
-    computeDryLayout(constraints) {
-      return this[_computeDryLayout](constraints);
-    }
-    [_computeDryLayout](constraints, layoutChild = C[15] || CT.C15) {
-      let childConstraints = null;
-      let mainAxisLimit = 0.0;
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
-          mainAxisLimit = constraints.maxWidth;
+          overflowText = overflows[$first];
           break;
         }
-        case C[14] || CT.C14:
+        case 2:
         {
-          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
-          mainAxisLimit = constraints.maxHeight;
+          overflowText = overflows[$first] + " and " + overflows[$last];
           break;
         }
-      }
-      let mainAxisExtent = 0.0;
-      let crossAxisExtent = 0.0;
-      let runMainAxisExtent = 0.0;
-      let runCrossAxisExtent = 0.0;
-      let childCount = 0;
-      let child = this.firstChild;
-      while (child != null) {
-        let childSize = layoutChild(child, childConstraints);
-        let childMainAxisExtent = this[_getMainAxisExtent](childSize);
-        let childCrossAxisExtent = this[_getCrossAxisExtent](childSize);
-        if (childCount > 0 && runMainAxisExtent + childMainAxisExtent + this.spacing > mainAxisLimit) {
-          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
-          crossAxisExtent = crossAxisExtent + (runCrossAxisExtent + this.runSpacing);
-          runMainAxisExtent = 0.0;
-          runCrossAxisExtent = 0.0;
-          childCount = 0;
-        }
-        runMainAxisExtent = runMainAxisExtent + childMainAxisExtent;
-        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
-        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + this.spacing;
-        childCount = childCount + 1;
-        child = this.childAfter(child);
-      }
-      crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
-      mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
-      switch (this.direction) {
-        case C[11] || CT.C11:
+        default:
         {
-          return constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
-        }
-        case C[14] || CT.C14:
-        {
-          return constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
+          overflows[$_set](overflows[$length] - 1, "and " + overflows[$_get](overflows[$length] - 1));
+          overflowText = overflows[$join](", ");
         }
       }
+      assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: assertions.FlutterError.new("A " + dart.str(this[$runtimeType]) + " overflowed by " + overflowText + "."), library: "rendering library", context: new assertions.ErrorDescription.new("during layout"), informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
+          if (this.debugCreator != null) yield new object.DiagnosticsDebugCreator.new(dart.nullCheck(this.debugCreator));
+          yield* dart.nullCheck(overflowHints);
+          yield this.describeForError("The specific " + dart.str(this[$runtimeType]) + " in question is");
+          yield diagnostics.DiagnosticsNode.message("◢◤"[$times]((100 / 2)[$truncate]()), {allowWrap: false});
+        }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
     }
-    performLayout() {
-      let constraints = this.constraints;
-      if (!this[_debugHasNecessaryDirections]) dart.assertFailed(null, I[1], 572, 12, "_debugHasNecessaryDirections");
-      this[_hasVisualOverflow] = false;
-      let child = this.firstChild;
-      if (child == null) {
-        this.size = constraints.smallest;
+    paintOverflowIndicator(context, offset, containerRect, childRect, opts) {
+      let t1;
+      let overflowHints = opts && 'overflowHints' in opts ? opts.overflowHints : null;
+      let overflow = stack.RelativeRect.fromRect(containerRect, childRect);
+      if (overflow.left <= 0.0 && overflow.right <= 0.0 && overflow.top <= 0.0 && overflow.bottom <= 0.0) {
         return;
       }
-      let childConstraints = null;
-      let mainAxisLimit = 0.0;
-      let flipMainAxis = false;
-      let flipCrossAxis = false;
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
-          mainAxisLimit = constraints.maxWidth;
-          if (this.textDirection === ui.TextDirection.rtl) flipMainAxis = true;
-          if (this.verticalDirection === basic_types.VerticalDirection.up) flipCrossAxis = true;
-          break;
+      let overflowRegions = this[_calculateOverflowRegions](overflow, containerRect);
+      for (let region of overflowRegions) {
+        context.canvas.drawRect(region.rect.shift(offset), debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorPaint);
+        let textSpan = T.TextSpanN().as(this[_indicatorLabel][$_get](region.side.index).text);
+        if ((t1 = textSpan, t1 == null ? null : t1.text) !== region.label) {
+          this[_indicatorLabel][$_get](region.side.index).text = new text_span.TextSpan.new({text: region.label, style: debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorTextStyle});
+          this[_indicatorLabel][$_get](region.side.index).layout();
         }
-        case C[14] || CT.C14:
-        {
-          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
-          mainAxisLimit = constraints.maxHeight;
-          if (this.verticalDirection === basic_types.VerticalDirection.up) flipMainAxis = true;
-          if (this.textDirection === ui.TextDirection.rtl) flipCrossAxis = true;
-          break;
-        }
+        let labelOffset = region.labelOffset['+'](offset);
+        let centerOffset = new ui.Offset.new(-this[_indicatorLabel][$_get](region.side.index).width / 2.0, 0.0);
+        let textBackgroundRect = centerOffset['&'](this[_indicatorLabel][$_get](region.side.index).size);
+        context.canvas.save();
+        context.canvas.translate(labelOffset.dx, labelOffset.dy);
+        context.canvas.rotate(region.rotation);
+        context.canvas.drawRect(textBackgroundRect, debug_overflow_indicator.DebugOverflowIndicatorMixin._labelBackgroundPaint);
+        this[_indicatorLabel][$_get](region.side.index).paint(context.canvas, centerOffset);
+        context.canvas.restore();
       }
-      if (!(childConstraints !== null)) dart.assertFailed(null, I[1], 601, 12, "childConstraints != null");
-      if (!(mainAxisLimit !== null)) dart.assertFailed(null, I[1], 602, 12, "mainAxisLimit != null");
-      let spacing = this.spacing;
-      let runSpacing = this.runSpacing;
-      let runMetrics = T.JSArrayOf_RunMetrics().of([]);
-      let mainAxisExtent = 0.0;
-      let crossAxisExtent = 0.0;
-      let runMainAxisExtent = 0.0;
-      let runCrossAxisExtent = 0.0;
-      let childCount = 0;
-      while (child != null) {
-        child.layout(childConstraints, {parentUsesSize: true});
-        let childMainAxisExtent = this[_getMainAxisExtent](child.size);
-        let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
-        if (childCount > 0 && runMainAxisExtent + spacing + childMainAxisExtent > mainAxisLimit) {
-          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
-          crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
-          if (runMetrics[$isNotEmpty]) crossAxisExtent = crossAxisExtent + runSpacing;
-          runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
-          runMainAxisExtent = 0.0;
-          runCrossAxisExtent = 0.0;
-          childCount = 0;
-        }
-        runMainAxisExtent = runMainAxisExtent + childMainAxisExtent;
-        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + spacing;
-        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
-        childCount = childCount + 1;
-        let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
-        childParentData[_runIndex] = runMetrics[$length];
-        child = childParentData.nextSibling;
-      }
-      if (childCount > 0) {
-        mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
-        crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
-        if (runMetrics[$isNotEmpty]) crossAxisExtent = crossAxisExtent + runSpacing;
-        runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
-      }
-      let runCount = runMetrics[$length];
-      if (!(runCount > 0)) dart.assertFailed(null, I[1], 643, 12, "runCount > 0");
-      let containerMainAxisExtent = 0.0;
-      let containerCrossAxisExtent = 0.0;
-      switch (this.direction) {
-        case C[11] || CT.C11:
-        {
-          this.size = constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
-          containerMainAxisExtent = this.size.width;
-          containerCrossAxisExtent = this.size.height;
-          break;
-        }
-        case C[14] || CT.C14:
-        {
-          this.size = constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
-          containerMainAxisExtent = this.size.height;
-          containerCrossAxisExtent = this.size.width;
-          break;
-        }
-      }
-      this[_hasVisualOverflow] = containerMainAxisExtent < mainAxisExtent || containerCrossAxisExtent < crossAxisExtent;
-      let crossAxisFreeSpace = math.max(core.double, 0.0, containerCrossAxisExtent - crossAxisExtent);
-      let runLeadingSpace = 0.0;
-      let runBetweenSpace = 0.0;
-      switch (this.runAlignment) {
-        case C[0] || CT.C0:
-        {
-          break;
-        }
-        case C[1] || CT.C1:
-        {
-          runLeadingSpace = crossAxisFreeSpace;
-          break;
-        }
-        case C[2] || CT.C2:
-        {
-          runLeadingSpace = crossAxisFreeSpace / 2.0;
-          break;
-        }
-        case C[3] || CT.C3:
-        {
-          runBetweenSpace = runCount > 1 ? crossAxisFreeSpace / (runCount - 1) : 0.0;
-          break;
-        }
-        case C[4] || CT.C4:
-        {
-          runBetweenSpace = crossAxisFreeSpace / runCount;
-          runLeadingSpace = runBetweenSpace / 2.0;
-          break;
-        }
-        case C[5] || CT.C5:
-        {
-          runBetweenSpace = crossAxisFreeSpace / (runCount + 1);
-          runLeadingSpace = runBetweenSpace;
-          break;
-        }
-      }
-      runBetweenSpace = runBetweenSpace + runSpacing;
-      let crossAxisOffset = flipCrossAxis ? containerCrossAxisExtent - runLeadingSpace : runLeadingSpace;
-      child = this.firstChild;
-      for (let i = 0; i < runCount; i = i + 1) {
-        let metrics = runMetrics[$_get](i);
-        let runMainAxisExtent = metrics.mainAxisExtent;
-        let runCrossAxisExtent = metrics.crossAxisExtent;
-        let childCount = metrics.childCount;
-        let mainAxisFreeSpace = math.max(core.double, 0.0, containerMainAxisExtent - runMainAxisExtent);
-        let childLeadingSpace = 0.0;
-        let childBetweenSpace = 0.0;
-        switch (this.alignment) {
-          case C[0] || CT.C0:
-          {
-            break;
-          }
-          case C[1] || CT.C1:
-          {
-            childLeadingSpace = mainAxisFreeSpace;
-            break;
-          }
-          case C[2] || CT.C2:
-          {
-            childLeadingSpace = mainAxisFreeSpace / 2.0;
-            break;
-          }
-          case C[3] || CT.C3:
-          {
-            childBetweenSpace = childCount > 1 ? mainAxisFreeSpace / (childCount - 1) : 0.0;
-            break;
-          }
-          case C[4] || CT.C4:
-          {
-            childBetweenSpace = mainAxisFreeSpace / childCount;
-            childLeadingSpace = childBetweenSpace / 2.0;
-            break;
-          }
-          case C[5] || CT.C5:
-          {
-            childBetweenSpace = mainAxisFreeSpace / (childCount + 1);
-            childLeadingSpace = childBetweenSpace;
-            break;
-          }
-        }
-        childBetweenSpace = childBetweenSpace + spacing;
-        let childMainPosition = flipMainAxis ? containerMainAxisExtent - childLeadingSpace : childLeadingSpace;
-        if (flipCrossAxis) crossAxisOffset = crossAxisOffset - runCrossAxisExtent;
-        while (child != null) {
-          let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
-          if (childParentData[_runIndex] !== i) break;
-          let childMainAxisExtent = this[_getMainAxisExtent](child.size);
-          let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
-          let childCrossAxisOffset = this[_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent);
-          if (flipMainAxis) childMainPosition = childMainPosition - childMainAxisExtent;
-          childParentData.offset = this[_getOffset](childMainPosition, crossAxisOffset + childCrossAxisOffset);
-          if (flipMainAxis)
-            childMainPosition = childMainPosition - childBetweenSpace;
-          else
-            childMainPosition = childMainPosition + (childMainAxisExtent + childBetweenSpace);
-          child = childParentData.nextSibling;
-        }
-        if (flipCrossAxis)
-          crossAxisOffset = crossAxisOffset - runBetweenSpace;
-        else
-          crossAxisOffset = crossAxisOffset + (runCrossAxisExtent + runBetweenSpace);
+      if (this[_overflowReportNeeded]) {
+        this[_overflowReportNeeded] = false;
+        this[_reportOverflow](overflow, overflowHints);
       }
     }
-    hitTestChildren(result, opts) {
-      let position = opts && 'position' in opts ? opts.position : null;
-      return this.defaultHitTestChildren(result, {position: position});
-    }
-    paint(context, offset) {
-      if (this[_hasVisualOverflow] && this.clipBehavior !== ui.Clip.none) {
-        this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), dart.bind(this, 'defaultPaint'), {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
-      } else {
-        this[_clipRectLayer] = null;
-        this.defaultPaint(context, offset);
-      }
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T.EnumPropertyOfAxis()).new("direction", this.direction));
-      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("alignment", this.alignment));
-      properties.add(new diagnostics.DoubleProperty.new("spacing", this.spacing));
-      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("runAlignment", this.runAlignment));
-      properties.add(new diagnostics.DoubleProperty.new("runSpacing", this.runSpacing));
-      properties.add(new diagnostics.DoubleProperty.new("crossAxisAlignment", this.runSpacing));
-      properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection, {defaultValue: null}));
-      properties.add(new (T.EnumPropertyOfVerticalDirection()).new("verticalDirection", this.verticalDirection, {defaultValue: basic_types.VerticalDirection.down}));
+    reassemble() {
+      super.reassemble();
+      if (!dart.fn(() => {
+        this[_overflowReportNeeded] = true;
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 315, 12, "() {\r\n      _overflowReportNeeded = true;\r\n      return true;\r\n    }()");
     }
   };
-  (wrap.RenderWrap.new = function(opts) {
-    let children = opts && 'children' in opts ? opts.children : null;
-    let direction = opts && 'direction' in opts ? opts.direction : C[11] || CT.C11;
-    let alignment = opts && 'alignment' in opts ? opts.alignment : C[0] || CT.C0;
-    let spacing = opts && 'spacing' in opts ? opts.spacing : 0;
-    let runAlignment = opts && 'runAlignment' in opts ? opts.runAlignment : C[0] || CT.C0;
-    let runSpacing = opts && 'runSpacing' in opts ? opts.runSpacing : 0;
-    let crossAxisAlignment = opts && 'crossAxisAlignment' in opts ? opts.crossAxisAlignment : C[7] || CT.C7;
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    let verticalDirection = opts && 'verticalDirection' in opts ? opts.verticalDirection : C[12] || CT.C12;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[13] || CT.C13;
-    this[_clipBehavior] = ui.Clip.none;
-    this[_hasVisualOverflow] = false;
-    this[_clipRectLayer] = null;
-    if (!(direction !== null)) dart.assertFailed(null, I[1], 124, 15, "direction != null");
-    if (!(alignment !== null)) dart.assertFailed(null, I[1], 125, 15, "alignment != null");
-    if (!(spacing !== null)) dart.assertFailed(null, I[1], 126, 15, "spacing != null");
-    if (!(runAlignment !== null)) dart.assertFailed(null, I[1], 127, 15, "runAlignment != null");
-    if (!(runSpacing !== null)) dart.assertFailed(null, I[1], 128, 15, "runSpacing != null");
-    if (!(crossAxisAlignment !== null)) dart.assertFailed(null, I[1], 129, 15, "crossAxisAlignment != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[1], 130, 15, "clipBehavior != null");
-    this[_direction] = direction;
-    this[_alignment] = alignment;
-    this[_spacing] = spacing;
-    this[_runAlignment] = runAlignment;
-    this[_runSpacing] = runSpacing;
-    this[_crossAxisAlignment] = crossAxisAlignment;
-    this[_textDirection] = textDirection;
-    this[_verticalDirection] = verticalDirection;
-    this[_clipBehavior] = clipBehavior;
-    wrap.RenderWrap.__proto__.new.call(this);
-    this.addAll(children);
-  }).prototype = wrap.RenderWrap.prototype;
-  dart.addTypeTests(wrap.RenderWrap);
-  dart.addTypeCaches(wrap.RenderWrap);
-  dart.setMethodSignature(wrap.RenderWrap, () => ({
-    __proto__: dart.getMethods(wrap.RenderWrap.__proto__),
-    [_getMainAxisExtent]: dart.fnType(core.double, [ui.Size]),
-    [_getCrossAxisExtent]: dart.fnType(core.double, [ui.Size]),
-    [_getOffset]: dart.fnType(ui.Offset, [core.double, core.double]),
-    [_getChildCrossAxisOffset]: dart.fnType(core.double, [core.bool, core.double, core.double]),
-    [_computeDryLayout]: dart.fnType(ui.Size, [box.BoxConstraints], [dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])])
+  (debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.mixinNew] = function() {
+    this[_indicatorLabel] = T.ListOfTextPainter().filled(debug_overflow_indicator._OverflowSide.values[$length], new text_painter.TextPainter.new({textDirection: ui.TextDirection.ltr}));
+    this[_overflowReportNeeded] = true;
+  }).prototype = debug_overflow_indicator.DebugOverflowIndicatorMixin.prototype;
+  dart.addTypeTests(debug_overflow_indicator.DebugOverflowIndicatorMixin);
+  dart.addTypeCaches(debug_overflow_indicator.DebugOverflowIndicatorMixin);
+  debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.implements] = () => [object.RenderObject];
+  dart.setMethodSignature(debug_overflow_indicator.DebugOverflowIndicatorMixin, () => ({
+    __proto__: dart.getMethods(debug_overflow_indicator.DebugOverflowIndicatorMixin.__proto__),
+    [_formatPixels]: dart.fnType(core.String, [core.double]),
+    [_calculateOverflowRegions]: dart.fnType(core.List$(debug_overflow_indicator._OverflowRegionData), [stack.RelativeRect, ui.Rect]),
+    [_reportOverflow]: dart.fnType(dart.void, [stack.RelativeRect, dart.nullable(core.List$(diagnostics.DiagnosticsNode))]),
+    paintOverflowIndicator: dart.fnType(dart.void, [object.PaintingContext, ui.Offset, ui.Rect, ui.Rect], {overflowHints: dart.nullable(core.List$(diagnostics.DiagnosticsNode))}, {})
   }));
-  dart.setGetterSignature(wrap.RenderWrap, () => ({
-    __proto__: dart.getGetters(wrap.RenderWrap.__proto__),
-    direction: basic_types.Axis,
-    alignment: wrap.WrapAlignment,
-    spacing: core.double,
-    runAlignment: wrap.WrapAlignment,
-    runSpacing: core.double,
-    crossAxisAlignment: wrap.WrapCrossAlignment,
-    textDirection: dart.nullable(ui.TextDirection),
-    verticalDirection: basic_types.VerticalDirection,
-    clipBehavior: ui.Clip,
-    [_debugHasNecessaryDirections]: core.bool
+  dart.setLibraryUri(debug_overflow_indicator.DebugOverflowIndicatorMixin, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator.DebugOverflowIndicatorMixin, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator.DebugOverflowIndicatorMixin.__proto__),
+    [_indicatorLabel]: dart.finalFieldType(core.List$(text_painter.TextPainter)),
+    [_overflowReportNeeded]: dart.fieldType(core.bool)
   }));
-  dart.setSetterSignature(wrap.RenderWrap, () => ({
-    __proto__: dart.getSetters(wrap.RenderWrap.__proto__),
-    direction: basic_types.Axis,
-    alignment: wrap.WrapAlignment,
-    spacing: core.double,
-    runAlignment: wrap.WrapAlignment,
-    runSpacing: core.double,
-    crossAxisAlignment: wrap.WrapCrossAlignment,
-    textDirection: dart.nullable(ui.TextDirection),
-    verticalDirection: basic_types.VerticalDirection,
-    clipBehavior: ui.Clip
-  }));
-  dart.setLibraryUri(wrap.RenderWrap, I[0]);
-  dart.setFieldSignature(wrap.RenderWrap, () => ({
-    __proto__: dart.getFields(wrap.RenderWrap.__proto__),
-    [_direction]: dart.fieldType(basic_types.Axis),
-    [_alignment]: dart.fieldType(wrap.WrapAlignment),
-    [_spacing]: dart.fieldType(core.double),
-    [_runAlignment]: dart.fieldType(wrap.WrapAlignment),
-    [_runSpacing]: dart.fieldType(core.double),
-    [_crossAxisAlignment]: dart.fieldType(wrap.WrapCrossAlignment),
-    [_textDirection]: dart.fieldType(dart.nullable(ui.TextDirection)),
-    [_verticalDirection]: dart.fieldType(basic_types.VerticalDirection),
-    [_clipBehavior]: dart.fieldType(ui.Clip),
-    [_hasVisualOverflow]: dart.fieldType(core.bool),
-    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
-  }));
-  dart.trackLibraries("packages/flutter/src/rendering/wrap.dart", {
-    "package:flutter/src/rendering/wrap.dart": wrap
+  dart.defineLazy(debug_overflow_indicator.DebugOverflowIndicatorMixin, {
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._black*/get _black() {
+      return C[9] || CT.C9;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow*/get _yellow() {
+      return C[10] || CT.C10;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorFraction*/get _indicatorFraction() {
+      return 0.1;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorFontSizePixels*/get _indicatorFontSizePixels() {
+      return 7.5;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorLabelPaddingPixels*/get _indicatorLabelPaddingPixels() {
+      return 1;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorTextStyle*/get _indicatorTextStyle() {
+      return C[11] || CT.C11;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorPaint*/get _indicatorPaint() {
+      let t1;
+      return t1 = ui.Paint.new(), (() => {
+        t1.shader = ui.Gradient.linear(ui.Offset.zero, C[14] || CT.C14, T.JSArrayOfColor().of([debug_overflow_indicator.DebugOverflowIndicatorMixin._black, debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow, debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow, debug_overflow_indicator.DebugOverflowIndicatorMixin._black]), T.JSArrayOfdouble().of([0.25, 0.25, 0.75, 0.75]), ui.TileMode.repeated);
+        return t1;
+      })();
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._labelBackgroundPaint*/get _labelBackgroundPaint() {
+      let t1;
+      return t1 = ui.Paint.new(), (() => {
+        t1.color = C[15] || CT.C15;
+        return t1;
+      })();
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/rendering/debug_overflow_indicator.dart", {
+    "package:flutter/src/rendering/debug_overflow_indicator.dart": debug_overflow_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["wrap.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/wrap.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["debug_overflow_indicator.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/debug_overflow_indicator.dart.lib.js"}');
   // Exports:
   return {
-    src__rendering__wrap: wrap
+    src__rendering__debug_overflow_indicator: debug_overflow_indicator
   };
 }));
 
-//# sourceMappingURL=wrap.dart.lib.js.map
+//# sourceMappingURL=debug_overflow_indicator.dart.lib.js.map

@@ -1,15 +1,12 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:projetodatamob/firestore.dart';
 import 'package:projetodatamob/routes.dart';
+import 'package:projetodatamob/screens/apontamentos.dart';
 import 'package:projetodatamob/screens/login.dart';
-import 'package:projetodatamob/screens/menu.dart';
 import 'package:projetodatamob/theme.dart';
 
 void main() async {
+  /*Remover comentario para popular o firebase*/
   //mapearFireStore();
-  //await modulosUser("ricardo");
   runApp(MyApp());
 }
 
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Projeto Datamob',
       theme: theme(),
-      initialRoute: Login.routeName,
+      initialRoute: Apontamentos.routeName,
       routes: routes,
     );
   }
